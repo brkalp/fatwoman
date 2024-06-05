@@ -1,0 +1,48 @@
+Title,Waittime,ScrollAmount,INCLUDE_THIS_TOGGLE,URL
+vol_plot_VIX,30,0,TRUE,Not used
+logs,30,0,TRUE,Not used
+Daily_Plot_HTML,300,0,TRUE,Not used
+Daily_YC_Appended,100,0,TRUE,Not used
+vol_plot_SPY,30,0,TRUE,Not used
+vol_plot_TLT,30,0,TRUE,Not used
+vol_plot_TSLA,30,0,TRUE,Not used
+vol_plot_NVDA,30,0,TRUE,Not used
+vol_plot_AAPL,30,0,TRUE,Not used
+roaringKitty,15,0,TRUE,https://www.reddit.com/user/DeepFuckingValue/
+optioncharts,30,0,TRUE,https://optioncharts.io/options/SPY/chain/chart/volatility-skew
+calendar1,30,0,FALSE,https://www.etoro.com/investing/earnings-reports/?gad_source=1&utm_medium=SEM&utm_source=111890&utm_content=0&utm_serial=CAMP_19624382763%7CAG_146431743355%7CKW_%7CMT_%7CTarget_%7CTargetid_dsa-1930718144548%7CCreative_646530754078&utm_campaign=CAMP_19624382763%7CAG_146431743355%7CKW_%7CMT_%7CTarget_%7CTargetid_dsa-1930718144548%7CCreative_646530754078&utm_term=https%3A%2F%2Fwww.google.com%2F&cq_src=google_ads&cq_cmp=19624382763&cq_term=&cq_plac=&cq_net=g&cq_plt=gp&gclid=CjwKCAiAi6uvBhADEiwAWiyRdprXSivutCcQmuWPGtK8GVR6sdf_kFwu4cifpEwNLo8vw341piE3qhoC7pkQAvD_BwE
+calendar2,30,0,FALSE,https://www.nasdaq.com/market-activity/earnings
+calendar3,30,0,FALSE,https://www.tradingview.com/markets/stocks-usa/earnings/
+calendar4,30,0,FALSE,https://seekingalpha.com/earnings/earnings-call-transcripts
+vix_trading_view,100,0,TRUE,https://www.tradingview.com/symbols/CBOE-VIX/
+bitcoin,100,0,TRUE,https://www.google.com/search?q=bitcoin&oq=bitcoin&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIGCAQQRRhBMgYIBRBFGEEyBggGEEUYQTIGCAcQRRg9qAIAsAIA&sourceid=chrome&ie=UTF-8
+yfinance,100,0,TRUE,https://finance.yahoo.com/
+news,100,0,TRUE,https://www.google.com/search?q=news&sxsrf=AB5stBgI4ibl83TQjwLMKmbkrJngMjEXew%3A1690236072034&source=hp&ei=p_S-ZL3ZO8TKwPAPzI2D0A8&iflsig=AD69kcEAAAAAZL8CuAB3wtZ7N0TSUVtjqm1aOmKj36Ar&ved=0ahUKEwj9yKCFrKiAAxVEJRAIHczGAPoQ4dUDCAk&uact=5&oq=news&gs_lp=Egdnd3Mtd2l6IgRuZXdzMgUQABiABDILEC4YgAQYxwEY0QMyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgsQLhiABBjHARjRAzIFEAAYgAQyBRAAGIAEMgUQLhiABEilCFCmBVi1B3ABeACQAQCYAUCgAewBqgEBNLgBA8gBAPgBAagCAcICBhCzARiFBMICCxAuGMcBGNEDGIAE&sclient=gws-wiz
+SP,100,0,TRUE,https://www.google.com/finance/quote/.INX:INDEXSP?sa=X&sqi=2&ved=2ahUKEwjP6_7I6aSAAxW6EBAIHS7sB-QQ3ecFegQIJhAf&window=5D
+DJIA,100,0,TRUE,https://www.google.com/finance/quote/.DJI:INDEXDJX?sa=X&ved=2ahUKEwiu5-ylq6iAAxUPLRAIHVfQBvkQ3ecFegQIaxAf&window=5D
+NQ,100,0,TRUE,https://www.google.com/search?q=nasdaq+composite&rlz=1C1GCEA_enSE902SE902&oq=nasdaq+comp&aqs=chrome.0.69i59j0j69i57j0l5.4014j1j7&sourceid=chrome&ie=UTF-8
+bitcoinTW,100,0,FALSE,https://www.tradingview.com/chart/?symbol=BITSTAMP%3ABTCUSD
+TLT,100,0,TRUE,https://www.google.com/search?q=tlt&rlz=1C1GCEA_enSE902SE902&oq=tlt&aqs=chrome.0.69i59j0l6j69i61.656j0j7&sourceid=chrome&ie=UTF-8
+GSCI,100,0,TRUE,https://www.google.com/search?q=S%26P+GSCI&rlz=1C1GCEA_enSE902SE902&oq=S%26P+GSCI&aqs=chrome..69i57j69i60&sourceid=chrome&ie=UTF-8
+BIST,100,0,TRUE,https://www.google.com/search?q=bist100&oq=bist100&aqs=chrome..69i57j0l7.2671j0j7&sourceid=chrome&ie=UTF-8
+MarketWatch,100,0,TRUE,https://www.marketwatch.com/
+VIX,100,0,TRUE,https://www.google.com/search?q=vix&oq=vix&aqs=chrome.0.69i59.343j0j1&sourceid=chrome&ie=UTF-8
+EURUSD,100,0,TRUE,https://www.google.com/search?q=euro+to+dollar&rlz=1C1GCEA_enSE902SE902&oq=euro+to+dollar&aqs=chrome.0.0l8.1567j1j7&sourceid=chrome&ie=UTF-8
+EURSEK,100,0,TRUE,https://www.google.com/search?biw=1920&bih=969&sxsrf=ALeKk0260nb-Ib8TMb-eko6D5upemi7S7w%3A1585374161995&ei=0eN-XpmlPIuFwPAPwPCNgAs&q=eur+to+kr&oq=eur+to+kr&gs_lcp=CgZwc3ktYWIQAzIECCMQJzIHCAAQFBCHAjICCAAyAggAMgcIABAUEIcCMgIIADICCAAyAggAMgIIADIECAAQCjoECAAQR1CwDliwDmDoD2gAcAJ4AIABQIgBQJIBATGYAQCgAQGqAQdnd3Mtd2l6&sclient=psy-ab&ved=0ahUKEwjZ0Yv-urzoAhWLAhAIHUB4A7AQ4dUDCAs&uact=5
+TryNews,100,0,TRUE,https://www.google.com/search?q=turkey&tbm=nws&sxsrf=AB5stBiysI9z__7s58J7NggZy-gZ0UG-Cw%3A1690235902947&ei=_vO-ZOG5Ob6gwPAP9O2Y6A4&ved=0ahUKEwjhsNO0q6iAAxU-EBAIHfQ2Bu0Q4dUDCA0&uact=5&oq=turkey&gs_lp=Egxnd3Mtd2l6LW5ld3MiBnR1cmtleTIHEAAYigUYQzIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjDEVC2DVj2EHABeACQAQCYAUigAZQDqgEBN7gBA8gBAPgBAcICCBAAGIoFGJECiAYB&sclient=gws-wiz-news
+EURTRY,100,0,TRUE,https://www.google.com/search?channel=fs&client=ubuntu&q=eur+to+try
+chartfleau,100,0,TRUE,https://www.chartfleau.com/sp500
+Economist,100,0,TRUE,https://www.economist.com/
+Bloomberg,100,0,TRUE,https://www.bloomberg.com/europe
+BloombergHT,100,0,TRUE,https://www.bloomberght.com/
+FT,100,0,TRUE,https://www.ft.com/
+WSJ,100,0,TRUE,https://www.wsj.com/
+Wilmott,100,0,TRUE,https://wilmott.com/
+Quantdate,100,0,TRUE,https://quantdare.com/?fbclid=IwAR0bP5hkAstgHguwLw2cD7xhnxqxZY5v7J1tKLaKlHdcHRjknWUFtmJRMbc
+MarketSentiment,100,0,TRUE,https://marketsentiment.live/app/browser/
+wallstreetbets,100,0,TRUE,https://www.reddit.com/r/wallstreetbets/top/
+Vixcentral,100,0,TRUE,http://vixcentral.com/
+TradingView,100,0,TRUE,https://www.tradingview.com/heatmap/stock/?color=change&dataset=SPX500&group=sector&size=market_cap_basic
+Calendar,100,0,TRUE,https://www.fxstreet.com/economic-calendar
+Mahfi,100,0,TRUE,https://www.mahfiegilmez.com/
+YieldCurve,100,0,TRUE,https://www.ustreasuryyieldcurve.com/

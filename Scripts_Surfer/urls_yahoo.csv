@@ -1,0 +1,3 @@
+Title,Waittime,ScrollAmount,INCLUDE_THIS_TOGGLE,URL
+yahoo,1800,0,TRUE,https://finance.yahoo.com/
+bbg_us,1800,0,TRUE,https://www.bloomberg.com/live/us
