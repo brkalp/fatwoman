@@ -45,7 +45,10 @@ if any(df1.columns.duplicated()):
     raise Exception("Stopping the notebook at this cell.")
 df1.to_csv(YahooDownload_Output_File)  
 print('Saving Done')
-
+size_mb = os.path.getsize(YahooDownload_Output_File) / (1024 * 1024)
+last_modified_time = dt.fromtimestamp(os.path.getmtime(YahooDownload_Output_File))
+print('Size in MB %3.3f, Last modified: %s' %(size_mb,last_modified_time))
+logging.info('Size in MB %3.3f, Last modified: %s')
 #else:
 #    for col in df1.columns:
 #        printloc = YahooDownload_Output_Folder + r'%s.csv'%col

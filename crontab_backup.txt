@@ -1,0 +1,20 @@
+# grep CRON /var/log/syslog
+
+# Define log directory and wrapper script path
+LOG_DIR="/media/fatwoman/fatboy/logs/"
+BASE_DIR="/media/fatwoman/15GB/"
+WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
+
+# Wrapper check - Log wrapper execution
+* * * * * /bin/bash -c 'source '$WRAPPER' >> '$LOG_DIR'wrapper_echo.log' 2>&1
+
+# Download binance orderbook
+* * * * *   /bin/bash -c 'source '$WRAPPER' && runBinanceDownload' > $LOG_DIR'BinanceDownload_output.log' 2>&1
+* * * * *   /bin/bash -c 'source '$WRAPPER' && crontab -l' > $BASE_DIR'crontab_backup.txt' 2>&1
+# Daily activities
+0 5 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDaily' >> $LOG_DIR'Batch_Morning.log' 2>&1
+15 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning1' >> $LOG_DIR'Batch_BBG.log' 2>&1
+43 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning2' >> $LOG_DIR'Batch_Intraday.log' 2>&1
+58 20 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEvening' >> $LOG_DIR'Batch_Evening.log' 2>&1
+58 23 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEOD' >> $LOG_DIR'Batch_EOD.log' 2>&1
+
