@@ -1,7 +1,7 @@
 Archive_manual/
 Historical/
 System Volume Information/
-**/fatwoman_dir_setup.py
+**/fatwoman_api_setup.py
 **/15GB.code-workspace
 **/__pycache__/
 **/geckodriver.log
