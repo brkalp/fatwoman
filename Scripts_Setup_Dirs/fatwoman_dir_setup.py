@@ -11,10 +11,14 @@ import os
 # import fatwoman_dir_setup
 # importlib.reload(fatwoman_dir_setup)
 
+# Change work_dir accordingly, where 15GB is location with scripts and fatboy is the data loc
+remoteIP = r'F:\\'# remoteIP = r'\\10.0.1.6\\'
+work_dir = remoteIP
 # Determine if running on specific platform
-platform_pc = socket.gethostname() == 'ripintheblue'
-fatwoman_base_path = r'\\192.168.0.28\fatwoman_15GB' if platform_pc else r'/media/fatwoman/15GB'
-fatwoman_data_path = r'\\192.168.0.28\fatwoman_fatboy' if platform_pc else r'/media/fatwoman/fatboy'
+# is_platform_pc = socket.gethostname() == 'ripintheblue'
+is_platform_pc = (socket.gethostname() == 'fatwoman') is False
+fatwoman_base_path = work_dir + '15GB'   if is_platform_pc else r'/media/fatwoman/15GB'
+fatwoman_data_path = work_dir + 'fatboy' if is_platform_pc else r'/media/fatwoman/fatboy'
 fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
 
 # Portfolio

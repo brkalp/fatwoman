@@ -32,7 +32,8 @@ def configure_logging(log_file_path = default_log_file_path):
     log_file_path = logging_override.get(importer_name, default_log_file_path)
 
     # Create file handler
-    fh = logging.FileHandler(log_file_path) # total_log_file_path = os.path.join(fatwoman_log_path, "Total.txt")
+    fh = logging.FileHandler(log_file_path)
+    # total_log_file_path = os.path.join(fatwoman_log_path, "Total.txt")
     fh.setLevel(logging.INFO)
 
     # Create formatter and add it to the handler
@@ -56,6 +57,7 @@ def handle_exception(exc_type, exc_value, exc_traceback):
         sys.__excepthook__(exc_type, exc_value, exc_traceback)
         return
     logging.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+    print("Uncaught exception, %s %s %s" %(exc_type, exc_value, exc_traceback))
 
 sys.excepthook = handle_exception
 
