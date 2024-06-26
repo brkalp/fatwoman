@@ -10,6 +10,7 @@ export PYTHONPATH="$PYTHONPATH:${BASE_DIR}Scripts_Setup_Logger/:${BASE_DIR}/Scri
 export PYTHONPATH="/media/fatwoman/fatboy/python_libraries:$PYTHONPATH"
 RETURNIP() { curl ifconfig.me; }
 IPGET() { curl ifconfig.me; }
+SETKEYBOARDSWE() { setxkbmap se; }
 screensdimon(){
 DISPLAY=:0 xrandr --output DisplayPort-0 --brightness 0.55
 DISPLAY=:0 xrandr --output DisplayPort-1 --brightness 0.55
@@ -48,6 +49,7 @@ runChromeRemoteDesktop() { sudo systemctl start chrome-remote-desktop@fatwoman.s
 runChromeRemoteDesktopkill() { /opt/google/chrome-remote-desktop/chrome-remote-desktop --stop;}
 runChromeRemoteDesktopstatus() { systemctl status chrome-remote-desktop@fatwoman.service;}
 runBatchDaily()  {
+    runSODpy
     runChromeRemoteDesktop
     # Base Daily plots
     runYahooDownload
@@ -63,15 +65,14 @@ runBatchDaily()  {
     runVolPlot
 }
 runBatchMorning1() {
-    runSODpy
     surferkill
     screenson
     screensdimon
-    surferbbg
+#    surferbbg
 }
 runBatchMorning2() {
     surferkill
-    surferprint
+#    surferprint
     screensdimon
     }
 runBatchEvening() {
