@@ -36,103 +36,110 @@ override_vol_filter_dict = {
     '^VIX':  1
     }
 
-logging.info('Plotting: %s, Last days %s' %(tickers_to_plot,L_x_days))
-Vol_all_folder = os.path.join(Vol_Output_Folder, 'Plots', 'all')
-Vol_append_fol = os.path.join(Vol_Output_Folder, 'Plots')
+# Format the date cols accordingly
+format_dict = {'Timestamp':"%d/%m/%Y"}
+
+# General settings
 ts_format = '%Y-%m-%d' # prints on title and some boolean checks
 legend_ts_format = '%d'
 Last_x_days_trade = 7
 plotsize = (10, 6)
 
+# Start script
+logging.info('Plotting: %s, Last days %s' %(tickers_to_plot,L_x_days))
 # big loop for tickers
 for ticker_symbol in tickers_to_plot:
-    # Get data
-    data_save_loc_total = Optionchain_loc(ticker_symbol = ticker_symbol, db_type='Total')
-    ticker_data = pd.read_csv(data_save_loc_total, dtype=Optionchain_dtype_dict, engine = 'python')
-    for date_col in Optionchain_date_cols: ticker_data[date_col] = pd.to_datetime(ticker_data[date_col], format='mixed')
-    ticker_data['lastTradeDate']
+    try:
+        # Get data
+        print(ticker_symbol)
+        data_save_loc_total = Optionchain_loc(ticker_symbol = ticker_symbol, db_type='Total')
+        ticker_data = pd.read_csv(data_save_loc_total, dtype=Optionchain_dtype_dict, engine = 'python')
+        for date_col in Optionchain_date_cols: ticker_data[date_col] = pd.to_datetime(ticker_data[date_col], format=format_dict.get(date_col,'mixed'))
 
+        # Filter Data
+        latest_dates = ticker_data['Timestamp'].drop_duplicates().sort_values().tail(L_x_days)
+        ticker_data = ticker_data[ticker_data['Timestamp'].isin(latest_dates)]
+        ticker_data = ticker_data[ticker_data['impliedVolatility'] > 0.1]
+        ticker_data = ticker_data[ticker_data['Expiration_Date'] > ticker_data['Timestamp']]
+        ticker_data = ticker_data[ticker_data['lastTradeDate'] >= (pd.Timestamp.now(tz='UTC') - pd.Timedelta(days=Last_x_days_trade))]
+        # ticker_data['lastTradeDate'].apply(type).value_counts()
+        ticker_data = ticker_data[ticker_data['volume'] >= override_vol_filter_dict.get(ticker_symbol,default_vol_filter)]
+        iv_data = ticker_data[['contractSymbol', 'lastPrice', 'lastTradeDate', 'impliedVolatility','Timestamp','strike', 'Option_Type', 
+            'Expiration_Date', 'inTheMoney']] #'volume'
 
-    # Filter Data
-    top_three_timestamps = ticker_data['Timestamp'].sort_values().unique()[-L_x_days:] # take latest L_x_days days data per option
-    ticker_data = ticker_data[ticker_data['Timestamp'].isin(top_three_timestamps)]
-    ticker_data = ticker_data[ticker_data['impliedVolatility'] > 0.1]
-    ticker_data = ticker_data[ticker_data['Expiration_Date'] > ticker_data['Timestamp']]
-    ticker_data = ticker_data[ticker_data['lastTradeDate'] >= (pd.Timestamp.now(tz='UTC') - pd.Timedelta(days=Last_x_days_trade))]
-    # ticker_data['lastTradeDate'].apply(type).value_counts()
-    ticker_data = ticker_data[ticker_data['volume'] >= override_vol_filter_dict.get(ticker_symbol,default_vol_filter)]
-    iv_data = ticker_data[['contractSymbol', 'lastPrice', 'lastTradeDate', 'impliedVolatility','Timestamp','strike', 'Option_Type', 
-        'Expiration_Date', 'inTheMoney']] #'volume'
-
-    # Base Variables
-    timestamp = ticker_data['Timestamp'].max().strftime(ts_format)
-    
-    # Second Loop for Maturities
-    counter = 0
-    selected_maturities = iv_data['Expiration_Date'].sort_values().unique()
-    selected_maturities = selected_maturities[selected_maturities > datetime.now()]
-    selected_maturities = selected_maturities[:L_x_mat] # filter DTE's here
-    for maturity_date in selected_maturities: 
-        print('Ticker: %5s, MaxTimestamp on file: %s, Counter, %s, Maturity %s' %(ticker_symbol, timestamp, counter, maturity_date))
+        # Base Variables
+        timestamp = ticker_data['Timestamp'].max().strftime(ts_format)
         
-        # Loop Variables
-        dte = (maturity_date - datetime.now()).days
-        counter = counter + 1
-        save_loc = os.path.join(Vol_all_folder, ticker_symbol + '-' + str(counter)) # + '_' +str(vol) + '.jpg'
-        
-        # Prepare Data
-        dfm = iv_data[iv_data['Expiration_Date'] == maturity_date] # dfm
-        callflag = dfm['Option_Type']=='Call'
-        inthemoneyflag = dfm['inTheMoney']
-        maxiv = dfm[inthemoneyflag & callflag]['strike'].max()
-        miniv = dfm[inthemoneyflag & (callflag == False)]['strike'].min()
-        midpoint = (miniv + maxiv) / 2
-        plot_limits = plot_IV_limits_dict.get(ticker_symbol,limit_default)
-        low  = midpoint * plot_limits['low']
-        high = midpoint * plot_limits['high']
-        # dfm = dfm[inthemoneyflag]
-        dfm = dfm[(dfm['strike'] > low) & (dfm['strike'] < high)]
+        # Second Loop for Maturities
+        counter = 0
+        selected_maturities = iv_data['Expiration_Date'].sort_values().unique()
+        selected_maturities = selected_maturities[selected_maturities > datetime.now()]
+        selected_maturities = selected_maturities[:L_x_mat] # filter DTE's here
+        for maturity_date in selected_maturities: 
+            print('Ticker: %5s, MaxTimestamp on file: %s, Counter, %s, Maturity %s' %(ticker_symbol, timestamp, counter, maturity_date))
+            
+            # Loop Variables
+            dte = (maturity_date - datetime.now()).days
+            counter = counter + 1
+            save_loc = os.path.join(Vol_all_folder, ticker_symbol + '-' + str(counter)) # + '_' +str(vol) + '.jpg'
+            
+            # Prepare Data
+            dfm = iv_data[iv_data['Expiration_Date'] == maturity_date] # dfm
+            callflag = dfm['Option_Type']=='Call'
+            inthemoneyflag = dfm['inTheMoney']
+            maxiv = dfm[inthemoneyflag & callflag]['strike'].max()
+            miniv = dfm[inthemoneyflag & (callflag == False)]['strike'].min()
+            midpoint = (miniv + maxiv) / 2
+            plot_limits = plot_IV_limits_dict.get(ticker_symbol,limit_default)
+            low  = midpoint * plot_limits['low']
+            high = midpoint * plot_limits['high']
+            # dfm = dfm[inthemoneyflag]
+            dfm = dfm[(dfm['strike'] > low) & (dfm['strike'] < high)]
 
-        # Color map using timestamps
-        unq_ts = dfm['Timestamp'].unique().strftime(ts_format)
-        s_frac = 0.3  # start_fraction- Skip the first 30% of the color map
-        color_map_calls = {ts:plt.get_cmap('Blues')(s_frac + (i / len(unq_ts)) * (1 - s_frac)) for i, ts in enumerate(unq_ts)}
-        color_map_puts = {ts:plt.get_cmap('Reds')(s_frac + (i / len(unq_ts)) * (1 - s_frac)) for i, ts in enumerate(unq_ts)}
+            # Color map using timestamps
+            unq_ts = dfm['Timestamp'].unique().strftime(ts_format)
+            s_frac = 0.3  # start_fraction- Skip the first 30% of the color map
+            color_map_calls = {ts:plt.get_cmap('Blues')(s_frac + (i / len(unq_ts)) * (1 - s_frac)) for i, ts in enumerate(unq_ts)}
+            color_map_puts = {ts:plt.get_cmap('Reds')(s_frac + (i / len(unq_ts)) * (1 - s_frac)) for i, ts in enumerate(unq_ts)}
 
-        # Plot in each loop
-        legend_labels = {}
-        plt.figure(figsize=plotsize)
-        for option_type in ['Call','Put']:
-            prev_iv_data = {}
-            dfm_type = dfm[dfm['Option_Type'] == option_type]
-            color_map = color_map_calls if option_type == 'Call' else color_map_puts
-            if option_type == 'Call': color_map = color_map_calls
-            if option_type == 'Put': color_map = color_map_puts
-            for idx, row in dfm_type.iterrows():
-                # Get Variables
-                strike, iv, contractSymbol, iv_timestamp = [row[k] for k in ['strike', 'impliedVolatility', 'contractSymbol', 'Timestamp']]
-                # Get Marker
-                first_iv = contractSymbol not in prev_iv_data
-                last_iv = timestamp == iv_timestamp.strftime(ts_format) # to make all non-last ones 'x'
-                marker = '.' if first_iv or not last_iv or iv == prev_iv_data[contractSymbol] else '^' if iv > prev_iv_data[contractSymbol] else 'v'
-                prev_iv_data[contractSymbol] = iv
-                markersize = 7 if marker == '^' or marker == 'v' else 5
-                # Set Legend Label and color
-                label = ('%s %s' %(option_type[0], iv_timestamp.strftime(legend_ts_format)))
-                color = color_map[iv_timestamp.strftime(ts_format)]
-                if label not in legend_labels: legend_labels[label] = ('x', color)
-                plt.plot(strike, iv, marker=marker, linestyle='none', color=color, label=label, markersize=markersize)
-        handles = [plt.Line2D([], [], color=color, marker=marker, linestyle='none', markersize=10, label=label) for label, (marker, color) in legend_labels.items()]
-        plt.legend(handles=handles, borderaxespad=1, framealpha=1, shadow=True, fancybox=True, loc="lower right")
-        plt.axvline(midpoint, color='red', linestyle='--', linewidth=2, label='Midpoint %s' %midpoint)  # Highlighting the midpoint
-        plt.title('%s at %s on %s - dte %s - Maturity %s' %(ticker_symbol, midpoint, timestamp, dte, maturity_date.strftime(ts_format)))
-        plt.xlabel('Strike Price, assume ($)')
-        plt.ylabel('Implied Volatility')
-        # plt.yticks(y_ticks)
-        plt.tight_layout()
-        plt.savefig(save_loc)
-        plt.close()
-
+            # Plot in each loop
+            legend_labels = {}
+            plt.figure(figsize=plotsize)
+            for option_type in ['Call','Put']:
+                prev_iv_data = {}
+                dfm_type = dfm[dfm['Option_Type'] == option_type]
+                color_map = color_map_calls if option_type == 'Call' else color_map_puts
+                if option_type == 'Call': color_map = color_map_calls
+                if option_type == 'Put': color_map = color_map_puts
+                for idx, row in dfm_type.iterrows():
+                    # Get Variables
+                    strike, iv, contractSymbol, iv_timestamp = [row[k] for k in ['strike', 'impliedVolatility', 'contractSymbol', 'Timestamp']]
+                    # Get Marker
+                    first_iv = contractSymbol not in prev_iv_data
+                    last_iv = timestamp == iv_timestamp.strftime(ts_format) # to make all non-last ones 'x'
+                    marker = '.' if first_iv or not last_iv or iv == prev_iv_data[contractSymbol] else '^' if iv > prev_iv_data[contractSymbol] else 'v'
+                    prev_iv_data[contractSymbol] = iv
+                    markersize = 7 if marker == '^' or marker == 'v' else 5
+                    # Set Legend Label and color
+                    label = ('%s ts: %s' %(option_type[0], iv_timestamp.strftime(legend_ts_format)))
+                    color = color_map[iv_timestamp.strftime(ts_format)]
+                    if label not in legend_labels: legend_labels[label] = ('x', color)
+                    plt.plot(strike, iv, marker=marker, linestyle='none', color=color, label=label, markersize=markersize)
+            handles = [plt.Line2D([], [], color=color, marker=marker, linestyle='none', markersize=10, label=label) for label, (marker, color) in legend_labels.items()]
+            plt.legend(handles=handles, borderaxespad=1, framealpha=1, shadow=True, fancybox=True, loc="lower right")
+            plt.axvline(midpoint, color='red', linestyle='--', linewidth=2, label='Midpoint %s' %midpoint)  # Highlighting the midpoint
+            plt.title('%s at %s on %s - dte %s - Maturity %s' %(ticker_symbol, midpoint, timestamp, dte, maturity_date.strftime(ts_format)))
+            plt.xlabel('Strike Price, assume ($)')
+            plt.ylabel('Implied Volatility')
+            # plt.yticks(y_ticks)
+            plt.tight_layout()
+            plt.savefig(save_loc)
+            plt.close()
+    except Exception as e:
+        print('Error on :%s'%ticker_symbol)
+        print(e)
+        logging.error('Error on :%s'%ticker_symbol)
+        logging.error(e)
 # Append Plots
 print('Starting Append')
 timestamp_today = datetime.now().strftime(ts_format)
