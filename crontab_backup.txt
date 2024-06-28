@@ -18,3 +18,9 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 58 20 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEvening' >> $LOG_DIR'Batch_Evening.log' 2>&1
 58 23 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEOD' >> $LOG_DIR'Batch_EOD.log' 2>&1
 
+
+
+# sudo blkid
+# udisksctl mount -b /dev/sdd
+# udisksctl mount -b /dev/sdc1
+# udisksctl mount -b /dev/sbd1
