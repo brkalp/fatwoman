@@ -4,12 +4,12 @@ import numpy as np
 from collections import Counter
 import seaborn as sns
 import matplotlib.pyplot as plt
-from fatwoman_dir_setup import Total_data_file
-
+from fatwoman_dir_setup import VIX_CBOE_scrape_Total, adhoc_fol
+os.chdir(adhoc_fol)
 sns.set()
 
 # filename = 'C:\Data\yahoodownload\ZipFutureData\Total\Total.csv'
-filename = Total_data_file
+filename = VIX_CBOE_scrape_Total
 dfraw = pd.read_csv(filename)
 df_future_prices = dfraw.pivot(columns=['Futures'], index ='Trade Date', values = 'Settle')
 Future_to_expiry_dict = {col:df_future_prices[col].dropna().index.max() for col in df_future_prices.columns}
@@ -71,6 +71,7 @@ def calculate_stats(cumulative_returns):
     }
 
 overall_stats = calculate_stats(df_overall[0.5])
+df_overall[0.200].to_csv('Short_Front_VIX_0.2.csv')
 
 
 

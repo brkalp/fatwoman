@@ -1,10 +1,11 @@
+""" Created on 06-26-2024 14:13:17 @author: ripintheblue """
 import pandas as pd
 import os
 import numpy as np
 from collections import Counter
 import seaborn as sns
 import matplotlib.pyplot as plt
-from fatwoman_dir_setup import Total_data_file
+from fatwoman_dir_setup import Total_data_file, adhoc_fol
 sns.set()
 
 # filename = 'C:\Data\yahoodownload\ZipFutureData\Total\Total.csv'
@@ -58,4 +59,6 @@ for asset in assets:
     df = df[asset].apply(pd.Series)
     df.columns = pd.MultiIndex.from_product([[asset], df.columns], names=['Asset', 'Statistic'])
     y_results = pd.concat([df,y_results], axis = 1)
-y_results.T.to_clipboard()
+
+os.chdir(adhoc_fol)
+y_results.to_csv('Yearly_stats_tlt_vs_spy.csv')

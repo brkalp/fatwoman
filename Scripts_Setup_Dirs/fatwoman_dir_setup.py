@@ -26,7 +26,7 @@ portfolio_folder = os.path.join(fatwoman_data_path, 'Scripts_Portfolio')
 portfolio_Plot  = os.path.join(portfolio_folder, 'Portfolio_loc.png')
 
 # CBOE manual dump
-VIX_CBOE_scrape_Total = os.path.join(fatwoman_data_path, 'Scripts_CBOE_Vix', 'Total.csv')
+VIX_CBOE_scrape_Total = os.path.join(fatwoman_data_path, 'Scripts_CBOE_Vix', 'Total','Total.csv')
 
 # Daily downloads
 YahooDownload_Output_Folder = os.path.join(fatwoman_data_path, 'Scripts_Generate_Daily_Plots')
