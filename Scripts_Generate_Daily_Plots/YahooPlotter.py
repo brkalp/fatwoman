@@ -1,8 +1,7 @@
 """ Created on 10-28-2023 17:06:42 @author: ripintheblue """
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
-from fatwoman_dir_setup import YahooPlotter_Output_File
-from fatwoman_dir_setup import YahooDownload_Output_File
+from fatwoman_dir_setup import YahooDownload_Output_File, YahooDownload_Outputs_SEK, YahooPlotter_Output_File
 import logging
 import pandas as pd
 import numpy as np
@@ -26,6 +25,10 @@ df0 = pd.read_csv(YahooDownload_Output_File)
 df1 = df0.tail(45).set_index('Date') # last 45 days are taken into account
 df1.index = pd.to_datetime(df1.index)
 
+df2 = pd.read_csv(YahooDownload_Outputs_SEK)
+df2 = df2.tail(45).set_index('Date') # last 45 days are taken into account
+df2.index = pd.to_datetime(df2.index)
+
 red_color_list = [
     'VIX',
     'SP500',
@@ -37,12 +40,13 @@ red_color_list = [
 
 plots = []
 for col in df1.columns:
-    # main settings
-    p = figure(width=370, height=270, title=col, x_axis_type="datetime", min_border=40,tools="reset,save")
-
     # variables to plot
     # logging.info('Attempt at %s' %(col))
     print('Attempt at %s' %(col), end = ' ')
+
+    # main settings
+    p = figure(width=370, height=270, title=col, x_axis_type="datetime", min_border=40,tools="reset,save")
+
     col_data = df1[col]
     first_non_nan_value = col_data.loc[col_data.first_valid_index()] # col_data.iloc[0]
     col_return = (col_data / first_non_nan_value - 1) * 100
