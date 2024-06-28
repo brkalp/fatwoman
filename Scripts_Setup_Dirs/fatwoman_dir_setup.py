@@ -25,6 +25,9 @@ fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
 portfolio_folder = os.path.join(fatwoman_data_path, 'Scripts_Portfolio')
 portfolio_Plot  = os.path.join(portfolio_folder, 'Portfolio_loc.png')
 
+# CBOE manual dump
+VIX_CBOE_scrape_Total = os.path.join(fatwoman_data_path, 'Scripts_CBOE_Vix', 'Total.csv')
+
 # Daily downloads
 YahooDownload_Output_Folder = os.path.join(fatwoman_data_path, 'Scripts_Generate_Daily_Plots')
 YahooDownload_Output_File   = os.path.join(YahooDownload_Output_Folder, 'Daily_yahoo_data.csv')
@@ -32,6 +35,7 @@ YahooDownload_Ticker_File   = os.path.join(YahooDownload_Output_Folder, 'Tickers
 YahooDownload_Info_File     = os.path.join(YahooDownload_Output_Folder, 'Tickers_and_info.csv')
 YahooDownload_Outputs_SEK   = os.path.join(YahooDownload_Output_Folder, 'Daily_yahoo_data_in_SEK.csv')
 YahooPlotter_Output_File    = os.path.join(YahooDownload_Output_Folder, 'Daily_yahoo_plot.html')
+Total_data_file = YahooDownload_Output_File
 
 # Yield Curve
 YC_Scripts_Folder   = os.path.join(fatwoman_base_path, 'Scripts_Yield_Curve')
