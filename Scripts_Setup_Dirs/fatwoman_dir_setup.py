@@ -95,6 +95,9 @@ Vol_append_fol = os.path.join(Vol_Output_Folder, 'Plots')
 def get_vol_plot_dir(ticker_symbol, Vol_append_fol=Vol_append_fol):
     return os.path.join(Vol_append_fol, ticker_symbol + '.png')
 
+# adhoc folder
+adhoc_fol = os.path.join(fatwoman_base_path, 'Ad_hoc')
+
 # binance Orderbook saver
 binance_Orderbook_Output_Folder = os.path.join(fatwoman_data_path, 'Scripts_Binance')
 binance_Orderbook_loc_prefix = os.path.join(binance_Orderbook_Output_Folder, 'binance_order_book_')
