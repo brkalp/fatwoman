@@ -3,6 +3,7 @@ vol_plot_VIX,30,0,TRUE,Not used
 logs,30,0,TRUE,Not used
 Daily_Plot_HTML,300,0,TRUE,Not used
 Daily_YC_Appended,100,0,TRUE,Not used
+Daily_YC_Appended,100,0,TRUE,https://www.riksbank.se/en-gb/press-and-published/
 vol_plot_SPY,30,0,TRUE,Not used
 vol_plot_TLT,30,0,TRUE,Not used
 vol_plot_TSLA,30,0,TRUE,Not used
