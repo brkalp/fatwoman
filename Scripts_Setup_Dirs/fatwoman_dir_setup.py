@@ -12,10 +12,10 @@ import os
 # importlib.reload(fatwoman_dir_setup)
 
 # Change work_dir accordingly, where 15GB is location with scripts and fatboy is the data loc
-remoteIP = r'F:\\'# remoteIP = r'\\10.0.1.6\\'
-work_dir = remoteIP
 # Determine if running on specific platform
 # is_platform_pc = socket.gethostname() == 'ripintheblue'
+remoteIP = r'F:\\'# remoteIP = r'\\10.0.1.6\\'
+work_dir = remoteIP
 is_platform_pc = (socket.gethostname() == 'fatwoman') is False
 fatwoman_base_path = work_dir + '15GB'   if is_platform_pc else r'/media/fatwoman/15GB'
 fatwoman_data_path = work_dir + 'fatboy' if is_platform_pc else r'/media/fatwoman/fatboy'
@@ -36,6 +36,10 @@ YahooDownload_Info_File     = os.path.join(YahooDownload_Output_Folder, 'Tickers
 YahooDownload_Outputs_SEK   = os.path.join(YahooDownload_Output_Folder, 'Daily_yahoo_data_in_SEK.csv')
 YahooPlotter_Output_File    = os.path.join(YahooDownload_Output_Folder, 'Daily_yahoo_plot.html')
 Total_data_file = YahooDownload_Output_File
+
+# Data Feeds - Scape - Test location
+Data_Feed_folder        = os.path.join(fatwoman_base_path, 'Scripts_Data_Feeds')
+CBOE_Scrape_Data_File   = os.path.join(Data_Feed_folder, 'CBOE_VIX.csv')
 
 # Yield Curve
 YC_Scripts_Folder   = os.path.join(fatwoman_base_path, 'Scripts_Yield_Curve')
