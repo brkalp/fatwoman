@@ -31,6 +31,7 @@ surferkill() {
 surfer()             { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py > /dev/null 2>&1 & }
 surferprint()        { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py; }
 surferbbg()          { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py --bbg; }
+runCBOEScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_Data_Feeds/CBOE_Scrape.py;}
 runYahooDownload()   { /usr/bin/python3 ${BASE_DIR}Scripts_Generate_Daily_Plots/YahooDownload.py; }
 runYahooInfo()       { /usr/bin/python3 ${BASE_DIR}Scripts_Generate_Daily_Plots/Yahoo_Info.py;}
 runYahooPlotter()    { /usr/bin/python3 ${BASE_DIR}Scripts_Generate_Daily_Plots/YahooPlotter.py; }
@@ -48,6 +49,11 @@ runEODpy()           { /usr/bin/python3 ${BASE_DIR}Utility/EOD_print.py;}
 runChromeRemoteDesktop() { sudo systemctl start chrome-remote-desktop@fatwoman.service; }
 runChromeRemoteDesktopkill() { /opt/google/chrome-remote-desktop/chrome-remote-desktop --stop;}
 runChromeRemoteDesktopstatus() { systemctl status chrome-remote-desktop@fatwoman.service;}
+
+runBatchHourly() {
+    runCBOEScrape
+}
+
 runBatchDaily()  {
     runSODpy
     runChromeRemoteDesktop
