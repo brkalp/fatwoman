@@ -4,9 +4,12 @@
 from fatwoman_dir_setup import CBOE_Scrape_Data_File, firefox_profile1
 import logging
 from datetime import datetime as dt
-import selenium
+# import selenium
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import os
 import time
 import re
@@ -15,7 +18,12 @@ import pandas as pd
 print("Starting CBOE Data Scrape")
 
 attempt = 0
-max_attempts = 5
+max_attempts = 10
+
+def getLines(very_long_string, starter, ender):
+    testString = starter + '(.*?)' + ender
+    matches = re.findall(testString, very_long_string)
+    return matches
 
 while attempt < max_attempts:
     try:
@@ -25,29 +33,19 @@ while attempt < max_attempts:
         # options.add_argument("-profile")
         # options.add_argument(firefox_profile1)
         driver = webdriver.Firefox(options=options)
+
+        # Open Webpage
         driver.get('https://www.cboe.com/tradable_products/vix/vix_futures/')
+        print('Attempting to wait for rows')
+        WebDriverWait(driver, 50).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'tr[role="row"]')))
+        time.sleep(10)
         source = driver.page_source
+        print('len of string is %s'%len(source))
 
-        # options = Options()  #webdriver.ChromeOptions()
-        # # options.add_argument("--headless")
-        # driver = webdriver.Chrome(options=options)
-        # driver.get('https://www.cboe.com/tradable_products/vix/vix_futures/')
-
-        source = driver.page_source
-
-        # sleeptime = 50
-        # print("Sleeping %s" %sleeptime)
-        # time.sleep(sleeptime)
-
+        # Get Data and parsing
         allRowsHtml = []
-
-        def getLines(very_long_string, starter, ender):
-            testString = starter + '(.*?)' + ender
-            matches = re.findall(testString, very_long_string)
-            return matches
-
         allRowsHtml = getLines(source, 'tr role="row"', "</tr>")
-
+        print('len of rows are %s'%len(allRowsHtml))
         table_2d = []
         for row in allRowsHtml:
             table_2d.append(getLines(row, 'fOvMUL">', "</div>"))
@@ -85,3 +83,10 @@ else:
 # script_end_log()
 
 # import ace_tools as tools; tools.display_dataframe_to_user(name="Stock Data", dataframe=df)
+
+
+        # options = Options()  #webdriver.ChromeOptions()
+        # # options.add_argument("--headless")
+        # driver = webdriver.Chrome(options=options)
+        # driver.get('https://www.cboe.com/tradable_products/vix/vix_futures/')
+        # source = driver.page_source
