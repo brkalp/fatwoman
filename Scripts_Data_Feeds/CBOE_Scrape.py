@@ -1,7 +1,7 @@
 """ Created on Sun Jul 23 13:42:59 2023 @author: DenizYalimYilmaz """
 # import fatwoman_log_setup
 # from fatwoman_log_setup import script_end_log
-from fatwoman_dir_setup import CBOE_Scrape_Data_File, firefox_profile1
+from fatwoman_dir_setup import CBOE_Scrape_Data_File
 import logging
 from datetime import datetime as dt
 # import selenium
@@ -17,24 +17,19 @@ import pandas as pd
 
 print("Starting CBOE Data Scrape")
 
-attempt = 0
-max_attempts = 10
-
 def getLines(very_long_string, starter, ender):
     testString = starter + '(.*?)' + ender
     matches = re.findall(testString, very_long_string)
     return matches
 
+attempt = 0
+max_attempts = 10
 while attempt < max_attempts:
     try:
         # Driver setup
         options = webdriver.FirefoxOptions()
         options.add_argument("--headless")
-        # options.add_argument("-profile")
-        # options.add_argument(firefox_profile1)
         driver = webdriver.Firefox(options=options)
-
-        # Open Webpage
         driver.get('https://www.cboe.com/tradable_products/vix/vix_futures/')
         print('Attempting to wait for rows')
         WebDriverWait(driver, 50).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'tr[role="row"]')))
@@ -79,8 +74,13 @@ while attempt < max_attempts:
 
 else:
     print("Failed to scrape data after several attempts")
+    driver.quit()
+
 
 # script_end_log()
+
+        # options.add_argument("-profile")
+        # options.add_argument(firefox_profile1)
 
 # import ace_tools as tools; tools.display_dataframe_to_user(name="Stock Data", dataframe=df)
 

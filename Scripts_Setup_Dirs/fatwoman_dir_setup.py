@@ -40,6 +40,7 @@ Total_data_file = YahooDownload_Output_File
 # Data Feeds - Scape - Test location
 Data_Feed_folder        = os.path.join(fatwoman_base_path, 'Scripts_Data_Feeds')
 CBOE_Scrape_Data_File   = os.path.join(Data_Feed_folder, 'CBOE_VIX.csv')
+VIX_C_Scrape_Data_File  = os.path.join(Data_Feed_folder, 'Central_VIX.csv')
 
 # Yield Curve
 YC_Scripts_Folder   = os.path.join(fatwoman_base_path, 'Scripts_Yield_Curve')
