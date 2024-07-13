@@ -105,6 +105,7 @@ def parse_arguments():
     parser.add_argument("--bbg", action="store_true")
     parser.add_argument("--tenminutes", action="store_true")
     parser.add_argument("--fast", action="store_true")
+    parser.add_argument("--doublescreen", action="store_true")
     return parser.parse_args()
     
 def bbg_starter():
@@ -124,11 +125,12 @@ if __name__ == "__main__":
 
     configuration_1 = url_config_BBG    if args.bbg else url_configuration_1
     configuration_2 = url_config_yahoo  if args.bbg else url_configuration_2
-
+    
     managers = [
-        ScreensaverManager(firefox_profile1, (100, 100),    configuration_1, 1), # left
-        ScreensaverManager(firefox_profile2, (1300, 100),   configuration_2, 2), # right
+        ScreensaverManager(firefox_profile2, (1300, 100),   configuration_2, 2) # right, alp
     ]
+
+    if args.doublescreen: managers.append(ScreensaverManager(firefox_profile1, (100, 100),    configuration_1, 1)) # left, alisa
 
     for manager in managers:
         manager.start_firefox_driver()
