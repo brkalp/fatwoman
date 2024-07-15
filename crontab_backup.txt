@@ -10,10 +10,10 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 
 # Download binance orderbook
 * * * * *   /bin/bash -c 'source '$WRAPPER' && runBinanceDownload' > $LOG_DIR'BinanceDownload_output.log' 2>&1
-* * * * *   /bin/bash -c 'source '$WRAPPER' && crontab -l' > $BASE_DIR'crontab_backup.txt' 2>&1
+0 5 * * *   /bin/bash -c 'source '$WRAPPER' && crontab -l' > $BASE_DIR'crontab_backup.txt' 2>&1
 
 # Hourly activities
-0 * * * *   /bin/bash -c 'source '$WRAPPER' && runCBOEScrape' >> $LOG_DIR'Batch_Hourly.log' 2>&1
+0 * * * *   /bin/bash -c 'source '$WRAPPER' && runBatchHourly' >> $LOG_DIR'Batch_Hourly.log' 2>&1
 
 # Daily activities
 0 5 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDaily' >> $LOG_DIR'Batch_Morning.log' 2>&1
@@ -22,19 +22,33 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 58 20 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEvening' >> $LOG_DIR'Batch_Evening.log' 2>&1
 58 23 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEOD' >> $LOG_DIR'Batch_EOD.log' 2>&1
 
+# IP
+#nmcli device show wlx202351202be5 | grep IP4.ADDRESS
+
 
 # mount usbs
 # sudo blkid
-# udisksctl mount -b /dev/sdd
-# udisksctl mount -b /dev/sdc1
-# udisksctl mount -b /dev/sbd1
+#udisksctl mount -b /dev/sdb1
+#udisksctl mount -b /dev/sdc1
+#udisksctl mount -b /dev/sdd
 
 # disk space
 #sudo du -sh /var/*
 #sudo du -sh /usr/*
 #sudo du -sh /home/*
 #sudo du -sh /tmp/*
+#sudo du -sh /home/fatwoman/.cache
+#sudo du -sh /var/* | grep -E '^[5-9][0-9]*M|[0-9]+G'
+#sudo du -sh /usr/* | grep -E '^[5-9][0-9]*M|[0-9]+G'
+#sudo du -sh /home/* | grep -E '^[5-9][0-9]*M|[0-9]+G'
+#sudo du -sh /tmp/* | grep -E '^[5-9][0-9]*M|[0-9]+G'
+#sudo du -sh /home/fatwoman/.cache | grep -E '^[5-9][0-9]*M|[0-9]+G'
+
 # disk space removal
 #sudo rm -rf /var/log/*.log
 #sudo rm -rf /tmp/*
 #sudo rm -rf /tmp/rust_mozprofile*
+#rm -rf ~/.cache/pip
+#rm -rf ~/.cache/mozilla
+#rm -rf ~/.cache/google-chrome
+#rm -rf ~/.cache/librewolf
