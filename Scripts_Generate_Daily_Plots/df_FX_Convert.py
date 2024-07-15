@@ -62,7 +62,7 @@ for ticker in df0.columns:
     df2[ticker] = (df1[ticker] * df_fx[target_ticker]).dropna().round(4)
 df2.index.name = 'Date'
 
-print('Saving to %s' %YahooDownload_Outputs_SEK)
-logging.info('Saving to %s' %YahooDownload_Outputs_SEK)
+print('Saving to %s' %YahooDownload_Outputs_SEK[-40:])
+logging.info('Saving to %s' %YahooDownload_Outputs_SEK[-40:])
 df2.to_csv(YahooDownload_Outputs_SEK)
 script_end_log()

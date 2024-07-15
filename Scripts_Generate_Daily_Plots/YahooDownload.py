@@ -24,8 +24,8 @@ TICKERS = {**VOLS, **STOCKS, **BONDS, **CMDTY, **CURR, **FOREIGN}
 Tickers = list(TICKERS.keys())
 
 
-print('Saving Tickers to %s' %YahooDownload_Ticker_File)
-logging.info('Saving Tickers to %s' %YahooDownload_Ticker_File)
+print('Saving Tickers to %s' %YahooDownload_Ticker_File[-30:])
+logging.info('Saving Tickers to %s' %YahooDownload_Ticker_File[-30:])
 df_Tickers = pd.DataFrame.from_dict({'Yahoo_Ticker': Tickers,'Ticker': list(TICKERS.values())})
 df_Tickers.to_csv(YahooDownload_Ticker_File, index = None)
 
@@ -37,8 +37,8 @@ print('Downloading: %s' %Tickers)
 df0 = yf.download(Tickers, dt(2005,1,1))['Adj Close']
 df1 = df0.reindex(columns=list(TICKERS.keys())).rename(columns = TICKERS).round(9)
 
-print('Saving to %s' %YahooDownload_Output_File)
-logging.info('Saving to %s' %YahooDownload_Output_File)
+print('Saving to %s' %YahooDownload_Output_File[-40:])
+logging.info('Saving to %s' %YahooDownload_Output_File[-40:])
 
 if any(df1.columns.duplicated()):
     print('Problem: duplicate column names!!! Quiting!')
@@ -48,7 +48,7 @@ print('Saving Done')
 size_mb = os.path.getsize(YahooDownload_Output_File) / (1024 * 1024)
 last_modified_time = dt.fromtimestamp(os.path.getmtime(YahooDownload_Output_File))
 print('Size in MB %3.3f, Last modified: %s' %(size_mb,last_modified_time))
-logging.info('Size in MB %3.3f, Last modified: %s')
+logging.info('Size in MB %3.3f, Last modified: %s'%(size_mb,last_modified_time))
 #else:
 #    for col in df1.columns:
 #        printloc = YahooDownload_Output_Folder + r'%s.csv'%col

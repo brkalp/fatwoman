@@ -14,7 +14,8 @@ from bokeh.io import curdoc
 from bokeh.models import BoxSelectTool, CustomJS, LabelSet
 import socket
 import os
-
+from bokeh.io import reset_output
+reset_output()
 curdoc().theme = 'night_sky'
 
 logging.info('Reading %s' %YahooDownload_Output_File)
@@ -120,8 +121,8 @@ for col in df1.columns:
     print('OK!', end=' ')
 
 grid = gridplot(plots, ncols=3)
-logging.info('Saving %s' %YahooPlotter_Output_File)
-print('Saving %s' %YahooPlotter_Output_File)
+logging.info('Saving %s' %YahooPlotter_Output_File[-40:])
+print('Saving %s' %YahooPlotter_Output_File[-40:])
 show(grid)
 
 today_date = datetime.datetime.now().strftime("%d %B %Y")
