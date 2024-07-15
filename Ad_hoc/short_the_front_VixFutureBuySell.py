@@ -4,9 +4,13 @@ import numpy as np
 from collections import Counter
 import seaborn as sns
 import matplotlib.pyplot as plt
-from fatwoman_dir_setup import VIX_CBOE_scrape_Total, adhoc_fol
+from fatwoman_dir_setup import VIX_CBOE_scrape_Total, adhoc_fol, data_get
+import quantstats as qs
+
 os.chdir(adhoc_fol)
 sns.set()
+
+""" Strategy: Short the front VIX future """
 
 # filename = 'C:\Data\yahoodownload\ZipFutureData\Total\Total.csv'
 filename = VIX_CBOE_scrape_Total
@@ -71,9 +75,18 @@ def calculate_stats(cumulative_returns):
     }
 
 overall_stats = calculate_stats(df_overall[0.5])
-df_overall[0.200].to_csv('Short_Front_VIX_0.2.csv')
+# df_overall[0.200].to_csv('Short_Front_VIX_0.2.csv')
+strat_ret = df_overall[0.5].pct_change().dropna()
+sp500 = data_get('SP500').pct_change().dropna()
+stratname = 'short_front_VIX'
 
+sp500.index = pd.to_datetime(sp500.index)
+strat_ret.index = pd.to_datetime(strat_ret.index)
 
+qs.reports.html(strat_ret, benchmark=sp500, 
+    download_filename = '%s tearsheet.html' %stratname, 
+    output = '%s.html'%stratname, 
+    title = stratname)
 
 
 # dfraw = pd.read_csv(filename)
