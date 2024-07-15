@@ -168,7 +168,7 @@ if __name__ == "__main__":
             time.sleep(5)
             if try_i <5:
                 try_i += 1
-                print('Looping again, try counter:%s' %try_i)
+                print('Looping again, try counter:%s at %s' %(try_i, time.strftime("%Y-%m-%d %H:%M:%S")))
                 continue
             else:
                 break
