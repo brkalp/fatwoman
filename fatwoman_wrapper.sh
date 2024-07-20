@@ -76,11 +76,11 @@ runBatchMorning1() {
     surferkill
     screenson
     screensdimon
-#    surferbbg
+    surferbbg
 }
 runBatchMorning2() {
     surferkill
-#    surferprint
+    surferprint
     screensdimon
     }
 runBatchEvening() {
