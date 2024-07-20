@@ -28,8 +28,8 @@ for ax, img_path in zip(axs, image_paths):
     ax.axis('off')  # Hide axes ticks
 
 plt.tight_layout()
-print('Saving %s' %YC_Appended_Plot)
-logging.info('Saving %s' %YC_Appended_Plot)
+print('Saving %s' %YC_Appended_Plot[-40:])
+logging.info('Saving %s' %YC_Appended_Plot[-40:])
 plt.savefig(YC_Appended_Plot, bbox_inches='tight', dpi=300)
 
 script_end_log()
