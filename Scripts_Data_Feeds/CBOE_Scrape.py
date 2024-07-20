@@ -15,7 +15,7 @@ import time
 import re
 import pandas as pd
 
-print("Starting CBOE Data Scrape")
+print("Starting CBOE Data Scrape "+ time.strftime("%Y-%m-%d %H:%M:%S"))
 
 def getLines(very_long_string, starter, ender):
     testString = starter + '(.*?)' + ender
@@ -31,16 +31,16 @@ while attempt < max_attempts:
         options.add_argument("--headless")
         driver = webdriver.Firefox(options=options)
         driver.get('https://www.cboe.com/tradable_products/vix/vix_futures/')
-        print('Attempting to wait for rows')
+        #print('Attempting to wait for rows')
         WebDriverWait(driver, 50).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'tr[role="row"]')))
         time.sleep(10)
         source = driver.page_source
-        print('len of string is %s'%len(source))
+        #print('len of string is %s'%len(source))
 
         # Get Data and parsing
         allRowsHtml = []
         allRowsHtml = getLines(source, 'tr role="row"', "</tr>")
-        print('len of rows are %s'%len(allRowsHtml))
+        #print('len of rows are %s'%len(allRowsHtml))
         table_2d = []
         for row in allRowsHtml:
             table_2d.append(getLines(row, 'fOvMUL">', "</div>"))
@@ -57,7 +57,7 @@ while attempt < max_attempts:
         df_futures.to_csv(CBOE_Scrape_Data_File, mode='a', sep=',', header=not file_exists, index=False)
 
         driver.quit()
-        print("Script finished successfully")
+        #print("Script finished successfully")
         break
 
     except ValueError as ve:
@@ -73,7 +73,7 @@ while attempt < max_attempts:
         time.sleep(5)
 
 else:
-    print("Failed to scrape data after several attempts")
+    print("CBOE: Failed to scrape data after several attempts")
     driver.quit()
 
 

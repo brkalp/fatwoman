@@ -10,9 +10,11 @@ from fatwoman_dir_setup import default_log_file_path, logging_override
 
 class ContextFilter(logging.Filter):
     def filter(self, record):
-        # Dynamically set the 'importer' based on some logic or static assignment
-        # For demonstration, setting a static value, but you can modify this logic
-        record.importer = os.path.basename(sys.argv[0]) if not hasattr(record, 'importer') else record.importer
+        # if importer att exists, use it, else use script name
+        record.importer = os.path.basename(sys.argv[0])[:-3] if not hasattr(record, 'importer') else record.importer
+        # Do not log if log message is about overwriting a file
+        if "Session output file '/media/fatwoman/fatboy/Scripts_Generate_Daily_Plots/Daily_yahoo_plot.html' already exists, will be overwritten." in record.getMessage():
+            return False  # Do not log
         return True
 
 class SafeFormatter(logging.Formatter):
@@ -33,11 +35,10 @@ def configure_logging(log_file_path = default_log_file_path):
 
     # Create file handler
     fh = logging.FileHandler(log_file_path)
-    # total_log_file_path = os.path.join(fatwoman_log_path, "Total.txt")
     fh.setLevel(logging.INFO)
 
-    # Create formatter and add it to the handler
-    formatter = SafeFormatter('%(asctime)s - %(importer)20s - %(levelname)8s - %(message)s')
+    # Create formatter
+    formatter = SafeFormatter('%(asctime)s - %(importer)20s - %(levelname)6s - %(message)s', datefmt='%y%m%d %H:%M:%S')
     fh.setFormatter(formatter)
 
     # Add ContextFilter

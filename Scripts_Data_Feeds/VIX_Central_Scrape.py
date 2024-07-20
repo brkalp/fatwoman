@@ -1,6 +1,7 @@
 """ Created on Sun Jul 23 13:42:59 2023 @author: DenizYalimYilmaz """
 #import fatwoman_log_setup
 #from fatwoman_log_setup import script_end_log
+import pandas as pd
 import logging
 from fatwoman_dir_setup import VIX_C_Scrape_Data_File, Data_Feed_folder, is_platform_pc
 from selenium import webdriver
@@ -11,28 +12,24 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 import glob # concat libs
 import os
-import pandas as pd
 import time
 from datetime import datetime as dt
 
-
 attempt = 0
-max_attempts = 5
+max_attempts = 10
 fail = False
 while attempt < max_attempts:
     try:
         # setting virtual display
         if not is_platform_pc:
-            print('Starting virtual display')
+            print('Starting virtual display ' + time.strftime("%Y-%m-%d %H:%M:%S"))
             from pyvirtualdisplay import Display
             display = Display(visible=0, size=(1200, 900))
             display.start()
             # xrandr --query
             # ps aux | grep Xvfb
             # pkill -f 'Xvfb.*1200x900'
-
-            print(f'Display started with PID: {display.pid}')
-
+            #print(f'Display started with PID: {display.pid}')
 
         print('Starting Drivers')
         # Driver Setup and get webpage
@@ -59,6 +56,24 @@ while attempt < max_attempts:
         menu_item = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, xpath)))
         actions.move_to_element(menu_item).click().perform()
         print('DL is ok')
+        
+        print('Download succeeded, concat to %s' %VIX_C_Scrape_Data_File)
+        time.sleep(1) # so last download would finish
+        csv_files = glob.glob(os.path.join(Data_Feed_folder, '*vix-futures-term*.csv'))
+        if len(csv_files) > 2: print('Have multiple files!')
+        latest_file = max(csv_files, key=os.path.getmtime) #os.path.getmtime(csv_files[0])
+        print('Reading %s' %latest_file)
+        df = pd.read_csv(latest_file) # df is new data
+        vix_row = pd.DataFrame({'Future Month':'VIX', 'Last': df['VIX Index'][0]}, index = [0])
+        df = pd.concat([df, vix_row], ignore_index=True)
+        df = df.drop('VIX Index', axis = 1).assign(Timestamp=dt.now().strftime('%Y-%m-%d %H:%M'))
+        file_exists = os.path.exists(VIX_C_Scrape_Data_File)
+        df.to_csv(VIX_C_Scrape_Data_File, mode='a', sep=',', header=not file_exists, index=False)
+        
+        print('Cleaning %s'%csv_files)
+        for dl_file in csv_files:
+            os.remove(dl_file)
+
         break
 
     except ValueError as ve:
@@ -82,33 +97,18 @@ else:
     fail = True
 
 if not fail:
-    print('Download succeeded, concat to %s' %VIX_C_Scrape_Data_File)
-    time.sleep(1) # so last download would finish
-    csv_files = glob.glob(os.path.join(Data_Feed_folder, '*vix-futures-term*.csv'))
-    if len(csv_files) > 2: print('Have multiple files!')
-    latest_file = max(csv_files, key=os.path.getmtime) #os.path.getmtime(csv_files[0])
-    print('Reading %s' %latest_file)
-    df = pd.read_csv(latest_file) # df is new data
-    vix_row = pd.DataFrame({'Future Month':'VIX', 'Last': df['VIX Index'][0]}, index = [0])
-    df = pd.concat([df, vix_row], ignore_index=True)
-    df = df.drop('VIX Index', axis = 1).assign(Timestamp=dt.now().strftime('%Y-%m-%d %H:%M'))
-    file_exists = os.path.exists(VIX_C_Scrape_Data_File)
-    df.to_csv(VIX_C_Scrape_Data_File, mode='a', sep=',', header=not file_exists, index=False)
-    
-    print('Cleaning %s'%csv_files)
-    for dl_file in csv_files:
-        os.remove(dl_file)
-
     driver.quit()
     if not is_platform_pc: display.stop()
     print('Stops succeeded')
 
 if not is_platform_pc:
     import subprocess  # To run shell commands
+    result = subprocess.run(["pkill", "Xvfb"], capture_output=True, text=True)
     result = subprocess.run(["pgrep", "-a", "Xvfb"], capture_output=True, text=True)
     print("Running Xvfb processes after stopping PyVirtualDisplay:")
     print(result.stdout)
 
+print('Finished virtual display ' + time.strftime("%Y-%m-%d %H:%M:%S"))
 
 # # Driver setup
 # options = webdriver.FirefoxOptions()

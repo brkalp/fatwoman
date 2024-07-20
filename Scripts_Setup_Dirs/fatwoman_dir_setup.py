@@ -110,8 +110,11 @@ binance_Orderbook_loc_prefix = os.path.join(binance_Orderbook_Output_Folder, 'bi
 # Log file
 default_log_file_path = os.path.join(fatwoman_log_path, "Total.txt")
 Binance_save_log_path = os.path.join(fatwoman_log_path, "BinanceDownload_output.txt")
+Hourly_log_path       = os.path.join(fatwoman_log_path, "Batch_Hourly.txt")
 logging_override = {
     'binance_orderbook_save.py' : Binance_save_log_path,
+    'CBOE_Scrape.py' : Hourly_log_path,
+    'VIX_Central_Scrape.py' : Hourly_log_path,
     }
 
 # Screensaver
