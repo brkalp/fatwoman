@@ -1,6 +1,6 @@
 """ Created on Sun Jul 23 13:42:59 2023 @author: DenizYalimYilmaz """
-#import fatwoman_log_setup
-#from fatwoman_log_setup import script_end_log
+import fatwoman_log_setup
+from fatwoman_log_setup import script_end_log
 import pandas as pd
 import logging
 from fatwoman_dir_setup import VIX_C_Scrape_Data_File, Data_Feed_folder, is_platform_pc
@@ -79,6 +79,8 @@ while attempt < max_attempts:
     except ValueError as ve:
         print(f"Attempt {attempt + 1} failed with ValueError: {ve}")
         print(f"Retrying...")
+        logging.error(f"Attempt {attempt + 1} failed with ValueError: {ve}")
+        logging.error(f"Retrying...")
         driver.quit()
         if not is_platform_pc: display.stop()
         attempt += 1
@@ -87,6 +89,8 @@ while attempt < max_attempts:
     except Exception as e:
         print(f"Attempt {attempt + 1} failed with error: {e}")
         print(f"Retrying...")
+        logging.error(f"Attempt {attempt + 1} failed with error: {ve}")
+        logging.error(f"Retrying...")
         driver.quit()
         if not is_platform_pc: display.stop()
         attempt += 1
@@ -94,6 +98,7 @@ while attempt < max_attempts:
 
 else:
     print("Failed to scrape data after several attempts")
+    logging.critical("Failed to scrape data after several attempts")
     fail = True
 
 if not fail:
@@ -109,6 +114,7 @@ if not is_platform_pc:
     print(result.stdout)
 
 print('Finished virtual display ' + time.strftime("%Y-%m-%d %H:%M:%S"))
+script_end_log()
 
 # # Driver setup
 # options = webdriver.FirefoxOptions()

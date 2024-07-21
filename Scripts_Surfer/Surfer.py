@@ -21,7 +21,7 @@ import pyautogui
 def signal_handler(signum, frame):
     print("Gracefully shutting down... " + time.strftime("%Y-%m-%d %H:%M:%S"))
     try:
-        logging.info("Gracefully shutting down: " + time.strftime("%Y-%m-%d %H:%M:%S"))
+        # logging.info("Gracefully shutting down: " + time.strftime("%Y-%m-%d %H:%M:%S"))
         for manager in managers:
             manager.driver.quit()
     except Exception as e:
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     args = parse_arguments()
 
     print('Starting Screensaver ' + time.strftime("%Y-%m-%d %H:%M:%S"))
-    logging.info('Starting Screensaver ' + time.strftime("%Y-%m-%d %H:%M:%S"))
+    # logging.info('Starting Screensaver ' + time.strftime("%Y-%m-%d %H:%M:%S"))
     logging.info(args)
 
     configuration_1 = url_config_BBG    if args.bbg else url_configuration_1
