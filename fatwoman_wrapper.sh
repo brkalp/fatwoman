@@ -88,7 +88,7 @@ runBatchEvening() {
     screensoff
     }
 runBatchEOD(){
-    logsarchive
     runEODpy
+    logsarchive
     }
 echo "$(date): Wrapper script finished" >> $LOG_DIR"0_wrapper_echo.log"
