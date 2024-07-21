@@ -29,7 +29,7 @@ def configure_logging(log_file_path = default_log_file_path):
     # logger.handlers.clear()
     logger.setLevel(logging.INFO)
 
-    try: importer_name = os.path.basename(sys.argv[0])
+    try: importer_name = os.path.basename(sys.argv[0])[:-3]
     except : importer_name = 'importer_name'
     log_file_path = logging_override.get(importer_name, default_log_file_path)
 
@@ -48,8 +48,9 @@ def configure_logging(log_file_path = default_log_file_path):
     logger.addHandler(fh)
 
     # if importer_name not in logging_override:
-    logging.info("Logging setup complete.")
-    print("Script Starting %s" %importer_name)
+    if not importer_name in logging_import_ignore:
+        logging.info("Logging setup complete.")
+        print("Script Starting %s" %importer_name)
 
 configure_logging()
 

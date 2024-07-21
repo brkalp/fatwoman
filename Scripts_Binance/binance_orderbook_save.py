@@ -1,12 +1,12 @@
 # Created on 02-28-2024 03:58:58 @author: ripintheblue
+import fatwoman_log_setup
+import logging
 from fatwoman_dir_setup import binance_Orderbook_loc_prefix, Binance_save_log_path
 from fatwoman_api_setup import Binance_Secret, Binance_Key
 from binance.client import Client
 import pandas as pd
 from datetime import datetime as dt
 import os
-# import fatwoman_log_setup
-import logging
 
 # print('Binance download %s' % dt.now())
 client = Client(api_key=Binance_Secret, api_secret=Binance_Key)

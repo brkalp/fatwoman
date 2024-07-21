@@ -1,6 +1,6 @@
 """ Created on 07-03-2024 03:30:12 @author: ripintheblue """
 import pandas as pd
-from fatwoman_log_setup import script_end_log
+# from fatwoman_log_setup import script_end_log
 from fatwoman_dir_setup import CBOE_Scrape_Data_File
 from bokeh.plotting import figure, show, output_file
 from bokeh.models import ColumnDataSource, HoverTool, LinearColorMapper

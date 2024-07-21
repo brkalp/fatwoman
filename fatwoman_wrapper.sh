@@ -31,8 +31,8 @@ surferkill() {
 surfer()             { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py > /dev/null 2>&1 & }
 surferprint()        { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py; }
 surferbbg()          { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py --bbg; }
-runCVIXScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_Data_Feeds/VIX_Central_Scrape.py;}
-runCBOEScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_Data_Feeds/CBOE_Scrape.py;}
+runCVIXScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/VIX_Central_Scrape.py;}
+runCBOEScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/CBOE_Scrape.py;}
 runYahooDownload()   { /usr/bin/python3 ${BASE_DIR}Scripts_Generate_Daily_Plots/YahooDownload.py; }
 runYahooInfo()       { /usr/bin/python3 ${BASE_DIR}Scripts_Generate_Daily_Plots/Yahoo_Info.py;}
 runYahooPlotter()    { /usr/bin/python3 ${BASE_DIR}Scripts_Generate_Daily_Plots/YahooPlotter.py; }

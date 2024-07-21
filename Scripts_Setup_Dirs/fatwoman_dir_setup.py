@@ -38,9 +38,9 @@ YahooPlotter_Output_File    = os.path.join(YahooDownload_Output_Folder, 'Daily_y
 Total_data_file = YahooDownload_Output_File
 
 # Data Feeds - Scape - Test location
-Data_Feed_folder        = os.path.join(fatwoman_base_path, 'Scripts_Data_Feeds')
-CBOE_Scrape_Data_File   = os.path.join(Data_Feed_folder, 'CBOE_VIX.csv')
-VIX_C_Scrape_Data_File  = os.path.join(Data_Feed_folder, 'Central_VIX.csv')
+VIX_Scrape_folder        = os.path.join(fatwoman_data_path, 'Scripts_VIX_Scrape') # need this to set download dir
+CBOE_Scrape_Data_File   = os.path.join(VIX_Scrape_folder, 'CBOE_VIX.csv')
+VIX_C_Scrape_Data_File  = os.path.join(VIX_Scrape_folder, 'Central_VIX.csv')
 
 # Yield Curve
 YC_Scripts_Folder   = os.path.join(fatwoman_base_path, 'Scripts_Yield_Curve')
@@ -107,7 +107,7 @@ adhoc_fol = os.path.join(fatwoman_base_path, 'Ad_hoc')
 binance_Orderbook_Output_Folder = os.path.join(fatwoman_data_path, 'Scripts_Binance')
 binance_Orderbook_loc_prefix = os.path.join(binance_Orderbook_Output_Folder, 'binance_order_book_')
 
-# Log file
+# Log files
 default_log_file_path = os.path.join(fatwoman_log_path, "Total.txt")
 Binance_save_log_path = os.path.join(fatwoman_log_path, "BinanceDownload_output.txt")
 Hourly_log_path       = os.path.join(fatwoman_log_path, "Batch_Hourly.txt")
@@ -116,6 +116,10 @@ logging_override = {
     'CBOE_Scrape.py'            : Hourly_log_path,
     'VIX_Central_Scrape.py'     : Hourly_log_path,
     }
+logging_import_ignore = [ # ignore the setup log if this is the importer
+    'binance_orderbook_save'
+    ]
+
 
 # Screensaver
 Screensaver_url_dir     = os.path.join(fatwoman_base_path, 'Scripts_Surfer') # not really used
