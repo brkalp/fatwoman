@@ -46,7 +46,10 @@ def configure_logging(log_file_path = default_log_file_path):
 
     # Add handler to the logger
     logger.addHandler(fh)
-
+    logging_import_ignore = [
+        'binance_orderbook_save',
+        # 'ipykernel_launcher',
+        ]
     # if importer_name not in logging_override:
     if not importer_name in logging_import_ignore:
         logging.info("Logging setup complete.")

@@ -22,6 +22,7 @@ def getLines(very_long_string, starter, ender):
     matches = re.findall(testString, very_long_string)
     return matches
 
+timestamp_format = '%Y-%m-%d %H:%M'
 attempt = 0
 max_attempts = 10
 while attempt < max_attempts:
@@ -46,7 +47,9 @@ while attempt < max_attempts:
         columns = ["Maturity", "Last", "Change", "High", "Low", "Settlement", "Volume"]
         df_futures = pd.DataFrame(table_2d[1:], columns=columns)
         df_futures.iloc[0,0] = 'VIX'
-        df_futures['timestamp'] = dt.now().strftime('%Y-%m-%d %H:%M')
+        df_futures['Timestamp'] = dt.now().strftime(timestamp_format) # timestamp format on file
+        df_futures['Volume'].replace(',','', regex=True, inplace=True)
+        df_futures['Volume'] = pd.to_numeric(df_futures['Volume'], errors='coerce')
 
         # Write file Add header if file does not exist
         file_exists = os.path.exists(CBOE_Scrape_Data_File)
@@ -89,3 +92,8 @@ script_end_log()
         # driver = webdriver.Chrome(options=options)
         # driver.get('https://www.cboe.com/tradable_products/vix/vix_futures/')
         # source = driver.page_source
+
+
+# df_temp = df0['timestamp'][:5391]
+# df_temp = pd.to_datetime(df_temp, format='%d/%m/%Y %H:%M').dt.strftime(timestamp_format)
+# df0['timestamp'][:5391] = df_temp.copy()

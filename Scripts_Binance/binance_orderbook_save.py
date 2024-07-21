@@ -8,7 +8,7 @@ import pandas as pd
 from datetime import datetime as dt
 import os
 
-# print('Binance download %s' % dt.now())
+print('Binance download %s' % dt.now())
 client = Client(api_key=Binance_Secret, api_secret=Binance_Key)
 
 def get_order_book(symbol, limit=15):
