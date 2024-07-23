@@ -14,7 +14,8 @@ import os
 # Change work_dir accordingly, where 15GB is location with scripts and fatboy is the data loc
 # Determine if running on specific platform
 # is_platform_pc = socket.gethostname() == 'ripintheblue'
-remoteIP = r'F:\\'# remoteIP = r'\\10.0.1.6\\'
+# remoteIP = r'\\10.0.1.6\\'
+remoteIP = r'F:\\'
 work_dir = remoteIP
 is_platform_pc = (socket.gethostname() == 'fatwoman') is False
 fatwoman_base_path = work_dir + '15GB'   if is_platform_pc else r'/media/fatwoman/15GB'
@@ -112,9 +113,9 @@ default_log_file_path = os.path.join(fatwoman_log_path, "Total.txt")
 Binance_save_log_path = os.path.join(fatwoman_log_path, "BinanceDownload_output.txt")
 Hourly_log_path       = os.path.join(fatwoman_log_path, "Batch_Hourly.txt")
 logging_override = {
-    'binance_orderbook_save.py' : Binance_save_log_path,
-    'CBOE_Scrape.py'            : Hourly_log_path,
-    'VIX_Central_Scrape.py'     : Hourly_log_path,
+    'binance_orderbook_save' : Binance_save_log_path,
+    'CBOE_Scrape'            : Hourly_log_path,
+    'VIX_Central_Scrape'     : Hourly_log_path,
     }
 logging_import_ignore = [ # ignore the setup log if this is the importer
     'binance_orderbook_save'

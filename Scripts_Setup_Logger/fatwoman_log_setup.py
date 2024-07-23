@@ -48,6 +48,7 @@ def configure_logging(log_file_path = default_log_file_path):
     logger.addHandler(fh)
     logging_import_ignore = [
         'binance_orderbook_save',
+        # 'VIX_Central_Scrape', need seperate file as logging is mandatory, and errors are frequent
         # 'ipykernel_launcher',
         ]
     # if importer_name not in logging_override:
