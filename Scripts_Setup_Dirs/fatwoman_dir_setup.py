@@ -132,8 +132,9 @@ firefox_profile1        = r"/home/fatwoman/.mozilla/firefox/tmbcotcq.default-rel
 firefox_profile2        = r"/home/fatwoman/.mozilla/firefox/tmbcotcq.default-release2"
 surfer_dir_override     = {
     'logs'              : f"file://%s" %default_log_file_path,
-    'Daily_Plot_HTML'   : f"file://%s" %YahooPlotter_Output_File,
-    'Daily_YC_Appended' : f"file://%s" %YC_Appended_Plot,
+    'Daily_Plot_yahoo'   : f"file://%s" %YahooPlotter_Output_File,
+    'Daily_Plot_CBOE'   : f"file://%s" %CBOE_Plotter_Output_File,
+    'Daily_Plot_YC' : f"file://%s" %YC_Appended_Plot,
     'vol_plot_VIX' : f"file://%s" %get_vol_plot_dir('^VIX'),
     'vol_plot_SPY' : f"file://%s" %get_vol_plot_dir('TLT'),
     'vol_plot_TLT' : f"file://%s" %get_vol_plot_dir('TSLA'),
