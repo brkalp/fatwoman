@@ -39,8 +39,8 @@ df3 = df2[['Maturity','Settlement','Timestamp']].copy()
 # color palette
 df3['Ts_ord'] = df3['Timestamp'].apply(lambda x: x.toordinal())
 mindate, maxdate = df3['Ts_ord'].min(), df3['Ts_ord'].max()
-df3['color'] = [c_mapper.palette[int((x-mindate)/(maxdate-mindate) * (len(c_mapper.palette) - 1))] for x in df3['Ts_ord']]
 c_mapper = LinearColorMapper(palette=Viridis256, low=mindate, high=maxdate)
+df3['color'] = [c_mapper.palette[int((x-mindate)/(maxdate-mindate) * (len(c_mapper.palette) - 1))] for x in df3['Ts_ord']]
 
 # Define the plot
 p = figure(x_axis_type='datetime', title="Settlements over Last 10 Days", height=800, width=1300)

@@ -1,4 +1,4 @@
-""" Created on Sun Jul 23 13:42:59 2023 @author: DenizYalimYilmaz """
+""" Created on Sun Jul 23 13:42:59 2024 @author: DenizYalimYilmaz """
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
 import pandas as pd
