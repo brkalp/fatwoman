@@ -52,10 +52,13 @@ runChromeRemoteDesktopkill() { /opt/google/chrome-remote-desktop/chrome-remote-d
 runChromeRemoteDesktopstatus() { systemctl status chrome-remote-desktop@fatwoman.service;}
 
 runBatchHourly() {
-    runCBOEScrape
     runCVIXScrape
 }
 
+runBatchBusinessDays()  {
+    # Scrape CBOE Daily
+    runCBOEScrape
+    }
 runBatchDaily()  {
     runSODpy
     runChromeRemoteDesktop
