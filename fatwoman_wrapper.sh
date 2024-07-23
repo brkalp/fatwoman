@@ -20,6 +20,7 @@ DISPLAY=:0 xrandr --output DisplayPort-0 --brightness 1
 DISPLAY=:0 xrandr --output DisplayPort-1 --brightness 1
 }
 logs()        { less ${LOG_DIR}Total.txt; }
+logshourly()  { less ${LOG_DIR}Batch_Hourly.txt; }
 logfolder()   { cd ${LOG_DIR}; }
 logsarchive() { ${LOG_DIR}archive_here.sh; }
 screensoff()  { DISPLAY=:0 xrandr --output DisplayPort-0 --off --output DisplayPort-1 --off; }
@@ -33,6 +34,7 @@ surferprint()        { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Sur
 surferbbg()          { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py --bbg; }
 runCVIXScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/VIX_Central_Scrape.py;}
 runCBOEScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/CBOE_Scrape.py;}
+runCBOEPlotter()     { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/CBOE_VIX_Plotter.py;}
 runYahooDownload()   { /usr/bin/python3 ${BASE_DIR}Scripts_Generate_Daily_Plots/YahooDownload.py; }
 runYahooInfo()       { /usr/bin/python3 ${BASE_DIR}Scripts_Generate_Daily_Plots/Yahoo_Info.py;}
 runYahooPlotter()    { /usr/bin/python3 ${BASE_DIR}Scripts_Generate_Daily_Plots/YahooPlotter.py; }
@@ -58,6 +60,7 @@ runBatchHourly() {
 runBatchBusinessDays()  {
     # Scrape CBOE Daily
     runCBOEScrape
+    runCBOEPlotter
     }
 runBatchDaily()  {
     runSODpy

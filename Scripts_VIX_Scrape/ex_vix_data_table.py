@@ -20,6 +20,10 @@ result = df0.groupby([df0.index.date,'Maturity'])['Settlement'].std() # nan sinc
 dfvc = pd.read_csv(VIX_C_Scrape_Data_File)
 dfvc['Timestamp'] = pd.to_datetime(dfvc['Timestamp'], format = current_timestamp_format)
 
+
+
+# df_futures['Maturity'] = pd.to_datetime(df_futures['Maturity'], format='%m/%d/%Y')
+
 # df1 = df0.pivot(index='Timestamp', columns ='Maturity', values='Settlement')
 
 # df0['Settlement'].replace('-', '',inplace=True)

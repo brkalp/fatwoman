@@ -54,6 +54,9 @@ while attempt < max_attempts:
         df_futures['Settlement'] = pd.to_numeric(df_futures['Settlement'], errors='coerce')
         df_futures['Timestamp'] = dt.now().strftime(timestamp_format)
         df_futures['Hour']      = dt.now().strftime(hour_format)
+        # data includes vix itself so maturity formatting is not valid
+        # df_futures['Maturity']      = dt.now().strftime(hour_format)
+        # df_futures['Maturity'] = pd.to_datetime(df_futures['Maturity'], format='%m/%d/%Y') #CBOE_RAW_timestamp_format = '%m/%d/%Y'
 
         # Write file Add header if file does not exist
         file_exists = os.path.exists(CBOE_Scrape_Data_File)

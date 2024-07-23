@@ -39,6 +39,7 @@ Total_data_file = YahooDownload_Output_File
 VIX_Scrape_folder        = os.path.join(fatwoman_data_path, 'Scripts_VIX_Scrape') # need this to set download dir
 CBOE_Scrape_Data_File   = os.path.join(VIX_Scrape_folder, 'CBOE_VIX.csv')
 VIX_C_Scrape_Data_File  = os.path.join(VIX_Scrape_folder, 'Central_VIX.csv')
+CBOE_Plotter_Output_File   = os.path.join(VIX_Scrape_folder, 'CBOE_Plotter_Output_File.html')
 CBOE_Scrape_timestamp_format = '%d/%m/%Y'
 
 # Yield Curve
