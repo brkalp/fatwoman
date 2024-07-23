@@ -1,7 +1,7 @@
 """ Created on 07-21-2024 23:07:40 @author: DenizYalimYilmaz """
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
-from fatwoman_dir_setup import CBOE_Scrape_Data_File
+from fatwoman_dir_setup import CBOE_Scrape_Data_File, CBOE_Scrape_timestamp_format
 import logging
 from datetime import datetime as dt
 # import selenium
@@ -22,7 +22,7 @@ def getLines(very_long_string, starter, ender):
     matches = re.findall(testString, very_long_string)
     return matches
 
-timestamp_format = '%d/%m/%Y'
+timestamp_format = CBOE_Scrape_timestamp_format
 hour_format = '%H:%M'
 attempt = 0
 max_attempts = 10

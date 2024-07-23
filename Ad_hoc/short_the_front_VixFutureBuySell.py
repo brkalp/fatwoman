@@ -4,7 +4,7 @@ import numpy as np
 from collections import Counter
 import seaborn as sns
 import matplotlib.pyplot as plt
-from fatwoman_dir_setup import VIX_CBOE_scrape_Total, adhoc_fol, data_get
+from fatwoman_dir_setup import CBOE_Scrape_Data_File, adhoc_fol, data_get
 import quantstats as qs
 
 os.chdir(adhoc_fol)
@@ -13,7 +13,7 @@ sns.set()
 """ Strategy: Short the front VIX future """
 
 # filename = 'C:\Data\yahoodownload\ZipFutureData\Total\Total.csv'
-filename = VIX_CBOE_scrape_Total
+filename = CBOE_Scrape_Data_File
 dfraw = pd.read_csv(filename)
 df_future_prices = dfraw.pivot(columns=['Futures'], index ='Trade Date', values = 'Settle')
 Future_to_expiry_dict = {col:df_future_prices[col].dropna().index.max() for col in df_future_prices.columns}

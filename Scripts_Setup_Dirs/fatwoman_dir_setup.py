@@ -26,9 +26,6 @@ fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
 portfolio_folder = os.path.join(fatwoman_data_path, 'Scripts_Portfolio')
 portfolio_Plot  = os.path.join(portfolio_folder, 'Portfolio_loc.png')
 
-# CBOE manual dump
-VIX_CBOE_scrape_Total = os.path.join(fatwoman_data_path, 'Scripts_CBOE_Vix', 'Total','Total.csv')
-
 # Daily downloads
 YahooDownload_Output_Folder = os.path.join(fatwoman_data_path, 'Scripts_Generate_Daily_Plots')
 YahooDownload_Output_File   = os.path.join(YahooDownload_Output_Folder, 'Daily_yahoo_data.csv')
@@ -38,10 +35,11 @@ YahooDownload_Outputs_SEK   = os.path.join(YahooDownload_Output_Folder, 'Daily_y
 YahooPlotter_Output_File    = os.path.join(YahooDownload_Output_Folder, 'Daily_yahoo_plot.html')
 Total_data_file = YahooDownload_Output_File
 
-# Data Feeds - Scape - Test location
+# Data Feeds - Scape Data location
 VIX_Scrape_folder        = os.path.join(fatwoman_data_path, 'Scripts_VIX_Scrape') # need this to set download dir
 CBOE_Scrape_Data_File   = os.path.join(VIX_Scrape_folder, 'CBOE_VIX.csv')
 VIX_C_Scrape_Data_File  = os.path.join(VIX_Scrape_folder, 'Central_VIX.csv')
+CBOE_Scrape_timestamp_format = '%d/%m/%Y'
 
 # Yield Curve
 YC_Scripts_Folder   = os.path.join(fatwoman_base_path, 'Scripts_Yield_Curve')

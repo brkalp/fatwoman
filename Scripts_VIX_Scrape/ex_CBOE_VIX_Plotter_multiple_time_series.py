@@ -1,7 +1,7 @@
 """ Created on 07-03-2024 03:30:12 @author: ripintheblue """
 import pandas as pd
 # from fatwoman_log_setup import script_end_log
-from fatwoman_dir_setup import CBOE_Scrape_Data_File, VIX_Scrape_folder
+from fatwoman_dir_setup import CBOE_Scrape_Data_File, VIX_Scrape_folder, CBOE_Scrape_timestamp_format
 from bokeh.plotting import figure, show, output_file
 from bokeh.models import ColumnDataSource, HoverTool, LinearColorMapper
 from bokeh.layouts import column
@@ -9,12 +9,10 @@ from bokeh.palettes import Viridis256
 from bokeh.io import curdoc
 
 os.chdir(VIX_Scrape_folder)
-timestamp_format = '%Y-%m-%d %H:%M'
 output_file("multiple_plots_time_series.html")
-timestamp_format = '%Y-%m-%d %H:%M'
 # read and filter by monthly & last 10 days data
 df0 = pd.read_csv(CBOE_Scrape_Data_File)
-df0['Timestamp'] = pd.to_datetime(df0['Timestamp'], format=timestamp_format)
+df0['Timestamp'] = pd.to_datetime(df0['Timestamp'], format=CBOE_Scrape_timestamp_format)
 # monthly contracts
 median_per_contract = df0.groupby('Maturity')['Volume'].median()
 monthly_contract_list = median_per_contract[median_per_contract > 10].index.tolist()
