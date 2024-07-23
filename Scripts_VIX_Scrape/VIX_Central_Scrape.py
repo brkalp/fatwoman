@@ -69,7 +69,11 @@ while attempt < max_attempts:
         df = pd.read_csv(latest_file) # df is new data
         vix_row = pd.DataFrame({'Future Month':'VIX', 'Last': df['VIX Index'][0]}, index = [0])
         df = pd.concat([df, vix_row], ignore_index=True)
-        df = df.drop('VIX Index', axis = 1).assign(Timestamp=dt.now().strftime('%Y-%m-%d %H:%M'))
+        df = df.drop('VIX Index', axis = 1)
+        timestamp_format = '%d/%m/%Y'
+        hour_format = '%H:%M'
+        df['Timestamp'] = dt.now().strftime(timestamp_format)
+        df['Hour']      = dt.now().strftime(hour_format)
         file_exists = os.path.exists(VIX_C_Scrape_Data_File)
         df.to_csv(VIX_C_Scrape_Data_File, mode='a', sep=',', header=not file_exists, index=False)
         

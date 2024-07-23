@@ -10,7 +10,7 @@ from bokeh.palettes import Viridis256
 from bokeh.io import curdoc
 
 os.chdir(VIX_Scrape_folder)
-timestamp_format = '%Y-%m-%d %H:%M'
+timestamp_format = '%d/%m/%Y'
 output_file("last_10_settle_values.html")
 last_x_days = 5
 
