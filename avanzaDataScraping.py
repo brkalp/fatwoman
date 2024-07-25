@@ -14,7 +14,8 @@ class AvanzaDataScraping:
         options = Options()
         # options.add_argument("--headless") # ActionChain doesn't work with headless display, so visual display should be added for some devices
         self.driver = webdriver.Chrome(options=options)
-        self.driver.set_window_size(800, 800)
+        #self.driver.set_window_size(800, 800)
+        self.driver.maximize_window()
 
         # 'https://www.avanza.se/borshandlade-produkter/certifikat-torg/om-certifikatet.html/1395805/bear-vix-x4-von3'
         link = "https://www.avanza.se/fonder/om-fonden.html/878733/avanza-global"
@@ -24,34 +25,37 @@ class AvanzaDataScraping:
 
         # It takes a bit for Avanza to load, so a buffer like time.sleep(5) is healthy, feel free to increase it 8 or 10 secs if internet speed is not up to par
         WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.CLASS_NAME, "highcharts-root")))
-        time.sleep(1)
-
 
     def set_calendar(self, start_date, end_date):
         # Now we will set up the date, to click the calendar button we might have to go behind the cookies button
         cookies_bar = self.driver.find_element(By.XPATH, "/html/body/aza-app/aza-shell/div/aza-cookie-message/div/div")
         cookies_bar_height = cookies_bar.size['height']
 
+        # Find the calendar_button
         calendar_button = self.driver.find_element(By.XPATH, "/html/body/aza-app/aza-shell/div/div[2]/main/div/aza-fund-guide/aza-subpage/div/div/div/div[2]/div[1]/mint-card[1]/div[4]/aza-area-chart/div/aza-period-picker/div/aza-period-button[8]/button")
 
+        # Scroll down for calendar_button to be in view
+        self.driver.execute_script(f"window.scrollBy(0, {cookies_bar_height * 2});")  # Scroll down 1000 pixels
 
-        actions = ActionChains(self.driver)
-
-        # I genuinely can't find a better way to scroll down. If you have any suggestions that actually work my discord: #denami1
-        actions.scroll_by_amount(0, cookies_bar_height*2).perform()
+        # Click the calendar button to open start_date and end_date fields
         calendar_button.click()
 
+        # Wait for fields to open
         time.sleep(1)
 
+        # Get the buttons related to start and end date
         date_buttons = self.driver.find_elements(By.XPATH, '//aza-datepicker//div[@class="desktop"]//input')
-        date_buttons[1].click()
-        date_buttons[1].clear()
-        date_buttons[1].send_keys(start_date)
+        # 1. Indexed webElement is the start_date_field while 3. indexed is the end_date_field
+        start_date_field = date_buttons[1]
+        end_date_field = date_buttons[3]
 
-        date_buttons[3].click()
-        date_buttons[3].clear()
-        date_buttons[3].send_keys(end_date)
+        # Clear start date field and send desired start_date
+        start_date_field.clear()
+        start_date_field.send_keys(start_date)
 
+        # Clear end date field and send desired end_date
+        end_date_field.clear()
+        end_date_field.send_keys(end_date)
 
     def scrape_graph(self):
         time.sleep(2)
@@ -83,18 +87,20 @@ class AvanzaDataScraping:
                 print(f"{date_price_instrument.text} \n")
 
             except:
-                # No exceptions
+                # date_price_instrument won't be found when hover first starts, this is expected
                 pass
 
 
-# AvanzaDataScarping instance
-avanza_instance = AvanzaDataScraping()
+if __name__ == "__main__":
+    # AvanzaDataScarping instance
+    avanza_instance = AvanzaDataScraping()
 
-# Start and end dates of the Graph we want to scrape
-start_date = "2008-05-20"
-end_date = "2009-05-21"
+    # Start and end dates of the Graph we want to scrape
+    start_date = "2008-05-20"
+    end_date = "2009-05-21"
 
-avanza_instance.set_calendar(start_date, end_date) # Setting the calendar is optional, if unset, site will give daily graph
+    # Set the start and end dates at the page
+    avanza_instance.set_calendar(start_date, end_date) # Setting the calendar is optional, if unset, site will give daily graph
 
-# Scarpe graph
-avanza_instance.scrape_graph()
+    # Scrape graph
+    avanza_instance.scrape_graph()
