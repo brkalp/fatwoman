@@ -15,11 +15,15 @@ import os
 # Determine if running on specific platform
 # is_platform_pc = socket.gethostname() == 'ripintheblue'
 # remoteIP = r'\\10.0.1.6\\'
+# sys env variables / os.path.dirname('os.path.realpath(__file__)') / os.environ # also pytonpath is here
 remoteIP = r'F:\\'
 work_dir = remoteIP
 is_platform_pc = (socket.gethostname() == 'fatwoman') is False
 fatwoman_base_path = work_dir + '15GB'   if is_platform_pc else r'/media/fatwoman/15GB'
 fatwoman_data_path = work_dir + 'fatboy' if is_platform_pc else r'/media/fatwoman/fatboy'
+if socket.gethostname() == 'Apollo-13':
+    fatwoman_base_path = r'C:\Users\deniz\PycharmProjects\alp'
+    fatwoman_data_path = r'C:\Users\deniz\PycharmProjects\fatboy'
 fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
 
 # Portfolio
