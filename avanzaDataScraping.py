@@ -18,8 +18,8 @@ class AvanzaDataScraping:
         self.driver.maximize_window()
 
         # 'https://www.avanza.se/borshandlade-produkter/certifikat-torg/om-certifikatet.html/1395805/bear-vix-x4-von3'
-        link = "https://www.avanza.se/fonder/om-fonden.html/878733/avanza-global"
-
+        # link = "https://www.avanza.se/fonder/om-fonden.html/878733/avanza-global"
+        link = "https://www.avanza.se/borshandlade-produkter/certifikat-torg/om-certifikatet.html/943012/ava-sp500-tracker"
         # Get the link
         self.driver.get(link)
 
@@ -58,6 +58,7 @@ class AvanzaDataScraping:
         end_date_field.send_keys(end_date)
 
     def scrape_graph(self):
+        # i = 0
         time.sleep(2)
 
         # Find the graph element from the page, this graph is quite complicated, and data output is given from mouse inputs
@@ -77,13 +78,15 @@ class AvanzaDataScraping:
             action.move_to_element_with_offset(graph, x_pos, 0).perform()
 
             # Reads every minute when set to +1, feel free to make it read almost every hour with +60 or every half hour with +30 etc.
-            x_pos = x_pos + 1
-
+            x_pos = x_pos + 1 # 769
+            width = graph.size['width']
             try:
                 # Get Date, Price, Instrument etc.
                 date_price_instrument = self.driver.find_element(By.XPATH, "//div[@class='highcharts-label highcharts-tooltip highcharts-color-undefined']")
 
                 # Print to the console
+                print("%i of %i"%(x_pos,width))
+                # i = i + 1
                 print(f"{date_price_instrument.text} \n")
 
             except:
@@ -96,8 +99,9 @@ if __name__ == "__main__":
     avanza_instance = AvanzaDataScraping()
 
     # Start and end dates of the Graph we want to scrape
-    start_date = "2008-05-20"
-    end_date = "2009-05-21"
+    # start_date = "2008-05-20"
+    start_date = "2018-08-20"
+    end_date = "2018-12-21"
 
     # Set the start and end dates at the page
     avanza_instance.set_calendar(start_date, end_date) # Setting the calendar is optional, if unset, site will give daily graph
