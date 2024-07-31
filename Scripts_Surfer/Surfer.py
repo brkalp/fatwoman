@@ -123,8 +123,8 @@ if __name__ == "__main__":
     # logging.info('Starting Screensaver ' + time.strftime("%Y-%m-%d %H:%M:%S"))
     logging.info(args)
 
-    configuration_1 = url_config_BBG    if args.bbg else url_configuration_1
-    configuration_2 = url_config_yahoo  if args.bbg else url_configuration_2
+    configuration_1 = url_config_yahoo  if args.bbg else url_configuration_1
+    configuration_2 = url_config_BBG    if args.bbg else url_configuration_2
     
     managers = [
         ScreensaverManager(firefox_profile2, (1300, 100),   configuration_2, 2) # right, alp
