@@ -4,7 +4,7 @@ import numpy as np
 from collections import Counter
 import seaborn as sns
 import matplotlib.pyplot as plt
-from fatwoman_dir_setup import CBOE_Scrape_Data_File, adhoc_fol, data_get
+# from fatwoman_dir_setup import CBOE_Scrape_Data_File, adhoc_fol, data_get fix this
 import quantstats as qs
 
 os.chdir(adhoc_fol)
