@@ -23,19 +23,18 @@ TICKERS = {**VOLS}
 TICKERS = {**VOLS, **STOCKS, **BONDS, **CMDTY, **CURR, **FOREIGN}
 Tickers = list(TICKERS.keys())
 
-
+# Ticker list
 print('Saving Tickers to %s' %YahooDownload_Ticker_File[-30:])
 logging.info('Saving Tickers to %s' %YahooDownload_Ticker_File[-30:])
 df_Tickers = pd.DataFrame.from_dict({'Yahoo_Ticker': Tickers,'Ticker': list(TICKERS.values())})
 df_Tickers.to_csv(YahooDownload_Ticker_File, index = None)
 
+# Download
 print('Downloading: %s' %Tickers)
-# logging.info('Downloading: %s' %Tickers)
-
-# Download here
-# df0 = pd.DataFrame(yf.download(Tickers, dt(2023,1,1))['Adj Close']).reindex(columns=list(TICKERS.keys())).rename(columns = TICKERS).round(9)
+# Tickers = ['^VIX']
 df0 = yf.download(Tickers, dt(2005,1,1))['Adj Close']
 df1 = df0.reindex(columns=list(TICKERS.keys())).rename(columns = TICKERS).round(9)
+# df0 = pd.DataFrame(yf.download(Tickers, dt(2023,1,1))['Adj Close']).reindex(columns=list(TICKERS.keys())).rename(columns = TICKERS).round(9)
 
 print('Saving to %s' %YahooDownload_Output_File[-40:])
 logging.info('Saving to %s' %YahooDownload_Output_File[-40:])
