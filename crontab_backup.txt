@@ -15,6 +15,9 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 # Hourly activities
 10 * * * *   /bin/bash -c 'source '$WRAPPER' && runBatchHourly' 
 
+# business day data scrape
+30 23 * * 1-5 /bin/bash -c 'source '$WRAPPER' && runBatchBusinessDays'
+
 # Daily activities
 0 5 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDaily'
 15 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning1' 
