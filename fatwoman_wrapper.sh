@@ -52,7 +52,34 @@ runEODpy()           { /usr/bin/python3 ${BASE_DIR}Utility/EOD_print.py;}
 runChromeRemoteDesktop() { sudo systemctl start chrome-remote-desktop@fatwoman.service; }
 runChromeRemoteDesktopkill() { /opt/google/chrome-remote-desktop/chrome-remote-desktop --stop;}
 runChromeRemoteDesktopstatus() { systemctl status chrome-remote-desktop@fatwoman.service;}
-
+runDiskSpace() {
+    df -h
+    echo 'Media'
+    du -sh /media/fatwoman/* | grep -E '^[5-9][0-9]*M|[0-9]+G'
+    du -sh /media/fatwoman/fatboy/* | grep -E '^[5-9][0-9]*M|[0-9]+G'
+    du -sh /media/fatwoman/fatboy/logs
+    # sudo du -sh /var/*
+    # sudo du -sh /usr/*
+    # sudo du -sh /home/*
+    # sudo du -sh /tmp/*
+    # how to see size of tmp
+    # du -h /tmp
+    echo 'Diskspace'
+    sudo du -sh /home/fatwoman/.cache
+    sudo du -sh /var/* | grep -E '^[5-9][0-9]*M|[0-9]+G'
+    sudo du -sh /usr/* | grep -E '^[5-9][0-9]*M|[0-9]+G'
+    sudo du -sh /home/* | grep -E '^[5-9][0-9]*M|[0-9]+G'
+    sudo du -sh /tmp
+    sudo du -sh /tmp/* | grep -E '^[5-9][0-9]*M|[0-9]+G'
+    sudo du -sh /home/fatwoman/.cache | grep -E '^[5-9][0-9]*M|[0-9]+G'
+}
+runDiskSpaceClean() {
+    sudo rm -rf ~/.cache/mozilla/firefox/*
+    sudo rm -rf ~/.cache/librewolf/*
+    sudo rm -rf /home/fatwoman/.cache/*
+    sudo rm -rf /var/cache/*
+    #sudo rm -rf /var/log/*
+}
 runBatchHourly() {
     runCVIXScrape
 }
