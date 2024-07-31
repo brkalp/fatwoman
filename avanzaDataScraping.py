@@ -11,23 +11,29 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class AvanzaDataScraping:
-    def __init__(self):
+    def __init__(self, link = None):
         # Set up the driver
         options = Options()
-        # options.add_argument("--headless")
+        options.add_argument("--headless")
         self.driver = webdriver.Chrome(options=options)
         self.driver.set_window_size(1920, 1080)
-        # self.driver.maximize_window()
 
         # 'https://www.avanza.se/borshandlade-produkter/certifikat-torg/om-certifikatet.html/1395805/bear-vix-x4-von3'
         # link = "https://www.avanza.se/fonder/om-fonden.html/878733/avanza-global"
-        link = "https://www.avanza.se/borshandlade-produkter/certifikat-torg/om-certifikatet.html/943012/ava-sp500-tracker"
+        self.link = "https://www.avanza.se/borshandlade-produkter/certifikat-torg/om-certifikatet.html/943012/ava-sp500-tracker"
+
+        if link:
+            self.link = link
+
+        self.load()
+
+
+    def load(self):
         # Get the link
-        self.driver.get(link)
+        self.driver.get(self.link)
 
         # It takes a bit for Avanza to load, so a buffer like time.sleep(5) is healthy, feel free to increase it 8 or 10 secs if internet speed is not up to par
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "highcharts-root")))
-
     def set_calendar(self, start_date, end_date):
         # Now we will set up the date, to click the calendar button we might have to go behind the cookies button
         cookies_bar = self.driver.find_element(By.XPATH, "/html/body/aza-app/aza-shell/div/aza-cookie-message/div/div")
@@ -65,14 +71,15 @@ class AvanzaDataScraping:
     # Selects the 'daily' option from the data display settigns menu
     def select_daily_data(self):
 
-        # self.driver.execute_script("window.scrollTo(0, 0);")
+        self.driver.execute_script("window.scrollTo(0, 0);")
 
         dropdown = self.driver.find_element(By.XPATH, '//button[@data-e2e="tbs-resolution-picker-button"]')
         dropdown.click()
         time.sleep(1)
 
-        print("IT IS HAPPENING")
+        """print("IT IS HAPPENING")
         time.sleep(5)
+        """
 
         # day_option_locator = (By.XPATH, "//*[@data-e2e='tbs-chart-resolution-picker']//aza-list-option-psuedo-input")
         day_option_locator = (By.XPATH, "//*[@data-e2e='tbs-chart-resolution-picker']//aza-list-option-text")
@@ -98,7 +105,7 @@ class AvanzaDataScraping:
 
         self.set_calendar(old_date_1, old_date_2)
 
-        time.sleep(5)  # todo write better wait
+        time.sleep(2)  # todo write better wait
 
         # Presses Enter to send changes
 
@@ -130,7 +137,7 @@ class AvanzaDataScraping:
         new_date_str = new_date_obj.strftime(date_format)
         return new_date_str
 
-    def smart_graph_over_the_years(self, start_date, end_date):
+    def smart_graph_scrape_over_the_years(self, start_date, end_date):
         data_start_date = self.get_data_start_date()
 
         print(f"SMRT_GRPH: cur_start = {start_date}, actual = {data_start_date}, calculation = {self.calculate_day_difference(data_start_date, start_date)}")
@@ -138,41 +145,43 @@ class AvanzaDataScraping:
         if self.calculate_day_difference(data_start_date, start_date) > 0:
             start_date = data_start_date
 
-        print(f"SMRT_GRPH: AFTER IF-> cur_start{start_date}, actual = {data_start_date}")
-
-        print()
-        print()
-
-        # Get difference between start_date and end_date
-        difference = self.calculate_day_difference(start_date, end_date)
-
-        daily_data_display_allowence = 365  #  519
+        print(f"SMRT_GRPH: AFTER IF-> cur_start{start_date}, actual = {data_start_date} \n \n")
 
 
-        # We want daily data, avanza displays daily data if difference between start and end is less than 520 days
-        if difference <= daily_data_display_allowence:
+        # Get remaining_days between start_date and end_date
+        remaining_days = self.calculate_day_difference(start_date, end_date)
+
+        daily_data_display_allowence = 365  #  I can probably set this up high as 519, the value where Avanza refuses to give daily info
+
+
+        # We want daily data, avanza displays daily data if remaining_days between start and end is less than 520 days
+        if remaining_days <= daily_data_display_allowence:
             self.set_calendar(start_date, end_date)
+            self.select_daily_data()
             return
 
-        # Selects daily option. Site changes to weekly display if difference between start and end date is over 520
-        self.select_daily_data()
+        # Selects daily option. Site changes to weekly display if remaining_days between start and end date is over 520
+        # self.select_daily_data()
 
-        while (difference > daily_data_display_allowence):
-            print(f"SMRTGRPH: start_date = {start_date}  || old = {end_date}", end=' ')  # Debugging
+        while (remaining_days > daily_data_display_allowence):
+            """print(f"SMRTGRPH: start_date = {start_date}  || old = {end_date}", end=' ')  # Debugging
             end_date = self.add_days_to_date(start_date, daily_data_display_allowence)
 
-            print(f"SMRTGRPH: new = {end_date}")  # Debugging
+            print(f"SMRTGRPH: new = {end_date}")  # Debugging"""
 
-            # Set calendar to
+            # Set calendar
             self.set_calendar(start_date, end_date)
+            self.select_daily_data() # Select daily value display
 
+            # Scrape graph
             self.scrape_graph()
 
             start_date = end_date  # It might be healthy to + 1 to not get the same days twice
-            difference -= daily_data_display_allowence
+            remaining_days -= daily_data_display_allowence
 
-        # After all 520 cycles are over, we have to get the remaining data
-        self.set_calendar(start_date, start_date + difference)
+        # After all '365 day cycles' are over, we have to get the remaining data
+        self.set_calendar(start_date, self.add_days_to_date(start_date, remaining_days))
+        self.select_daily_data()
 
         self.scrape_graph()
 
@@ -196,14 +205,13 @@ class AvanzaDataScraping:
         past_value = None  # todo: This is a way to not print redundant data, but still slow as x_pos still increases by 1.
 
         # Graph doesn't start to give output from -graph.size['width']/2 but rather seems to from about -graph.size['width']/2 + 30, feel free to change it a bit
-        while (x_pos <= graph_width):
+        while (x_pos <= graph_width/2):
 
             # Hover at point
             action.move_to_element_with_offset(graph, x_pos, 0).perform()
 
             # Reads every minute when set to +1, feel free to make it read almost every hour with +60 or every half hour with +30 etc.
             x_pos = x_pos + 1  # 769
-            width = graph.size['width']
 
             try:
                 # Get Date, Price, Instrument etc.
@@ -212,7 +220,7 @@ class AvanzaDataScraping:
 
                 if date_price_instrument.text != past_value:
                     # Print to the console
-                    print("hover_position: %i of %i" % (x_pos, width))
+                    print("hover_position: %i of %i" % (x_pos, graph_width/2))
                     print(f"{date_price_instrument.text} \n")
 
                     # Set past_value to current price and date
@@ -238,12 +246,4 @@ if __name__ == "__main__":
     # print(avanza_instance.calculate_day_difference(date_1, date_2))
 
 
-    avanza_instance.smart_graph_over_the_years(date_1, date_2)
-
-    """# Set the start and end dates at the page
-    avanza_instance.set_calendar(start_date,
-                                 end_date)  # Setting the calendar is optional, if unset, site will give daily graph
-
-    # Scrape graph
-    # avanza_instance.scrape_graph()
-    """
+    avanza_instance.smart_graph_scrape_over_the_years(date_1, date_2)
