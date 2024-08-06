@@ -1,3 +1,4 @@
+""" Created on Sun Jul 25 13:42:59 2024 @author: DenizYalimYilmaz """
 from selenium import webdriver
 import time
 
