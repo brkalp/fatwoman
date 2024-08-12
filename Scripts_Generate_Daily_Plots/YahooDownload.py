@@ -12,7 +12,7 @@ import os
 
 # YahooDownload_Output_Folder = r'\\192.168.0.28\fatwoman\15GB\EOD_scripts\Output_Folder\\' if socket.gethostname() == 'ripintheblue' else os.path.dirname(os.path.abspath(__file__)) + '//Output_Folder//'
 
-VOLS    = {'^VIX':'VIX', 'VXX':'VXX'}
+VOLS    = {'^VIX':'VIX', '^VVIX':'VVIX'}
 STOCKS  = {'^GSPC':'SP500', '^DJI':'DowJones', '^IXIC':'Nasdaq', '^MID':'MidCap', '^SP600':'SmallCap', 'ACWI':'Global',} #Stock indexes: Growth and value  'EEM ':'Emerging_Markets' // GSPC is the index and SPY is the ETF
 BONDS   = {'TLT':'LongTermBond','IEF':'TreasuryBond'} #,'^SP500BDT':'CorporateBonds','TIPS': 'Bonds'
 CMDTY   = {'^BCOM':'BBG Commodity', '^SPGSCI':'SP GSCI'} # also ETFs DBC and GSG
