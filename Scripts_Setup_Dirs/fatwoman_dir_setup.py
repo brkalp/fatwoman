@@ -6,25 +6,29 @@ import pandas as pd
 import time
 import os
 
-# %reset -f
+# %reset -f #forcefully resets the namespace by clearing all the variables, imported modules, and user-defined functions without asking for confirmation.
 # import importlib
 # import fatwoman_dir_setup
 # importlib.reload(fatwoman_dir_setup)
 
-# Change work_dir accordingly, where 15GB is location with scripts and fatboy is the data loc
-# Determine if running on specific platform
-# is_platform_pc = socket.gethostname() == 'ripintheblue'
-# remoteIP = r'\\10.0.1.6\\'
-# sys env variables / os.path.dirname('os.path.realpath(__file__)') / os.environ # also pytonpath is here
-remoteIP = r'F:\\'
-work_dir = remoteIP
-is_platform_pc = (socket.gethostname() == 'fatwoman') is False
-fatwoman_base_path = work_dir + '15GB'   if is_platform_pc else r'/media/fatwoman/15GB'
-fatwoman_data_path = work_dir + 'fatboy' if is_platform_pc else r'/media/fatwoman/fatboy'
+# sys env variables / os.path.dirname('os.path.realpath(__file__)') /
+# os.environ # pytonpath is here
+
+if socket.gethostname() == 'ripintheblue':
+    remoteIP = r'F:\\' # remoteIP = r'\\10.0.1.6\\'
+    fatwoman_base_path = remoteIP + '15GB'
+    fatwoman_data_path = remoteIP + 'fatboy'
+if socket.gethostname() == 'fatwoman':
+    fatwoman_base_path = r'/media/fatwoman/15GB'
+    fatwoman_data_path = r'/media/fatwoman/fatboy'
 if socket.gethostname() == 'Apollo-13':
     fatwoman_base_path = r'C:\Users\deniz\PycharmProjects\alp'
     fatwoman_data_path = r'C:\Users\deniz\PycharmProjects\fatboy'
+if 'fatwoman_base_path' not in locals(): print('Data paths not defined for this machine!')
 fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
+
+# Avanza Scrape
+avanza_data_path    = os.path.join(fatwoman_data_path, 'Scripts_Avanza_Data')
 
 # Portfolio
 portfolio_folder = os.path.join(fatwoman_data_path, 'Scripts_Portfolio')
@@ -117,7 +121,7 @@ Binance_save_log_path = os.path.join(fatwoman_log_path, "BinanceDownload_output.
 Hourly_log_path       = os.path.join(fatwoman_log_path, "Batch_Hourly.txt")
 logging_override = {
     'binance_orderbook_save' : Binance_save_log_path,
-    'CBOE_Scrape'            : Hourly_log_path,
+    # 'CBOE_Scrape'            : Hourly_log_path,
     'VIX_Central_Scrape'     : Hourly_log_path,
     }
 logging_import_ignore = [ # ignore the setup log if this is the importer

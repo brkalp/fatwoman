@@ -5,6 +5,8 @@ LOG_DIR="/media/fatwoman/fatboy/logs/"
 BASE_DIR="/media/fatwoman/15GB/"
 WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 
+@reboot /usr/local/bin/noip2
+
 # Wrapper check - Log wrapper execution
 * * * * * /bin/bash -c 'source '$WRAPPER' >> '$LOG_DIR'0_wrapper_echo.log' 2>&1
 
