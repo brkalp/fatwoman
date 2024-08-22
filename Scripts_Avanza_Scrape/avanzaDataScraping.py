@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 import os
-from Scripts_Setup_Dirs.fatwoman_dir_setup import avanza_data_path
+from fatwoman_dir_setup import avanza_data_path
 
 os.chdir(avanza_data_path)
 
