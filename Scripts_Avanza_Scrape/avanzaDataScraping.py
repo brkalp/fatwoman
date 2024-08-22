@@ -1,10 +1,3 @@
-import sys
-from datetime import datetime, timedelta
-from selenium import webdriver
-import time
-from selenium.webdriver import ActionChains, Keys
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 from datetime import datetime, timedelta
 from selenium import webdriver
 import time
@@ -14,10 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
-import re
 import os
-import Scripts_Setup_Dirs.fatwoman_dir_setup
-import Scripts_Setup_Dirs.fatwoman_dir_setup
 from Scripts_Setup_Dirs.fatwoman_dir_setup import avanza_data_path
 
 os.chdir(avanza_data_path)
