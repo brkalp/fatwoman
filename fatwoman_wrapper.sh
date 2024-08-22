@@ -20,7 +20,8 @@ DISPLAY=:0 xrandr --output DisplayPort-0 --brightness 1
 DISPLAY=:0 xrandr --output DisplayPort-1 --brightness 1
 }
 logs()        { less ${LOG_DIR}Total.txt; }
-logshourly()  { less ${LOG_DIR}Batch_Hourly.txt; }
+logs2()  { less ${LOG_DIR}Batch_Hourly.txt; }
+logs3()  { less ${LOG_DIR}Batch_Hourly.txt; }
 logfolder()   { cd ${LOG_DIR}; }
 logsarchive() { ${LOG_DIR}archive_here.sh; }
 screensoff()  { DISPLAY=:0 xrandr --output DisplayPort-0 --off --output DisplayPort-1 --off; }

@@ -5,6 +5,8 @@ LOG_DIR="/media/fatwoman/fatboy/logs/"
 BASE_DIR="/media/fatwoman/15GB/"
 WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 
+@reboot /usr/local/bin/noip2
+
 # Wrapper check - Log wrapper execution
 * * * * * /bin/bash -c 'source '$WRAPPER' >> '$LOG_DIR'0_wrapper_echo.log' 2>&1
 
@@ -13,17 +15,17 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 0 5 * * *   /bin/bash -c 'source '$WRAPPER' && crontab -l' > $BASE_DIR'crontab_backup.txt' 2>&1
 
 # Hourly activities
-10 * * * *   /bin/bash -c 'source '$WRAPPER' && runBatchHourly' 
+#10 * * * *   /bin/bash -c 'source '$WRAPPER' && runBatchHourly' 
 
 # business day data scrape
-30 23 * * 1-5 /bin/bash -c 'source '$WRAPPER' && runBatchBusinessDays'
 
 # Daily activities
 0 5 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDaily'
 15 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning1' 
 43 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning2' 
 58 20 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEvening' 
-58 23 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEOD' >> $LOG_DIR'Batch_EOD.log' 2>&1
+25 23 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEOD' >> $LOG_DIR'Batch_EOD.log' 2>&1
+50 23 * * 1-5 /bin/bash -c 'source '$WRAPPER' && runBatchBusinessDays'
 
 # >> $LOG_DIR'Batch_Hourly.log' 2>&1
 # >> $LOG_DIR'Batch_Morning.log' 2>&1
