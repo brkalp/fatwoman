@@ -145,7 +145,7 @@ surfer_dir_override     = {
     'vol_plot_TSLA' : f"file://%s" %get_vol_plot_dir('SPY'),
     'vol_plot_NVDA' : f"file://%s" %get_vol_plot_dir('AAPL'),
     'vol_plot_AAPL' : f"file://%s" %get_vol_plot_dir('NVDA'),
-    } # this is the override dictinory for saved files to be visualized in the surfer
+    } # this is the override dictionary for saved files to be visualized in the surfer
 
 # Model
 ModelDownload_Output_Folder = os.path.join(fatwoman_data_path, 'Scripts_Model') # quite useless
@@ -156,3 +156,5 @@ def data_get(TICKER = 'VIX'): # TICKER = 'VIX'
     df = pd.read_csv(YahooDownload_Output_File).set_index('Date')[[TICKER]]
     df = df.loc[df.first_valid_index():]
     return df
+
+avanza_data_path    = os.path.join(fatwoman_data_path, 'Scripts_Avanza_Data')
