@@ -157,6 +157,10 @@ class AvanzaDataScraping:
                 date_price_texts = date_price_instrument_element.text.split(
                     "\n")  # Get text from webElement and split from new lines
 
+                if old == date_price_texts:
+                    continue
+                old = date_price_texts
+
                 date_price_texts = date_price_texts[:3]  # Getting rid of the fourth column
                 date_price_texts.append(str(scrape_year))  # Adds the data's year
                 date_price_texts.append(
