@@ -21,7 +21,9 @@ DISPLAY=:0 xrandr --output DisplayPort-1 --brightness 1
 }
 logs()        { less ${LOG_DIR}Total.txt; }
 logs2()  { less ${LOG_DIR}Batch_Hourly.txt; }
-logs3()  { less ${LOG_DIR}Batch_Hourly.txt; }
+logs3()  { less ${LOG_DIR}AvanzaScraper.txt; }
+logs4()  { less ${LOG_DIR}BinanceDownload_output.log; }
+
 logfolder()   { cd ${LOG_DIR}; }
 logsarchive() { ${LOG_DIR}archive_here.sh; }
 screensoff()  { DISPLAY=:0 xrandr --output DisplayPort-0 --off --output DisplayPort-1 --off; }
@@ -33,6 +35,7 @@ surferkill() {
 surfer()             { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py > /dev/null 2>&1 & }
 surferprint()        { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py; }
 surferbbg()          { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py --bbg; }
+runAvanzaScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_Avanza_Scrape/avanzaDataScraping.py;}
 runCVIXScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/VIX_Central_Scrape.py;}
 runCBOEScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/CBOE_Scrape.py;}
 runCBOEPlotter()     { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/CBOE_VIX_Plotter.py;}

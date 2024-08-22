@@ -28,7 +28,8 @@ if 'fatwoman_base_path' not in locals(): print('Data paths not defined for this 
 fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
 
 # Avanza Scrape
-avanza_data_path    = os.path.join(fatwoman_data_path, 'Scripts_Avanza_Data')
+avanza_data_path    = os.path.join(fatwoman_data_path, 'Scripts_Avanza_Scrape')
+avanza_config_file  = os.path.join(fatwoman_base_path, 'Scripts_Avanza_Scrape', 'website_list.csv')
 
 # Portfolio
 portfolio_folder = os.path.join(fatwoman_data_path, 'Scripts_Portfolio')
@@ -119,10 +120,12 @@ binance_Orderbook_loc_prefix = os.path.join(binance_Orderbook_Output_Folder, 'bi
 default_log_file_path = os.path.join(fatwoman_log_path, "Total.txt")
 Binance_save_log_path = os.path.join(fatwoman_log_path, "BinanceDownload_output.txt")
 Hourly_log_path       = os.path.join(fatwoman_log_path, "Batch_Hourly.txt")
+Avanza_log_path       = os.path.join(fatwoman_log_path, "Avanza_Scraper.txt")
 logging_override = {
     'binance_orderbook_save' : Binance_save_log_path,
     # 'CBOE_Scrape'            : Hourly_log_path,
     'VIX_Central_Scrape'     : Hourly_log_path,
+    'avanzaDataScraping'     : Avanza_log_path,
     }
 logging_import_ignore = [ # ignore the setup log if this is the importer
     'binance_orderbook_save'
@@ -160,5 +163,3 @@ def data_get(TICKER = 'VIX'): # TICKER = 'VIX'
     df = pd.read_csv(YahooDownload_Output_File).set_index('Date')[[TICKER]]
     df = df.loc[df.first_valid_index():]
     return df
-
-avanza_data_path    = os.path.join(fatwoman_data_path, 'Scripts_Avanza_Data')
