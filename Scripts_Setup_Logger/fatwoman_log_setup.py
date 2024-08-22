@@ -3,9 +3,7 @@ import os
 import datetime
 import sys
 import socket
-# from fatwoman_dir_setup import default_log_file_path, logging_override
-from Scripts_Setup_Dirs.fatwoman_dir_setup import default_log_file_path, logging_override
-
+from fatwoman_dir_setup import default_log_file_path, logging_override
 
 # Determine the log directory based on the hostname
 # log_dir = '\\\\192.168.0.28\\fatwoman\\15GB\\logs\\' if socket.gethostname() == 'ripintheblue' else '/media/fatwoman/15GB/logs/'
