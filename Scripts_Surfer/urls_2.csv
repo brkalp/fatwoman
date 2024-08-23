@@ -2,6 +2,7 @@ Title,Waittime,ScrollAmount,INCLUDE_THIS_TOGGLE,URL
 Bloomberg,200,0,TRUE,https://www.bloomberg.com/europe
 Daily_Plot_CBOE,100,0,TRUE,Not used
 Daily_Plot_yahoo,600,0,TRUE,Not used
+Daily_Plot_YC_hist,200,0,TRUE,Not used
 Daily_Plot_YC,200,0,TRUE,Not used
 Vixcentral,200,0,TRUE,http://vixcentral.com/
 TradingView,200,0,TRUE,https://www.tradingview.com/heatmap/stock/?color=change&dataset=SPX500&group=sector&size=market_cap_basic
@@ -16,12 +17,12 @@ vol_plot_TLT,60,0,TRUE,Not used
 vol_plot_TSLA,60,0,TRUE,Not used
 vol_plot_NVDA,60,0,TRUE,Not used
 vol_plot_AAPL,60,0,TRUE,Not used
-roaringKitty,30,0,TRUE,https://www.reddit.com/user/DeepFuckingValue/
+roaringKitty,30,0,FALSE,https://www.reddit.com/user/DeepFuckingValue/
 optioncharts,60,0,TRUE,https://optioncharts.io/options/SPY/chain/chart/volatility-skew
 vix_trading_view,200,0,TRUE,https://www.tradingview.com/symbols/CBOE-VIX/
 bitcoin,200,0,TRUE,https://www.google.com/search?q=bitcoin&oq=bitcoin&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIGCAQQRRhBMgYIBRBFGEEyBggGEEUYQTIGCAcQRRg9qAIAsAIA&sourceid=chrome&ie=UTF-8
 yfinance,200,0,TRUE,https://finance.yahoo.com/
-news,200,0,TRUE,https://www.google.com/search?q=news&sxsrf=AB5stBgI4ibl83TQjwLMKmbkrJngMjEXew%3A1690236072034&source=hp&ei=p_S-ZL3ZO8TKwPAPzI2D0A8&iflsig=AD69kcEAAAAAZL8CuAB3wtZ7N0TSUVtjqm1aOmKj36Ar&ved=0ahUKEwj9yKCFrKiAAxVEJRAIHczGAPoQ4dUDCAk&uact=5&oq=news&gs_lp=Egdnd3Mtd2l6IgRuZXdzMgUQABiABDILEC4YgAQYxwEY0QMyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgsQLhiABBjHARjRAzIFEAAYgAQyBRAAGIAEMgUQLhiABEilCFCmBVi1B3ABeACQAQCYAUCgAewBqgEBNLgBA8gBAPgBAagCAcICBhCzARiFBMICCxAuGMcBGNEDGIAE&sclient=gws-wiz
+news,200,0,FALSE,https://www.google.com/search?q=news&sxsrf=AB5stBgI4ibl83TQjwLMKmbkrJngMjEXew%3A1690236072034&source=hp&ei=p_S-ZL3ZO8TKwPAPzI2D0A8&iflsig=AD69kcEAAAAAZL8CuAB3wtZ7N0TSUVtjqm1aOmKj36Ar&ved=0ahUKEwj9yKCFrKiAAxVEJRAIHczGAPoQ4dUDCAk&uact=5&oq=news&gs_lp=Egdnd3Mtd2l6IgRuZXdzMgUQABiABDILEC4YgAQYxwEY0QMyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgsQLhiABBjHARjRAzIFEAAYgAQyBRAAGIAEMgUQLhiABEilCFCmBVi1B3ABeACQAQCYAUCgAewBqgEBNLgBA8gBAPgBAagCAcICBhCzARiFBMICCxAuGMcBGNEDGIAE&sclient=gws-wiz
 SP,200,0,TRUE,https://www.google.com/finance/quote/.INX:INDEXSP?sa=X&sqi=2&ved=2ahUKEwjP6_7I6aSAAxW6EBAIHS7sB-QQ3ecFegQIJhAf&window=5D
 DJIA,200,0,TRUE,https://www.google.com/finance/quote/.DJI:INDEXDJX?sa=X&ved=2ahUKEwiu5-ylq6iAAxUPLRAIHVfQBvkQ3ecFegQIaxAf&window=5D
 NQ,200,0,TRUE,https://www.google.com/search?q=nasdaq+composite&rlz=1C1GCEA_enSE902SE902&oq=nasdaq+comp&aqs=chrome.0.69i59j0j69i57j0l5.4014j1j7&sourceid=chrome&ie=UTF-8
@@ -40,7 +41,7 @@ BloombergHT,200,0,TRUE,https://www.bloomberght.com/
 FT,200,0,TRUE,https://www.ft.com/
 WSJ,200,0,TRUE,https://www.wsj.com/
 Wilmott,200,0,TRUE,https://wilmott.com/
-Quantdate,200,0,TRUE,https://quantdare.com/?fbclid=IwAR0bP5hkAstgHguwLw2cD7xhnxqxZY5v7J1tKLaKlHdcHRjknWUFtmJRMbc
+Quantdate,200,0,FALSE,https://quantdare.com/?fbclid=IwAR0bP5hkAstgHguwLw2cD7xhnxqxZY5v7J1tKLaKlHdcHRjknWUFtmJRMbc
 MarketSentiment,200,0,TRUE,https://marketsentiment.live/app/browser/
 wallstreetbets,200,0,TRUE,https://www.reddit.com/r/wallstreetbets/top/
 calendar1,60,0,FALSE,https://www.etoro.com/investing/earnings-reports/?gad_source=1&utm_medium=SEM&utm_source=111890&utm_content=0&utm_serial=CAMP_19624382763%7CAG_146431743355%7CKW_%7CMT_%7CTarget_%7CTargetid_dsa-1930718144548%7CCreative_646530754078&utm_campaign=CAMP_19624382763%7CAG_146431743355%7CKW_%7CMT_%7CTarget_%7CTargetid_dsa-1930718144548%7CCreative_646530754078&utm_term=https%3A%2F%2Fwww.google.com%2F&cq_src=google_ads&cq_cmp=19624382763&cq_term=&cq_plac=&cq_net=g&cq_plt=gp&gclid=CjwKCAiAi6uvBhADEiwAWiyRdprXSivutCcQmuWPGtK8GVR6sdf_kFwu4cifpEwNLo8vw341piE3qhoC7pkQAvD_BwE

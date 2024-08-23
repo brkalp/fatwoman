@@ -49,6 +49,7 @@ runYCFREDDownload()  { /usr/bin/python3 ${BASE_DIR}Scripts_Yield_Curve/YC_FRED_D
 runYCQuantlibPlot()  { /usr/bin/python3 ${BASE_DIR}Scripts_Yield_Curve/YC_Quantlib_int.py; }
 runYCScipyPlot()     { /usr/bin/python3 ${BASE_DIR}Scripts_Yield_Curve/YC_scipy_int.py; }
 runYCAppend()        { /usr/bin/python3 ${BASE_DIR}Scripts_Yield_Curve/YC_Append.py; }
+runYCHistPlot()      { /usr/bin/python3 ${BASE_DIR}Scripts_Yield_Curve/YC_Plotter_Historical.py; }
 runVolDownload()     { /usr/bin/python3 ${BASE_DIR}Scripts_Vol_Surface/get_vol_chains.py; }
 runVolPlot()         { /usr/bin/python3 ${BASE_DIR}Scripts_Vol_Surface/plot_vol_chains.py; }
 runSODpy()           { /usr/bin/python3 ${BASE_DIR}Utility/SOD_print.py;}
@@ -105,6 +106,7 @@ runBatchDaily()  {
     runYCQuantlibPlot
     runYCScipyPlot
     runYCAppend
+    runYCHistPlot
     # Volas
     runVolDownload
     runVolPlot

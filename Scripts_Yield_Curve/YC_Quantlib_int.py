@@ -25,6 +25,7 @@ compounding_frequency = ql.Annual
 
 print('Reading data from %s' % YC_FRED_Data)
 rates_pd = pd.read_csv(YC_FRED_Data)
+rates_pd = rates_pd.drop_duplicates(subset=['Maturity', 'Maturity_Months'], keep='last')
 rates = rates_pd[['Maturity_Years', 'Rate']].values.tolist()
 
 # Turn the rates into a QuantLib format

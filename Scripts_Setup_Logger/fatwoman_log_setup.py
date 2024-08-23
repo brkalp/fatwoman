@@ -13,7 +13,7 @@ class ContextFilter(logging.Filter):
         # if importer att exists, use it, else use script name
         record.importer = os.path.basename(sys.argv[0])[:-3] if not hasattr(record, 'importer') else record.importer
         # Do not log if log message is about overwriting a file
-        if "Session output file '/media/fatwoman/fatboy/Scripts_Generate_Daily_Plots/Daily_yahoo_plot.html' already exists, will be overwritten." in record.getMessage():
+        if "already exists, will be overwritten." in record.getMessage():
             return False  # Do not log
         return True
 

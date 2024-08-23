@@ -16,6 +16,8 @@ sns.set()
 
 print('Reading data from %s' % YC_FRED_Data)
 rates_pd = pd.read_csv(YC_FRED_Data)
+# rates_pd = rates_pd[rates_pd['Timestamp'] == rates_pd['Timestamp'].max()]
+rates_pd = rates_pd.drop_duplicates(subset=['Maturity', 'Maturity_Months'], keep='last')
 maturities_months = list(rates_pd['Maturity_Months'].values)
 rates = list(rates_pd['Rate'].values)
 

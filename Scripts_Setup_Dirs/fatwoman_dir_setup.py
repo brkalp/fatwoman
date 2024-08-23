@@ -50,6 +50,7 @@ CBOE_Scrape_Data_File   = os.path.join(VIX_Scrape_folder, 'CBOE_VIX.csv')
 VIX_C_Scrape_Data_File  = os.path.join(VIX_Scrape_folder, 'Central_VIX.csv')
 CBOE_Plotter_Output_File   = os.path.join(VIX_Scrape_folder, 'CBOE_Plotter_Output_File.html')
 CBOE_Scrape_timestamp_format = '%d/%m/%Y'
+YCFRED_Scrape_timestamp_format = '%d/%m/%Y'
 
 # Yield Curve
 YC_Scripts_Folder   = os.path.join(fatwoman_base_path, 'Scripts_Yield_Curve')
@@ -58,6 +59,7 @@ YC_FRED_Data        = os.path.join(YC_Output_Folder, 'YC_FRED.csv')
 YC_Scipy_Plot       = os.path.join(YC_Output_Folder, 'YC_Scipy_Plot.png')
 YC_Quantlib_Plot    = os.path.join(YC_Output_Folder, 'YC_Quantlib_Plot.png')
 YC_Appended_Plot    = os.path.join(YC_Output_Folder, 'YC_Appended_Plot.png')
+YC_Fred_Hist_Plot   = os.path.join(YC_Output_Folder, 'YC_Fred_Hist_Plot.html')
 
 # Volatility Surface
 Vol_Scripts_Folder = os.path.join(fatwoman_base_path, 'Scripts_Vol_Surface')
@@ -146,6 +148,7 @@ surfer_dir_override     = {
     'Daily_Plot_yahoo'   : f"file://%s" %YahooPlotter_Output_File,
     'Daily_Plot_CBOE'   : f"file://%s" %CBOE_Plotter_Output_File,
     'Daily_Plot_YC' : f"file://%s" %YC_Appended_Plot,
+    'Daily_Plot_YC_hist' : f"file://%s" %YC_Fred_Hist_Plot,
     'vol_plot_VIX' : f"file://%s" %get_vol_plot_dir('^VIX'),
     'vol_plot_SPY' : f"file://%s" %get_vol_plot_dir('TLT'),
     'vol_plot_TLT' : f"file://%s" %get_vol_plot_dir('TSLA'),

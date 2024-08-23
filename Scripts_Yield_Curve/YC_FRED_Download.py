@@ -3,8 +3,9 @@
 import logging
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
-from fatwoman_dir_setup import YC_FRED_Data
+from fatwoman_dir_setup import YC_FRED_Data, YCFRED_Scrape_timestamp_format
 from fredapi import Fred
+from datetime import datetime as dt
 import socket
 import matplotlib
 if socket.gethostname() != 'ripintheblue': matplotlib.use('Agg')
@@ -46,7 +47,10 @@ df_yields['Maturity_Years'] = df_yields['Maturity_Months'] / 12
 # Save to CSV
 logging.info('Saving to %s' % YC_FRED_Data)
 print('Saving to %s' % YC_FRED_Data)
-df_yields.to_csv(YC_FRED_Data, index=False)
+df_yields['Timestamp'] = dt.now().strftime(YCFRED_Scrape_timestamp_format)
+# df_yields.to_csv(YC_FRED_Data, index=False)
+df_yields.to_csv(YC_FRED_Data, mode='a', sep=',', header=not os.path.exists(YC_FRED_Data), index=False)
+
 script_end_log()
 
 
