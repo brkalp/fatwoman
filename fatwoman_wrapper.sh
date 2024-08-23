@@ -21,7 +21,7 @@ DISPLAY=:0 xrandr --output DisplayPort-1 --brightness 1
 }
 logs()        { less ${LOG_DIR}Total.txt; }
 logs2()  { less ${LOG_DIR}Batch_Hourly.txt; }
-logs3()  { less ${LOG_DIR}AvanzaScraper.txt; }
+logs3()  { less ${LOG_DIR}Avanza_Scraper.txt; }
 logs4()  { less ${LOG_DIR}BinanceDownload_output.log; }
 
 logfolder()   { cd ${LOG_DIR}; }
@@ -98,7 +98,7 @@ runBatchDaily()  {
     runChromeRemoteDesktop
     # Base Daily plots
     runYahooDownload
-    runYahooFXConvert
+    # runYahooFXConvert
     runYahooPlotter
     # Yield Curve
     runYCFREDDownload
