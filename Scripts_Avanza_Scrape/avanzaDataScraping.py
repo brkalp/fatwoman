@@ -12,6 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 import os
 from fatwoman_dir_setup import avanza_data_path, avanza_config_file
+file_date_format = r"%d/%m/%Y"
 
 class AvanzaDataScraping:
     def __init__(self, link=None):
@@ -105,7 +106,8 @@ class AvanzaDataScraping:
                     f.flush()
 
                 df_raw = pd.DataFrame([date_price_texts],
-                                      columns=['day', 'quote_type', 'instrument_name_and_price', 'year', 'time_stamp'])
+                                    #   columns=['day', 'quote_type', 'instrument_name_and_price', 'year', 'time_stamp']
+                                      )
                 df_row = self.reformat_row(df_raw)
                 filename = f'{avanza_instance.instrument_name}.csv'
                 print(';'.join(df_row.iloc[0].astype(str)))
@@ -157,7 +159,7 @@ class AvanzaDataScraping:
 
 def gen_date_pairs(start_date):
     # Convert start date string to a datetime object
-    start = datetime.strptime(start_date, "%Y-%m-%d")
+    start = datetime.strptime(start_date, file_date_format) #"%Y-%m-%d")
     current_date = datetime.now()
     pairs = []
     current_year = start.year
@@ -166,7 +168,7 @@ def gen_date_pairs(start_date):
         end_of_year = datetime(current_year, 12, 31)
         if end_of_year > current_date:
             end_of_year = current_date  # Adjust if the end of year is beyond the current date
-        pairs.append((start.strftime("%Y-%m-%d"), end_of_year.strftime("%Y-%m-%d")))
+        pairs.append((start.strftime(file_date_format), end_of_year.strftime(file_date_format)))
         if end_of_year == current_date:
             break  # Exit the loop if we reach the current date
         # Update start date to the beginning of the next year
@@ -179,7 +181,8 @@ if __name__ == "__main__":
     instrument_name = ""
     
     # Read link csv
-    df_link_date = pd.read_csv(avanza_config_file, encoding='ISO-8859-1', delimiter=';')
+    df_link_date = pd.read_csv(avanza_config_file, encoding='ISO-8859-1', delimiter=',')
+    df_link_date = df_link_date[df_link_date['Include']]
     # df_link_date['Start date'] = pd.to_datetime(df_link_date['Start date'], format='%d/%m/%Y')
     os.chdir(avanza_data_path)
 
@@ -193,12 +196,12 @@ if __name__ == "__main__":
         for start_date, end_date in date_pairs:
             avanza_instance.set_calendar(start_date, end_date)
             try:
-                avanza_instance.select_daily_data()  # work only if not fund
+                avanza_instance.select_daily_data()  # works only if not fund
             except Exception as e:
                 print(e)
 
             try:
-                date_year = datetime.strptime(start_date, "%Y-%m-%d").year
+                date_year = datetime.strptime(start_date, file_date_format).year # 15/02/2021
                 avanza_instance.scrape_graph(date_year)
             except Exception as e:
                 print(e)
