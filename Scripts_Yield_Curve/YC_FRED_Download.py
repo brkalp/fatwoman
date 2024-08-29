@@ -6,6 +6,7 @@ from fatwoman_log_setup import script_end_log
 from fatwoman_dir_setup import YC_FRED_Data, YCFRED_Scrape_timestamp_format
 from fredapi import Fred
 from datetime import datetime as dt
+import os
 import socket
 import matplotlib
 if socket.gethostname() != 'ripintheblue': matplotlib.use('Agg')

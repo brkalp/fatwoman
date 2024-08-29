@@ -160,6 +160,7 @@ if __name__ == "__main__":
             i += 1
         except Exception as e:
             print('Error in loop:')
+            logging.error(e)
             for manager in managers:
                 print('Screen %s is on %s' %(manager.screennumber,manager.URL))
                 # logging.info('Screen %s is on %s' %(manager.screennumber,manager.URL))
