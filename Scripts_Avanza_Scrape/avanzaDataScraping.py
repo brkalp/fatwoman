@@ -1,3 +1,5 @@
+import sys
+import signal
 import logging
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
@@ -18,7 +20,7 @@ class AvanzaDataScraping:
     def __init__(self, link=None):
         # Set up the driver
         options = webdriver.FirefoxOptions()
-        options.add_argument("--headless")
+        # options.add_argument("--headless")
         self.driver = webdriver.Firefox(options=options)
         # options = Options()
         # options.add_argument("--headless")
@@ -64,11 +66,12 @@ class AvanzaDataScraping:
     # Set the graph frequency to daily
     def select_daily_data(self):
         logging.info('select_daily_data')
+        print('select_daily_data')
         self.driver.execute_script("window.scrollTo(0, 0);")
         dropdown = self.driver.find_element(By.XPATH, '//button[@data-e2e="tbs-resolution-picker-button"]')
         dropdown.click()
         time.sleep(1)
-        day_option_locator = (By.XPATH, "//*[@data-e2e='tbs-chart-resolution-picker']//aza-list-option-text")
+        day_option_locator = (By.XPATH, "//*[@data-e2e='tbs-chart-resolution-picker']//aza-list-option-text") # not found
         day_option = self.driver.find_element(*day_option_locator)
         day_option.click()
         time.sleep(2)
@@ -81,9 +84,7 @@ class AvanzaDataScraping:
         graph_width = graph.size['width']
         x_pos = -graph.size['width'] / 2
         action = ActionChains(self.driver)
-
         old = []
-
         while x_pos <= graph_width / 2:
             action.move_to_element_with_offset(graph, x_pos, 0).perform()
             x_pos = x_pos + 1
@@ -92,32 +93,25 @@ class AvanzaDataScraping:
                                                                          "//div[@class='highcharts-label highcharts-tooltip highcharts-color-undefined']")
                 date_price_texts = date_price_instrument_element.text.split(
                     "\n")  # Get text from webElement and split from new lines
-
                 if old == date_price_texts:
                     continue
                 old = date_price_texts
-
-
                 date_price_texts = date_price_texts[:3]  # Getting rid of the fourth column
                 date_price_texts.append(str(scrape_year))  # Adds the data's year
                 date_price_texts.append(
                     datetime.now().strftime('%Y-%m-%d %H:%M'))  # Adds the time of scrape as a column
-                
                 # write raw data
                 print(";".join(date_price_texts))
                 with open(f'{avanza_instance.instrument_name}-raw.csv', 'a') as f:
                     f.write(";".join(date_price_texts))
                     f.write("\n")
                     f.flush()
-
-                df_raw = pd.DataFrame([date_price_texts],
-                                    #   columns=['day', 'quote_type', 'instrument_name_and_price', 'year', 'time_stamp']
-                                      )
-                df_row = self.reformat_row(df_raw)
+                default_columns = ['day', 'quote_type', 'instrument_name_and_price', 'year', 'time_stamp', 'dummy1', 'dummy2']
+                df_raw = pd.DataFrame([date_price_texts], columns=default_columns[:len(date_price_texts)])
+                df_row = self.reformat_row(df_raw, scrape_year)
                 filename = f'{avanza_instance.instrument_name}.csv'
                 print(';'.join(df_row.iloc[0].astype(str)))
                 df_row.to_csv(filename, mode='a', header=not os.path.exists(filename), sep=';', index=False)
-
                 # # write clean data
                 # with open(f'{avanza_instance.insturment_name}.csv', 'a') as file:
                 #     row = ';'.join(df_row.iloc[0].astype(str))
@@ -133,8 +127,9 @@ class AvanzaDataScraping:
 
         print("scrape is done")
 
-    def reformat_row(self, input_row):
-        logging.info('reformat_row')
+    def reformat_row(self, input_row, scrape_year):
+        # logging.info('reformat_row')
+        # print('reformat_row')
         month_translation = {
             'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04', 'maj': '05', 'jun': '06',
             'jul': '07', 'aug': '08', 'sep': '09', 'okt': '10', 'nov': '11', 'dec': '12'
@@ -149,9 +144,7 @@ class AvanzaDataScraping:
                 return formatted_date
             except Exception as e:
                 print(e)
-
-        input_row['Date'] = input_row.apply(lambda row: convert_date(row['day'], row['year']), axis=1)
-
+        input_row['Date'] = input_row.apply(lambda row: convert_date(row['day'], scrape_year), axis=1)
         input_row = input_row.drop_duplicates()  # Getting rid of duplicates
         input_row = input_row.drop(columns=['day', 'year'])  # Drops unnecessary columns
 
@@ -159,7 +152,6 @@ class AvanzaDataScraping:
         cols = input_row.columns.tolist()  # Get a list of all column names
         cols = [cols[-1]] + cols[:-1]  # Rearrange the columns
         input_row = input_row[cols]  # Reassign reordered columns to the DataFrame
-
         return input_row
 
 
@@ -186,39 +178,43 @@ def gen_date_pairs(start_date):
 
 if __name__ == "__main__":
     instrument_name = ""
-    
+
     # Read link csv
     df_link_date = pd.read_csv(avanza_config_file, encoding='ISO-8859-1', delimiter=',')
-    df_link_date = df_link_date[df_link_date['Include']]
-    # df_link_date['Start date'] = pd.to_datetime(df_link_date['Start date'], format='%d/%m/%Y')
+    df_link_date = df_link_date[df_link_date['Include']] # df_link_date['Start date'] = pd.to_datetime(df_link_date['Start date'], format='%d/%m/%Y')
     os.chdir(avanza_data_path)
 
-    # for link, date in link_date_dict.items():
     for index, [link, date] in df_link_date[['Link','Start date']].iterrows():
         print(f"Scraping {link} from {date}")
         logging.info(f"Scraping {link} from {date}")
         try:
+            time.sleep(1)
             date_pairs = gen_date_pairs(date)
             avanza_instance = AvanzaDataScraping(link)
             instrument_name = avanza_instance.get_instrument_name()
+            for start_date, end_date in date_pairs:
+                start_date = datetime.strptime(start_date, "%d/%m/%Y").strftime("%Y-%m-%d")
+                end_date = datetime.strptime(end_date, "%d/%m/%Y").strftime("%Y-%m-%d")
+                avanza_instance.set_calendar(start_date, end_date)
+                try :
+                    avanza_instance.select_daily_data()
+                except Exception as e:
+                    print('select daily data failed')
+                try:
+                    time.sleep(1)
+                    date_year = datetime.strptime(start_date, "%Y-%m-%d").year # 15/02/2021
+                    avanza_instance.scrape_graph(date_year)
+                except Exception as e:
+                    avanza_instance.driver.quit()
+                    logging.error(e)
+                    print(e)
+        
         except Exception as e:
+            avanza_instance.driver.quit()
             logging.error(e)
             print(e)
 
-        for start_date, end_date in date_pairs:
-            avanza_instance.set_calendar(start_date, end_date)
-            try:
-                avanza_instance.select_daily_data()  # works only if not fund
-            except Exception as e:
-                logging.error(e)
-                print(e)
-
-            try:
-                date_year = datetime.strptime(start_date, file_date_format).year # 15/02/2021
-                avanza_instance.scrape_graph(date_year)
-            except Exception as e:
-                logging.error(e)
-                print(e)
+    avanza_instance.driver.quit()
     script_end_log()
 
 
