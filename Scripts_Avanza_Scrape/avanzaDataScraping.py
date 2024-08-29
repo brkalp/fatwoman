@@ -33,13 +33,16 @@ class AvanzaDataScraping:
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "highcharts-root")))
         self.instrument_name = self.driver.find_element(By.XPATH, "//h1").text
         self.data = []
+        logging.info('__init__ finish')
 
     def get_instrument_name(self):
+        logging.info('get_instrument_name')
         heading_1 = self.driver.find_element(By.XPATH, "//h1")
         print(heading_1.text)
         return heading_1.text
 
     def set_calendar(self, start_date, end_date):
+        logging.info('set_calendar')
         cookies_bar = self.driver.find_element(By.XPATH, "/html/body/aza-app/aza-shell/div/aza-cookie-message/div/div")
         cookies_bar_height = cookies_bar.size['height']
 
@@ -60,6 +63,7 @@ class AvanzaDataScraping:
 
     # Set the graph frequency to daily
     def select_daily_data(self):
+        logging.info('select_daily_data')
         self.driver.execute_script("window.scrollTo(0, 0);")
         dropdown = self.driver.find_element(By.XPATH, '//button[@data-e2e="tbs-resolution-picker-button"]')
         dropdown.click()
@@ -71,6 +75,7 @@ class AvanzaDataScraping:
 
     # reads graph
     def scrape_graph(self, scrape_year=None):
+        logging.info('scrape_graph')
         time.sleep(2)
         graph = self.driver.find_element(By.CLASS_NAME, "highcharts-root")
         graph_width = graph.size['width']
@@ -129,6 +134,7 @@ class AvanzaDataScraping:
         print("scrape is done")
 
     def reformat_row(self, input_row):
+        logging.info('reformat_row')
         month_translation = {
             'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04', 'maj': '05', 'jun': '06',
             'jul': '07', 'aug': '08', 'sep': '09', 'okt': '10', 'nov': '11', 'dec': '12'
@@ -158,6 +164,7 @@ class AvanzaDataScraping:
 
 
 def gen_date_pairs(start_date):
+    logging.info('gen_date_pairs')
     # Convert start date string to a datetime object
     start = datetime.strptime(start_date, file_date_format) #"%Y-%m-%d")
     current_date = datetime.now()
@@ -188,22 +195,29 @@ if __name__ == "__main__":
 
     # for link, date in link_date_dict.items():
     for index, [link, date] in df_link_date[['Link','Start date']].iterrows():
-        print(link,date)
-        date_pairs = gen_date_pairs(date)
-        avanza_instance = AvanzaDataScraping(link)
-        instrument_name = avanza_instance.get_instrument_name()
+        print(f"Scraping {link} from {date}")
+        logging.info(f"Scraping {link} from {date}")
+        try:
+            date_pairs = gen_date_pairs(date)
+            avanza_instance = AvanzaDataScraping(link)
+            instrument_name = avanza_instance.get_instrument_name()
+        except Exception as e:
+            logging.error(e)
+            print(e)
 
         for start_date, end_date in date_pairs:
             avanza_instance.set_calendar(start_date, end_date)
             try:
                 avanza_instance.select_daily_data()  # works only if not fund
             except Exception as e:
+                logging.error(e)
                 print(e)
 
             try:
                 date_year = datetime.strptime(start_date, file_date_format).year # 15/02/2021
                 avanza_instance.scrape_graph(date_year)
             except Exception as e:
+                logging.error(e)
                 print(e)
     script_end_log()
 
