@@ -122,12 +122,12 @@ binance_Orderbook_loc_prefix = os.path.join(binance_Orderbook_Output_Folder, 'bi
 default_log_file_path = os.path.join(fatwoman_log_path, "Total.txt")
 Binance_save_log_path = os.path.join(fatwoman_log_path, "BinanceDownload_output.txt")
 Hourly_log_path       = os.path.join(fatwoman_log_path, "Batch_Hourly.txt")
-Avanza_log_path       = os.path.join(fatwoman_log_path, "Avanza_Scraper.txt")
+Avanza_log_path       = os.path.join(avanza_data_path, "Avanza_Scraper.txt")
 logging_override = {
     'binance_orderbook_save' : Binance_save_log_path,
     # 'CBOE_Scrape'            : Hourly_log_path,
     'VIX_Central_Scrape'     : Hourly_log_path,
-    'avanzaDataScraping'     : Avanza_log_path,
+    'avanzaDataScraping'     : Avanza_log_path, # avanza in different folder
     }
 logging_import_ignore = [ # ignore the setup log if this is the importer
     'binance_orderbook_save'
