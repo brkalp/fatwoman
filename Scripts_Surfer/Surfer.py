@@ -111,8 +111,10 @@ def parse_arguments():
 def bbg_starter():
     time.sleep(30)
     print("Moving Cursor to BBG TV and clicking...")
+    current_position = pyautogui.position()
+    print(f"Current mouse position: {current_position}")
     logging.info("Moving Cursor to BBG TV and clicking...")
-    pyautogui.moveTo(642, 628, duration=1) # pyautogui.moveTo(1781, 523, duration=1)
+    pyautogui.moveTo(286, 232, duration=1) # pyautogui.moveTo(642, 628, duration=1) # pyautogui.moveTo(1781, 523, duration=1)x=, y=)
     pyautogui.click()
 
 if __name__ == "__main__":

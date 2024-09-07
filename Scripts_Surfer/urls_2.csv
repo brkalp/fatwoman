@@ -9,8 +9,11 @@ TradingView,200,0,TRUE,https://www.tradingview.com/heatmap/stock/?color=change&d
 Calendar,200,0,TRUE,https://www.fxstreet.com/economic-calendar
 Mahfi,200,0,TRUE,https://www.mahfiegilmez.com/
 YieldCurve,200,0,TRUE,https://www.ustreasuryyieldcurve.com/
+Swe_Interest_rate,200,0,TRUE,https://tradingeconomics.com/sweden/interest-rate
+Eur_Interest_rate,200,0,TRUE,https://tradingeconomics.com/euro-area/interest-rate
 logs,60,0,TRUE,Not used
 riskbanknews,200,0,TRUE,https://www.riksbank.se/en-gb/press-and-published/
+riskbanknews2,60,0,TRUE,https://www.riksbank.se/en-gb
 vol_plot_VIX,60,0,TRUE,Not used
 vol_plot_SPY,60,0,TRUE,Not used
 vol_plot_TLT,60,0,TRUE,Not used
