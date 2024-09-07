@@ -22,9 +22,6 @@ class AvanzaDataScraping:
         options = webdriver.FirefoxOptions()
         # options.add_argument("--headless")
         self.driver = webdriver.Firefox(options=options)
-        # options = Options()
-        # options.add_argument("--headless")
-        # self.driver = webdriver.Chrome(options=options)
         self.driver.set_window_size(1920, 1080)
         # self.link = "https://www.avanza.se/fonder/om-fonden.html/177748/amundi-fds-volatil-wld-a-usd-c"
         if link:
@@ -121,8 +118,9 @@ class AvanzaDataScraping:
                 #     print(row)
 
             except Exception as e:
-                logging.info(e)
-                print(e)
+                if x_pos > 50:
+                    logging.info(e)
+                    print(e)
                 pass
 
         print("scrape is done")
@@ -214,7 +212,7 @@ if __name__ == "__main__":
             logging.error(e)
             print(e)
 
-    avanza_instance.driver.quit()
+        avanza_instance.driver.quit()
     script_end_log()
 
 
