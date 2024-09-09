@@ -20,7 +20,7 @@ class AvanzaDataScraping:
     def __init__(self, link=None):
         # Set up the driver
         options = webdriver.FirefoxOptions()
-        # options.add_argument("--headless")
+        options.add_argument("--headless")
         self.driver = webdriver.Firefox(options=options)
         self.driver.set_window_size(1920, 1080)
         # self.link = "https://www.avanza.se/fonder/om-fonden.html/177748/amundi-fds-volatil-wld-a-usd-c"
