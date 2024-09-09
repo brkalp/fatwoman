@@ -1,6 +1,7 @@
 import sys
 import signal
 import logging
+import socket
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
 from datetime import datetime, timedelta
@@ -20,7 +21,10 @@ class AvanzaDataScraping:
     def __init__(self, link=None):
         # Set up the driver
         options = webdriver.FirefoxOptions()
-        options.add_argument("--headless")
+
+        if socket.gethostname() == 'fatwoman':
+            options.add_argument("--headless")
+
         self.driver = webdriver.Firefox(options=options)
         self.driver.set_window_size(1920, 1080)
         # self.link = "https://www.avanza.se/fonder/om-fonden.html/177748/amundi-fds-volatil-wld-a-usd-c"
