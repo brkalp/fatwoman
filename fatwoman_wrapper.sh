@@ -84,6 +84,7 @@ runDiskSpaceClean() {
     sudo rm -rf /home/fatwoman/.cache/*
     sudo rm -rf /var/cache/*
     #sudo rm -rf /var/log/*
+    sudo rm -rf /tmp/*
 }
 runBatchHourly() {
     runCVIXScrape
