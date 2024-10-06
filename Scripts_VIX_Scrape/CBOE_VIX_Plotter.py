@@ -28,12 +28,15 @@ df0 = df0[df0['Maturity'] != 'VIX'].copy()
 df0['Timestamp'] = pd.to_datetime(df0['Timestamp'], format=timestamp_format) 
 df0['Maturity'] = pd.to_datetime(df0['Maturity'], format='%m/%d/%Y') #CBOE_RAW_timestamp_format = '%m/%d/%Y'
 # data operations
-median_per_contract = df0.groupby('Maturity')['Volume'].median() # monthly contracts
-monthly_contract_list = median_per_contract[median_per_contract > 10].index.tolist() # monthly contracts
-df1 = df0[df0['Maturity'].isin(monthly_contract_list)] # df1 is filtered on monthly contracts
-daily_last_values = df1.groupby(df1['Timestamp'].dt.date)['Timestamp'].max() # last days
+ # last days
+daily_last_values = df0.groupby(df0['Timestamp'].dt.date)['Timestamp'].max()
 last_10_days_last_values = daily_last_values.sort_values(ascending=False).head(last_x_days) # last days
-df2 = df1[df1['Timestamp'].isin(last_10_days_last_values)] # last days
+df1 = df0[df0['Timestamp'].isin(last_10_days_last_values)] # last days
+# Low volume contracts
+median_per_contract = df1.groupby('Maturity')['Volume'].median() # monthly contracts
+monthly_contract_list = median_per_contract[median_per_contract > 5].index.tolist() # monthly contracts
+df2 = df1[df1['Maturity'].isin(monthly_contract_list)] # df1 is filtered on monthly contracts
+# Sorting and cleaning matured
 df2 = df2.sort_values(by=['Maturity', 'Timestamp'],ascending=[True, True])
 df2 = df2[df2['Maturity'] > df2['Timestamp'].max()] # take out matured contracts
 df3 = df2[['Maturity','Settlement','Timestamp']].copy() # only needed columns
