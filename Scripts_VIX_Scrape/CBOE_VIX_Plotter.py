@@ -33,8 +33,8 @@ daily_last_values = df0.groupby(df0['Timestamp'].dt.date)['Timestamp'].max()
 last_10_days_last_values = daily_last_values.sort_values(ascending=False).head(last_x_days) # last days
 df1 = df0[df0['Timestamp'].isin(last_10_days_last_values)] # last days
 # Low volume contracts
-median_per_contract = df1.groupby('Maturity')['Volume'].median() # monthly contracts
-monthly_contract_list = median_per_contract[median_per_contract > 5].index.tolist() # monthly contracts
+median_per_contract = df1.groupby('Maturity')['Volume'].mean() # monthly contracts
+monthly_contract_list = median_per_contract[median_per_contract >= 1].index.tolist() # monthly contracts
 df2 = df1[df1['Maturity'].isin(monthly_contract_list)] # df1 is filtered on monthly contracts
 # Sorting and cleaning matured
 df2 = df2.sort_values(by=['Maturity', 'Timestamp'],ascending=[True, True])

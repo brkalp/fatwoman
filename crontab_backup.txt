@@ -25,7 +25,7 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 43 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning2' 
 58 20 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEvening' 
 25 23 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEOD' >> $LOG_DIR'Batch_EOD.log' 2>&1
-50 23 * * 1-5 /bin/bash -c 'source '$WRAPPER' && runBatchBusinessDays'
+30 23 * * 1-5 /bin/bash -c 'source '$WRAPPER' && runBatchBusinessDays'
 
 # >> $LOG_DIR'Batch_Hourly.log' 2>&1
 # >> $LOG_DIR'Batch_Morning.log' 2>&1
