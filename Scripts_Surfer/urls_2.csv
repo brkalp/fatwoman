@@ -38,7 +38,7 @@ EURUSD,200,0,TRUE,https://www.google.com/search?q=euro+to+dollar&rlz=1C1GCEA_enS
 EURSEK,200,0,TRUE,https://www.google.com/search?biw=1920&bih=969&sxsrf=ALeKk0260nb-Ib8TMb-eko6D5upemi7S7w%3A1585374161995&ei=0eN-XpmlPIuFwPAPwPCNgAs&q=eur+to+kr&oq=eur+to+kr&gs_lcp=CgZwc3ktYWIQAzIECCMQJzIHCAAQFBCHAjICCAAyAggAMgcIABAUEIcCMgIIADICCAAyAggAMgIIADIECAAQCjoECAAQR1CwDliwDmDoD2gAcAJ4AIABQIgBQJIBATGYAQCgAQGqAQdnd3Mtd2l6&sclient=psy-ab&ved=0ahUKEwjZ0Yv-urzoAhWLAhAIHUB4A7AQ4dUDCAs&uact=5
 TryNews,200,0,TRUE,https://www.google.com/search?q=turkey&tbm=nws&sxsrf=AB5stBiysI9z__7s58J7NggZy-gZ0UG-Cw%3A1690235902947&ei=_vO-ZOG5Ob6gwPAP9O2Y6A4&ved=0ahUKEwjhsNO0q6iAAxU-EBAIHfQ2Bu0Q4dUDCA0&uact=5&oq=turkey&gs_lp=Egxnd3Mtd2l6LW5ld3MiBnR1cmtleTIHEAAYigUYQzIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjDEVC2DVj2EHABeACQAQCYAUigAZQDqgEBN7gBA8gBAPgBAcICCBAAGIoFGJECiAYB&sclient=gws-wiz-news
 EURTRY,200,0,TRUE,https://www.google.com/search?channel=fs&client=ubuntu&q=eur+to+try
-chartfleau,200,0,TRUE,https://www.chartfleau.com/sp500
+chartfleau,200,0,TRUE,https://www.chartfleau.com/spy
 Economist,200,0,TRUE,https://www.economist.com/
 BloombergHT,200,0,TRUE,https://www.bloomberght.com/
 FT,200,0,TRUE,https://www.ft.com/

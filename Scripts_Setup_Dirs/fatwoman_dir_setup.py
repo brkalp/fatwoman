@@ -15,7 +15,7 @@ import os
 # os.environ # pytonpath is here
 
 if socket.gethostname() == 'ripintheblue':
-    remoteIP = r'F:\\' # remoteIP = r'\\10.0.1.6\\'
+    remoteIP = r'z:\\' # remoteIP = r'\\10.0.1.6\\'
     fatwoman_base_path = remoteIP + '15GB'
     fatwoman_data_path = remoteIP + 'fatboy'
 if socket.gethostname() == 'fatwoman':
@@ -43,6 +43,12 @@ YahooDownload_Info_File     = os.path.join(YahooDownload_Output_Folder, 'Tickers
 YahooDownload_Outputs_SEK   = os.path.join(YahooDownload_Output_Folder, 'Daily_yahoo_data_in_SEK.csv')
 YahooPlotter_Output_File    = os.path.join(YahooDownload_Output_Folder, 'Daily_yahoo_plot.html')
 Total_data_file = YahooDownload_Output_File
+
+# Index Constituents
+Index_folder = YahooDownload_Output_Folder
+Index_data_file   = os.path.join(Index_folder, 'sp500_index_cons.csv')
+weights_data_file = os.path.join(Index_folder, 'sp500_index_cons_weight.csv')
+# portfolio_Plot  = os.path.join(portfolio_folder, 'Portfolio_loc.png')
 
 # Data Feeds - Scape Data location
 VIX_Scrape_folder        = os.path.join(fatwoman_data_path, 'Scripts_VIX_Scrape') # need this to set download dir

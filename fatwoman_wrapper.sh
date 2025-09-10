@@ -11,7 +11,9 @@ export PYTHONPATH="/media/fatwoman/fatboy/python_libraries:$PYTHONPATH"
 RETURNIP() { curl ifconfig.me; }
 IPGET() { curl ifconfig.me; }
 SETKEYBOARDSWE() { setxkbmap se; }
+#DISPLAY=:0 xrandr --query
 screensdimon(){
+DISPLAY=:0 xrandr --output VGA-0 --brightness 0.55
 DISPLAY=:0 xrandr --output DisplayPort-0 --brightness 0.55
 DISPLAY=:0 xrandr --output DisplayPort-1 --brightness 0.55
 }
@@ -26,8 +28,10 @@ logs4()  { less ${LOG_DIR}BinanceDownload_output.log; }
 
 logfolder()   { cd ${LOG_DIR}; }
 logsarchive() { ${LOG_DIR}archive_here.sh; }
-screensoff()  { DISPLAY=:0 xrandr --output DisplayPort-0 --off --output DisplayPort-1 --off; }
-screenson()   { DISPLAY=:0 xrandr --output DisplayPort-1 --auto --rotate right --output DisplayPort-0 --auto --rotate left --left-of DisplayPort-1 --primary; }
+#screensoff()  { DISPLAY=:0 xrandr --output DisplayPort-0 --off --output DisplayPort-1 --off; }
+#screenson()   { DISPLAY=:0 xrandr --output DisplayPort-1 --auto --rotate right --output DisplayPort-0 --auto --rotate left --left-of DisplayPort-1 --primary; }
+screensoff()  { DISPLAY=:0 xrandr --output VGA-0 --off --output DisplayPort-1 --off; }
+screenson()   { DISPLAY=:0 xrandr --output VGA-0 --auto --rotate right ; }
 surferkill() {
     pkill -f Surfer.py
     pkill -f mozilla

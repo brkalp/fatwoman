@@ -3,7 +3,7 @@ import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
 import pandas as pd
 import logging
-from fatwoman_dir_setup import VIX_C_Scrape_Data_File, VIX_Scrape_folder, is_platform_pc
+from fatwoman_dir_setup import VIX_C_Scrape_Data_File, VIX_Scrape_folder
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,9 +15,11 @@ import os
 import time
 from datetime import datetime as dt
 
+is_platform_pc = False if socket.gethostname() == 'fatwoman' else True
+
 operations_folder = VIX_Scrape_folder
 attempt = 0
-max_attempts = 10
+max_attempts = 5
 fail = False
 while attempt < max_attempts:
     try:
@@ -46,12 +48,13 @@ while attempt < max_attempts:
         # time.sleep(2)
 
         # Find dropdown menu and click
-        print('1 Get done. Clicking for download')
+        print('1 Get done. Clicking on menu')
         xpath = "//*[contains(@transform, 'translate(762,10)')]"
         element = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, xpath)))
         actions = ActionChains(driver)
         actions.move_to_element(element).perform()
         actions.click(element).perform()
+        
         print('2 Menu is OK, clicking on DL')
         logging.info(f"Menu is Ok.")
         xpath = "//li[@class='highcharts-menu-item' and text()='Download CSV']"

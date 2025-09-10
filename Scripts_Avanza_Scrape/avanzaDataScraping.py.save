@@ -1,7 +1,6 @@
 import sys
 import signal
 import logging
-import socket
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
 from datetime import datetime, timedelta
@@ -21,10 +20,7 @@ class AvanzaDataScraping:
     def __init__(self, link=None):
         # Set up the driver
         options = webdriver.FirefoxOptions()
-
-        if socket.gethostname() == 'fatwoman':
-            options.add_argument("--headless")
-
+        # options.add_argument("--headless")
         self.driver = webdriver.Firefox(options=options)
         self.driver.set_window_size(1920, 1080)
         # self.link = "https://www.avanza.se/fonder/om-fonden.html/177748/amundi-fds-volatil-wld-a-usd-c"
@@ -88,7 +84,7 @@ class AvanzaDataScraping:
         old = []
         while x_pos <= graph_width / 2:
             action.move_to_element_with_offset(graph, x_pos, 0).perform()
-            x_pos = x_pos + 60
+            x_pos = x_pos + 1
             try:
                 date_price_instrument_element = self.driver.find_element(By.XPATH,
                                                                          "//div[@class='highcharts-label highcharts-tooltip highcharts-color-undefined']")
@@ -103,6 +99,7 @@ class AvanzaDataScraping:
                     datetime.now().strftime('%Y-%m-%d %H:%M'))  # Adds the time of scrape as a column
                 # write raw data
                 print(";".join(date_price_texts))
+                print("TEST FROM DENIZ")
                 with open(f'{avanza_instance.instrument_name}-raw.csv', 'a') as f:
                     f.write(";".join(date_price_texts))
                     f.write("\n")
@@ -192,8 +189,9 @@ if __name__ == "__main__":
         try:
             time.sleep(1)
             date_pairs = gen_date_pairs(date)
-            avanza_instance = AvanzaDataScraping(link)
+            avanza_instance = AvanzaDataScraping(link
             instrument_name = avanza_instance.get_instrument_name()
+            print("here is ok")
             for start_date, end_date in date_pairs:
                 start_date = datetime.strptime(start_date, "%d/%m/%Y").strftime("%Y-%m-%d")
                 end_date = datetime.strptime(end_date, "%d/%m/%Y").strftime("%Y-%m-%d")

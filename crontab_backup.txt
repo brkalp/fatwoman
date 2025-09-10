@@ -7,6 +7,8 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 
 @reboot /usr/local/bin/noip2
 
+0 * * * * for dev in $(lsblk -lnp | awk '$6=="part" || $6=="disk" {print $1'}); do udisksctl mount -b "$dev"; done > $LOG_DIR'mount_disks.log' 2>&1
+
 # Wrapper check - Log wrapper execution
 * * * * * /bin/bash -c 'source '$WRAPPER' >> '$LOG_DIR'0_wrapper_echo.log' 2>&1
 
@@ -15,7 +17,7 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 0 5 * * *   /bin/bash -c 'source '$WRAPPER' && crontab -l' > $BASE_DIR'crontab_backup.txt' 2>&1
 
 # Hourly activities
-#10 * * * *   /bin/bash -c 'source '$WRAPPER' && runBatchHourly' 
+10 * * * *   /bin/bash -c 'source '$WRAPPER' && runBatchHourly' 
 
 # business day data scrape
 
@@ -39,8 +41,11 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 
 # mount usbs
 # sudo blkid
+#for dev in $(lsblk -lnp | awk '$6=="part"{print $1'}); do udisksctl mount -b "$dev"; done
+#udisksctl mount -b /dev/sda1
 #udisksctl mount -b /dev/sdb1
 #udisksctl mount -b /dev/sdc1
+#udisksctl mount -b /dev/sdd1
 #udisksctl mount -b /dev/sdd
 
 # disk space

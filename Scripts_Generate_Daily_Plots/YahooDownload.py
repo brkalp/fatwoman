@@ -32,7 +32,7 @@ df_Tickers.to_csv(YahooDownload_Ticker_File, index = None)
 # Download
 print('Downloading: %s' %Tickers)
 # Tickers = ['^VIX']
-df0 = yf.download(Tickers, dt(2005,1,1))['Adj Close']
+df0 = yf.download(Tickers, dt(2005,1,1), auto_adjust=False)['Adj Close']
 df1 = df0.reindex(columns=list(TICKERS.keys())).rename(columns = TICKERS).round(9)
 # df0 = pd.DataFrame(yf.download(Tickers, dt(2023,1,1))['Adj Close']).reindex(columns=list(TICKERS.keys())).rename(columns = TICKERS).round(9)
 
