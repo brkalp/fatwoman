@@ -5,6 +5,7 @@ export LOG_DIR=$FATBOY_DIR"/logs/"
 alias 15GB='cd $BASE_DIR'
 alias FATBOY='cd $FATBOY_DIR'
 WRAPPER() { nano ${BASE_DIR}fatwoman_wrapper.sh; }
+# ssh -L 5000:localhost:5000 fatwoman@192.168.0.154
 echo "$(date): Wrapper script started" > $LOG_DIR"0_wrapper_echo.log"
 export PYTHONPATH="$PYTHONPATH:${BASE_DIR}Scripts_Setup_Logger/:${BASE_DIR}/Scripts_Setup_Dirs/"
 export PYTHONPATH="/media/fatwoman/fatboy/python_libraries:$PYTHONPATH"
@@ -39,7 +40,14 @@ surferkill() {
 surfer()             { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py > /dev/null 2>&1 & }
 surferprint()        { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py; }
 surferbbg()          { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py --bbg; }
-runAvanzaScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_Avanza_Scrape/avanzaDataScraping.py;}
+runLLM_Finnhub()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/FinnHub.py;}
+runIB_clientportal() {
+    cd ${BASE_DIR}Scripts_LLM_trader/clientportal
+    nohup bash bin/run.sh root/conf.yaml > gateway.log 2>&1 & disown
+}
+runIB_clientportalkill() { pkill -f clientportal.gw.jar;}
+runIB_clientportallogs() { tail -n 50 ${BASE_DIR}Scripts_LLM_trader/clientportal/gateway.log;}
+runAvanzaScrape()    { /usr/bin/python3 ${BASE_DIR}Scripts_Avanza_Scrape/avanzaDataScraping.py;}
 runCVIXScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/VIX_Central_Scrape.py;}
 runCBOEScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/CBOE_Scrape.py;}
 runCBOEPlotter()     { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/CBOE_VIX_Plotter.py;}
@@ -115,6 +123,7 @@ runBatchDaily()  {
     # Volas
     runVolDownload
     runVolPlot
+    runLLM_Finnhub
 }
 runBatchMorning1() {
     surferkill

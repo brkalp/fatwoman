@@ -27,6 +27,13 @@ if socket.gethostname() == 'Apollo-13':
 if 'fatwoman_base_path' not in locals(): print('Data paths not defined for this machine!')
 fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
 
+# LLM
+LLM_data_path               = os.path.join(fatwoman_data_path, 'Scipts_LLM_trader')
+LLM_data_path_finnhub_file  = os.path.join(LLM_data_path, 'news_FinnHub.csv')
+LLM_flow1_response_file     = os.path.join(LLM_data_path, 'LLM_flow1_response_file.csv') # full response
+LLM_flow1_order_file        = os.path.join(LLM_data_path, 'LLM_flow1_order_file.csv') # only tickers and buy sell
+# LLM_config_path           = os.path.join(fatwoman_data_path, 'Scipts_LLM_trader')
+
 # Avanza Scrape
 avanza_data_path    = os.path.join(fatwoman_data_path, 'Scripts_Avanza_Scrape')
 avanza_config_file  = os.path.join(fatwoman_base_path, 'Scripts_Avanza_Scrape', 'website_list.csv')
