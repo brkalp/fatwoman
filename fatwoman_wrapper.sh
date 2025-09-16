@@ -40,13 +40,8 @@ surferkill() {
 surfer()             { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py > /dev/null 2>&1 & }
 surferprint()        { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py; }
 surferbbg()          { DISPLAY=:0 /usr/bin/python3 ${BASE_DIR}Scripts_Surfer/Surfer.py --bbg; }
-runLLM_Finnhub()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/FinnHub.py;}
-runIB_clientportal() {
-    cd ${BASE_DIR}Scripts_LLM_trader/clientportal
-    nohup bash bin/run.sh root/conf.yaml > gateway.log 2>&1 & disown
-}
-runIB_clientportalkill() { pkill -f clientportal.gw.jar;}
-runIB_clientportallogs() { tail -n 50 ${BASE_DIR}Scripts_LLM_trader/clientportal/gateway.log;}
+
+# Daily scripts
 runAvanzaScrape()    { /usr/bin/python3 ${BASE_DIR}Scripts_Avanza_Scrape/avanzaDataScraping.py;}
 runCVIXScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/VIX_Central_Scrape.py;}
 runCBOEScrape()      { /usr/bin/python3 ${BASE_DIR}Scripts_VIX_Scrape/CBOE_Scrape.py;}
@@ -69,6 +64,77 @@ runEODpy()           { /usr/bin/python3 ${BASE_DIR}Utility/EOD_print.py;}
 runChromeRemoteDesktop() { sudo systemctl start chrome-remote-desktop@fatwoman.service; }
 runChromeRemoteDesktopkill() { /opt/google/chrome-remote-desktop/chrome-remote-desktop --stop;}
 runChromeRemoteDesktopstatus() { systemctl status chrome-remote-desktop@fatwoman.service;}
+
+# LLM
+runLLM_Finnhub()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/FinnHub.py;}
+LLMfolder()          { cd ${BASE_DIR}Scripts_LLM_trader; }
+LLMfatfolder()       { cd ${FATBOY_DIR}Scripts_LLM_trader; }
+runIB_clientportal() {
+    cd ${BASE_DIR}Scripts_LLM_trader/clientportal
+    nohup bash bin/run.sh root/conf.yaml > gateway.log 2>&1 & disown
+}
+runIB_clientportalkill()    { pkill -f clientportal.gw.jar;}
+runIB_clientportallogs()    { tail -n 50 ${BASE_DIR}Scripts_LLM_trader/clientportal/gateway.log;}
+runIB_clientportalcheck()   { ps -ef | grep clientportal.gw.jar | grep -v grep;}
+runIB_clientportaltickle()  { /usr/bin/python3 ${BASE_DIR}/Scripts_LLM_trader/ib_wrapper_tickler.py;}
+
+# LLM Batches
+runBatchDailyLLM()  {
+    runLLM_Finnhub
+}
+
+runBatchPerMinute() {
+    runIB_clientportaltickle
+}
+# non-LLM Batches
+runBatchHourly() {
+    runCVIXScrape
+}
+
+runBatchBusinessDays()  {
+    # Scrape CBOE Daily
+    runCBOEScrape
+    runCBOEPlotter
+    }
+runBatchDaily()  {
+    runSODpy
+    runChromeRemoteDesktop
+    # Base Daily plots
+    runYahooDownload
+    # runYahooFXConvert
+    runYahooPlotter
+    # Yield Curve
+    runYCFREDDownload
+    runYCQuantlibPlot
+    runYCScipyPlot
+    runYCAppend
+    runYCHistPlot
+    # Volas
+    runVolDownload
+    runVolPlot
+}
+    
+runBatchMorning1() {
+    surferkill
+    screenson
+    screensdimon
+    surferbbg
+}
+runBatchMorning2() {
+    surferkill
+    surferprint
+    screensdimon
+    }
+runBatchEvening() {
+    surferkill
+    screensoff
+    }
+runBatchEOD(){
+    runEODpy
+    logsarchive
+    }
+
+# utility
 runDiskSpace() {
     df -h
     echo 'Media'
@@ -98,50 +164,5 @@ runDiskSpaceClean() {
     #sudo rm -rf /var/log/*
     sudo rm -rf /tmp/*
 }
-runBatchHourly() {
-    runCVIXScrape
-}
 
-runBatchBusinessDays()  {
-    # Scrape CBOE Daily
-    runCBOEScrape
-    runCBOEPlotter
-    }
-runBatchDaily()  {
-    runSODpy
-    runChromeRemoteDesktop
-    # Base Daily plots
-    runYahooDownload
-    # runYahooFXConvert
-    runYahooPlotter
-    # Yield Curve
-    runYCFREDDownload
-    runYCQuantlibPlot
-    runYCScipyPlot
-    runYCAppend
-    runYCHistPlot
-    # Volas
-    runVolDownload
-    runVolPlot
-    runLLM_Finnhub
-}
-runBatchMorning1() {
-    surferkill
-    screenson
-    screensdimon
-    surferbbg
-}
-runBatchMorning2() {
-    surferkill
-    surferprint
-    screensdimon
-    }
-runBatchEvening() {
-    surferkill
-    screensoff
-    }
-runBatchEOD(){
-    runEODpy
-    logsarchive
-    }
 echo "$(date): Wrapper script finished" >> $LOG_DIR"0_wrapper_echo.log"

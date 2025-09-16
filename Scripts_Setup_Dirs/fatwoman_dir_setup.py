@@ -28,7 +28,7 @@ if 'fatwoman_base_path' not in locals(): print('Data paths not defined for this 
 fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
 
 # LLM
-LLM_data_path               = os.path.join(fatwoman_data_path, 'Scipts_LLM_trader')
+LLM_data_path               = os.path.join(fatwoman_data_path, 'Scripts_LLM_trader')
 LLM_data_path_finnhub_file  = os.path.join(LLM_data_path, 'news_FinnHub.csv')
 LLM_flow1_response_file     = os.path.join(LLM_data_path, 'LLM_flow1_response_file.csv') # full response
 LLM_flow1_order_file        = os.path.join(LLM_data_path, 'LLM_flow1_order_file.csv') # only tickers and buy sell
@@ -135,17 +135,19 @@ binance_Orderbook_loc_prefix = os.path.join(binance_Orderbook_Output_Folder, 'bi
 default_log_file_path = os.path.join(fatwoman_log_path, "Total.txt")
 Binance_save_log_path = os.path.join(fatwoman_log_path, "BinanceDownload_output.txt")
 Hourly_log_path       = os.path.join(fatwoman_log_path, "Batch_Hourly.txt")
-Avanza_log_path       = os.path.join(avanza_data_path, "Avanza_Scraper.txt")
+Avanza_log_path       = os.path.join(fatwoman_log_path, "Avanza_Scraper.txt")
+ib_wrap_tickler       = os.path.join(fatwoman_log_path, "ib_wrap_tickler.txt")
 logging_override = {
     'binance_orderbook_save' : Binance_save_log_path,
-    # 'CBOE_Scrape'            : Hourly_log_path,
+    'CBOE_Scrape'            : Hourly_log_path,
     'VIX_Central_Scrape'     : Hourly_log_path,
-    'avanzaDataScraping'     : Avanza_log_path, # avanza in different folder
+    'avanzaDataScraping'     : Avanza_log_path,
+    'ib_wrapper_tickler'     : ib_wrap_tickler,
     }
-logging_import_ignore = [ # ignore the setup log if this is the importer
-    'binance_orderbook_save'
+logging_import_ignore = [ # ignore the "Total.txt" setup log if this is the importer
+    'binance_orderbook_save',
+    'ib_wrapper_tickler'
     ]
-
 
 # Screensaver
 Screensaver_url_dir     = os.path.join(fatwoman_base_path, 'Scripts_Surfer') # not really used
