@@ -12,9 +12,12 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 # Wrapper check - Log wrapper execution
 * * * * * /bin/bash -c 'source '$WRAPPER' >> '$LOG_DIR'0_wrapper_echo.log' 2>&1
 
+# Minute activities
 # Download binance orderbook
 * * * * *   /bin/bash -c 'source '$WRAPPER' && runBinanceDownload' > $LOG_DIR'BinanceDownload_output.log' 2>&1
 0 5 * * *   /bin/bash -c 'source '$WRAPPER' && crontab -l' > $BASE_DIR'crontab_backup.txt' 2>&1
+# IB tickle
+* * * * *   /bin/bash -c 'source '$WRAPPER' && runIB_clientportaltickle' > $LOG_DIR'ib_wrap_tickler.log' 2>&1
 
 # Hourly activities
 10 * * * *   /bin/bash -c 'source '$WRAPPER' && runBatchHourly' 
@@ -22,7 +25,8 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 # business day data scrape
 
 # Daily activities
-0 5 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDaily'
+0 3 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDaily'
+0 5 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDailyLLM'
 15 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning1' 
 43 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning2' 
 58 20 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEvening' 

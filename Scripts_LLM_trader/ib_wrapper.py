@@ -1,3 +1,4 @@
+from time import sleep
 import requests
 from fatwoman_dir_setup import LLM_flow1_response_file, LLM_flow1_order_file
 import urllib3
@@ -39,14 +40,14 @@ def _get_ticker_conid(ticker):
 
 
 # Reauthenticate the session, setting auth and connected
-def _reauth():
+def __reauth():
     r = requests.get(f"{BASE_URL}/iserver/reauthenticate", verify=False)
     r.raise_for_status()
     return r.json()
 
 
 # Make sure we are authenticated and connected if not try reauthenticating
-def _check_auth_and_conn(try_number=3):
+def _check_auth_and_conn(try_number=5):
     r = requests.get(f"{BASE_URL}/iserver/auth/status", verify=False)
     r.raise_for_status()
     json = r.json()
@@ -57,7 +58,9 @@ def _check_auth_and_conn(try_number=3):
     else:
         if try_number > 0:
             print("IBKR SERVER IS NOT LOGGED IN!! TRYING TO REAUTHENTICATE...")
-            _reauth()
+            logout()
+            __reauth()
+            sleep(5 + (5 - try_number) * 2)
             return _check_auth_and_conn(try_number - 1)
         else:
             print(
@@ -82,19 +85,36 @@ def _get_account_id():
     return _get_account_json()["id"]
 
 
-# TODO WIP
-def get_current_orders():
-    r = requests.get(
-        f"{BASE_URL}/iserver/account/{_get_account_id()}/orders", verify=False
-    )
-    r.raise_for_status()
+def get_live_orders():
+    url = f"{BASE_URL}/iserver/account/orders"
+    print("live orders: ", url)
+    r = requests.get(url, verify=False)
+    # r.raise_for_status()
+    if r.status_code != 200:
+        print("get orders response: ", r.text)
+        r.raise_for_status()
+
     return r.json()
+
+
+# Place order by ticker symbol
+def place_order_ticker(ticker, side, qty=1, price=None):
+
+    conid = _get_ticker_conid(ticker)
+    if not conid:
+        raise ValueError(f"Ticker {ticker} not found")
+    return _place_order_conid(conid, side, qty, price)
 
 
 # Place order by conid
 def _place_order_conid(conid, side, qty=1, price=None, paper_trade=True):
     if paper_trade and not check_if_paper_trading():
-        raise RuntimeError("YOU REQUESTED A PAPER ORDER BUT YOU ARE ON THE LIVE ACCOUNT!")
+        raise RuntimeError(
+            "YOU REQUESTED A PAPER ORDER BUT YOU ARE ON THE LIVE ACCOUNT!"
+        )
+
+    if not _check_auth_and_conn():
+        raise RuntimeError("IBKR SERVER IS NOT LOGGED IN!!")
 
     order = {
         "orders": [
@@ -104,13 +124,15 @@ def _place_order_conid(conid, side, qty=1, price=None, paper_trade=True):
                 "side": side.upper(),
                 "tif": "DAY",  # required: Time in Force
                 "quantity": qty,
+                "isSuppressed": False,
+                "override": True,
             }
         ]
     }
     if price:
         order["price"] = price
 
-    print("order json: ", order)
+    # print("order json: ", order)
 
     headers = {"Content-Type": "application/json"}
     r = requests.post(
@@ -119,13 +141,11 @@ def _place_order_conid(conid, side, qty=1, price=None, paper_trade=True):
         headers=headers,
         verify=False,
     )
-    print(r)
     # print error message if error
     if r.status_code != 200 and r.status_code != 201:
         print("order response: ", r.text)
         r.raise_for_status()
     r = r.json()
-    print(r)
 
     """# Log order id(s) if order placed AND A LIST
     if isinstance(r, list):
@@ -134,24 +154,48 @@ def _place_order_conid(conid, side, qty=1, price=None, paper_trade=True):
                 print(f"Order placed. ID={item['id']}")
     elif isinstance(r, dict) and "id" in r:
         """
-    print(f"Order placed. ID={r['id']}")
+    # print(f"Order placed. ID={r['id']}") # doesn't work rn
 
     return r
 
 
-# Place order by ticker symbol
-def place_order_ticker(ticker, side, qty=1, price=None):
-    conid = _get_ticker_conid(ticker)
-    if not conid:
-        raise ValueError(f"Ticker {ticker} not found")
-    return _place_order_conid(conid, side, qty, price)
+def _get_all_positions():
+    url = f"{BASE_URL}/portfolio/{_get_account_id()}/positions"
+    print(url)
+    r = requests.get(url, verify=False)
+    if r.status_code != 200:
+        print("ERROR MESSAGE: ", r.text)
+        r.raise_for_status()
+
+    return r.json()
+
+
+def sell_all_positions():
+    positions = _get_all_positions()
+
+    for position in positions:
+        if position["position"] > 0:
+            place_order_ticker(
+                position["contractDesc"], "SELL", qty=position["position"]
+            )
+
 
 # Accounts for paper trading start with DU, live accounts with U
 def check_if_paper_trading():
     acc_id = _get_account_id()
-    return acc_id[0] == 'D'
+    return acc_id[0] == "D"
 
+def logout():
+    r = requests.post(f"{BASE_URL}/logout", verify=False)
+    r.raise_for_status()
+    return r.json()
+
+
+# TODO: Pozisyon başına da PNL LAZIM
 def get_PNL():
+    acc_url = f"{BASE_URL}/iserver/account/pnl/partitioned"
+    r = requests.get(acc_url, verify=False)
+    print(r.json())
     pass
 
 
@@ -165,16 +209,27 @@ def doOrder(order: dict):
         asset = order["asset"]
         # sellAsset(asset, 1)
 
+def confirm_messages(messageId):
+    url = f"{BASE_URL}/iserver/reply/{messageId}"
+    body = {"confirm": True}
+    r = requests.post(url=url, json=body, verify=False)
+    r.raise_for_status()
+    return r.json()
 
 if __name__ == "__main__":
     # print("tickle: ",tickle())
     print("id: ", _get_account_id())
 
     # print("stock apple: ", _lookup_stock("AAPL"))
-    print("is paper trading: ", check_if_paper_trading())
+    # print("is paper trading: ", check_if_paper_trading())
     # print("APPLE conid: ", _get_ticker_conid("AAPL"))
     # print("current orders: ", get_current_orders())
+    # print("live orders: ", get_live_orders())
 
-    # print("placing order: ", place_order_ticker("AAPL", "BUY"))
-
+    # print(confirm_messages("77a80002-44f7-4414-b1e8-8b2b898cd193"))
+    print("placed order: ", place_order_ticker("AAPL", "BUY"))
+    # print("reauth: ", _check_auth_and_conn() )
+    # print("all positions: ", _get_all_positions())
+    #print("PNL: ", get_PNL())
+    print("sell all positions: ", sell_all_positions())
     # print(requests.get("https://localhost:5000/v1/api/trsrv/stocks?symbols=AAPL", verify=False))

@@ -11,27 +11,25 @@ from fatwoman_dir_setup import LLM_data_path_finnhub_file, LLM_data_path
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
 
+
 # Abstract Parent Class
 class base_LLM:
-    def __init__(self, model, loc_override="", name="unnamed_LLM"):
-        print(f"Initializing a {model} named {name} ")
+    def __init__(self, model, name="unnamed_LLM"):
+        # print(f"Initializing %s" % name)
+        print(model)
         self.model = model
         self.name = name
-        loc_override = loc_override if loc_override == "" else "_" + loc_override
-        filename = "LLM_" + self.name + loc_override + "_latest_response.txt"
-        self.write_loc = os.path.join(LLM_data_path, filename)
-
-    def work(self, prompt):
-        return self._getResponse(prompt=prompt, context=self.context)
 
     def _getResponse(self, prompt, context, dummy=False):
-        logging.info("Dummy: %s. Output filename: %s" % (dummy, self.write_loc))
+        filename = "LLM_Name_" + self.name + "_latest_response.txt"
+        write_loc = os.path.join(LLM_data_path, filename)
         if dummy:
             # print("Response reading from to %s" % write_loc)
-            with open(self.write_loc, "r") as file:
+            with open(write_loc, "r") as file:
                 response_text = file.read()
         else:
             # print(f"Getting Response from %s" % self.name)
+
             client = OpenAI(api_key=OPENAI_API_KEY)
             response = client.chat.completions.create(
                 model=self.model,
@@ -40,21 +38,18 @@ class base_LLM:
                     {"role": "user", "content": prompt},
                 ],
             )
-            response_text = response.choices[0].message.content
-            logging.info(
-                "Total tokens used by %s: %s" % (self.name, response.usage.total_tokens)
-            )
-            # logging.info("\n  Response_text: %s" % response_text)
-                # text = str(response.usage.total_tokens) + "," + response_text
-            with open(self.write_loc, "w") as file:
-                file.write(response_text)
 
+            response_text = response.choices[0].message.content
+            print("total tokens used: ", response.usage.total_tokens)
+            with open(write_loc, "w") as file:
+                # text = str(response.usage.total_tokens) + "," + response_text
+                file.write(response_text)
         return response_text, response.usage.total_tokens
 
 
 class consulter_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="consulter", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
+    def __init__(self, model="gpt-4.1-nano", name="consulter_1"):
+        super().__init__(name=name, model=model)
 
         self.context = f"""
             You are the Consulter agent.
@@ -62,99 +57,91 @@ class consulter_LLM(base_LLM):
             You read the news provided to you and output only ticker names and nothing else, delimit them with comma.
             """
 
+    def work(self, prompt):
+        return self._getResponse(prompt=prompt, context=self.context)
 
-class bullish_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="bull", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
+class optimist_LLM(base_LLM):
+    def __init__(self, model="gpt-4.1-nano", name="optimist_1"):
+        super().__init__(name=name, model=model)
 
         self.context = f"""
-            You are a financial analyst tasked with defending a specific ticker's bullish outlook to a skeptical, pessimistic financial analyst who holds a bearish view. Use all provided information and data to construct a persuasive, data-driven argument that addresses possible bearish counterpoints and emphasizes evidence supporting bullish tendencies. Your reasoning should proceed step-by-step: first, analyze and interpret the data, discuss counterarguments and address potential bearish concerns, and finally, conclude with a detailed, well-supported bullish thesis. Only provide your conclusion after laying out your reasoning in full.
+            You are a quantitative analyst tasked with defending a specific ticker's bullish outlook to a skeptical, pessimistic quantitative analyst who holds a bearish view. Use all provided information and data to construct a persuasive, data-driven argument that addresses possible bearish counterpoints and emphasizes evidence supporting bullish tendencies. Your reasoning should proceed step-by-step: first, analyze and interpret the data, discuss counterarguments and address potential bearish concerns, and finally, conclude with a detailed, well-supported bullish thesis. Only provide your conclusion after laying out your reasoning in full.
 
             Persist in exploring all possible supportive arguments and address all significant bearish concerns before finalizing your output. Think step-by-step before delivering your answer to ensure a comprehensive and persuasive rationale.
             """
 
+    def work(self, prompt):
+        return self._getResponse(prompt=prompt, context=self.context)
 
-class bearish_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="bear", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
+class pessimist_LLM(base_LLM):
+    def __init__(self, model="gpt-4.1-nano", name="pessimist_1"):
+        super().__init__(name=name, model=model)
 
         self.context = f"""
-            You are a financial analyst tasked with defending a specific ticker's bearish outlook to an optimistic financial analyst who holds a bullish view. Use all provided information and data to construct a rigorous, data-driven argument that highlights risks, weaknesses, and downside potential. Your reasoning should proceed step-by-step: first, analyze and interpret the data, then examine the bullish counterarguments and address potential optimistic claims, and finally conclude with a detailed, well-supported bearish thesis. Only provide your conclusion after laying out your reasoning in full.
+            You are a quantitative analyst tasked with defending a specific ticker's bearish outlook to an optimistic quantitative analyst who holds a bullish view. Use all provided information and data to construct a rigorous, data-driven argument that highlights risks, weaknesses, and downside potential. Your reasoning should proceed step-by-step: first, analyze and interpret the data, then examine the bullish counterarguments and address potential optimistic claims, and finally conclude with a detailed, well-supported bearish thesis. Only provide your conclusion after laying out your reasoning in full.
 
             Persist in exploring all possible risk factors and address all significant bullish counterpoints before finalizing your output. Think step-by-step before delivering your answer to ensure a comprehensive and convincing rationale.
             """
 
-
-class judge_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="judge", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
-
-        self.context = f"""
-            You are an expert financial analyst with a phd in financial markets and economics. You are an impartial judge tasked with evaluating competing bullish and bearish analyses of a specific ticker. Your goal is to assess the strength of each argument based on the evidence presented, identify any logical fallacies or unsupported claims, and determine which perspective is more convincing overall. Your reasoning should proceed step-by-step: first, summarize the key points from both the bullish and bearish analyses, then critically evaluate the evidence and reasoning used in each argument, and finally conclude with a well-supported judgment on which outlook is more credible. Only provide your conclusion after laying out your reasoning in full.
-            Also provide a confidence score from 0-100 for your judgment. And provide probability score for each side(bullish, bearish and neutral).
-            """
+    def work(self, prompt):
+        return self._getResponse(prompt=prompt, context=self.context)
 
 
-class summarizer_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="summarizer", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
+""" BEARISH
+You are a quantitative analyst tasked with defending a specific ticker's bullish outlook to a skeptical, pessimistic quantitative analyst who holds a bearish view. Use all provided information and data to construct a persuasive, data-driven argument that addresses possible bearish counterpoints and emphasizes evidence supporting bullish tendencies. Your reasoning should proceed step-by-step: first, analyze and interpret the data, discuss counterarguments and address potential bearish concerns, and finally, conclude with a detailed, well-supported bullish thesis. Only provide your conclusion after laying out your reasoning in full.
 
-        self.context = f"""
-            You are an expert financial analyst with a PhD in financial markets and economics.
-            Your task is to read a long essay about a stock ticker’s possible future performance
-            and output ONLY a valid JSON object. No extra text, no commentary.
+Persist in exploring all possible supportive arguments and address all significant bearish concerns before finalizing your output. Think step-by-step before delivering your answer to ensure a comprehensive and persuasive rationale.
 
-            The JSON must strictly follow this format:
-            {{
-            "ticker": "TICKER_NAME",
-            "tendency": "bullish|bearish|neutral",
-            "confidence": 0-100
-            }}
-            """
+**Structure your output as follows:**
 
-# ticker_to_company = {
-#     "AAPL": "Apple",
-#     "MSFT": "Microsoft",
-#     "GOOGL": "Google",
-#     "AMZN": "Amazon",
-#     "TSLA": "Tesla",
-#     "NVDA": "Nvidia",
-#     "TSM": "Taiwan Semiconductor Manufacturing Company OR TSMC",
-#     "JPM": "JPMorgan Chase OR JP Morgan",
-#     "JNJ": "Johnson & Johnson OR JNJ",
-#     "V": "Visa",
-#     "WMT": "Walmart",
-#     "META": "Meta OR Facebook",
-#     "AMD": "AMD",
-#     "INTC": "Intel",
-#     "QCOM": "Qualcomm",
-#     "BABA": "Alibaba",
-#     "ADBE": "Adobe",
-#     "NFLX": "Netflix",
-#     "CRM": "Salesforce",
-#     "PYPL": "PayPal",
-#     "PLTR": "Palantir",
-#     "MU": "Micron",
-#     "SQ": "Block OR Square",
-#     "ZM": "Zoom",
-#     "CSCO": "Cisco",
-#     "SHOP": "Shopify",
-#     "ORCL": "Oracle",
-#     "X": "Twitter OR X",
-#     "SPOT": "Spotify",
-#     "AVGO": "Broadcom",
-#     "ASML": "ASML ",
-#     "TWLO": "Twilio",
-#     "SNAP": "Snap Inc.",
-#     "TEAM": "Atlassian",
-#     "SQSP": "Squarespace",
-#     "UBER": "Uber",
-#     "ROKU": "Roku",
-#     "PINS": "Pinterest",
-# }
+### Reasoning (Step-by-Step):
+- **Data Analysis & Interpretation:** Review all given data, highlighting trends, quantitative patterns, and relevant qualitative insights supporting a bullish thesis.
+- **Bearish Counterpoints Anticipation:** Identify the strongest possible bearish arguments. For each, present a measured rebuttal or mitigating evidence from the data.
+- **Synthesis:** Weigh the evidence in aggregate and discuss overarching factors (e.g., macroeconomic context, sector performance, technical indicators, valuations).
 
-# if __name__ == "__main__":
-#     judge = judge_LLM(name="judge_1", model="gpt-5")
+### Conclusion:
+- Present your final bullish case in a clear, assertive paragraph summarizing why the evidence supports an optimistic outlook on the ticker.
+
+**Formatting:**
+- Use paragraph structure with bullet points if helpful for clarity in the Reasoning section.
+- Each section should be clearly labeled (Reasoning, then Conclusion).
+- Total response length should be 2–5 paragraphs (flexible for data complexity).
+
+---
+
+#### Example
+
+**Input:**  
+- [Insert ticker symbol and relevant data here, e.g., "AAPL, Q2 earnings beat expectations, upward guidance revision, RSI trending higher, market sentiment strong, supply chain stabilizations."]
+
+**Output:**
+
+---
+
+**Reasoning (Step-by-Step):**
+- The latest earnings release showed a revenue increase of 8% quarter-over-quarter, surpassing analyst forecasts and indicating strong consumer demand.
+- The upward revision in guidance demonstrates management’s confidence in continued growth, which is often a precursor to price appreciation.
+- Technical indicators such as the RSI and MACD are both showing bullish signals, with the RSI remaining in a neutral-to-bullish range and the moving averages trending upwards.
+- Market sentiment indicators reflect growing institutional interest, further confirming positive momentum.
+- While supply chain disruptions previously threatened margins, recent reports indicate a return to normal operations, mitigating this major bearish concern.
+
+**Bearish Counterpoints Anticipation:**
+- Some may argue that valuation ratios are stretched, but when compared to sector norms and considering projected earnings growth, the ticker remains reasonably priced.
+- Macro risks exist (e.g., inflation, rate hikes), but the company’s robust balance sheet and diversified revenue streams provide a buffer.
+
+**Synthesis:**
+- The cumulative evidence demonstrates resilience and upside potential, bolstered by strong fundamentals, technical momentum, and diminished downside risks.
+
+**Conclusion:**
+Given the confluence of strong earnings, positive guidance, technical strength, and stabilized supply chains, the ticker is well-positioned for upside, justifying a bullish outlook despite common bearish reservations.
+
+---
+
+**Important Reminders:**  
+- Always lay out reasoning and counterpoints thoroughly before giving your final conclusion.
+- Use all provided data, and tailor your analysis to the scenario.
+- Clarify your reasoning in each step for maximum persuasive impact."""
+
 
 # if __name__ == "__main__":
 # consulter_LLM_object = consulter_LLM()

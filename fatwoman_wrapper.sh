@@ -1,3 +1,4 @@
+# net use X: "\\sshfs.r\fatwoman@fatwoman.onthewifi.com!22222\home\fatwoman" /user:fatwoman /persistent:yes
 # Define a variable for the directory path
 export BASE_DIR="/media/fatwoman/15GB/"
 export FATBOY_DIR="/media/fatwoman/fatboy/"
@@ -66,9 +67,17 @@ runChromeRemoteDesktopkill() { /opt/google/chrome-remote-desktop/chrome-remote-d
 runChromeRemoteDesktopstatus() { systemctl status chrome-remote-desktop@fatwoman.service;}
 
 # LLM
-runLLM_Finnhub()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/FinnHub.py;}
 LLMfolder()          { cd ${BASE_DIR}Scripts_LLM_trader; }
 LLMfatfolder()       { cd ${FATBOY_DIR}Scripts_LLM_trader; }
+# runLLM_Consultant()  { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/LLM.py;}
+runLLM_Finnhub()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/FinnHub.py;}
+runLLM_newsapiorg()  { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/newsapiorg.py;}
+runLLM_Flow_POC()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/trading_flow_POC.py;}
+runLLM_Flow_v1()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/trading_flow_v1.py;}
+runLLM_Flow_v2()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/trading_flow_v2.py;}
+runLLM_Archiver()    { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/archive_llm_results.py;} # RUNS AT EOD
+
+# IB
 runIB_clientportal() {
     cd ${BASE_DIR}Scripts_LLM_trader/clientportal
     nohup bash bin/run.sh root/conf.yaml > gateway.log 2>&1 & disown
@@ -81,6 +90,10 @@ runIB_clientportaltickle()  { /usr/bin/python3 ${BASE_DIR}/Scripts_LLM_trader/ib
 # LLM Batches
 runBatchDailyLLM()  {
     runLLM_Finnhub
+    runLLM_newsapiorg
+    runLLM_Flow_POC
+    # runLLM_Flow_v1
+    runLLM_Flow_v2
 }
 
 runBatchPerMinute() {
@@ -132,6 +145,7 @@ runBatchEvening() {
 runBatchEOD(){
     runEODpy
     logsarchive
+    runLLM_Archiver
     }
 
 # utility

@@ -5,6 +5,8 @@ import socket
 import pandas as pd
 import time
 import os
+import sys
+# sys.path.insert(0, r"Z:\15GB\Scripts_LLM_trader")  # 0 = highest priority
 
 # %reset -f #forcefully resets the namespace by clearing all the variables, imported modules, and user-defined functions without asking for confirmation.
 # import importlib
@@ -30,6 +32,7 @@ fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
 # LLM
 LLM_data_path               = os.path.join(fatwoman_data_path, 'Scripts_LLM_trader')
 LLM_data_path_finnhub_file  = os.path.join(LLM_data_path, 'news_FinnHub.csv')
+LLM_data_path_newsapi_file  = os.path.join(LLM_data_path, 'news_NewsApiOrg.csv')    
 LLM_flow1_response_file     = os.path.join(LLM_data_path, 'LLM_flow1_response_file.csv') # full response
 LLM_flow1_order_file        = os.path.join(LLM_data_path, 'LLM_flow1_order_file.csv') # only tickers and buy sell
 # LLM_config_path           = os.path.join(fatwoman_data_path, 'Scipts_LLM_trader')
