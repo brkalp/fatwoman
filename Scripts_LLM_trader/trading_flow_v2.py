@@ -12,6 +12,8 @@ import logging
 from fatwoman_dir_setup import LLM_data_path_newsapi_file, LLM_data_path_finnhub_file
 from fatwoman_dir_setup import LLM_data_path
 
+import telegram_bot.telegram_bot as tg_bot
+
 
 # gets 5 suggestion headlines from poc then all of them are fed to v1, to analyze further
 def flow_v2():
@@ -26,6 +28,9 @@ def flow_v2():
         analyzed_resp = trading_flow_1(suggested_ticker)
         logging.info(f"Analyzed response for {suggested_ticker}: {analyzed_resp}")
         analysis.append(analyzed_resp)
+ 
+    tg_bot.notify_chat(' '.join(analysis)) # send messages to telegram chat
+
     return analysis
 
 
