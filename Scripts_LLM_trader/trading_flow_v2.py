@@ -28,13 +28,13 @@ def flow_v2():
         analyzed_resp = trading_flow_1(suggested_ticker)
         logging.info(f"Analyzed response for {suggested_ticker}: {analyzed_resp}")
         analysis.append(analyzed_resp)
-        tg_bot.notify_chat(f"---Analysis for {suggested_ticker}--- \n {analyzed_resp}") # send messages to telegram chat
+        # tg_bot.notify_chat(f"---Analysis for {suggested_ticker}--- \n {analyzed_resp}") # send messages to telegram chat
 
-    # tg_bot.notify_chat(' '.join(analysis)) # send messages to telegram chat
+    tg_bot.notify_chat("--today's report--" + '\n'.join(analysis)) # send messages to telegram chat
 
     return analysis
 
 
 if __name__ == "__main__":
     tg_bot.notify_chat("Testing flow_v2...")
-    # flow_v2()
+    flow_v2()
