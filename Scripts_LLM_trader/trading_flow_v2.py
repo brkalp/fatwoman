@@ -24,12 +24,13 @@ def flow_v2():
         poc_resp = file.read().strip().split(",")
     analysis = []
 
-    for suggested_ticker in poc_resp:
+    for suggested_ticker in poc_resp: # bunları paralel çalıştırmak lazım bağımsız
         analyzed_resp = trading_flow_1(suggested_ticker)
         logging.info(f"Analyzed response for {suggested_ticker}: {analyzed_resp}")
         analysis.append(analyzed_resp)
- 
-    tg_bot.notify_chat(' '.join(analysis)) # send messages to telegram chat
+        tg_bot.notify_chat(f"---Analysis for {suggested_ticker}--- \n {analyzed_resp}") # send messages to telegram chat
+
+    # tg_bot.notify_chat(' '.join(analysis)) # send messages to telegram chat
 
     return analysis
 

@@ -25,16 +25,17 @@ def trading_flow_1(ticker_name="AAPL"):  # disc_turn_number = 1
     
     bullish = bullish_LLM(name="v1_bull", loc_override=ticker_name)
     bearish = bearish_LLM(name="v1_bear", loc_override=ticker_name)
-    
+    judge = judge_LLM(name="v1_judge", loc_override=ticker_name)
 
     res_opt, tokens_optimist = bullish.work(prompt)
     res_pes, tokens_pes = bearish.work(prompt)
 
     judge_prompt = f""" Here are two opinions on buying {ticker_name} today. The first one is optimistic and the second one is pessimistic. Please provide a balanced and sensible conclusion based on both perspectives. optimistic: {res_opt}  pessimistic: {res_pes} """
-    judge_res, tokens_judge = judge_LLM(name="v1_judge", loc_override=ticker_name).work(judge_prompt)
+    judge_res, tokens_judge = judge.work(judge_prompt)
 
     summarized_text, tokens_summarizer = summarizer_LLM(name="v1_summarizer", loc_override=ticker_name).work(judge_res)
     print(f"summarized_text: {summarized_text}")
+    return summarized_text
 
  
 if __name__ == "__main__": 
