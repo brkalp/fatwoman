@@ -36,4 +36,5 @@ def flow_v2():
 
 
 if __name__ == "__main__":
-    flow_v2()
+    tg_bot.notify_chat("Testing flow_v2...")
+    # flow_v2()

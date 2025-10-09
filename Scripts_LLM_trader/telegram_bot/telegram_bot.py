@@ -1,4 +1,4 @@
-import requests
+import requests 
 
 class TelegramBot:
 
@@ -15,7 +15,7 @@ class TelegramBot:
             self._send_message(chat_id=listener, text=message)    
 
 def get_from_json(key):
-    with open('credentials.json', 'r') as f:
+    with open('./telegram_bot/credentials.json', 'r') as f:
         f = f.read()
         import json
         credentials = json.loads(f)
