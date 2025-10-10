@@ -29,19 +29,20 @@ def trading_flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number 
     bearish = bearish_LLM(name="v1_bear", loc_override=ticker_name)
     judge = judge_LLM(name="v1_judge", loc_override=ticker_name)
 
-    res_opt, tokens_optimist = bullish.work(prompt)
+    res_opt = bullish.work(prompt)
     print(f"res_opt response recieved")
-    res_pes, tokens_pes = bearish.work(prompt)
+    res_pes = bearish.work(prompt)
     print(f"res_pes response recieved")
 
     judge_prompt = f""" Here are two opinions on buying {ticker_name} today. The first one is optimistic and the second one is pessimistic. Please provide a balanced and sensible conclusion based on both perspectives. optimistic: {res_opt}  pessimistic: {res_pes} """
-    judge_res, tokens_judge = judge.work(judge_prompt)
+    judge_res = judge.work(judge_prompt)
     print(f"res_judge response recieved")
 
-    summarized_text, tokens_summarizer = summarizer_LLM(name="v1_summarizer", loc_override=ticker_name).work(judge_res)
+    summarized_text = summarizer_LLM(name="v1_summarizer", loc_override=ticker_name).work(judge_res)
     print(f"summarized_text: {summarized_text}")
 
-    tg_bot.notify_chat(f"---Analysis for {ticker_name}--- \n {summarized_text}") # send messages to telegram chat
+    if notify_users:
+        tg_bot.notify_chat(f"---Analysis for {ticker_name}--- \n {summarized_text}") # send messages to telegram chat
 
     return summarized_text
 

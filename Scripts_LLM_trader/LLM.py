@@ -43,7 +43,7 @@ class base_LLM:
     argument -- prompt, context
     Return: response
     """ 
-    def __getResponse(self, prompt, context) -> tuple[str, int, int]:
+    def __getResponse(self, prompt, context): #  -> tuple[str, int, int]
         client = OpenAI(api_key=OPENAI_API_KEY)
         response = client.chat.completions.create(
             model=self.model,

@@ -49,6 +49,7 @@ def fetch_cached_row(prompt, context, model_used):
 
 def print_db_contents():
     create_table()
+    print("Database contents:")
     with sqlite3.connect(DB_PATH) as conn:
         for row in conn.execute(f"SELECT * FROM {TABLE}"):
             print(row)
