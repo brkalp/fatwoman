@@ -38,7 +38,7 @@ def fetch_cached_row(prompt, context, model_used):
     create_table()
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.execute(f"""
-            SELECT response FROM {TABLE}
+            SELECT * FROM {TABLE}
             WHERE prompt = ? AND context = ? AND model_used = ?
             ORDER BY timestamp DESC
             LIMIT 1
