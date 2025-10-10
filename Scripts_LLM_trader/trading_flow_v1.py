@@ -48,7 +48,7 @@ def trading_flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number 
  
 if __name__ == "__main__": 
     trading_flow_1("AAPL", notify_users=True)
-    script_end_log()
+    # script_end_log()
 
     # """orders = json.loads(response)
 

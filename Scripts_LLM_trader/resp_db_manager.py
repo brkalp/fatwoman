@@ -1,1 +1,0 @@
-# TODO: either sqllite, excel or google sheets

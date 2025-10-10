@@ -1,15 +1,14 @@
 """Created on 09-14-2025 16:36:06 @author: denizyalimyilmaz"""
 
-import logging
-from matplotlib import text
-import pandas as pd
-import json
+from matplotlib import text 
 from openai import OpenAI
 import os
 from fatwoman_api_setup import OPENAI_API_KEY
 from fatwoman_dir_setup import LLM_data_path_finnhub_file, LLM_data_path
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
+
+from chat_cache_db import log_chat_interaction, fetch_cached_row
 
 # Abstract Parent Class
 class base_LLM:
@@ -21,35 +20,45 @@ class base_LLM:
         filename = "LLM_" + self.name + loc_override + "_latest_response.txt"
         self.write_loc = os.path.join(LLM_data_path, filename)
 
+    """ What should be used to get response from LLMS.
+    * check cache for matching prompt+context+model if found create new log with recycled=True and return cached response; if not add to new cache
+
+    parameters -- prompt : str
+    Returns -- LLM's response : str
+    """
     def work(self, prompt):
-        return self._getResponse(prompt=prompt, context=self.context)
+        cache = fetch_cached_row(prompt, self.context, self.model)
+        if cache:
+            log_chat_interaction(prompt, self.context, cache, 0, 0, self.name, self.model, recycled=True)
+            return cache
+        
+        # If not found in cache, get new response from LLM, save it and return it
+        response, tokens_input, tokens_output = self.__getResponse(prompt=prompt, context=self.context)
+        log_chat_interaction(prompt, self.context, response, tokens_input, tokens_output, self.name, self.model, recycled=False)
+        return response
 
-    def _getResponse(self, prompt, context, dummy=False):
-        logging.info("Dummy: %s. Output filename: %s" % (dummy, self.write_loc))
-        if dummy:
-            # print("Response reading from to %s" % write_loc)
-            with open(self.write_loc, "r") as file:
-                response_text = file.read()
-        else:
-            # print(f"Getting Response from %s" % self.name)
-            client = OpenAI(api_key=OPENAI_API_KEY)
-            response = client.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {"role": "system", "content": context},
-                    {"role": "user", "content": prompt},
-                ],
-            )
-            response_text = response.choices[0].message.content
-            logging.info(
-                "Total tokens used by %s: %s" % (self.name, response.usage.total_tokens)
-            )
-            # logging.info("\n  Response_text: %s" % response_text)
-                # text = str(response.usage.total_tokens) + "," + response_text
-            with open(self.write_loc, "w") as file:
-                file.write(response_text)
+    """
+    SUMMARY: GETS RESPONSE FROM OPENAI API AND NOTHING ELSE
+    Keyword arguments:
+    argument -- prompt, context
+    Return: response
+    """ 
+    def __getResponse(self, prompt, context) -> tuple[str, int, int]:
+        client = OpenAI(api_key=OPENAI_API_KEY)
+        response = client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": context},
+                {"role": "user", "content": prompt},
+            ],
+        )
+        response_text = response.choices[0].message.content
+        
 
-        return response_text, response.usage.total_tokens
+        with open(self.write_loc, "w") as file:
+            file.write(response_text)
+
+        return response_text, response.usage.prompt_tokens, response.usage.completion_tokens
 
 
 class consulter_LLM(base_LLM):
