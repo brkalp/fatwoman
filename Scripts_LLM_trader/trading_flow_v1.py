@@ -38,7 +38,7 @@ def trading_flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number 
     judge_res = judge.work(judge_prompt)
     print(f"res_judge response recieved")
 
-    summarized_text = summarizer_LLM(name="v1_summarizer", loc_override=ticker_name).work(judge_res)
+    summarized_text = summarizer_LLM(name="v1_summarizer", loc_override=ticker_name).work("ticker: "+ ticker_name + ",  " +judge_res)
     print(f"summarized_text: {summarized_text}")
 
     if notify_users:
@@ -49,27 +49,3 @@ def trading_flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number 
  
 if __name__ == "__main__": 
     trading_flow_1("AAPL", notify_users=True)
-    # script_end_log()
-
-    # """orders = json.loads(response)
-
-    # for order in orders:
-    #     ib_wrapper.doOrder(order)"""
-    # # response.csv(LLM_flow1_response_file)
-
-# """response =
-#     [
-#     {
-#         "action": "buy",
-#         "asset": "GLD",
-#         "confidence": 70,
-#         "reason": "Fed cut expectations, ETF inflows, and geopolitical risk support further upside in gold despite recent records."
-#     },
-#     {
-#         "action": "buy",
-#         "asset": "TLT",
-#         "confidence": 55,
-#         "reason": "Morgan Stanley sees a series of rate cuts; adding duration can benefit if the 10-year yield drifts lower."
-#     }
-#     ]
-# """
