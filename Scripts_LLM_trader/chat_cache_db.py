@@ -37,6 +37,7 @@ def log_chat_interaction(prompt, context, response, input_tokens, output_tokens,
 def fetch_cached_row(prompt, context, model_used):
     create_table()
     with sqlite3.connect(DB_PATH) as conn:
+        conn.row_factory = sqlite3.Row # no idea why this is needed for dict-like access. TODO research
         cursor = conn.execute(f"""
             SELECT * FROM {TABLE}
             WHERE prompt = ? AND context = ? AND model_used = ?
