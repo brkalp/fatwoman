@@ -75,6 +75,7 @@ runLLM_newsapiorg()  { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/db/newsapi
 runLLM_Flow_POC()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/flows/trading_flow_POC.py;}
 runLLM_Flow_v1()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/flows/trading_flow_v1.py;}
 runLLM_Flow_v2()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/flows/trading_flow_v2.py;}
+runLLM_main()    { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main.py;} # deniz added this
 runLLM_Archiver()    { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/db/archive_llm_results.py;} # RUNS AT EOD
 
 # IB
@@ -93,7 +94,8 @@ runBatchDailyLLM()  {
     runLLM_newsapiorg
     # runLLM_Flow_POC
     # runLLM_Flow_v1
-    runLLM_Flow_v2
+    # runLLM_Flow_v2
+    runLLM_main
 }
 
 runBatchPerMinute() {

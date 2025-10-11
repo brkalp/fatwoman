@@ -5,4 +5,4 @@
 * eğerki headerların tickerlarını eşitlersek sonradan 10 kere daha tekrar bütün headerları llm'lere atmamız gerekmez sadece gerekenleri atarız. Bunun için headerları sınıflandıran bir amele llm lazım.
 * bot responselarını ve token harcamalarını bir google sheets'e gönderebiliriz
 * alpin csvlerle nasıl kayıt tuttuğuna bak belki sonra
-* dir management holly hell
++ dir management holly hell
