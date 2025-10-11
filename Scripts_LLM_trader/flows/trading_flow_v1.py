@@ -42,7 +42,7 @@ def trading_flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number 
     print(f"summarized_text: {summarized_text}")
 
     if notify_users:
-        tg_bot.notify_chat(f"---Analysis for {ticker_name}--- \n {summarized_text}") # send messages to telegram chat
+        tg_bot.notify_listeners(f"---Analysis for {ticker_name}--- \n {summarized_text}") # send messages to telegram chat
 
     return summarized_text
 

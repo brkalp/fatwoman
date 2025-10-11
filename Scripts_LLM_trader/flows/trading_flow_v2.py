@@ -30,11 +30,11 @@ def flow_v2():
         analysis.append(analyzed_resp)
         # tg_bot.notify_chat(f"---Analysis for {suggested_ticker}--- \n {analyzed_resp}") # send messages to telegram chat
 
-    tg_bot.notify_chat("--today's report--" + '\n'.join(analysis)) # send messages to telegram chat
+    tg_bot.notify_listeners("--today's report--" + '\n'.join(analysis)) # send messages to telegram chat
 
     return analysis
 
 
 if __name__ == "__main__":
-    tg_bot.notify_chat("Testing flow_v2...")
+    tg_bot.notify_listeners("Testing flow_v2...")
     flow_v2()
