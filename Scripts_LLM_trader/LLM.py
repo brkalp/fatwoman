@@ -124,6 +124,15 @@ class summarizer_LLM(base_LLM):
             }}
             """
 
+# Tasked with classifying headlines for which tickers it is relevant to and giving a importance score
+class headline_classifier_LLM(base_LLM):
+    def __init__(self, model="gpt-4-nano", name="headline_classifier", loc_override=""):
+        super().__init__(name=name, model=model, loc_override=loc_override)
+
+        self.context = f"""
+            TODO 
+            """
+
 # ticker_to_company = {
 #     "AAPL": "Apple",
 #     "MSFT": "Microsoft",

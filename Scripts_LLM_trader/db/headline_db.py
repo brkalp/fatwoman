@@ -1,26 +1,34 @@
-import sqlite3
+import sqlite3, os
 
-TABLE_NAME = 'headlines'
+TABLE_NAME = "headlines"
+TABLE_DIR_NAME = TABLE_NAME + ".db"
 
-# Headline db columns: headline, date, source, tags_given, importance
-def add_entry(headline: str, source: str, url: str, timestamp: str):
-    conn = sqlite3.connect(f'{TABLE_NAME}.db') 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_FILE = os.path.join(BASE_DIR, TABLE_DIR_NAME)
 
-    conn.execute('''
-        CREATE TABLE IF NOT EXISTS headlines (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            headline TEXT,
-            source TEXT,
-            url TEXT,
-            timestamp TEXT
+
+# TODO: Headline db columns: headline, date, source, tags_given, importance
+def add_entry(headline: str, date: str, tags_given: str, importance: int, source: str):
+    with sqlite3.connect(DB_FILE) as conn:
+        conn.execute(  # create table
+            f"""
+            CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                headline TEXT NOT NULL,
+                date TEXT DEFAULT (DATE('now')),
+                tags_given TEXT,
+                importance INTEGER DEFAULT 0,
+                source TEXT
+            )
+        """
         )
-    ''')
-    conn.execute('''
-        INSERT INTO headlines (headline, source, url, timestamp)
-        VALUES (?, ?, ?, ?)
-    ''', (headline, source, url, timestamp))
-    
-    conn.commit()
-    conn.close()
 
-# add functions to get rows by date and probably by source
+        conn.execute(  # Add entry
+            """
+            INSERT INTO headlines (headline, date, tags_given, importance, source)
+            VALUES (?, ?, ?, ?, ?)
+        """,
+            (headline, date, tags_given, importance, source),
+        )
+
+        conn.commit()
