@@ -1,0 +1,73 @@
+# import json
+# import ib_wrapper
+from LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
+import pandas as pd
+
+from fatwoman_log_setup import script_end_log
+import logging
+from fatwoman_dir_setup import LLM_data_path_newsapi_file, LLM_data_path_finnhub_file
+from fatwoman_dir_setup import LLM_flow1_response_file, LLM_flow1_order_file
+
+import telegram_bot.telegram_bot as tg_bot
+
+def get_headlines():
+    print(f"Getting headlines: {LLM_data_path_finnhub_file}")
+    df_headlines_1 = pd.read_csv(LLM_data_path_finnhub_file)["headline"]
+    print(f"Getting headlines: {LLM_data_path_newsapi_file}")
+    df_headlines_2 = pd.read_csv(LLM_data_path_newsapi_file)["title"].rename("headline")
+    df_headlines = pd.concat([df_headlines_1, df_headlines_2])
+    return df_headlines
+
+def trading_flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number = 1
+    df_headlines = get_headlines().to_list(
+    prompt = (
+        f""" What do you think of buying {ticker_name} today ?: %s """ % df_headlines
+    )
+    
+    bullish = bullish_LLM(name="v1_bull", loc_override=ticker_name)
+    bearish = bearish_LLM(name="v1_bear", loc_override=ticker_name)
+    judge = judge_LLM(name="v1_judge", loc_override=ticker_name)
+
+    res_opt, tokens_optimist = bullish.work(prompt)
+    print(f"res_opt response recieved")
+    res_pes, tokens_pes = bearish.work(prompt)
+    print(f"res_pes response recieved")
+
+    judge_prompt = f""" Here are two opinions on buying {ticker_name} today. The first one is optimistic and the second one is pessimistic. Please provide a balanced and sensible conclusion based on both perspectives. optimistic: {res_opt}  pessimistic: {res_pes} """
+    judge_res, tokens_judge = judge.work(judge_prompt)
+    print(f"res_judge response recieved")
+
+    summarized_text, tokens_summarizer = summarizer_LLM(name="v1_summarizer", loc_override=ticker_name).work(judge_res)
+    print(f"summarized_text: {summarized_text}")
+
+    tg_bot.notify_chat(f"---Analysis for {ticker_name}--- \n {summarized_text}") # send messages to telegram chat
+
+    return summarized_text
+
+ 
+if __name__ == "__main__": 
+    trading_flow_1("AAPL", notify_users=True)
+    # script_end_log()
+
+    # """orders = json.loads(response)
+
+    # for order in orders:
+    #     ib_wrapper.doOrder(order)"""
+    # # response.csv(LLM_flow1_response_file)
+
+# """response =
+#     [
+#     {
+#         "action": "buy",
+#         "asset": "GLD",
+#         "confidence": 70,
+#         "reason": "Fed cut expectations, ETF inflows, and geopolitical risk support further upside in gold despite recent records."
+#     },
+#     {
+#         "action": "buy",
+#         "asset": "TLT",
+#         "confidence": 55,
+#         "reason": "Morgan Stanley sees a series of rate cuts; adding duration can benefit if the 10-year yield drifts lower."
+#     }
+#     ]
+# """
