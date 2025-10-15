@@ -1,20 +1,14 @@
-# import json
-# import ib_wrapper
-from LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
-import pandas as pd
-import os
-
-from Scripts_LLM_trader.FLOWS.trading_flow_v1 import trading_flow_1
-from trading_flow_POC import poc_flow_1
+from trading_flow_v1 import flow_1
+from trading_flow_POC import poc_flow
 import logging
-import telegram_bot.telegram_bot as tg_bot
+import telegram_bot.telegram_bot as tg_bot # this will explode if trading_flow is run as main
 
 
 # FLOW 2: gets 5 suggestion headlines from poc then all of them are fed to v1, to analyze further
 def flow_v2():
     analysis = []
-    for suggested_ticker in poc_flow_1(): # bunları paralel çalıştırmak lazım bağımsız
-        analyzed_resp = trading_flow_1(suggested_ticker)
+    for suggested_ticker in poc_flow(): # bunları paralel çalıştırmak lazım bağımsız
+        analyzed_resp = flow_1(suggested_ticker)
         logging.info(f"Analyzed response for {suggested_ticker}: {analyzed_resp}")
         analysis.append(analyzed_resp) 
 

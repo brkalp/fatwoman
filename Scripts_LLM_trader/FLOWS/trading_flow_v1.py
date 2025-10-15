@@ -1,10 +1,6 @@
-# import json
-# import ib_wrapper
 from LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
 import pandas as pd
-
-from fatwoman_log_setup import script_end_log
-import logging
+ 
 from fatwoman_dir_setup import LLM_data_path_newsapi_file, LLM_data_path_finnhub_file
 from fatwoman_dir_setup import LLM_flow1_response_file, LLM_flow1_order_file
 
@@ -19,7 +15,7 @@ def get_headlines():
     return df_headlines
 
 # Gets a ticker name as parameters, analyzes it, returns a summary text
-def trading_flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number = 1
+def flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number = 1
     df_headlines = get_headlines().to_list()
 
     prompt = (
@@ -49,4 +45,4 @@ def trading_flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number 
 
  
 if __name__ == "__main__": 
-    trading_flow_1("AAPL", notify_users=True)
+    flow_1("AAPL", notify_users=True)
