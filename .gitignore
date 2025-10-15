@@ -6,3 +6,4 @@ System Volume Information/
 **/__pycache__/
 **/geckodriver.log
 *.pyc
+.env

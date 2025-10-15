@@ -18,6 +18,7 @@ def get_headlines():
     df_headlines = pd.concat([df_headlines_1, df_headlines_2])
     return df_headlines
 
+# Gets a ticker name as parameters, analyzes it, returns a summary text
 def trading_flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number = 1
     df_headlines = get_headlines().to_list()
 

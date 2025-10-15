@@ -9,6 +9,7 @@ from fatwoman_dir_setup import LLM_data_path_newsapi_file, LLM_data_path_finnhub
 from fatwoman_dir_setup import LLM_flow1_response_file, LLM_flow1_order_file
 
 
+# Based on fed data returns top 5 tickers to buy & hold
 def poc_flow_1():
     print(f"Getting headlines: {LLM_data_path_finnhub_file}")
     df_headlines_1 = pd.read_csv(LLM_data_path_finnhub_file)['headline']
