@@ -1,10 +1,10 @@
-from LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
+from ..LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
 import pandas as pd
  
 from fatwoman_dir_setup import LLM_data_path_newsapi_file, LLM_data_path_finnhub_file
 from fatwoman_dir_setup import LLM_flow1_response_file, LLM_flow1_order_file
 
-import telegram_bot.telegram_bot as tg_bot
+from ..telegram_bot import tg_bot
 
 def get_headlines():
     print(f"Getting headlines: {LLM_data_path_finnhub_file}")
