@@ -1,20 +1,22 @@
 from flows.trading_flow_v1 import flow_v1 
 from flows.trading_flow_POC import poc_flow
-import logging
+import logging, threading
 from telegram_bot import tg_bot # this will explode if trading_flow is run as main
+logging.basicConfig(level=logging.INFO)
 
 
 # FLOW 2: gets 5 suggestion headlines from poc then all of them are fed to v1, to analyze further
-def flow_v2(date :str="2025-10-16"):
-    logging.basicConfig(level=logging.INFO)
+def flow_v2(date :str="2025-10-16", notify_users:bool=True):
     analysis = []
-    for suggested_ticker in poc_flow(date): # bunları paralel çalıştırmak lazım bağımsız
+    
+    for suggested_ticker in poc_flow(date): 
         logging.info(f"ANALYSING TICKER: {suggested_ticker}")
         analyzed_resp = flow_v1(suggested_ticker, date=date)
         logging.info(f"Analyzed response for {suggested_ticker}:\n {analyzed_resp}")
         analysis.append(analyzed_resp) 
 
-    tg_bot.notify_listeners("--today's report--" + '\n'.join(analysis)) # send messages to telegram chat
+    if notify_users:   
+        tg_bot.notify_listeners("--today's report--" + '\n'.join(analysis)) # send messages to telegram chat
 
     return analysis
 

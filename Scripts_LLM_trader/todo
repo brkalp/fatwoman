@@ -1,12 +1,11 @@
-* v2 paralel çalışabilir
+- v2 paralel çalışabilir -> mutexlockları database.py'ların içinde tutlmalı bunun için singulten patterne çevirmemiz mantıklı olabilir. !!threading için sqlite çakışma olabilir çünkü
 + output tokenlerini azalt
 + db'yi iyileştir
-* fix v2
++ fix v2
 * eğerki headerların tickerlarını eşitlersek sonradan 10 kere daha tekrar bütün headerları llm'lere atmamız gerekmez sadece gerekenleri atarız. Bunun için headerları sınıflandıran bir amele llm lazım.
 * bot responselarını ve token harcamalarını bir google sheets'e gönderebiliriz
-* alpin csvlerle nasıl kayıt tuttuğuna bak belki sonra
++ alpin csvlerle nasıl kayıt tuttuğuna bak belki sonra
 + dir management holly hell
 * repoda ve linuxta test branchi aç testler yaz belki
-
-
-* importları düzelt
++ importları düzelt
+* Haftanın başlığı seklinde bir sınıflandırma ile geçmişten gelen önemli headline'ları tekrar yedirip kaliteyi arttırmayı deneyebiliriz

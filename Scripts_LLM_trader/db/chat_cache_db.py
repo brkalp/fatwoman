@@ -1,5 +1,4 @@
-import sqlite3, os
-from datetime import datetime
+import sqlite3, os, threading 
 
 DB_PATH = "chat_cache.db"
 TABLE = "chat_cache"
@@ -7,8 +6,12 @@ TABLE = "chat_cache"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_FILE = os.path.join(BASE_DIR, DB_PATH)
 
-def create_table():
+mutex_lock = threading.Lock() # Prevent concurrent write issues to db
+
+def _init_table():
     with sqlite3.connect(DB_FILE) as conn:
+        conn.execute("PRAGMA journal_mode=WAL;")
+        conn.execute("PRAGMA synchronous=NORMAL;")
         conn.execute(f"""
             CREATE TABLE IF NOT EXISTS {TABLE} (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,22 +29,25 @@ def create_table():
 
         # conn.commit() # TODO: Is this needed with 'with' statement? # I guess not
 
+_init_table()
+
 
 def log_chat_interaction(prompt, context, response, input_tokens, output_tokens,
                          agent_name, model_used, recycled=False):
-    create_table()
-    with sqlite3.connect(DB_FILE) as conn:
-        conn.execute(f"""
-            INSERT INTO {TABLE} 
-            (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """, (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used))
+
+    with mutex_lock: # Threading safety
+        with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
+            conn.execute("BEGIN IMMEDIATE;")
+            conn.execute(f"""
+                INSERT INTO {TABLE} 
+                (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """, (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used))
     
 
 
 def fetch_cached_row(prompt, context, model_used):
-    create_table()
-    with sqlite3.connect(DB_FILE) as conn:
+    with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
         conn.row_factory = sqlite3.Row # no idea why this is needed for dict-like access. TODO research
         cursor = conn.execute(f"""
             SELECT * FROM {TABLE}
@@ -55,7 +61,6 @@ def fetch_cached_row(prompt, context, model_used):
 
 
 def print_db_contents():
-    create_table()
     print("Database contents:")
     with sqlite3.connect(DB_FILE) as conn:
         for row in conn.execute(f"SELECT * FROM {TABLE}"):

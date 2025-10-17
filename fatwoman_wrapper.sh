@@ -90,7 +90,7 @@ runIB_clientportalcheck()   { ps -ef | grep clientportal.gw.jar | grep -v grep;}
 runIB_clientportaltickle()  { /usr/bin/python3 ${BASE_DIR}/Scripts_LLM_trader/ib_wrapper_tickler.py;}
 
 # LLM Batches
-runBatchDailyLLM()  {
+runBatchDailyLLM()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/main.py
     # runLLM_Finnhub
     # runLLM_newsapiorg
     # runLLM_Flow_POC
