@@ -4,13 +4,12 @@ TABLE_NAME = "headlines"
 TABLE_DIR_NAME = TABLE_NAME + ".db"
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_FILE = os.path.join(BASE_DIR, TABLE_DIR_NAME)
-print(f"DB file path: {DB_FILE}")
-
+DB_FILE = os.path.join(BASE_DIR, TABLE_DIR_NAME) 
 
 # headline, datetime, summary,  source, url, tags_given, importance
+# TODO this shouldn't be unix time ffs
 def add_entry(
-    headline: str, date: str,  summary: str, url: str, source:str, tags_given: str, importance: int
+    headline: str, date: int,  summary: str, url: str, source:str, tags_given: str, importance: int
 ):
     with sqlite3.connect(DB_FILE) as conn:
         conn.execute(  # create table
@@ -35,6 +34,8 @@ def add_entry(
         )
 
         if cur.fetchone() is None:
+            date = convert_unix(date)
+
             conn.execute(  # Add entry
                 """
                 INSERT INTO headlines (headline, date, summary, url, tags_given, importance, source)
@@ -45,5 +46,19 @@ def add_entry(
 
         conn.commit()
 
+
+def convert_unix(t:int):
+    from datetime import datetime, UTC
+    if not isinstance(t, (int, float)) and 1e9 < t < 2e10:
+        return t  # already date string
+    
+    if t > 1e12:  # ms → s
+        t /= 1000
+    
+    return datetime.fromtimestamp(t, tz=UTC).strftime("%Y-%m-%d")
+
 def update_entryy():  # for adding tags_given and importance later
     pass
+
+if __name__ == "__main__":
+    print(convert_unix(1694764800))

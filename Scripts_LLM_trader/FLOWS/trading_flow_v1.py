@@ -1,7 +1,7 @@
 from LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
 import pandas as pd
  
-from fatwoman_dir_setup import LLM_data_path_newsapi_file, LLM_data_path_finnhub_file 
+# from fatwoman_dir_setup import LLM_data_path_newsapi_file, LLM_data_path_finnhub_file 
 
 from telegram_bot import tg_bot
 
