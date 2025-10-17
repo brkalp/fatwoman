@@ -6,7 +6,7 @@ from telegram_bot import tg_bot # this will explode if trading_flow is run as ma
 
 # FLOW 2: gets 5 suggestion headlines from poc then all of them are fed to v1, to analyze further
 def flow_v2(date :str="2025-10-16"):
-    logging.config(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO)
     analysis = []
     for suggested_ticker in poc_flow(date): # bunları paralel çalıştırmak lazım bağımsız
         logging.info(f"ANALYSING TICKER: {suggested_ticker}")

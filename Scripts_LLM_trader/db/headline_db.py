@@ -67,14 +67,14 @@ def get_entry_summaries(date: str = ""):
     
 
 def convert_unix(t:int):
-    from datetime import datetime, UTC
-    if not isinstance(t, (int, float)) and 1e9 < t < 2e10:
+    from datetime import datetime, timezone
+    if not isinstance(t, (int, float)) or not 1e9 < t < 2e10:
         return t  # already date string
     
     if t > 1e12:  # ms → s
         t /= 1000
     
-    return datetime.fromtimestamp(t, tz=UTC).strftime("%Y-%m-%d")
+    return datetime.fromtimestamp(t, tz=timezone.utc).strftime("%Y-%m-%d") 
 
 def update_entryy():  # for adding tags_given and importance later
     pass
