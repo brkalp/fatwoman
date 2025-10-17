@@ -1,8 +1,7 @@
 """Created on 09-14-2025 16:36:06 @author: denizyalimyilmaz"""
 from dotenv import load_dotenv
 from openai import OpenAI
-import os
-# from fatwoman_dir_setup import LLM_data_path_finnhub_file, LLM_data_path
+import os 
 
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -11,19 +10,10 @@ from db.chat_cache_db import log_chat_interaction, fetch_cached_row # TODO will 
 
 # Abstract Parent Class
 class base_LLM:
-    def __init__(self, model, loc_override="", name="unnamed_LLM"):
+    def __init__(self, model, name="unnamed_LLM"):
         print(f"Initializing a {model} named {name} ")
         self.model = model
-        self.name = name
-
-        """try:
-            loc_override = loc_override if loc_override == "" else "_" + loc_override
-            filename = "LLM_" + self.name + loc_override + "_latest_response.txt"
-            self.write_loc = os.path.join(LLM_data_path, filename)
-        except Exception as e:
-            print(f"Error setting write location: {e}")
-            self.write_loc = "LLM_latest_response.txt"
-            """
+        self.name = name 
 
     """ What should be used to get response from LLMS.
     * check cache for matching prompt+context+model if found create new log with recycled=True and return cached response; if not add to new cache
@@ -58,21 +48,13 @@ class base_LLM:
             ],
         )
         response_text = response.choices[0].message.content
-        
-
-        """ try:
-            with open(self.write_loc, "w") as file:
-                file.write(response_text)
-        except Exception as e:
-            print(f"Error writing response to file: {e}")
-        """
 
         return response_text, response.usage.prompt_tokens, response.usage.completion_tokens
 
 
 class consulter_LLM(base_LLM):
-    def __init__(self, model="gpt-4-nano", name="consulter", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
+    def __init__(self, model="gpt-4o-mini", name="consulter"):
+        super().__init__(name=name, model=model )
 
         self.context = f"""
             You are the Consulter agent.
@@ -82,8 +64,8 @@ class consulter_LLM(base_LLM):
 
 
 class bullish_LLM(base_LLM):
-    def __init__(self, model="gpt-4-nano", name="bull", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
+    def __init__(self, model="gpt-4o-mini", name="bull"  ):
+        super().__init__(name=name, model=model )
 
         self.context = f"""
             USE AT MOST 200 WORDS. THE OUTPUT WILL BE USED BY A MACHINE.
@@ -96,8 +78,8 @@ class bullish_LLM(base_LLM):
 
 
 class bearish_LLM(base_LLM):
-    def __init__(self, model="gpt-4-nano", name="bear", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
+    def __init__(self, model="gpt-4o-mini", name="bear"  ):
+        super().__init__(name=name, model=model )
 
         self.context = f"""
             USE AT MOST 200 WORDS. THE OUTPUT WILL BE USED BY A MACHINE.
@@ -110,8 +92,8 @@ class bearish_LLM(base_LLM):
 
 
 class judge_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="judge", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
+    def __init__(self, model="gpt-5", name="judge"  ):
+        super().__init__(name=name, model=model )
 
         self.context = f"""
             USE AT MOST 200 WORDS. THE OUTPUT WILL BE USED BY A MACHINE.
@@ -123,8 +105,8 @@ class judge_LLM(base_LLM):
 
 
 class summarizer_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="summarizer", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
+    def __init__(self, model="gpt-5", name="summarizer"  ):
+        super().__init__(name=name, model=model )
 
         self.context = f"""
             You are an expert financial analyst with a PhD in financial markets and economics.
@@ -141,8 +123,8 @@ class summarizer_LLM(base_LLM):
 
 # Tasked with classifying headlines for which tickers it is relevant to and giving a importance score
 class headline_classifier_LLM(base_LLM):
-    def __init__(self, model="gpt-4-nano", name="headline_classifier", loc_override=""):
-        super().__init__(name=name, model=model, loc_override=loc_override)
+    def __init__(self, model="gpt-4o-mini", name="headline_classifier"  ):
+        super().__init__(name=name, model=model )
 
         self.context = f"""
             TODO 

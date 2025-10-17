@@ -46,6 +46,25 @@ def add_entry(
 
         conn.commit()
 
+# Filter by date TODO: and tags_given
+def get_entry_summaries(date: str = ""):
+    with sqlite3.connect(DB_FILE) as conn:
+        cursor = conn.cursor()
+
+        if date:
+            cursor.execute(
+                f"SELECT summary FROM {TABLE_NAME} WHERE date=? LIMIT 100",
+                (date,)
+            )
+        else:
+            cursor.execute(f"SELECT summary FROM {TABLE_NAME} DESC LIMIT 100")
+
+        rows = cursor.fetchall()
+
+        joined = "; ".join(row[0] for row in rows)
+
+        return joined
+    
 
 def convert_unix(t:int):
     from datetime import datetime, UTC
@@ -61,4 +80,5 @@ def update_entryy():  # for adding tags_given and importance later
     pass
 
 if __name__ == "__main__":
+    print(get_entry_summaries("2025-10-16"))
     print(convert_unix(1694764800))
