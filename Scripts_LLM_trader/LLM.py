@@ -1,10 +1,11 @@
 """Created on 09-14-2025 16:36:06 @author: denizyalimyilmaz"""
-
+from dotenv import load_dotenv
 from openai import OpenAI
 import os
-from fatwoman_api_setup import OPENAI_API_KEY # TODO improve .env setup
-from fatwoman_dir_setup import LLM_data_path_finnhub_file, LLM_data_path
+# from fatwoman_dir_setup import LLM_data_path_finnhub_file, LLM_data_path
 
+load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 from db.chat_cache_db import log_chat_interaction, fetch_cached_row # TODO will probably explode
 
@@ -15,13 +16,14 @@ class base_LLM:
         self.model = model
         self.name = name
 
-        try:
+        """try:
             loc_override = loc_override if loc_override == "" else "_" + loc_override
             filename = "LLM_" + self.name + loc_override + "_latest_response.txt"
             self.write_loc = os.path.join(LLM_data_path, filename)
         except Exception as e:
             print(f"Error setting write location: {e}")
             self.write_loc = "LLM_latest_response.txt"
+            """
 
     """ What should be used to get response from LLMS.
     * check cache for matching prompt+context+model if found create new log with recycled=True and return cached response; if not add to new cache
@@ -37,7 +39,7 @@ class base_LLM:
         
         # If not found in cache, get new response from LLM, save it and return it
         response, tokens_input, tokens_output = self.__getResponse(prompt=prompt, context=self.context)
-        log_chat_interaction(prompt, self.context, response, tokens_input, tokens_output, self.name, self.model, recycled=False)
+        log_chat_interaction(prompt, self.context, response, tokens_input, tokens_output, self.name, self.model, recycled=False) # log to db
         return response
 
     """
@@ -58,11 +60,12 @@ class base_LLM:
         response_text = response.choices[0].message.content
         
 
-        try:
+        """ try:
             with open(self.write_loc, "w") as file:
                 file.write(response_text)
         except Exception as e:
             print(f"Error writing response to file: {e}")
+        """
 
         return response_text, response.usage.prompt_tokens, response.usage.completion_tokens
 

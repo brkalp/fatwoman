@@ -1,10 +1,9 @@
-from ..LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
+from LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
 import pandas as pd
  
-from fatwoman_dir_setup import LLM_data_path_newsapi_file, LLM_data_path_finnhub_file
-from fatwoman_dir_setup import LLM_flow1_response_file, LLM_flow1_order_file
+from fatwoman_dir_setup import LLM_data_path_newsapi_file, LLM_data_path_finnhub_file 
 
-from ..telegram_bot import tg_bot
+from telegram_bot import tg_bot
 
 def get_headlines():
     print(f"Getting headlines: {LLM_data_path_finnhub_file}")
@@ -12,10 +11,11 @@ def get_headlines():
     print(f"Getting headlines: {LLM_data_path_newsapi_file}")
     df_headlines_2 = pd.read_csv(LLM_data_path_newsapi_file)["title"].rename("headline")
     df_headlines = pd.concat([df_headlines_1, df_headlines_2])
+
     return df_headlines
 
 # Gets a ticker name as parameters, analyzes it, returns a summary text
-def flow_1(ticker_name="AAPL", notify_users=False):  # disc_turn_number = 1
+def flow_1(ticker_name="AAPL", notify_users=False, date=""): 
     df_headlines = get_headlines().to_list()
 
     prompt = (

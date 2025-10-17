@@ -1,7 +1,7 @@
 from trading_flow_v1 import flow_1
 from trading_flow_POC import poc_flow
 import logging
-from ..telegram_bot import tg_bot # this will explode if trading_flow is run as main
+from telegram_bot import tg_bot # this will explode if trading_flow is run as main
 
 
 # FLOW 2: gets 5 suggestion headlines from poc then all of them are fed to v1, to analyze further
