@@ -8,6 +8,7 @@ DB_FILE = os.path.join(BASE_DIR, DB_PATH)
 
 mutex_lock = threading.Lock() # Prevent concurrent write issues to db
 
+# Recycled'ı sil
 def _init_table():
     with sqlite3.connect(DB_FILE) as conn:
         conn.execute("PRAGMA journal_mode=WAL;")
@@ -26,8 +27,7 @@ def _init_table():
                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
             )
         """)
-
-        # conn.commit() # TODO: Is this needed with 'with' statement? # I guess not
+ 
 
 _init_table()
 
@@ -58,6 +58,19 @@ def fetch_cached_row(prompt, context, model_used):
         row = cursor.fetchone()
   
     return row
+
+def get_id(prompt, resp): # TODO how to get value from row
+    with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
+        query = """
+            SELECT id FROM {TABLE}
+            WHERE prompt = ? AND context = ? AND model_used = ?
+            ORDER BY timestamp DESC
+            LIMIT 1
+        """
+        
+        cursor = conn.execute(query, (prompt, resp))
+        row = cursor.fetchone()
+        return row
 
 
 def print_db_contents():

@@ -10,4 +10,5 @@
 + importları düzelt
 * Haftanın başlığı seklinde bir sınıflandırma ile geçmişten gelen önemli headline'ları tekrar yedirip kaliteyi arttırmayı deneyebiliriz
 * headlines.db'deki tarih parametre olarak alınmalı, eklenme zamanı değil
-
+* headlines.db'sini silebiliriz belki
+* can I retrieve chat_cahce from openai api, and delete our db?
