@@ -9,3 +9,5 @@
 * repoda ve linuxta test branchi aç testler yaz belki
 + importları düzelt
 * Haftanın başlığı seklinde bir sınıflandırma ile geçmişten gelen önemli headline'ları tekrar yedirip kaliteyi arttırmayı deneyebiliriz
+* headlines.db'deki tarih parametre olarak alınmalı, eklenme zamanı değil
+

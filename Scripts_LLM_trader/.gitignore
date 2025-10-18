@@ -2,3 +2,5 @@ clientportal
 .env
 *.db
 *.sqlite
+*.db-wal
+*.db-shm
