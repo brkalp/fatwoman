@@ -16,16 +16,16 @@ def _init_db():
             create_table_query = """
             CREATE TABLE IF NOT EXISTS trades (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                date TEXT,
+                date TEXT, 
                 ticker TEXT,
                 order TEXT,
                 order_amount REAL,
                 open REAL,
-                high REAL,
+                high REAL, 
                 low REAL,
                 close REAL,
                 profit_made REAL,
-                notes TEXT
+                flow_name TEXT
             )
             """
 
@@ -33,7 +33,7 @@ def _init_db():
 
 _init_db()
 
-def add_base(ticker, date, notes = ""): # this should probably check if this ticker and date pair was added before and if was; overwrite it ?
+def add_base(ticker, date, flow_name = ""): # this should probably check if this ticker and date pair was added before and if was; overwrite it ?
     with mutex:
         with sqlite3.connect(DB_PATH) as conn: 
             cursor = conn.cursor()
@@ -46,8 +46,8 @@ def add_base(ticker, date, notes = ""): # this should probably check if this tic
             cursor.execute(insert_query, (ticker, date))
 
 
-def add_order(ticker, date, order, amount, notes = ""):
-    id = get_id(ticker, date, notes)
+def add_order(ticker, date, order, amount, flow_name = ""):
+    id = get_id(ticker, date, flow_name)
 
     with mutex: 
         with sqlite3.connect(DB_PATH) as conn:
@@ -76,16 +76,16 @@ def add_market_val(id, open, high, low, close, profit_made): # for flow_market_a
             cursor.execute(update_query, (t_open, t_high, t_low, t_close, profit_made, id))
             conn.commit() 
 
-def get_id(ticker, date, notes): # TODO how to get value from row
+def get_id(ticker, date, flow_name): # TODO how to get value from row
     with sqlite3.connect(DB_PATH, timeout=10.0) as conn:
         query = """
             SELECT id FROM {TABLE}
-            WHERE ticker = ? AND date = ? AND notes = ?
+            WHERE ticker = ? AND date = ? AND flow_name = ?
             ORDER BY timestamp DESC
             LIMIT 1
         """
         
-        cursor = conn.execute(query, (ticker, date, notes))
+        cursor = conn.execute(query, (ticker, date, flow_name))
         row = cursor.fetchone()
         return row
 
