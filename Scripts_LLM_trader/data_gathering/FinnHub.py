@@ -18,6 +18,5 @@ def save_news():
         add_entry(n["headline"], n["datetime"], n["summary"], n["url"], n.get("source", ""), "", 0)
  
 
-if __name__ == "__main__":
-    # print(_get_news()[0]['category'])
+if __name__ == "__main__": 
     save_news()

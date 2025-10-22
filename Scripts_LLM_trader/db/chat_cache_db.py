@@ -9,6 +9,7 @@ DB_FILE = os.path.join(BASE_DIR, DB_PATH)
 mutex_lock = threading.Lock() # Prevent concurrent write issues to db
 
 # Recycled'ı sil
+# TODO: add another field for flow_id; remove flow_chat_conn
 def _init_table():
     with sqlite3.connect(DB_FILE) as conn:
         conn.execute("PRAGMA journal_mode=WAL;")

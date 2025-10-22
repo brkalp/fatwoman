@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     date=datetime.date.today()
     logging.info(f"date being given: {date}")
-    # flow_v2(date=date, notify_users=True)
+    flow_v2(date=date, notify_users=True)
     """resp=poc_flow("2025-10-16")
     for r in resp:
         print(r)"""
