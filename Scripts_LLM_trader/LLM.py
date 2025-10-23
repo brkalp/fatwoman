@@ -1,19 +1,25 @@
 """Created on 09-14-2025 16:36:06 @author: denizyalimyilmaz"""
+
 from dotenv import load_dotenv
 from openai import OpenAI
-import os 
+import os
 
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-from db.chat_cache_db import log_chat_interaction, fetch_cached_row # TODO will probably explode
+from db.chat_cache_db import (
+    log_chat_interaction,
+    fetch_cached_row,
+)  # TODO will probably explode
+
 
 # Abstract Parent Class
 class base_LLM:
-    def __init__(self, model, name="unnamed_LLM"):
+    def __init__(self, model, name="unnamed_LLM", flow_id=None):
         print(f"Initializing a {model} named {name} ")
         self.model = model
-        self.name = name 
+        self.name = name
+        self.flow_id = flow_id
 
     """ What should be used to get response from LLMS.
     * check cache for matching prompt+context+model if found create new log with recycled=True and return cached response; if not add to new cache
@@ -21,15 +27,39 @@ class base_LLM:
     parameters -- prompt : str
     Returns -- LLM's response : str
     """
+
     def work(self, prompt):
         cache = fetch_cached_row(prompt, self.context, self.model)
         if cache:
-            log_chat_interaction(cache["prompt"], cache["context"], cache["response"] , cache["input_tokens"], cache["output_tokens"], cache["agent_name"], cache["model_used"], cache["date"], recycled=True)
+            log_chat_interaction(
+                cache["prompt"],
+                cache["context"],
+                cache["response"],
+                cache["input_tokens"],
+                cache["output_tokens"],
+                cache["agent_name"],
+                cache["model_used"],
+                cache["date"],
+                recycled=True,
+                flow_id=self.flow_id,
+            )
+            
             return cache["response"]
-        
+
         # If not found in cache, get new response from LLM, save it and return it
-        response, tokens_input, tokens_output = self.__getResponse(prompt=prompt, context=self.context)
-        log_chat_interaction(prompt, self.context, response, tokens_input, tokens_output, self.name, self.model, recycled=False) # log to db
+        response, tokens_input, tokens_output = self.__getResponse(
+            prompt=prompt, context=self.context
+        )
+        log_chat_interaction(
+            prompt,
+            self.context,
+            response,
+            tokens_input,
+            tokens_output,
+            self.name,
+            self.model,
+            recycled=False,
+        )  # log to db
         return response
 
     """
@@ -37,8 +67,9 @@ class base_LLM:
     Keyword arguments:
     argument -- prompt, context
     Return: response
-    """ 
-    def __getResponse(self, prompt, context): #  -> tuple[str, int, int]
+    """
+
+    def __getResponse(self, prompt, context):  #  -> tuple[str, int, int]
         client = OpenAI(api_key=OPENAI_API_KEY)
         response = client.chat.completions.create(
             model=self.model,
@@ -49,12 +80,16 @@ class base_LLM:
         )
         response_text = response.choices[0].message.content
 
-        return response_text, response.usage.prompt_tokens, response.usage.completion_tokens
+        return (
+            response_text,
+            response.usage.prompt_tokens,
+            response.usage.completion_tokens,
+        )
 
 
 class consulter_LLM(base_LLM):
-    def __init__(self, model="gpt-4o-mini", name="consulter"):
-        super().__init__(name=name, model=model )
+    def __init__(self, model="gpt-4o-mini", name="consulter", flow_id=None):
+        super().__init__(name=name, model=model, flow_id=flow_id)
 
         self.context = f"""
             You are the Consulter agent.
@@ -64,8 +99,8 @@ class consulter_LLM(base_LLM):
 
 
 class bullish_LLM(base_LLM):
-    def __init__(self, model="gpt-4o-mini", name="bull"  ):
-        super().__init__(name=name, model=model )
+    def __init__(self, model="gpt-4o-mini", name="bull", flow_id=None):
+        super().__init__(name=name, model=model, flow_id=flow_id)
 
         self.context = f"""
             USE AT MOST 200 WORDS. THE OUTPUT WILL BE USED BY A MACHINE.
@@ -78,8 +113,8 @@ class bullish_LLM(base_LLM):
 
 
 class bearish_LLM(base_LLM):
-    def __init__(self, model="gpt-4o-mini", name="bear"  ):
-        super().__init__(name=name, model=model )
+    def __init__(self, model="gpt-4o-mini", name="bear", flow_id=None):
+        super().__init__(name=name, model=model, flow_id=flow_id)
 
         self.context = f"""
             USE AT MOST 200 WORDS. THE OUTPUT WILL BE USED BY A MACHINE.
@@ -92,8 +127,8 @@ class bearish_LLM(base_LLM):
 
 
 class judge_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="judge"  ):
-        super().__init__(name=name, model=model )
+    def __init__(self, model="gpt-5", name="judge", flow_id=None):
+        super().__init__(name=name, model=model, flow_id=flow_id)
 
         self.context = f"""
             USE AT MOST 200 WORDS. THE OUTPUT WILL BE USED BY A MACHINE.
@@ -105,8 +140,8 @@ class judge_LLM(base_LLM):
 
 
 class summarizer_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="summarizer"  ):
-        super().__init__(name=name, model=model )
+    def __init__(self, model="gpt-5", name="summarizer", flow_id=None):
+        super().__init__(name=name, model=model, flow_id=flow_id)
 
         self.context = f"""
             You are an expert financial analyst with a PhD in financial markets and economics.
@@ -121,14 +156,16 @@ class summarizer_LLM(base_LLM):
             }}
             """
 
+
 # Tasked with classifying headlines for which tickers it is relevant to and giving a importance score
 class headline_classifier_LLM(base_LLM):
-    def __init__(self, model="gpt-4o-mini", name="headline_classifier"  ):
-        super().__init__(name=name, model=model )
+    def __init__(self, model="gpt-4o-mini", name="headline_classifier"):
+        super().__init__(name=name, model=model)
 
         self.context = f"""
             TODO 
             """
+
 
 # ticker_to_company = {
 #     "AAPL": "Apple",

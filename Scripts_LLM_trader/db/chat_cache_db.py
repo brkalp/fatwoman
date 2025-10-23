@@ -38,25 +38,25 @@ def _init_table():
 _init_table()
 
 
-def log_chat_interaction(
-    prompt,
-    context,
-    response,
-    input_tokens,
-    output_tokens,
-    agent_name,
-    model_used,
-    recycled=False,
+def log_chat_interaction(prompt, context, response, input_tokens, output_tokens, agent_name, model_used, recycled=False, flow_id=None,
 ):
     with mutex_lock:  # Threading safety
         with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
             conn.execute("BEGIN IMMEDIATE;")
-            conn.execute(
-                f"""
+            
+            query = f"""
                 INSERT INTO {TABLE} 
                 (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """,
+            """
+            if flow_id:
+                query = f"""
+                INSERT INTO {TABLE} 
+                (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used, flow_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """
+            conn.execute(
+                query,
                 (
                     prompt,
                     context,
@@ -86,14 +86,13 @@ def fetch_cached_row(prompt, context, model_used):
         )
         row = cursor.fetchone()
 
-    return row
+        return dict(row) if row else None
 
-
-def get_id(prompt, resp):  # TODO how to get value from row
+def get_id(prompt, resp):  # TODO how to get value from row 
     with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
         query = f"""
             SELECT id FROM {TABLE}
-            WHERE prompt = ? AND context = ? AND model_used = ?
+            WHERE prompt = ? AND response = ? 
             ORDER BY timestamp DESC
             LIMIT 1
         """
@@ -103,15 +102,15 @@ def get_id(prompt, resp):  # TODO how to get value from row
         return row
 
 
+""" # Deprecated
 def set_flow_id(entry_id, flow_id):
     with mutex_lock:
         with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
             conn.execute("BEGIN IMMEDIATE;")
-            conn.execute(
-                f"""
+            conn.execute( 
                 UPDATE {TABLE}
                 SET flow_id = ?
-                WHERE id = ?
-            """,
+                WHERE id = ? 
                 (flow_id, entry_id),
             )
+            """

@@ -1,10 +1,10 @@
 import sqlite3, os
 
 TABLE_NAME = "headlines"
-TABLE_DIR_NAME = TABLE_NAME + ".db"
+TABLE_PATH = TABLE_NAME + ".db"
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_FILE = os.path.join(BASE_DIR, TABLE_DIR_NAME) 
+DB_FILE = os.path.join(BASE_DIR, TABLE_PATH) 
 
 # headline, datetime, summary,  source, url, tags_given, importance
 # TODO this shouldn't be unix time ffs
