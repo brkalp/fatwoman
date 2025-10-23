@@ -55,36 +55,50 @@ def add_base(
             cursor.execute(insert_query, (ticker, date))
 
 
-def add_order(ticker, date, order, amount, flow_name=""):
-    id = get_id(ticker, date, flow_name)
+def add_order(flow_id, order, amount):
 
     with mutex:
         with sqlite3.connect(DB_FILE) as conn:
 
             query = f"""
             UPDATE {DB_NAME}
-            SET "order" = ?, amount = ?
+            SET "order" = ?, order_amount = ?
             WHERE id = ?
             """
-            conn.execute(query, (order, amount, id))
+            conn.execute(query, (order, amount, flow_id))
 
 
-def add_market_val(id, open, high, low, close, profit_made):  # for flow_market_add.py
+# for flow_market_add.py
+def add_market_values(id, open, high, low, close):
     with mutex:
         with sqlite3.connect(DB_FILE) as conn:
             cursor = conn.cursor()
 
             update_query = f"""
             UPDATE {DB_NAME}
-            SET open = ?, high = ?, low = ?, close = ?, profit_made = ?
+            SET open = ?, high = ?, low = ?, close = ?
             WHERE id = ?
             """
 
-            cursor.execute(update_query, (open, high, low, close, profit_made, id))
+            cursor.execute(update_query, (open, high, low, close, id))
             conn.commit()
 
 
-def get_id(ticker, date):  # TODO how to get value from row
+def add_profit(flow_id, profit_made):
+    with mutex:
+        with sqlite3.connect(DB_FILE) as conn:
+            cursor = conn.cursor()
+
+            update_query = f"""
+            UPDATE {DB_NAME}
+            SET profit_made = ?
+            WHERE id = ?
+            """
+
+            cursor.execute(update_query, (profit_made, flow_id))
+            conn.commit()
+
+def get_id(ticker, date):
     with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
         query = f"""
             SELECT id FROM {DB_NAME}
@@ -95,12 +109,15 @@ def get_id(ticker, date):  # TODO how to get value from row
 
         cursor = conn.execute(query, (ticker, date))
         row = cursor.fetchone()
-        return row
+        return row[0] if row else None
 
 
-def select_market_val_unentered():  # TODO for flow_market_add.py; return list of rows in dict format
+def select_market_val_empty():  # TODO for flow_market_add.py; return list of rows in dict format
     with sqlite3.connect(DB_FILE) as conn:
+        conn.row_factory = sqlite3.Row
         query = f""" 
-        SELECT id FROM {DB_NAME}
+        SELECT * FROM {DB_NAME}
         WHERE close is NULL
     """
+        res = conn.execute(query)
+        return [dict(row) for row in res.fetchall()]

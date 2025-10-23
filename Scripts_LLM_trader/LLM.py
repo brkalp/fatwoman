@@ -32,18 +32,18 @@ class base_LLM:
         cache = fetch_cached_row(prompt, self.context, self.model)
         if cache:
             log_chat_interaction(
-                cache["prompt"],
-                cache["context"],
-                cache["response"],
-                cache["input_tokens"],
-                cache["output_tokens"],
-                cache["agent_name"],
-                cache["model_used"],
-                cache["date"],
+                prompt=cache["prompt"],
+                context=cache["context"],
+                response=cache["response"],
+                input_tokens=cache["input_tokens"],
+                output_tokens=cache["output_tokens"],
+                agent_name=cache["agent_name"],
+                model_used=cache["model_used"],
+                timestamp=cache["timestamp"],
                 recycled=True,
                 flow_id=self.flow_id,
             )
-            
+
             return cache["response"]
 
         # If not found in cache, get new response from LLM, save it and return it

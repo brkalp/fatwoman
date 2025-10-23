@@ -34,41 +34,62 @@ def _init_table():
         """
         )
 
+        # Add new collumn if not exists
+        cols = {r[1] for r in conn.execute(f"PRAGMA table_info({TABLE});")}
+        needed = {"flow_id"}
+        for col in needed - cols:
+            conn.execute(f"ALTER TABLE {TABLE} ADD COLUMN {col} INTEGER;")
+
 
 _init_table()
 
 
-def log_chat_interaction(prompt, context, response, input_tokens, output_tokens, agent_name, model_used, recycled=False, flow_id=None,
-):
+def log_chat_interaction(prompt, context, response, input_tokens, output_tokens, agent_name, model_used, timestamp, recycled=False, flow_id=None):
     with mutex_lock:  # Threading safety
         with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
             conn.execute("BEGIN IMMEDIATE;")
-            
-            query = f"""
-                INSERT INTO {TABLE} 
-                (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """
+
             if flow_id:
                 query = f"""
                 INSERT INTO {TABLE} 
-                (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used, flow_id)
+                (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used, flow_id, timestamp)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """
+                conn.execute(
+                    query,
+                    (
+                        prompt,
+                        context,
+                        response,
+                        recycled,
+                        input_tokens,
+                        output_tokens,
+                        agent_name,
+                        model_used,
+                        flow_id,
+                        timestamp
+                    ),
+                )
+            else:
+                query = f"""
+                INSERT INTO {TABLE} 
+                (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used, timestamp)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """
-            conn.execute(
-                query,
-                (
-                    prompt,
-                    context,
-                    response,
-                    recycled,
-                    input_tokens,
-                    output_tokens,
-                    agent_name,
-                    model_used,
-                ),
-            )
-
+                """
+                conn.execute(
+                    query,
+                    (
+                        prompt,
+                        context,
+                        response,
+                        recycled,
+                        input_tokens,
+                        output_tokens,
+                        agent_name,
+                        model_used,
+                        timestamp
+                    )
+                )
 
 def fetch_cached_row(prompt, context, model_used):
     with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
