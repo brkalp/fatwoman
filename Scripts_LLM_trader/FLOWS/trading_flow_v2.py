@@ -26,7 +26,7 @@ def flow_v2(date :str="2025-10-16", notify_users:bool=True):
         t.join()
 
     if notify_users:   
-        tg_bot.notify_listeners("--today's report--" + '\n'.join(analysis)) # send messages to telegram chat
+        tg_bot.notify_listeners(f"--{date}'s report-- {'\n'.join(analysis)}") # send messages to telegram chat
 
     return analysis
 
