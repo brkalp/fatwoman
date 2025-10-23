@@ -38,8 +38,7 @@ class base_LLM:
                 input_tokens=cache["input_tokens"],
                 output_tokens=cache["output_tokens"],
                 agent_name=cache["agent_name"],
-                model_used=cache["model_used"],
-                timestamp=cache["timestamp"],
+                model_used=cache["model_used"], 
                 recycled=True,
                 flow_id=self.flow_id,
             )

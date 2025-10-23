@@ -44,7 +44,7 @@ def _init_table():
 _init_table()
 
 
-def log_chat_interaction(prompt, context, response, input_tokens, output_tokens, agent_name, model_used, timestamp, recycled=False, flow_id=None):
+def log_chat_interaction(prompt, context, response, input_tokens, output_tokens, agent_name, model_used , recycled=False, flow_id=None):
     with mutex_lock:  # Threading safety
         with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
             conn.execute("BEGIN IMMEDIATE;")
@@ -52,28 +52,7 @@ def log_chat_interaction(prompt, context, response, input_tokens, output_tokens,
             if flow_id:
                 query = f"""
                 INSERT INTO {TABLE} 
-                (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used, flow_id, timestamp)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """
-                conn.execute(
-                    query,
-                    (
-                        prompt,
-                        context,
-                        response,
-                        recycled,
-                        input_tokens,
-                        output_tokens,
-                        agent_name,
-                        model_used,
-                        flow_id,
-                        timestamp
-                    ),
-                )
-            else:
-                query = f"""
-                INSERT INTO {TABLE} 
-                (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used, timestamp)
+                (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used, flow_id )
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """
                 conn.execute(
@@ -87,7 +66,26 @@ def log_chat_interaction(prompt, context, response, input_tokens, output_tokens,
                         output_tokens,
                         agent_name,
                         model_used,
-                        timestamp
+                        flow_id 
+                    ),
+                )
+            else:
+                query = f"""
+                INSERT INTO {TABLE} 
+                (prompt, context, response, recycled, input_tokens, output_tokens, agent_name, model_used )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """
+                conn.execute(
+                    query,
+                    (
+                        prompt,
+                        context,
+                        response,
+                        recycled,
+                        input_tokens,
+                        output_tokens,
+                        agent_name,
+                        model_used 
                     )
                 )
 

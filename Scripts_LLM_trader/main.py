@@ -18,6 +18,6 @@ if __name__ == "__main__":
     date=datetime.date.today()
     logging.info(f"date being given: {date}")
     # flow_v2(date=date, notify_users=True)
-    flow_v1(date=date, notify_users=True)
+    flow_v1(date=date,ticker="TSLA", notify_users=True)
     logging.info("Finished LLM main")
     
