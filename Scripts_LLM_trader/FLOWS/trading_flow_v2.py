@@ -5,7 +5,7 @@ from telegram_bot import tg_bot # this will explode if trading_flow is run as ma
 logging.basicConfig(level=logging.INFO)
 
 def _worker_thread(ticker, notify_users, date, analysis_list):
-    resp = flow_v1(ticker, date=date, notify_users=notify_users)
+    resp = flow_v1(ticker=ticker, date=date, notify_users=notify_users)
     logging.info(f"Analyzed response for {ticker}:\n {resp}")
 
     analysis_list.append(resp)
