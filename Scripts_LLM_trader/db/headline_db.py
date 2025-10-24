@@ -46,18 +46,19 @@ def add_entry(
 
         conn.commit()
 
-# Filter by date TODO: and tags_given
+# Filters by date TODO: and tags_given
 def get_entry_summaries(date: str = ""):
     with sqlite3.connect(DB_FILE) as conn:
         cursor = conn.cursor()
+ 
 
         if date:
             cursor.execute(
-                f"SELECT summary FROM {TABLE_NAME} WHERE date=? LIMIT 100",
+                f"SELECT summary FROM {TABLE_NAME} WHERE date < ? ORDER BY date DESC LIMIT 100",
                 (date,)
             )
         else:
-            cursor.execute(f"SELECT summary FROM {TABLE_NAME} DESC LIMIT 100")
+            cursor.execute(f"SELECT summary FROM {TABLE_NAME} ORDER BY date DESC DESC LIMIT 100")
 
         rows = cursor.fetchall()
 

@@ -6,7 +6,6 @@ import db.flow_db as flow_db
 
 from telegram_bot import tg_bot
 
-# LLM'in içine flow_id'si koysak daha iyi
 
 # Gets a ticker name as parameters, analyzes it, returns a summary text
 def flow_v1(date: str = "2025-10-16", ticker="AAPL", notify_users=False):
@@ -34,7 +33,7 @@ def flow_v1(date: str = "2025-10-16", ticker="AAPL", notify_users=False):
 
     summarizer_prompt = f"ticker: {ticker}; verdict= {resp_judge}"
     resp_summarizer = summarizer_LLM(name="v1_summarizer", flow_id=flow_id).work(summarizer_prompt)
-    logging.info(f"summarized_text: {resp_summarizer}")
+    # logging.info(f"summarized_text: {resp_summarizer}")
 
     summarizer_json = json.loads(resp_summarizer)
     flow_db.add_order(flow_id=flow_id, order=summarizer_json["tendency"], amount=1)
