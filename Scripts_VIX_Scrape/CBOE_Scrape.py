@@ -1,6 +1,4 @@
 """ Created on 07-21-2024 23:07:40 @author: DenizYalimYilmaz """
-from fatwoman_log_setup import script_end_log
-from fatwoman_dir_setup import CBOE_Scrape_Data_File, CBOE_Scrape_timestamp_format
 import logging
 from datetime import datetime as dt
 from selenium import webdriver
@@ -11,9 +9,9 @@ import os
 import time
 import pandas as pd
 
-TIMESTAMP_FORMAT = CBOE_Scrape_timestamp_format
+# TIMESTAMP_FORMAT = CBOE_Scrape_timestamp_format
 HOUR_FORMAT = '%H:%M'
-MAX_ATTEMPTS = 10
+MAX_ATTEMPTS = 1
 LINK = 'https://www.cboe.com/tradable_products/vix/vix_futures/'
 
 def _clean_table_and_save_to_csv(table_2d): 
@@ -26,7 +24,7 @@ def _clean_table_and_save_to_csv(table_2d):
     df_futures['Volume'] = pd.to_numeric(df_futures['Volume'], errors='coerce')
     df_futures['Settlement'].replace('-','', regex=True, inplace=True)
     df_futures['Settlement'] = pd.to_numeric(df_futures['Settlement'], errors='coerce')
-    df_futures['Timestamp'] = dt.now().strftime(TIMESTAMP_FORMAT)
+    # TODO: df_futures['Timestamp'] = dt.now().strftime(TIMESTAMP_FORMAT)
     df_futures['Hour']      = dt.now().strftime(HOUR_FORMAT)
     # data includes vix itself so maturity formatting is not valid
     # df_futures['Maturity']      = dt.now().strftime(hour_format)
@@ -34,11 +32,13 @@ def _clean_table_and_save_to_csv(table_2d):
 
     try:
         # Write file Add header if file does not exist
-        file_exists = os.path.exists(CBOE_Scrape_Data_File)
-        df_futures.to_csv(CBOE_Scrape_Data_File, mode='a', sep=',', header=not file_exists, index=False)
+        # TODO file_exists = os.path.exists(CBOE_Scrape_Data_File)
+        # df_futures.to_csv(CBOE_Scrape_Data_File, mode='a', sep=',', header=not file_exists, index=False)
+        pass
     except Exception as e:
         logging.error("error while writing to csv: \n", e)
-    logging.info("Successfully cleaned data gathered and saved to ", CBOE_Scrape_Data_File)
+    # logging.info("Successfully cleaned data gathered and saved to ", CBOE_Scrape_Data_File)
+    return True
 
 if __name__ == "__main__":
     logging.info("Starting CBOE Data Scrape "+ time.strftime("%Y-%m-%d %H:%M:%S"))
@@ -47,27 +47,35 @@ if __name__ == "__main__":
         logging.info("setting up the driver")
         options = webdriver.FirefoxOptions()
         options.add_argument("--headless") 
-
+        success = False
         with webdriver.Firefox(options=options) as driver:
                 
             driver.get(LINK); 
             logging.info('Driver get done; driver setup complete, initiating scraping')
 
             try:
-
-                table_element = driver.find_element(By.TAG_NAME, "table")
-                rows = table_element.find_elements(By.TAG_NAME, "td") # 1. row is headers; others are values
-                for row in rows:
-                    for column in row:
-                        val = column.text
-                        print("value:",val, end='  ')
-                
-
                 table_2d = [] 
+                table_element = driver.find_element(By.TAG_NAME, "table") 
+                for row in table_element.find_elements(By.TAG_NAME, "tr"):
+                    table_row = []
+                    values = [col.text for col in row.find_elements(By.TAG_NAME, "td")] 
+                    table_2d.append(values)
 
-                _clean_table_and_save_to_csv()
+                print("size: ", len(table_2d))
+                # Drop the first values(symbols) by transposing and dropping first row and transposing back
+                for row in table_2d:
+                    if row:
+                        row.pop(0)
+
+
+                print("size: ", len(table_2d))
+                for val in table_2d:
+                    print(val)
+                print()
+
+                if _clean_table_and_save_to_csv(table_2d=table_2d):
+                    success = True
  
-                break 
 
             except ValueError as ve:
                 print(f"Attempt {_attempt + 1} failed with ValueError: {ve}. Retrying...")
@@ -80,8 +88,10 @@ if __name__ == "__main__":
                 
                 time.sleep(5)
 
+        if success:
+            break
 
-    script_end_log()
+    # TODO: script_end_log()
 
         # options.add_argument("-profile")
         # options.add_argument(firefox_profile1)
@@ -209,3 +219,4 @@ script_end_log()
 
 
 """
+
