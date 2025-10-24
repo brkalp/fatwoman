@@ -10,6 +10,6 @@
 + importları düzelt
 * Haftanın başlığı seklinde bir sınıflandırma ile geçmişten gelen önemli headline'ları tekrar yedirip kaliteyi arttırmayı deneyebiliriz
 + headlines.db'deki tarih parametre olarak alınmalı, eklenme zamanı değil
-+ headlines.db'sini silebiliriz belki -> silmesek daha iyi yoksa katogerizasyon mümkün olmaz
++ headlines.db'sini silebiliriz belki -> silmesek daha iyi yoksa katogerizasyon mümkün olmaz --> headline değil ama chat_cache silinebilir 
 * can I retrieve chat_cahce from openai api, and delete our db?
 * Market valuelar ekleniyorken Close, EOD gelmemiş bir tarihe eklenmemeli

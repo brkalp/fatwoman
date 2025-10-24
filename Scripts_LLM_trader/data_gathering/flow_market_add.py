@@ -8,6 +8,8 @@ from datetime import datetime, timedelta
 
 # (open-close)*amount, if bullish order made multiply by -1 # TODO: maybe add support for day-trading? this assumes we are the first order
 def _calculate_profit(order, amount, open, close):
+    if order is None or amount is None:
+        return 0
     return (close - open) * amount if order == "bullish" else (open - close) * amount
 
 
@@ -15,14 +17,19 @@ def _get_market_values(ticker_name, date):
     start = datetime.strptime(date, "%Y-%m-%d")
     end = start + timedelta(days=1)
 
-    data = yf.download(ticker_name, start=start, end=end, interval="1d",auto_adjust=True)
-
-    if data.empty:
+    df = yf.download(ticker_name, start=start, end=end, interval="1d", auto_adjust=True)
+    if df.empty:
         return None
 
-    data = data.iloc[0]  
+    row = df.iloc[0]
+    return (
+        round(float(row["Open"].iloc[0]), 3),
+        round(float(row["High"].iloc[0]), 3),
+        round(float(row["Low"].iloc[0]), 3),
+        round(float(row["Close"].iloc[0]), 3),
+    )
 
-    return data["Open"].iloc[0], data["High"].iloc[0], data["Low"].iloc[0], data["Close"].iloc[0]
+
 
 
 # For every null market value flow, get market values and add them to the flow entry, calculate profit and add it too
@@ -37,7 +44,7 @@ def add_values():
 
         add_market_values(flow_id, open, high, low, close)
 
-        try: # order being null doesn't make it crash actually
+        try:  # order being null doesn't make it crash actually
             order = flow["order"]
             amount = flow["order_amount"]
             profit = _calculate_profit(order, amount, open, close)

@@ -54,7 +54,7 @@ def get_entry_summaries(date: str = ""):
 
         if date:
             cursor.execute(
-                f"SELECT summary FROM {TABLE_NAME} WHERE date < ? ORDER BY date DESC LIMIT 100",
+                f"SELECT summary FROM {TABLE_NAME} WHERE date <= ? ORDER BY date DESC LIMIT 100",
                 (date,)
             )
         else:
