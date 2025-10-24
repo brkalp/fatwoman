@@ -42,7 +42,7 @@ _init_db()
 
 def add_base(
     ticker, date, flow_name=""
-):  # this should probably check if this ticker and date pair was added before and if was; overwrite it ?
+) -> int:  # this should probably check if this ticker and date pair was added before and if was; overwrite it ?
     with mutex:
         with sqlite3.connect(DB_FILE) as conn:
             cursor = conn.cursor()
@@ -53,6 +53,7 @@ def add_base(
             """
 
             cursor.execute(insert_query, (ticker, date))
+            return cursor.lastrowid
 
 
 def add_order(flow_id, order, amount):
@@ -85,6 +86,7 @@ def add_market_values(id, open, high, low, close):
 
 
 def add_profit(flow_id, profit_made):
+    profit_made = round(profit_made, 3)
     with mutex:
         with sqlite3.connect(DB_FILE) as conn:
             cursor = conn.cursor()

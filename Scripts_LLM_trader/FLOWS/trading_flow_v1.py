@@ -9,8 +9,9 @@ from telegram_bot import tg_bot
 
 # Gets a ticker name as parameters, analyzes it, returns a summary text
 def flow_v1(date: str = "2025-10-16", ticker="AAPL", notify_users=False):
-    flow_db.add_base(date=date, ticker=ticker) # creates base flow entry
-    flow_id = flow_db.get_id(date=date, ticker=ticker)
+    flow_id = flow_db.add_base(date=date, ticker=ticker) # creates base flow entry
+    # flow_id = flow_db.get_id(date=date, ticker=ticker) # TODO: this may return a wrong id, as date and ticker are not PK
+    logging.info(f"{ticker}, {date}; flow_id: {flow_id}")
     
     df_headlines = get_entry_summaries(date)
     bullish = bullish_LLM(name="v1_bull", flow_id=flow_id)
