@@ -59,6 +59,7 @@ class base_LLM:
             self.name,
             self.model,
             recycled=False,
+            flow_id=self.flow_id
         )  # log to db
         return response
 

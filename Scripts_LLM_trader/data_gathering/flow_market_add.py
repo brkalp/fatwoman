@@ -22,12 +22,8 @@ def _get_market_values(ticker_name, date):
         return None
 
     row = df.iloc[0]
-    return (
-        round(float(row["Open"].iloc[0]), 3),
-        round(float(row["High"].iloc[0]), 3),
-        round(float(row["Low"].iloc[0]), 3),
-        round(float(row["Close"].iloc[0]), 3),
-    )
+    return  round(row["Open"].iloc[0], 3), round(row["High"].iloc[0], 3), round(row["Low"].iloc[0], 3), round(row["Close"].iloc[0], 3)
+    
 
 
 

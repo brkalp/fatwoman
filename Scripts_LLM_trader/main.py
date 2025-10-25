@@ -14,7 +14,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 if __name__ == "__main__":
     logging.info("Starting LLM main")
-    save_news()
+    # save_news()
     
     # print("text",_get_market_values("AAPL", "2025-10-24"))
     
