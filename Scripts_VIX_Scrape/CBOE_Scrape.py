@@ -47,14 +47,17 @@ def _clean_table_and_save_to_csv(table_2d):
         )
         pass
     except Exception as e:
-        logging.error(f"error while writing to csv: \n {e}")
+        msg = f"error while writing to csv: \n {e}"
+        logging.error(msg)
+        print(msg)
+        return False
     print("Successfully cleaned data gathered and saved to {CBOE_Scrape_Data_File}")
     return True
 
 
 def main():
     logging.info("Starting CBOE Data Scrape " + time.strftime("%Y-%m-%d %H:%M:%S"))
-    
+
     for _attempt in range(MAX_ATTEMPTS):
         logging.info("setting up the driver")
         options = webdriver.FirefoxOptions()
@@ -69,37 +72,39 @@ def main():
                 table_2d = []
                 table_element = driver.find_element(By.TAG_NAME, "table")
                 for row in table_element.find_elements(By.TAG_NAME, "tr"):
-                    table_row = []
                     values = [col.text for col in row.find_elements(By.TAG_NAME, "td")]
                     table_2d.append(values)
 
-                # drop first column of each row                
+                # drop first column of each row
                 for row in table_2d:
                     if row:
                         row.pop(0)
 
-                if _clean_table_and_save_to_csv(table_2d=table_2d): # clean data and save to csv
+                if _clean_table_and_save_to_csv(
+                    table_2d=table_2d
+                ):  # clean data and save to csv
                     success = True
 
             except ValueError as ve:
-                logging.error(
+                msg = (
                     f"Attempt {_attempt + 1} failed with ValueError: {ve}. Retrying..."
                 )
+                logging.error(msg)
+                print(msg)
                 time.sleep(5)
 
             except Exception as e:
-                logging.error(
-                    f"Attempt {_attempt + 1} failed with error: {e}. Retrying..."
-                )
+                msg = f"Attempt {_attempt + 1} failed with error: {e}. Retrying..."
+                logging.error(msg)
+                print(msg)
 
                 time.sleep(5)
 
         if success:
             break
 
-main()
 if __name__ == "__main__":
-   pass
+    main()
 
     # TODO: script_end_log()
 
