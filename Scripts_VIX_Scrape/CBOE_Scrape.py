@@ -47,8 +47,8 @@ def _clean_table_and_save_to_csv(table_2d):
         )
         pass
     except Exception as e:
-        logging.error("error while writing to csv: \n", e)
-    logging.info("Successfully cleaned data gathered and saved to ", CBOE_Scrape_Data_File)
+        logging.error(f"error while writing to csv: \n {e}")
+    print("Successfully cleaned data gathered and saved to {CBOE_Scrape_Data_File}")
     return True
 
 
