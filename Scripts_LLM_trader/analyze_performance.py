@@ -22,7 +22,7 @@ def get_profit_last_days(until_day_count:int=3)->list:
     # should return the profits of last 3 days
     pass
 
-def get_EOD_message():
+def EOD_message():
     
     text = f""
     # should have the profit of last 3 days, the ticker analyses of the last 3 days

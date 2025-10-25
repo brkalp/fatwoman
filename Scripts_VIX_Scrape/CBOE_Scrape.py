@@ -52,7 +52,7 @@ def _clean_table_and_save_to_csv(table_2d):
     return True
 
 
-if __name__ == "__main__":
+def main():
     logging.info("Starting CBOE Data Scrape " + time.strftime("%Y-%m-%d %H:%M:%S"))
     
     for _attempt in range(MAX_ATTEMPTS):
@@ -96,6 +96,10 @@ if __name__ == "__main__":
 
         if success:
             break
+
+main()
+if __name__ == "__main__":
+   pass
 
     # TODO: script_end_log()
 
