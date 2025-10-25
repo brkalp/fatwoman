@@ -27,6 +27,11 @@ def notify_listeners(message, test_group=False): # send a message to all listene
     for listener in _get_from_json(target_list):
         _send_message(chat_id=listener, text=message)
 
+"""
+Ticker order    profit  open   close 
+AAPL   bearish  4.32    50.11  54.40
+AMZN   bullish  -3.20   50.00  47.80
+"""
 
 if __name__ == "__main__":
     # notify_listeners("hello to you too", True)

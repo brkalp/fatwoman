@@ -1,32 +1,44 @@
-""" flow.db
-    SELECT COUNT(id),ticker, SUM(profit_made) as all_profit FROM flow GROUP BY ticker ORDER BY COUNT(id) DESC
-    
-    # order'ın NULL olduğu rowları sayan bir SELECT
-    # kaç tane doğru tahmin ettiğine dair bir %
-    # kaç kere sat emrinin kaç kere al emrinin tuttuğunu saydır
+from datetime import datetime, timedelta
+from db.flow_db import get_connection, get_table_name
+import sqlite3
 
-    
-    conn.execute("ATTACH DATABASE 'headlines.sqlite' AS headlines_db;")
-    conn.execute("ATTACH DATABASE 'flow.sqlite' AS flow_db;")
+def _get_order_null_ratio() -> float:
+    with get_connection() as conn:
+        query = f"SELECT COUNT(*) AS total, SUM(CASE WHEN order_col IS NULL THEN 1 ELSE 0 END) AS null_count FROM {get_table_name()}"
+        row = conn.execute(query).fetchone()
+        return row["null_count"] / row["total"] if row["total"] else 0
 
- 
- """
+def _get_profit_all_time() -> float:
+    with get_connection() as conn:
+        today = datetime.today().strftime("%Y-%m-%d")
+        return _get_profit_last_days(until_date=today, last=999)
 
-def get_order_null_ratio()->float:
-    pass
+def _get_profit_today(date: str):
+    return _get_profit_last_days(until_date=date, last=1)
 
-def get_profit_all_time()->int:
-    pass
+def _get_profit_last_days(until_date: str = None, last: int = 3) -> float:
+    if until_date is None:
+        until_date = datetime.today().strftime("%Y-%m-%d")
+    from_date = (datetime.strptime(until_date, "%Y-%m-%d") - timedelta(days=last)).strftime("%Y-%m-%d")
+    # print("until_date ", until_date, "   from_date: ", from_date)
 
-def get_profit_last_days(until_day_count:int=3)->list:
-    # should return the profits of last 3 days
-    pass
+    with get_connection() as conn:
+        conn.row_factory = sqlite3.Row
+        query = f"SELECT SUM(profit_made) AS total_profit FROM {get_table_name()} WHERE date BETWEEN ? AND ?"
+        row = conn.execute(query, (from_date, until_date)).fetchone()
+        if not row:
+            return "no flows"
+        return row["total_profit"]
 
-def EOD_message():
-    
-    text = f""
-    # should have the profit of last 3 days, the ticker analyses of the last 3 days
-    pass
+def EOD_message(date: str = None):
+    date = date or datetime.today().strftime("%Y-%m-%d")
+    last = 3
+    text = (
+        f"Profit made today: {_get_profit_today(date)}\n"
+        f"Profit made from last {last} days: {_get_profit_last_days(until_date=date, last=last)}\n"
+        f"Profit all time : {_get_profit_all_time()}"
+    )
+    return text
 
-
-
+if __name__ == "__main__":
+    print(EOD_message())

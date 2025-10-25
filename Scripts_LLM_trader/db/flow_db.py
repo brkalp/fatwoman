@@ -6,8 +6,8 @@ import sqlite3, threading, os
 
 mutex = threading.Lock()
 
-DB_NAME = "flow"
-DB_PATH = DB_NAME + ".db"
+TABLE_NAME = "flow"
+DB_PATH = TABLE_NAME + ".db"
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_FILE = os.path.join(BASE_DIR, DB_PATH)
@@ -19,7 +19,7 @@ def _init_db():
             cursor = conn.cursor()
 
             q = f"""
-            CREATE TABLE IF NOT EXISTS {DB_NAME} (
+            CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 date TEXT, 
                 ticker TEXT,
@@ -48,7 +48,7 @@ def add_base(
             cursor = conn.cursor()
 
             insert_query = f"""
-            INSERT INTO {DB_NAME} (ticker, date)
+            INSERT INTO {TABLE_NAME} (ticker, date)
             VALUES (?, ?)
             """
 
@@ -62,7 +62,7 @@ def add_order(flow_id, order, amount):
         with sqlite3.connect(DB_FILE) as conn:
 
             query = f"""
-            UPDATE {DB_NAME}
+            UPDATE {TABLE_NAME}
             SET "order" = ?, order_amount = ?
             WHERE id = ?
             """
@@ -76,7 +76,7 @@ def add_market_values(id, open, high, low, close):
             cursor = conn.cursor()
 
             update_query = f"""
-            UPDATE {DB_NAME}
+            UPDATE {TABLE_NAME}
             SET open = ?, high = ?, low = ?, close = ?
             WHERE id = ?
             """
@@ -92,7 +92,7 @@ def add_profit(flow_id, profit_made):
             cursor = conn.cursor()
 
             update_query = f"""
-            UPDATE {DB_NAME}
+            UPDATE {TABLE_NAME}
             SET profit_made = ?
             WHERE id = ?
             """
@@ -103,7 +103,7 @@ def add_profit(flow_id, profit_made):
 def get_id(ticker, date):
     with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
         query = f"""
-            SELECT id FROM {DB_NAME}
+            SELECT id FROM {TABLE_NAME}
             WHERE ticker = ? AND date = ?
             ORDER BY date DESC
             LIMIT 1
@@ -118,8 +118,26 @@ def select_market_val_empty():  # TODO for flow_market_add.py; return list of ro
     with sqlite3.connect(DB_FILE) as conn:
         conn.row_factory = sqlite3.Row
         query = f""" 
-        SELECT * FROM {DB_NAME}
+        SELECT * FROM {TABLE_NAME}
         WHERE close is NULL
     """
         res = conn.execute(query)
         return [dict(row) for row in res.fetchall()]
+
+""" DEPRECATED
+def select_row_until_date(date:str, limit:int=3):
+    with sqlite3.connect(DB_FILE) as conn:
+        conn.row_factory = sqlite3.Row
+        query = f"SELECT * FROM {TABLE_NAME}
+                WHERE date <= ? LIMIT ?"
+        cursor = conn.execute(query, (date, limit))
+        return cursor.fetchall()
+        """
+
+# THIS NEEDS TO BE CLOSED!!
+def get_connection():
+    conn = sqlite3.connect(DB_FILE)
+    return conn    
+
+def get_table_name():
+    return TABLE_NAME
