@@ -5,6 +5,7 @@ from db.headline_db import get_entry_summaries
 import db.flow_db as flow_db 
 
 from telegram_bot import tg_bot
+from fatwoman_log_setup import script_end_log
 
 
 # Gets a ticker name as parameters, analyzes it, returns a summary text

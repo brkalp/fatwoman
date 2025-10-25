@@ -14,6 +14,7 @@ import glob # concat libs
 import os
 import time
 from datetime import datetime as dt
+import socket
 
 is_platform_pc = False if socket.gethostname() == 'fatwoman' else True
 

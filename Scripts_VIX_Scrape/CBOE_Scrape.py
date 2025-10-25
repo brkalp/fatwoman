@@ -24,7 +24,7 @@ def getLines(very_long_string, starter, ender):
 timestamp_format = CBOE_Scrape_timestamp_format
 hour_format = '%H:%M'
 attempt = 0
-max_attempts = 10
+max_attempts = 5
 while attempt < max_attempts:
     try:
         # Driver setup
@@ -32,7 +32,8 @@ while attempt < max_attempts:
         options.add_argument("--headless")
         driver = webdriver.Firefox(options=options)
         driver.get('https://www.cboe.com/tradable_products/vix/vix_futures/'); print('Driver get done')
-        WebDriverWait(driver, 50).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'tr[role="row"]')))
+        WebDriverWait(driver, 100).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'tr[role="row"]')))
+        print('Table is visible: %s' %'tr[role="row"]')
         time.sleep(10)
         source = driver.page_source #;print('len of string is %s'%len(source))
 
@@ -74,7 +75,7 @@ while attempt < max_attempts:
 
     except Exception as e:
         print(f"Attempt {attempt + 1} failed with error: {e}. Retrying...")
-        logging.error(f"Attempt {attempt + 1} failed with     error: {ve}. Retrying...")
+        logging.error(f"Attempt {attempt + 1} failed with     error: {e}. Retrying...")
         driver.quit()
         attempt += 1
         time.sleep(5)

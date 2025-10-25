@@ -3,6 +3,7 @@
 from dotenv import load_dotenv
 from openai import OpenAI
 import os
+from fatwoman_log_setup import script_end_log
 
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")

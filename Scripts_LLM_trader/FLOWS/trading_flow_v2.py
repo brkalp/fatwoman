@@ -3,6 +3,7 @@ from flows.trading_flow_POC import poc_flow
 import logging, threading
 from telegram_bot import tg_bot # this will explode if trading_flow is run as main
 logging.basicConfig(level=logging.INFO)
+from fatwoman_log_setup import script_end_log
 
 def _worker_thread(ticker, notify_users, date, analysis_list):
     resp = flow_v1(ticker=ticker, date=date, notify_users=notify_users)

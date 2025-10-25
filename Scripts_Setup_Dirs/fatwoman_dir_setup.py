@@ -142,7 +142,7 @@ Avanza_log_path       = os.path.join(fatwoman_log_path, "Avanza_Scraper.txt")
 ib_wrap_tickler       = os.path.join(fatwoman_log_path, "ib_wrap_tickler.txt")
 logging_override = {
     'binance_orderbook_save' : Binance_save_log_path,
-    'CBOE_Scrape'            : Hourly_log_path,
+    # 'CBOE_Scrape'            : Hourly_log_path,
     'VIX_Central_Scrape'     : Hourly_log_path,
     'avanzaDataScraping'     : Avanza_log_path,
     'ib_wrapper_tickler'     : ib_wrap_tickler,
