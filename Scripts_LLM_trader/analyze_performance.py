@@ -30,6 +30,10 @@ def _get_profit_last_days(until_date: str = None, last: int = 3) -> float:
             return "no flows"
         return row["total_profit"]
 
+def flow_performance_of_date(date:str)->str: # This will return
+    pass
+
+
 def EOD_message(date: str = None):
     date = date or datetime.today().strftime("%Y-%m-%d")
     last = 3
