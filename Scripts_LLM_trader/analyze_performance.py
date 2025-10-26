@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from db.flow_db import get_connection, get_table_name
 import sqlite3
+import pandas as pd
 
 def _get_order_null_ratio() -> float:
     with get_connection() as conn:

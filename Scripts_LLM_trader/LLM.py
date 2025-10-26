@@ -63,12 +63,12 @@ class base_LLM:
         )  # log to db
         return response
 
-    """
-    SUMMARY: GETS RESPONSE FROM OPENAI API AND NOTHING ELSE
-    Keyword arguments:
-    argument -- prompt, context
-    Return: response
-    """
+    # """
+    # SUMMARY: GETS RESPONSE FROM OPENAI API AND NOTHING ELSE
+    # Keyword arguments:
+    # argument -- prompt, context
+    # Return: response
+    # """
 
     def __getResponse(self, prompt, context):  #  -> tuple[str, int, int]
         client = OpenAI(api_key=OPENAI_API_KEY)
