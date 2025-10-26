@@ -1,9 +1,10 @@
 from LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
 import json
 import logging
+import os
+os.chdir(r'Z:\15GB\Scripts_LLM_trader')
 from db.headline_db import get_entry_summaries
 import db.flow_db as flow_db 
-
 from telegram_bot import tg_bot
 from fatwoman_log_setup import script_end_log
 

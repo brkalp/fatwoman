@@ -3,14 +3,17 @@ import os
 import json
 
 
-def _get_from_json(key): # why does it take from credentials instead of .env ? 
+def _get_from_json(key):
     base_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(base_dir, "credentials.json")
 
     with open(file_path, "r") as f:
         credentials = json.load(f)
         return credentials.get(key)
+<<<<<<< HEAD
     return None
+=======
+>>>>>>> 58c1bc175f02d8c0733d327c8b8ad8144c150cb3
 
 
 def _send_message(chat_id, text): # send one message to chat with chat_id
@@ -27,6 +30,11 @@ def notify_listeners(message, test_group=False): # send a message to all listene
     for listener in _get_from_json(target_list):
         _send_message(chat_id=listener, text=message)
 
+"""
+Ticker order    profit  open   close 
+AAPL   bearish  4.32    50.11  54.40
+AMZN   bullish  -3.20   50.00  47.80
+"""
 
 if __name__ == "__main__":
     # notify_listeners("hello to you too", True)
