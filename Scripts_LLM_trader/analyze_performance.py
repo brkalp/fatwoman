@@ -30,7 +30,14 @@ def _get_profit_last_days(until_date: str = None, last: int = 3) -> float:
             return "no flows"
         return row["total_profit"]
 
-def flow_performance_of_date(date:str)->str: # This will return
+def flow_performance_of_date(date:str)->str: # Returns performance of all flows of a day
+    """ 
+    date: yyyy-mm-dd
+    ticker, order, amount, profit, open, close, flow_id
+    AAPL,   bullish,   1,      10,    100,  110,   85
+    AMZN,   bearish,   1,      10,    100,   90,   86
+    ...
+    """
     pass
 
 
