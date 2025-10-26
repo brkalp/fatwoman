@@ -1,7 +1,6 @@
 # This will be executed by crontab after markets close and enter market value to flows that didn't get their market value entered.
 import yfinance as yf
 import logging
-
 from db.flow_db import add_market_values, select_market_val_empty, add_profit
 from datetime import datetime, timedelta
 

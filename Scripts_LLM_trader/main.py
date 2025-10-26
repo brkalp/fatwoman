@@ -1,4 +1,5 @@
 import logging
+from fatwoman_log_setup import script_end_log
 
 logging.basicConfig(level=logging.INFO)
 from flows.trading_flow_v2 import flow_v2
@@ -23,5 +24,5 @@ if __name__ == "__main__":
 
     flow_v2(date=date, notify_users=True)
     # flow_v1(date=date,ticker="TSLA", notify_users=True)
-    logging.info("Finished LLM main")
-    
+    # logging.info("Finished LLM main")
+    script_end_log()

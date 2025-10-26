@@ -10,10 +10,7 @@ def _get_from_json(key):
     with open(file_path, "r") as f:
         credentials = json.load(f)
         return credentials.get(key)
-<<<<<<< HEAD
     return None
-=======
->>>>>>> 58c1bc175f02d8c0733d327c8b8ad8144c150cb3
 
 
 def _send_message(chat_id, text): # send one message to chat with chat_id

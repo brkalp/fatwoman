@@ -17,7 +17,8 @@ def flow_v2(date :str="2025-10-16", notify_users:bool=True):
     threads = []
 
     for suggested_ticker in poc_flow(date): 
-        logging.info(f"Starting thead for ticker: {suggested_ticker}")
+        print(f"Starting thread for ticker: {suggested_ticker}")
+        logging.info(f"Starting thread for ticker: {suggested_ticker}")
 
         t = threading.Thread(target=_worker_thread, args=(suggested_ticker, False, date, analysis)) # thread
         t.start()

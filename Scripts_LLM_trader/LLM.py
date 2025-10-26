@@ -3,10 +3,12 @@
 from dotenv import load_dotenv
 from openai import OpenAI
 import os
+from fatwoman_api_setup import OPENAI_API_KEY
 from fatwoman_log_setup import script_end_log
+from fatwoman_dir_setup import LLM_data_path_finnhub_file, LLM_data_path
 
-load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# load_dotenv()
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 from db.chat_cache_db import (
     log_chat_interaction,
@@ -16,18 +18,21 @@ from db.chat_cache_db import (
 
 # Abstract Parent Class
 class base_LLM:
-    def __init__(self, model, name="unnamed_LLM", flow_id=None):
+    def __init__(self, model, name="unnamed_LLM", flow_id=None, loc_override="", ticker=""):
         print(f"Initializing a {model} named {name} ")
         self.model = model
         self.name = name
         self.flow_id = flow_id
+        loc_override = loc_override if loc_override == "" else "_" + loc_override
+        filename = "LLM_" + self.name + ticker + loc_override + "_latest_response.txt"
+        self.write_loc = os.path.join(LLM_data_path, filename)
 
-    """ What should be used to get response from LLMS.
-    * check cache for matching prompt+context+model if found create new log with recycled=True and return cached response; if not add to new cache
+    # """ What should be used to get response from LLMS.
+    # * check cache for matching prompt+context+model if found create new log with recycled=True and return cached response; if not add to new cache
 
-    parameters -- prompt : str
-    Returns -- LLM's response : str
-    """
+    # parameters -- prompt : str
+    # Returns -- LLM's response : str
+    # """
 
     def work(self, prompt):
         cache = fetch_cached_row(prompt, self.context, self.model)
@@ -43,6 +48,8 @@ class base_LLM:
                 recycled=True,
                 flow_id=self.flow_id,
             )
+            with open(self.write_loc, "w") as file:
+                file.write(cache["response"])
 
             return cache["response"]
 
@@ -60,7 +67,9 @@ class base_LLM:
             self.model,
             recycled=False,
             flow_id=self.flow_id
-        )  # log to db
+        )  # log to db            
+        with open(self.write_loc, "w") as file:
+            file.write(response)
         return response
 
     # """
@@ -89,7 +98,7 @@ class base_LLM:
 
 
 class consulter_LLM(base_LLM):
-    def __init__(self, model="gpt-4o-mini", name="consulter", flow_id=None):
+    def __init__(self, model="gpt-4o-mini", name="consulter", flow_id=None, loc_override="", ticker=""):
         super().__init__(name=name, model=model, flow_id=flow_id)
 
         self.context = f"""
@@ -100,7 +109,7 @@ class consulter_LLM(base_LLM):
 
 
 class bullish_LLM(base_LLM):
-    def __init__(self, model="gpt-4o-mini", name="bull", flow_id=None):
+    def __init__(self, model="gpt-4o-mini", name="bull", flow_id=None, loc_override="", ticker=""):
         super().__init__(name=name, model=model, flow_id=flow_id)
 
         self.context = f"""
@@ -114,7 +123,7 @@ class bullish_LLM(base_LLM):
 
 
 class bearish_LLM(base_LLM):
-    def __init__(self, model="gpt-4o-mini", name="bear", flow_id=None):
+    def __init__(self, model="gpt-4o-mini", name="bear", flow_id=None, loc_override="", ticker=""):
         super().__init__(name=name, model=model, flow_id=flow_id)
 
         self.context = f"""
@@ -128,7 +137,7 @@ class bearish_LLM(base_LLM):
 
 
 class judge_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="judge", flow_id=None):
+    def __init__(self, model="gpt-5", name="judge", flow_id=None, loc_override="", ticker=""):
         super().__init__(name=name, model=model, flow_id=flow_id)
 
         self.context = f"""
@@ -141,7 +150,7 @@ class judge_LLM(base_LLM):
 
 
 class summarizer_LLM(base_LLM):
-    def __init__(self, model="gpt-5", name="summarizer", flow_id=None):
+    def __init__(self, model="gpt-5", name="summarizer", flow_id=None, loc_override="", ticker=""):
         super().__init__(name=name, model=model, flow_id=flow_id)
 
         self.context = f"""
@@ -160,7 +169,7 @@ class summarizer_LLM(base_LLM):
 
 # Tasked with classifying headlines for which tickers it is relevant to and giving a importance score
 class headline_classifier_LLM(base_LLM):
-    def __init__(self, model="gpt-4o-mini", name="headline_classifier"):
+    def __init__(self, model="gpt-4o-mini", name="headline_classifier", loc_override="", ticker=""):
         super().__init__(name=name, model=model)
 
         self.context = f"""

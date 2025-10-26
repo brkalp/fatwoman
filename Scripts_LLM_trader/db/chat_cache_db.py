@@ -9,7 +9,6 @@ DB_FILE = os.path.join(BASE_DIR, DB_PATH)
 
 mutex_lock = threading.Lock()  # Prevent concurrent write issues to db
 
-
 # Recycled'ı sil
 # TODO: add another field for flow_id; remove flow_chat_conn
 def _init_table():
@@ -39,7 +38,6 @@ def _init_table():
         needed = {"flow_id"}
         for col in needed - cols:
             conn.execute(f"ALTER TABLE {TABLE} ADD COLUMN {col} INTEGER;")
-
 
 _init_table()
 
@@ -88,6 +86,8 @@ def log_chat_interaction(prompt, context, response, input_tokens, output_tokens,
                         model_used 
                     )
                 )
+            
+            print('Logged chat interaction to DB.')
 
 def fetch_cached_row(prompt, context, model_used):
     with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
@@ -104,7 +104,7 @@ def fetch_cached_row(prompt, context, model_used):
             (prompt, context, model_used),
         )
         row = cursor.fetchone()
-
+        print('returned row from db: ', len(row) if row else 0)
         return dict(row) if row else None
 
 def get_id(prompt, resp):  # TODO how to get value from row 
@@ -121,15 +121,15 @@ def get_id(prompt, resp):  # TODO how to get value from row
         return row
 
 
-""" # Deprecated
-def set_flow_id(entry_id, flow_id):
-    with mutex_lock:
-        with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
-            conn.execute("BEGIN IMMEDIATE;")
-            conn.execute( 
-                UPDATE {TABLE}
-                SET flow_id = ?
-                WHERE id = ? 
-                (flow_id, entry_id),
-            )
-            """
+# """ # Deprecated
+# def set_flow_id(entry_id, flow_id):
+#     with mutex_lock:
+#         with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
+#             conn.execute("BEGIN IMMEDIATE;")
+#             conn.execute( 
+#                 UPDATE {TABLE}
+#                 SET flow_id = ?
+#                 WHERE id = ? 
+#                 (flow_id, entry_id),
+#             )
+#             """

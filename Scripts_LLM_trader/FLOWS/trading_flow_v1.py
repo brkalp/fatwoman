@@ -2,7 +2,7 @@ from LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
 import json
 import logging
 import os
-os.chdir(r'Z:\15GB\Scripts_LLM_trader')
+# os.chdir(r'Z:\15GB\Scripts_LLM_trader')
 from db.headline_db import get_entry_summaries
 import db.flow_db as flow_db 
 from telegram_bot import tg_bot
@@ -16,9 +16,9 @@ def flow_v1(date: str = "2025-10-16", ticker="AAPL", notify_users=False):
     logging.info(f"{ticker}, {date}; flow_id: {flow_id}")
     
     df_headlines = get_entry_summaries(date)
-    bullish = bullish_LLM(name="v1_bull", flow_id=flow_id)
-    bearish = bearish_LLM(name="v1_bear", flow_id=flow_id)
-    judge = judge_LLM(name="v1_judge", flow_id=flow_id)
+    bullish = bullish_LLM(name="v1_bull", flow_id=flow_id, ticker=ticker)
+    bearish = bearish_LLM(name="v1_bear", flow_id=flow_id, ticker=ticker)
+    judge = judge_LLM(name="v1_judge", flow_id=flow_id, ticker=ticker)
 
     prompt = f" What do you think of buying {ticker} today ?: {df_headlines} "
     logging.basicConfig(level=logging.INFO)
@@ -35,7 +35,7 @@ def flow_v1(date: str = "2025-10-16", ticker="AAPL", notify_users=False):
     logging.info(f"judge response recieved")
 
     summarizer_prompt = f"ticker: {ticker}; verdict= {resp_judge}"
-    resp_summarizer = summarizer_LLM(name="v1_summarizer", flow_id=flow_id).work(summarizer_prompt)
+    resp_summarizer = summarizer_LLM(name="v1_summarizer", flow_id=flow_id, ticker=ticker).work(summarizer_prompt)
     # logging.info(f"summarized_text: {resp_summarizer}")
 
     summarizer_json = json.loads(resp_summarizer)
