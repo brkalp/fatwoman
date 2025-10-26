@@ -3,14 +3,13 @@ import os
 import json
 
 
-def _get_from_json(key): # why does it take from credentials instead of .env ? 
+def _get_from_json(key):
     base_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(base_dir, "credentials.json")
 
     with open(file_path, "r") as f:
         credentials = json.load(f)
-        return credentials[key]
-    return None
+        return credentials.get(key)
 
 
 def _send_message(chat_id, text): # send one message to chat with chat_id
