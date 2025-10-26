@@ -26,6 +26,10 @@ if socket.gethostname() == 'fatwoman':
 if socket.gethostname() == 'Apollo-13':
     fatwoman_base_path = r'C:\Users\deniz\PycharmProjects\alp'
     fatwoman_data_path = r'C:\Users\deniz\PycharmProjects\fatboy'
+if socket.gethostname() == 'LAPTOP-0B0HOMKE':
+    fatwoman_base_path = r'C:\Users\deniz\OneDrive\Desktop\projects\fatwoman'
+    fatwoman_data_path = r'C:\fatboy'
+
 if 'fatwoman_base_path' not in locals(): print('Data paths not defined for this machine!')
 fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
 
