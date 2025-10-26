@@ -9,7 +9,7 @@ def _get_from_json(key): # why does it take from credentials instead of .env ?
 
     with open(file_path, "r") as f:
         credentials = json.load(f)
-        return credentials[key]
+        return credentials.get(key)
     return None
 
 

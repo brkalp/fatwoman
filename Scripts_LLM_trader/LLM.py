@@ -1,4 +1,4 @@
-"""Created on 09-14-2025 16:36:06 @author: denizyalimyilmaz"""
+# """Created on 09-14-2025 16:36:06 @author: denizyalimyilmaz"""
 
 from dotenv import load_dotenv
 from openai import OpenAI
