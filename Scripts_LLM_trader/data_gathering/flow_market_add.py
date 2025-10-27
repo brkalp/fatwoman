@@ -32,19 +32,22 @@ def _get_profit_per(): # close'u profit_made'e böl
 def add_values():
     flows = select_market_val_empty()
     for flow in flows:
-        flow_id = flow["id"]
-        ticker = flow["ticker"]
-        date = flow["date"]
+        try:
+            flow_id = flow["id"]
+            ticker = flow["ticker"]
+            date = flow["date"]
 
-        open, high, low, close = _get_market_values(ticker, date)
+            open, high, low, close = _get_market_values(ticker, date)
 
-        add_market_values(flow_id, open, high, low, close)
+            add_market_values(flow_id, open, high, low, close)
 
-        try:  # order being null doesn't make it crash actually
-            order = flow["order"]
-            amount = flow["order_amount"]
-            profit = _calculate_profit(order, amount, open, close)
-            add_profit(flow_id, profit)
-        except Exception as e:
-            logging.error(f"Error calculating profit for flow_id {flow_id}: {e}")
-            continue
+            try:  # order being null doesn't make it crash actually
+                order = flow["order"]
+                amount = flow["order_amount"]
+                profit = _calculate_profit(order, amount, open, close)
+                add_profit(flow_id, profit)
+            except Exception as e:
+                logging.error(f"Error calculating profit for flow_id {flow_id}: {e}")
+                continue
+        except:
+            pass
