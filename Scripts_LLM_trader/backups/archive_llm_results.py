@@ -2,7 +2,11 @@
 import os
 import shutil
 from datetime import datetime
-import logging
+import logging, sys
+sys.path.append(r'C:\Users\deniz\OneDrive\Desktop\projects\fatwoman\Scripts_Setup_Dirs')
+sys.path.append('/15GB/Scripts_Setup_Logger')
+sys.path.append('/Scripts_Setup_Dirs')
+sys.path.append('/Scripts_Setup_Logger')
 import fatwoman_log_setup
 from fatwoman_dir_setup import LLM_data_path
 from fatwoman_log_setup import script_end_log

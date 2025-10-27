@@ -24,7 +24,8 @@ def _get_market_values(ticker_name, date):
     return  round(row["Open"].iloc[0], 3), round(row["High"].iloc[0], 3), round(row["Low"].iloc[0], 3), round(row["Close"].iloc[0], 3)
     
 
-
+def _get_profit_per(): # close'u profit_made'e böl  
+    pass
 
 
 # For every null market value flow, get market values and add them to the flow entry, calculate profit and add it too
