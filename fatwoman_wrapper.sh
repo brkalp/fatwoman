@@ -70,8 +70,8 @@ runChromeRemoteDesktopstatus() { systemctl status chrome-remote-desktop@fatwoman
 LLMfolder()          { cd ${BASE_DIR}Scripts_LLM_trader; }
 LLMfatfolder()       { cd ${FATBOY_DIR}Scripts_LLM_trader; }
 # runLLM_Consultant()  { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/LLM.py;}
-runLLM_Finnhub()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/FinnHub.py;}
-runLLM_newsapiorg()  { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/newsapiorg.py;}
+runLLM_Finnhub()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/FinnHub.py;}
+runLLM_newsapiorg()  { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/newsapiorg.py;}
 runLLM_Flow_POC()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/trading_flow_POC.py;} 
 runLLM_EOD_Get_Market_Values() { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main_add_market_val_to_flow.py; }
 runLLM_Main()    { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main.py;}
