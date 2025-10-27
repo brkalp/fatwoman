@@ -8,7 +8,7 @@ from fatwoman_log_setup import script_end_log
 from fatwoman_dir_setup import LLM_data_path_finnhub_file, LLM_data_path
 
 # load_dotenv()
-# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") # Load your OpenAI API key from the local api setup file
 
 from db.chat_cache_db import (
     log_chat_interaction,
@@ -24,7 +24,8 @@ class base_LLM:
         self.name = name
         self.flow_id = flow_id
         loc_override = loc_override if loc_override == "" else "_" + loc_override
-        filename = "LLM_" + self.name + ticker + loc_override + "_latest_response.txt"
+        ticker_name_to_filename = ticker if ticker == "" else "_" + ticker
+        filename = "LLM_" + self.name + ticker_name_to_filename + loc_override + "_latest_response.txt"
         self.write_loc = os.path.join(LLM_data_path, filename)
 
     # """ What should be used to get response from LLMS.
@@ -99,7 +100,7 @@ class base_LLM:
 
 class consulter_LLM(base_LLM):
     def __init__(self, model="gpt-4o-mini", name="consulter", flow_id=None, loc_override="", ticker=""):
-        super().__init__(name=name, model=model, flow_id=flow_id)
+        super().__init__(name=name, model=model, loc_override=loc_override, ticker=ticker)
 
         self.context = f"""
             You are the Consulter agent.
@@ -110,7 +111,7 @@ class consulter_LLM(base_LLM):
 
 class bullish_LLM(base_LLM):
     def __init__(self, model="gpt-4o-mini", name="bull", flow_id=None, loc_override="", ticker=""):
-        super().__init__(name=name, model=model, flow_id=flow_id)
+        super().__init__(name=name, model=model, loc_override=loc_override, ticker=ticker)
 
         self.context = f"""
             USE AT MOST 200 WORDS. THE OUTPUT WILL BE USED BY A MACHINE.
@@ -124,7 +125,7 @@ class bullish_LLM(base_LLM):
 
 class bearish_LLM(base_LLM):
     def __init__(self, model="gpt-4o-mini", name="bear", flow_id=None, loc_override="", ticker=""):
-        super().__init__(name=name, model=model, flow_id=flow_id)
+        super().__init__(name=name, model=model, loc_override=loc_override, ticker=ticker)
 
         self.context = f"""
             USE AT MOST 200 WORDS. THE OUTPUT WILL BE USED BY A MACHINE.
@@ -138,7 +139,7 @@ class bearish_LLM(base_LLM):
 
 class judge_LLM(base_LLM):
     def __init__(self, model="gpt-5", name="judge", flow_id=None, loc_override="", ticker=""):
-        super().__init__(name=name, model=model, flow_id=flow_id)
+        super().__init__(name=name, model=model, loc_override=loc_override, ticker=ticker)
 
         self.context = f"""
             USE AT MOST 200 WORDS. THE OUTPUT WILL BE USED BY A MACHINE.
@@ -151,7 +152,7 @@ class judge_LLM(base_LLM):
 
 class summarizer_LLM(base_LLM):
     def __init__(self, model="gpt-5", name="summarizer", flow_id=None, loc_override="", ticker=""):
-        super().__init__(name=name, model=model, flow_id=flow_id)
+        super().__init__(name=name, model=model, loc_override=loc_override, ticker=ticker)
 
         self.context = f"""
             You are an expert financial analyst with a PhD in financial markets and economics.
@@ -170,7 +171,7 @@ class summarizer_LLM(base_LLM):
 # Tasked with classifying headlines for which tickers it is relevant to and giving a importance score
 class headline_classifier_LLM(base_LLM):
     def __init__(self, model="gpt-4o-mini", name="headline_classifier", loc_override="", ticker=""):
-        super().__init__(name=name, model=model)
+        super().__init__(name=name, model=model, loc_override=loc_override, ticker=ticker)
 
         self.context = f"""
             TODO 
