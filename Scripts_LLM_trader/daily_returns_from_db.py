@@ -5,7 +5,7 @@ from fatwoman_log_setup import script_end_log
 import pandas as pd
 import sqlite3
 
-with sqlite3.connect(r'C:\Users\User\Desktop\flow.db') as conn:
+with sqlite3.connect(r'Z:\15GB\Scripts_LLM_trader\db\flow.db') as conn:
     query = "SELECT * FROM flow" 
     df = pd.read_sql_query("SELECT * FROM flow", conn)
     try:
@@ -14,8 +14,7 @@ with sqlite3.connect(r'C:\Users\User\Desktop\flow.db') as conn:
     except Exception as e:
         logging.error(f"Error calculating daily returns: {e}")
 
-df2 = df[['date', 'daily_return']].copy()
-df2.groupby('date')['daily_return'].sum().reset_index()
+df2 = df[['date', 'daily_return']].copy().groupby('date')['daily_return'].sum().reset_index()
 
 # # for date_today in df['date'].unique():
 # #     print('date_today:', date_today)

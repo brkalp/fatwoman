@@ -18,9 +18,11 @@ load_dotenv()
 # finnhub_api_key=os.getenv("FINNHUB_API_KEY")
  
 def save_news():
+    print('Getting finnhub news...')
     url = "https://finnhub.io/api/v1/news?category=general&token=" + finnhub_api_key 
     news_list = requests.get(url).json()
     df0 = pd.DataFrame(news_list, columns=["headline", "summary", "datetime", "url"])
+    df0['datetime'] = pd.to_datetime(df0['datetime'], unit='s')
     df1 = df0[['headline', 'summary', 'url']]
     print("Printing %i finnhub.io rows to %s" % (len(df1), LLM_data_path_finnhub_file))
     df1.to_csv(LLM_data_path_finnhub_file, index=False)
