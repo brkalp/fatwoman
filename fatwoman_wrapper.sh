@@ -91,7 +91,7 @@ runIB_clientportaltickle()  { /usr/bin/python3 ${BASE_DIR}/Scripts_LLM_trader/ib
 # LLM Batches
 runBatchDailyLLM()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/main.py
     # runLLM_Finnhub
-    # runLLM_newsapiorg
+    runLLM_newsapiorg
     # runLLM_Flow_POC
     # runLLM_Flow_v1
     # runLLM_Flow_v2

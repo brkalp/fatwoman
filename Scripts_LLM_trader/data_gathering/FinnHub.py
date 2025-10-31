@@ -27,8 +27,8 @@ def save_news():
     print("Printing %i finnhub.io rows to %s" % (len(df1), LLM_data_path_finnhub_file))
     df1.to_csv(LLM_data_path_finnhub_file, index=False)
 
-    for n in news_list: 
-        add_entry(n["headline"], n["datetime"], n["summary"], n["url"], n.get("source", ""), "", 0)
+    for row in news_list: 
+        add_entry(row["headline"], row["datetime"], row["summary"], row["url"], row.get("source", ""), "", 0)
 
     script_end_log()
 
