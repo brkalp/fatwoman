@@ -7,3 +7,4 @@ System Volume Information/
 **/geckodriver.log
 *.pyc
 .env
+.vscode/settings.json
