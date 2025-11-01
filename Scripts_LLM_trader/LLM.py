@@ -49,7 +49,7 @@ class base_LLM:
                 recycled=True,
                 flow_id=self.flow_id,
             )
-            with open(self.write_loc, "w") as file:
+            with open(self.write_loc, "w", encoding="utf-8") as file:
                 file.write(cache["response"])
 
             return cache["response"]
@@ -69,6 +69,7 @@ class base_LLM:
             recycled=False,
             flow_id=self.flow_id
         )  # log to db            
+
         with open(self.write_loc, "w") as file:
             file.write(response)
         return response

@@ -20,11 +20,23 @@ def _get_market_values(ticker_name, date):
     if df.empty:
         return None
 
-    row = df.iloc[0]
-    return  round(row["Open"].iloc[0], 3), round(row["High"].iloc[0], 3), round(row["Low"].iloc[0], 3), round(row["Close"].iloc[0], 3)
-    
+    """    # On the weekends yf returns None
+    if df.empty:
+        logging.info(f"No price data returned for {ticker_name} on {date}. Is it the weekend?" )
+        return None
+    """
 
-def _get_profit_per(): # close'u profit_made'e böl  
+    row = df.iloc[0]
+
+    return (
+        round(row["Open"].iloc[0], 3),
+        round(row["High"].iloc[0], 3),
+        round(row["Low"].iloc[0], 3),
+        round(row["Close"].iloc[0], 3),
+    )
+
+
+def _get_profit_percentage():  # close'u profit_made'e böl
     pass
 
 

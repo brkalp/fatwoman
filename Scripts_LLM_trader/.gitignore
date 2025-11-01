@@ -4,3 +4,4 @@ clientportal
 *.sqlite
 *.db-wal
 *.db-shm
+main_test.py

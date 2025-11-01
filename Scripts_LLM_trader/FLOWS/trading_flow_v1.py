@@ -1,21 +1,40 @@
 from LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
 import json
 import logging
-import os
+
 # os.chdir(r'Z:\15GB\Scripts_LLM_trader')
+from data_gathering.FinnHub import ticker_news
 from db.headline_db import get_entry_summaries
-import db.flow_db as flow_db 
+from datetime import timedelta, datetime
+import db.flow_db as flow_db
 from telegram_bot import tg_bot
 from fatwoman_log_setup import script_end_log
 
 
+def get_headlines(ticker: str, date: str, headline_factory: str) -> str:
+    if headline_factory == "get_entry_summaries":
+        return get_entry_summaries(date)
+    if headline_factory == "ticker_news":
+
+        d = datetime.strptime(date, "%Y-%m-%d")
+        from_date = d - timedelta(days=30)
+        from_date = from_date.strftime("%Y-%m-%d")
+
+        return ticker_news(ticker=ticker, from_date=from_date, to_date=date)
+
+
 # Gets a ticker name as parameters, analyzes it, returns a summary text
-def flow_v1(date: str = "2025-10-16", ticker="AAPL", notify_users=False):
-    flow_id = flow_db.add_base(date=date, ticker=ticker) # creates base flow entry
+def flow_v1(
+    date: str = "2025-10-16",
+    ticker="AAPL",
+    notify_users=False,
+    headline_factory="get_entry_summaries",
+):
+    flow_id = flow_db.add_base(date=date, ticker=ticker)  # creates base flow entry
     # flow_id = flow_db.get_id(date=date, ticker=ticker) # TODO: this may return a wrong id, as date and ticker are not PK
     logging.info(f"{ticker}, {date}; flow_id: {flow_id}")
-    
-    df_headlines = get_entry_summaries(date)
+
+    df_headlines = get_headlines(ticker, date, headline_factory=headline_factory)
     bullish = bullish_LLM(name="v1_bull", flow_id=flow_id, ticker=ticker)
     bearish = bearish_LLM(name="v1_bear", flow_id=flow_id, ticker=ticker)
     judge = judge_LLM(name="v1_judge", flow_id=flow_id, ticker=ticker)
@@ -35,7 +54,9 @@ def flow_v1(date: str = "2025-10-16", ticker="AAPL", notify_users=False):
     logging.info(f"judge response recieved")
 
     summarizer_prompt = f"ticker: {ticker}; verdict= {resp_judge}"
-    resp_summarizer = summarizer_LLM(name="v1_summarizer", flow_id=flow_id, ticker=ticker).work(summarizer_prompt)
+    resp_summarizer = summarizer_LLM(
+        name="v1_summarizer", flow_id=flow_id, ticker=ticker
+    ).work(summarizer_prompt)
     # logging.info(f"summarized_text: {resp_summarizer}")
 
     summarizer_json = json.loads(resp_summarizer)
