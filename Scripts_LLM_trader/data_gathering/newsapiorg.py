@@ -33,7 +33,7 @@ def get_news_api_org(to_date: pd.Timestamp = None):
     data = resp.json()
     df0 = pd.DataFrame(data["articles"])
     df1 = df0[['source', 'title', 'description','publishedAt', 'content']]
-    print("Printing %i newsapiorg.io rows to %s" % (len(df1), LLM_data_path_newsapi_file))
+    print("Printing %i rows from newsapiorg.io to %s" % (len(df1), LLM_data_path_newsapi_file))
     df1.to_csv(LLM_data_path_newsapi_file, index=False)
 
 if __name__ == "__main__":
