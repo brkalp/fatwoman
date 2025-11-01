@@ -70,7 +70,7 @@ class base_LLM:
             flow_id=self.flow_id
         )  # log to db            
 
-        with open(self.write_loc, "w") as file:
+        with open(self.write_loc, "w", encoding="utf-8") as file:
             file.write(response)
         return response
 
