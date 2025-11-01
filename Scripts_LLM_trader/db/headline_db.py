@@ -1,10 +1,12 @@
 import sqlite3, os
 
-TABLE_NAME = "headlines"
+from fatwoman_dir_setup import daily_news_headlines, daily_news_headlines_name
+
+TABLE_NAME = daily_news_headlines_name
 TABLE_PATH = TABLE_NAME + ".db"
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_FILE = os.path.join(BASE_DIR, TABLE_PATH) 
+DB_FILE = daily_news_headlines
 
 # headline, datetime, summary,  source, url, tags_given, importance
 # TODO this shouldn't be unix time ffs

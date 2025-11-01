@@ -10,7 +10,6 @@ import db.flow_db as flow_db
 from telegram_bot import tg_bot
 from fatwoman_log_setup import script_end_log
 
-
 def get_headlines(ticker: str, date: str, headline_factory: str) -> str:
     if headline_factory == "get_entry_summaries":
         return get_entry_summaries(date)

@@ -1,17 +1,19 @@
 import sqlite3, threading, os
 
+from fatwoman_dir_setup import db_trades_name, db_trades
+
 # id, date, ticker, order, amount, open, high, low, close,
 
 # market kapandıktan sonra bu script tekrardan çalışıp open, high low, close priceları dolduracak ve profit_made ı hesaplayacak
 
 mutex = threading.Lock()
 
-TABLE_NAME = "flow"
-DB_PATH = TABLE_NAME + ".db"
+TABLE_NAME = db_trades_name
+# DB_PATH = db_trades
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_FILE = os.path.join(BASE_DIR, DB_PATH)
-
+# DB_FILE = os.path.join(BASE_DIR, DB_PATH)
+DB_FILE = db_trades
 
 def _init_db():
     with mutex:

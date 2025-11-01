@@ -67,15 +67,15 @@ runChromeRemoteDesktopkill() { /opt/google/chrome-remote-desktop/chrome-remote-d
 runChromeRemoteDesktopstatus() { systemctl status chrome-remote-desktop@fatwoman.service;}
 
 # LLM
-LLMfolder()          { cd ${BASE_DIR}Scripts_LLM_trader; }
-LLMfatfolder()       { cd ${FATBOY_DIR}Scripts_LLM_trader; }
+LLMfolder()             { cd ${BASE_DIR}Scripts_LLM_trader; }
+LLMfatfolder()          { cd ${FATBOY_DIR}Scripts_LLM_trader; }
 # runLLM_Consultant()  { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/LLM.py;}
-runLLM_Finnhub()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/FinnHub.py;}
-runLLM_newsapiorg()  { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/newsapiorg.py;}
-runLLM_Flow_POC()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/trading_flow_POC.py;} 
-runLLM_EOD_Get_Market_Values() { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main_add_market_val_to_flow.py; }
-runLLM_Main()    { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main.py;}
-runLLM_Archiver()    { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/archive_llm_results.py;} # RUNS AT EOD
+runLLM_Finnhub()        { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/FinnHub.py;}
+runLLM_newsapiorg()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/newsapiorg.py;}
+runLLM_Flow_POC()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/trading_flow_POC.py;} 
+runLLM_db_price_fetcher() { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/db_price_fetcher.py; }
+runLLM_Main()           { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main.py;}
+runLLM_Archiver()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/archive_llm_results.py;} # RUNS AT EOD
 
 # IB
 runIB_clientportal() {
@@ -89,7 +89,7 @@ runIB_clientportalcheck()   { ps -ef | grep clientportal.gw.jar | grep -v grep;}
 runIB_clientportaltickle()  { /usr/bin/python3 ${BASE_DIR}/Scripts_LLM_trader/ib_wrapper_tickler.py;}
 
 # LLM Batches
-runBatchDailyLLM()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/main.py
+runBatchLLMBD()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/main.py
     # runLLM_Finnhub
     runLLM_newsapiorg
     # runLLM_Flow_POC
@@ -98,8 +98,8 @@ runBatchDailyLLM()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader
     runLLM_Main
 }
 
-runBatchEODLLM() {
-    runLLM_EOD_Get_Market_Values
+runBatchLLMBDEOD() {
+    runLLM_db_price_fetcher
 }
 
 runBatchPerMinute() {

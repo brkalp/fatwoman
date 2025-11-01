@@ -41,6 +41,15 @@ LLM_flow1_response_file     = os.path.join(LLM_data_path, 'LLM_flow1_response_fi
 LLM_flow1_order_file        = os.path.join(LLM_data_path, 'LLM_flow1_order_file.csv') # only tickers and buy sell
 # LLM_config_path           = os.path.join(fatwoman_data_path, 'Scipts_LLM_trader')
 
+#db
+db_data_path            = os.path.join(fatwoman_data_path, 'dbs')
+db_chats_name = 'db_chats'
+db_trades_name = 'db_trades'
+daily_news_headlines_name = 'daily_news_headlines'
+db_chats             = os.path.join(db_data_path, db_chats_name + '.db')
+db_trades            = os.path.join(db_data_path, db_trades_name + '.db')
+daily_news_headlines = os.path.join(db_data_path, daily_news_headlines_name + '.db')
+
 # Avanza Scrape
 avanza_data_path    = os.path.join(fatwoman_data_path, 'Scripts_Avanza_Scrape')
 avanza_config_file  = os.path.join(fatwoman_base_path, 'Scripts_Avanza_Scrape', 'website_list.csv')

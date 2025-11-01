@@ -1,11 +1,14 @@
 import sqlite3, os, threading
 
+from fatwoman_dir_setup import daily_news_headlines, daily_news_headlines_name
+
 # TODO: rename later
-TABLE = "chat_cache"
-DB_PATH = TABLE + ".db"
+TABLE = daily_news_headlines_name
+# DB_PATH = TABLE + ".db"
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_FILE = os.path.join(BASE_DIR, DB_PATH)
+# DB_FILE = os.path.join(BASE_DIR, DB_PATH)
+DB_FILE = daily_news_headlines
 
 mutex_lock = threading.Lock()  # Prevent concurrent write issues to db
 
