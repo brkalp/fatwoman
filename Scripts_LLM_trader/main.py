@@ -5,7 +5,7 @@ logging.basicConfig(level=logging.INFO)
 from flows.trading_flow_v2 import flow_v2
 from flows.trading_flow_v1 import flow_v1
 from data_gathering.FinnHub import save_news
-from data_gathering.flow_market_add import _get_market_values
+from data_gathering.db_price_fetcher import _get_market_values
 import datetime
 
 import sys, os  # To make it work no matter where it is executed from
