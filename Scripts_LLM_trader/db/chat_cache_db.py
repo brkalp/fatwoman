@@ -46,7 +46,7 @@ def log_chat_interaction(prompt, context, response, input_tokens, output_tokens,
     with mutex_lock:  # Threading safety
         with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
             conn.execute("BEGIN IMMEDIATE;")
-
+            
             if flow_id:
                 query = f"""
                 INSERT INTO {TABLE} 
