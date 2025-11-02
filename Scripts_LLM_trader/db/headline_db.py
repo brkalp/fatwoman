@@ -39,8 +39,8 @@ def add_entry(
             date = convert_unix(date)
 
             conn.execute(  # Add entry
-                """
-                INSERT INTO headlines (headline, date, summary, url, tags_given, importance, source)
+                f"""
+                INSERT INTO {TABLE_NAME} (headline, date, summary, url, tags_given, importance, source)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             """,
                 (headline, date, summary, url, tags_given, importance, source)

@@ -45,6 +45,6 @@ def test_for_days(start_date:str, end_date:str): # flow 2
 
 if __name__ == "__main__":
     logging.info("Starting Backtesting")
-    test_flow_v1(start_date="2025-02-01", end_date="2025-03-01", ticker = "AAPL")
+    test_flow_v1(start_date="2025-03-01", end_date="2025-06-01", ticker = "AAPL")
     logging.info("Finished Backtesting")
     

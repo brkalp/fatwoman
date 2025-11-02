@@ -32,6 +32,7 @@ def ticker_news(ticker :str, from_date:str, to_date:str): # this will require a 
     url = f"https://finnhub.io/api/v1/company-news?symbol={ticker}&from={from_date}&to={to_date}&token={finnhub_api_key}"
     resp = requests.get(url=url).json()
     list = [dict["headline"] for dict in resp]
+    # list = list[:100]  # LIMIT 100
 
     joined = "; ".join(list)
     return joined

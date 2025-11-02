@@ -11,18 +11,21 @@ import datetime
 import sys, os  # To make it work no matter where it is executed from
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+import sys, traceback
 
+
+def _tracehook(exc_type, exc_value, exc_tb):
+    traceback.print_exception(exc_type, exc_value, exc_tb)
+
+
+sys.excepthook = _tracehook
 
 if __name__ == "__main__":
     logging.info("Starting LLM main")
     save_news()
-    
-    # print("text",_get_market_values("AAPL", "2025-10-24"))
-    
-    date=datetime.date.today()
+
+    date = datetime.date.today()
     logging.info(f"date being given: {date}")
 
     flow_v2(date=date, notify_users=True)
-    # flow_v1(date=date,ticker="TSLA", notify_users=True)
-    # logging.info("Finished LLM main")
     script_end_log()
