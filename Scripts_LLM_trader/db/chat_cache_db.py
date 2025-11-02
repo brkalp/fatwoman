@@ -1,18 +1,15 @@
 import sqlite3, os, threading
-
 from fatwoman_dir_setup import db_chats_name, db_chats
 
-# TODO: rename later
 TABLE = db_chats_name
-# DB_PATH = TABLE + ".db"
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# DB_FILE = os.path.join(BASE_DIR, DB_PATH)
 DB_FILE = db_chats
+
+# DB_PATH = TABLE + ".db"
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# DB_FILE = os.path.join(BASE_DIR, DB_PATH)
 
 mutex_lock = threading.Lock()  # Prevent concurrent write issues to db
 
-# Recycled'ı sil
 # TODO: add another field for flow_id; remove flow_chat_conn
 def _init_table():
     with sqlite3.connect(DB_FILE) as conn:

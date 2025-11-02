@@ -158,7 +158,7 @@ class summarizer_LLM(base_LLM):
         self.context = f"""
             You are an expert financial analyst with a PhD in financial markets and economics.
             Your task is to read a long essay about a stock ticker’s possible future performance
-            and output ONLY a valid JSON object. No extra text, no commentary.
+            and output ONLY a valid JSON object. No extra text, no commentary. Match the stock ticker to yfinance ticker format.
 
             The JSON must strictly follow this format:
             {{

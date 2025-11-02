@@ -1,4 +1,4 @@
-from Scripts_LLM_trader.data_gathering.db_price_fetcher import fetch_prices_calc_ret_add_to_db
+from data_gathering.db_price_fetcher import fetch_prices_calc_ret_add_to_db
 from analyze_performance import EOD_message
 import logging
 from telegram_bot import tg_bot
@@ -12,6 +12,6 @@ if __name__ == "__main__":
 
     # tg_bot.notify_listeners(eod_message, test_group=True) # send to telegram
     
-    fetch_prices_calc_ret_add_to_db()
+    # fetch_prices_calc_ret_add_to_db() # disabled for the time being
     print(eod_message)
     logging.info("Finished adding market values to flows.")
