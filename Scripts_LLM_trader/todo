@@ -19,6 +19,7 @@
 ** telegram test grubu, config ayarları
 ** Market valuelar ekleniyorken Close, EOD gelmemiş bir tarihe eklenmemeli
 ** Haftasonlarını flowlar atlasın; main_eod görmezden gelsin
+** flow_V1''deki haber kısmı flowun dışında bir utility class fonksiyonuna çevirilmeli.
 * Eğerki headlineları sınıflandırmak için bir program yazarsak; oradan elde ettiğimiz veri ile ticker için fazla haberin olduğu günleri kritik günler diye sınıflandırıp bundan volatilite artışı bekleyebiliriz;
 * can I retrieve chat_cahce from openai api, and delete our db?
 * market verilerini de llmlere gönderebiliriz
