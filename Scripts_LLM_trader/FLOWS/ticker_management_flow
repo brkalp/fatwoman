@@ -2,31 +2,36 @@ from flows.trading_flow_v1 import flow_v1
 from datetime import datetime, timedelta
 import json
 
-def for_day(date: str, ticker: str, portfolio):
-    analysis = flow_v1(date=current_date, ticker=ticker, notify_users=False)
+# maybe we should make it so we can  only buy it if we have enough cash 
+
+def for_day(date: str, ticker: str, portfolio, actions = []):
+    analysis = flow_v1(date=date, ticker=ticker, notify_users=False)
     analysis_json = json.loads(analysis)
     
-    tendency = analysis_json.get("tendency")
-    amount = analysis_json.get("amount", 0)
+    tendency = analysis_json.get("tendency") 
+    amount = analysis_json.get("amount", 1)
     
     if tendency == "buy":
         portfolio[ticker] = portfolio.get(ticker, 0) + amount
+        actions.append((date, ticker, "buy", amount))
     elif tendency == "sell" and ticker in portfolio:
-        portfolio[ticker] = max(0, portfolio[ticker] - amount) # we should add a hold as well
+        portfolio[ticker] = max(0, portfolio[ticker] - amount) 
+        actions.append((date, ticker, "sell", amount))
+    elif tendency == "hold":
+        actions.append((date, ticker, "hold", 0))
         
 
 
 def flow(starting_date : str, ending_date : str, ticker : str):
     current_date = starting_date
-    portfolio = {}
+    portfolio = {ticker: 0}
     actions = []
     
     while current_date <= ending_date:
-        for_day(current_date, ticker, portfolio)
+        for_day(current_date, ticker, portfolio, actions=actions)
 
         d = datetime.strptime(current_date, "%Y-%m-%d")
         d += timedelta(days=1)
-        current_date = d.strftime("%Y-%m-%d")
-
+        current_date = d.strftime("%Y-%m-%d") 
     
     return portfolio

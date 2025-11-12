@@ -169,6 +169,9 @@ class summarizer_LLM(base_LLM):
             """
 
 
+class daily_ticker_analysis_LLM(base_LLM):
+    pass
+
 # Tasked with classifying headlines for which tickers it is relevant to and giving a importance score
 class headline_classifier_LLM(base_LLM):
     def __init__(self, model="gpt-4o-mini", name="headline_classifier", loc_override="", ticker=""):
