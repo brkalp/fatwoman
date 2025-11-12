@@ -1,0 +1,32 @@
+from flows.trading_flow_v1 import flow_v1
+from datetime import datetime, timedelta
+import json
+
+def for_day(date: str, ticker: str, portfolio):
+    analysis = flow_v1(date=current_date, ticker=ticker, notify_users=False)
+    analysis_json = json.loads(analysis)
+    
+    tendency = analysis_json.get("tendency")
+    amount = analysis_json.get("amount", 0)
+    
+    if tendency == "buy":
+        portfolio[ticker] = portfolio.get(ticker, 0) + amount
+    elif tendency == "sell" and ticker in portfolio:
+        portfolio[ticker] = max(0, portfolio[ticker] - amount) # we should add a hold as well
+        
+
+
+def flow(starting_date : str, ending_date : str, ticker : str):
+    current_date = starting_date
+    portfolio = {}
+    actions = []
+    
+    while current_date <= ending_date:
+        for_day(current_date, ticker, portfolio)
+
+        d = datetime.strptime(current_date, "%Y-%m-%d")
+        d += timedelta(days=1)
+        current_date = d.strftime("%Y-%m-%d")
+
+    
+    return portfolio

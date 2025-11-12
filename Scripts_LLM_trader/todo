@@ -13,6 +13,7 @@
 
 *** main_eod.py value giriyorken haftasonu None döndürüyor. Script None değerleri doldurmayı denedeği için haftasonları sonsuz kadar backpilelanıyor. 
 *** Backtesting
+*** aylık simulasyon
 ** eğerki headerların tickerlarını eşlersek sonradan 10 kere daha tekrar bütün headerları llm'lere atmamız gerekmez sadece gerekenleri atarız. Bunun için headerları sınıflandıran bir amele llm lazım.
 ** Haftanın başlığı seklinde bir sınıflandırma ile geçmişten gelen önemli headline'ları tekrar yedirip kaliteyi arttırmayı deneyebiliriz
 ** telegram test grubu, config ayarları
