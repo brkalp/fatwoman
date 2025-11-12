@@ -29,7 +29,7 @@ def flow_v1(
     notify_users=False,
     headline_factory="get_entry_summaries",
 ):
-    flow_id = flow_db.add_base(date=date, ticker=ticker)  # creates base flow entry
+    flow_id = flow_db.add_base(date=date, ticker=ticker, flow_name ='trade_flow_v1')  # creates base flow entry
     # flow_id = flow_db.get_id(date=date, ticker=ticker) # TODO: this may return a wrong id, as date and ticker are not PK
     logging.info(f"{ticker}, {date}; flow_id: {flow_id}")
 

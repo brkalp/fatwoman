@@ -73,7 +73,8 @@ LLMfatfolder()          { cd ${FATBOY_DIR}Scripts_LLM_trader; }
 runLLM_Finnhub()        { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/FinnHub.py;}
 runLLM_newsapiorg()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/newsapiorg.py;}
 runLLM_Flow_POC()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/trading_flow_POC.py;} 
-runLLM_db_price_fetcher() { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/db_price_fetcher.py; }
+# runLLM_db_price_fetcher() { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/db_price_fetcher.py; }
+runLLM_db_return_fetch(){ /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/db_price_fetch_calc_returns.py; }
 runLLM_Main()           { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main.py;}
 runLLM_Archiver()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/archive_llm_results.py;} # RUNS AT EOD
 
@@ -99,7 +100,7 @@ runBatchLLMBD()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/ma
 }
 
 runBatchLLMBDEOD() {
-    runLLM_db_price_fetcher
+    runLLM_db_return_fetch
 }
 
 runBatchPerMinute() {

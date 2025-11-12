@@ -1,19 +1,17 @@
 import sqlite3, threading, os
-
 from fatwoman_dir_setup import db_trades_name, db_trades
 
+TABLE_NAME = db_trades_name
+DB_FILE = db_trades
 # id, date, ticker, order, amount, open, high, low, close,
 
 # market kapandıktan sonra bu script tekrardan çalışıp open, high low, close priceları dolduracak ve profit_made ı hesaplayacak
 
 mutex = threading.Lock()
 
-TABLE_NAME = db_trades_name
 # DB_PATH = db_trades
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # DB_FILE = os.path.join(BASE_DIR, DB_PATH)
-DB_FILE = db_trades
 
 def _init_db():
     with mutex:
@@ -23,14 +21,14 @@ def _init_db():
             q = f"""
             CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                date TEXT, 
-                ticker TEXT,
-                "order" TEXT,
+                Date TEXT, 
+                Ticker TEXT,
+                "Order" TEXT,
                 "order_amount" REAL,
-                open REAL,
-                high REAL, 
-                low REAL,
-                close REAL,
+                Open REAL,
+                High REAL, 
+                Low REAL,
+                Close REAL,
                 profit_made REAL,
                 flow_name TEXT
             )
@@ -38,23 +36,19 @@ def _init_db():
 
             cursor.execute(q)
 
-
-_init_db()
-
+# _init_db()
 
 def add_base(
-    ticker, date, flow_name=""
+    ticker, date, flow_name="not_defined"
 ) -> int:  # this should probably check if this ticker and date pair was added before and if was; overwrite it ?
     with mutex:
         with sqlite3.connect(DB_FILE) as conn:
             cursor = conn.cursor()
-
             insert_query = f"""
-            INSERT INTO {TABLE_NAME} (ticker, date)
-            VALUES (?, ?)
+            INSERT INTO {TABLE_NAME} (Ticker, Date, flow_name)
+            VALUES (?, ?, ?)
             """
-
-            cursor.execute(insert_query, (ticker, date))
+            cursor.execute(insert_query, (ticker, date, flow_name))
             return cursor.lastrowid
 
 
@@ -62,14 +56,12 @@ def add_order(flow_id, order, amount):
 
     with mutex:
         with sqlite3.connect(DB_FILE) as conn:
-
             query = f"""
             UPDATE {TABLE_NAME}
-            SET "order" = ?, order_amount = ?
+            SET "Order" = ?, order_amount = ?
             WHERE id = ?
             """
             conn.execute(query, (order, amount, flow_id))
-
 
 # for flow_market_add.py
 def add_market_values(id, open, high, low, close):
@@ -79,13 +71,12 @@ def add_market_values(id, open, high, low, close):
 
             update_query = f"""
             UPDATE {TABLE_NAME}
-            SET open = ?, high = ?, low = ?, close = ?
+            SET Open = ?, High = ?, Low = ?, Close = ?
             WHERE id = ?
             """
 
             cursor.execute(update_query, (open, high, low, close, id))
             conn.commit()
-
 
 def add_profit(flow_id, profit_made):
     profit_made = round(profit_made, 3)
@@ -106,8 +97,8 @@ def get_id(ticker, date):
     with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
         query = f"""
             SELECT id FROM {TABLE_NAME}
-            WHERE ticker = ? AND date = ?
-            ORDER BY date DESC
+            WHERE Ticker = ? AND Date = ?
+            ORDER BY Date DESC
             LIMIT 1
         """
 
@@ -121,20 +112,20 @@ def select_market_val_empty():  # TODO for flow_market_add.py; return list of ro
         conn.row_factory = sqlite3.Row
         query = f""" 
         SELECT * FROM {TABLE_NAME}
-        WHERE close is NULL
+        WHERE Close is NULL
     """
         res = conn.execute(query)
         return [dict(row) for row in res.fetchall()]
 
-""" DEPRECATED
-def select_row_until_date(date:str, limit:int=3):
-    with sqlite3.connect(DB_FILE) as conn:
-        conn.row_factory = sqlite3.Row
-        query = f"SELECT * FROM {TABLE_NAME}
-                WHERE date <= ? LIMIT ?"
-        cursor = conn.execute(query, (date, limit))
-        return cursor.fetchall()
-        """
+# """ DEPRECATED
+# def select_row_until_date(date:str, limit:int=3):
+#     with sqlite3.connect(DB_FILE) as conn:
+#         conn.row_factory = sqlite3.Row
+#         query = f"SELECT * FROM {TABLE_NAME}
+#                 WHERE date <= ? LIMIT ?"
+#         cursor = conn.execute(query, (date, limit))
+#         return cursor.fetchall()
+#         """
 
 # THIS NEEDS TO BE CLOSED!!
 def get_connection():

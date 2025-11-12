@@ -1,12 +1,11 @@
 import sqlite3, os
-
 from fatwoman_dir_setup import daily_news_headlines, daily_news_headlines_name
 
 TABLE_NAME = daily_news_headlines_name
-TABLE_PATH = TABLE_NAME + ".db"
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_FILE = daily_news_headlines
+
+# TABLE_PATH = TABLE_NAME + ".db"
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # headline, datetime, summary,  source, url, tags_given, importance
 # TODO this shouldn't be unix time ffs
@@ -28,13 +27,11 @@ def add_entry(
             )
         """
         )
-
         # check for duplicates
         cur = conn.execute(
             f"SELECT 1 FROM {TABLE_NAME} WHERE headline=? AND summary=? LIMIT 1",
             (headline, summary)
         )
-
         if cur.fetchone() is None:
             date = convert_unix(date)
 
@@ -52,8 +49,6 @@ def add_entry(
 def get_entry_summaries(date: str = ""):
     with sqlite3.connect(DB_FILE) as conn:
         cursor = conn.cursor()
- 
-
         if date:
             cursor.execute(
                 f"SELECT summary FROM {TABLE_NAME} WHERE date <= ? ORDER BY date DESC LIMIT 100",
@@ -61,11 +56,8 @@ def get_entry_summaries(date: str = ""):
             )
         else:
             cursor.execute(f"SELECT summary FROM {TABLE_NAME} ORDER BY date DESC DESC LIMIT 100")
-
         rows = cursor.fetchall()
-
         joined = "; ".join(row[0] for row in rows)
-
         return joined
     
 
@@ -73,10 +65,8 @@ def convert_unix(t:int):
     from datetime import datetime, timezone
     if not isinstance(t, (int, float)) or not 1e9 < t < 2e10:
         return t  # already date string
-    
     if t > 1e12:  # ms → s
         t /= 1000
-    
     return datetime.fromtimestamp(t, tz=timezone.utc).strftime("%Y-%m-%d") 
 
 def update_entryy():  # for adding tags_given and importance later
