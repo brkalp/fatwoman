@@ -7,7 +7,7 @@ from fatwoman_log_setup import script_end_log
 
 def _worker_thread(ticker, notify_users, date, analysis_list):
     resp = flow_v1(ticker=ticker, date=date, notify_users=notify_users)
-    logging.info(f"Analyzed response for {ticker}:\n {resp}")
+    #logging.info(f"Analyzed response for {ticker}:\n {resp}")
 
     analysis_list.append(resp)
 
@@ -18,7 +18,7 @@ def flow_v2(date :str="2025-10-16", notify_users:bool=True):
 
     for suggested_ticker in poc_flow(date): 
         print(f"Starting thread for ticker: {suggested_ticker}")
-        logging.info(f"Starting thread for ticker: {suggested_ticker}")
+        #logging.info(f"Starting thread for ticker: {suggested_ticker}")
 
         t = threading.Thread(target=_worker_thread, args=(suggested_ticker, False, date, analysis)) # thread
         t.start()

@@ -1,5 +1,6 @@
 import sqlite3, os
 from fatwoman_dir_setup import daily_news_headlines, daily_news_headlines_name
+from fatwoman_log_setup import script_end_log
 
 TABLE_NAME = daily_news_headlines_name
 DB_FILE = daily_news_headlines

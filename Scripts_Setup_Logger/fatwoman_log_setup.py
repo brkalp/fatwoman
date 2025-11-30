@@ -30,8 +30,11 @@ def configure_logging(log_file_path = default_log_file_path):
     # logger.handlers.clear()
     logger.setLevel(logging.INFO)
 
+    # get importer file name
     try: importer_name = os.path.basename(sys.argv[0])[:-3]
     except : importer_name = 'importer_name'
+
+    # Check for override of log file path if exists
     log_file_path = logging_override.get(importer_name, default_log_file_path)
 
     # Create file handler

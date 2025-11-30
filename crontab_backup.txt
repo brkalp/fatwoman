@@ -7,6 +7,8 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 
 @reboot /usr/local/bin/noip2
 
+# fix mounts
+0 * * * * /bin/bash -c 'for dev in $(/bin/lsblk -lnpo NAME); do /usr/bin/udisksctl mount -b "$dev"; done' > $LOG_DIR'mount_disks2.log' 2>&1
 0 * * * * for dev in $(lsblk -lnp | awk '$6=="part" || $6=="disk" {print $1'}); do udisksctl mount -b "$dev"; done > $LOG_DIR'mount_disks.log' 2>&1
 
 # Wrapper check - Log wrapper execution
@@ -28,7 +30,7 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 # Daily activities
 0 3 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDaily'
 0 5 * * 1-5   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBD'
-#30 21 * * 1-5   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBDEOD'
+30 21 * * 1-5   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBDEOD'
 15 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning1' 
 43 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning2' 
 58 20 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEvening' 
@@ -47,7 +49,9 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 
 # mount usbs
 # sudo blkid
-#for dev in $(lsblk -lnp | awk '$6=="part"{print $1'}); do udisksctl mount -b "$dev"; done
+# proper version:
+# for dev in $(/bin/lsblk -lnpo NAME); do /usr/bin/udisksctl mount -b "$dev"; done
+# for dev in $(lsblk -lnp | awk '$6=="part"{print $1'}); do udisksctl mount -b "$dev"; done
 #udisksctl mount -b /dev/sda1
 #udisksctl mount -b /dev/sdb1
 #udisksctl mount -b /dev/sdc1

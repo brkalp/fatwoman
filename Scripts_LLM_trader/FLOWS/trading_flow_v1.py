@@ -42,15 +42,15 @@ def flow_v1(
     logging.basicConfig(level=logging.INFO)
 
     resp_bullish = bullish.work(prompt)
-    logging.info(f"bullish response recieved")
+    #logging.info(f"bullish response recieved")
 
     # TODO flow_chat.add(FLOW_ID, res_opt.chat_id)
     resp_bearish = bearish.work(prompt)
-    logging.info(f"pessimist response recieved")
+    #logging.info(f"pessimist response recieved")
 
     judge_prompt = f""" Here are two opinions on buying {ticker} today. The first one is optimistic and the second one is pessimistic. Please provide a balanced and sensible conclusion based on both perspectives. optimistic: {resp_bullish}  pessimistic: {resp_bearish} """
     resp_judge = judge.work(judge_prompt)
-    logging.info(f"judge response recieved")
+    #logging.info(f"judge response recieved")
 
     summarizer_prompt = f"ticker: {ticker}; verdict= {resp_judge}"
     resp_summarizer = summarizer_LLM(

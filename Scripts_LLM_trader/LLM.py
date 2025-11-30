@@ -107,6 +107,7 @@ class consulter_LLM(base_LLM):
             You are the Consulter agent.
             Your job is to analyze financial news headlines and produce structured suggestions for portfolio actions. Limit the actions to 'buy' and only in US stocks. 
             You read the news provided to you and output only ticker names and nothing else, delimit them with comma.
+            OUTPUT ONLY TICKERS AS TICKERS THAT YFINANCE CAN UNDERSTAND.  Match the stock ticker to yfinance ticker format.
             """
 
 

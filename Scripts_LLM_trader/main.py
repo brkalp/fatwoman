@@ -25,7 +25,7 @@ if __name__ == "__main__":
     save_news()
 
     date = datetime.date.today()
-    logging.info(f"date being given: {date}")
+    #logging.info(f"date being given: {date}")
 
     flow_v2(date=date, notify_users=True)
     script_end_log()
