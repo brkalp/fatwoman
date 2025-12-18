@@ -12,12 +12,12 @@ import os
 
 # YahooDownload_Output_Folder = r'\\192.168.0.28\fatwoman\15GB\EOD_scripts\Output_Folder\\' if socket.gethostname() == 'ripintheblue' else os.path.dirname(os.path.abspath(__file__)) + '//Output_Folder//'
 
-VOLS    = {'^VIX':'VIX', '^VVIX':'VVIX'}
+VOLS    = {'^VIX':'VIX', 'GC=F':'Gold', 'SI=F':'Silver'} #, '^VVIX':'VVIX'
 STOCKS  = {'^GSPC':'SP500', '^DJI':'DowJones', '^IXIC':'Nasdaq', '^MID':'MidCap', '^SP600':'SmallCap', 'ACWI':'Global',} #Stock indexes: Growth and value  'EEM ':'Emerging_Markets' // GSPC is the index and SPY is the ETF
 BONDS   = {'TLT':'LongTermBond','IEF':'TreasuryBond'} #,'^SP500BDT':'CorporateBonds','TIPS': 'Bonds'
 CMDTY   = {'^BCOM':'BBG Commodity', '^SPGSCI':'SP GSCI'} # also ETFs DBC and GSG
 CURR    = {'GBP=X':'USDGBP','USDTRY=X':'USDTRY','DKK=X':'USDDKK', 'SEK=X':'USDSEK', 'EUR=X':'USDEUR','RUB=X':'USDRUB','JPY=X':'USDJPY', 'USDCNY=X':'USDCNY'} # Currencies
-FOREIGN = {'^OMX':'OMX','XU100.IS':'BIST','IEUR':'EU','^GDAXI':'DAX','^N225':'NIKK','^FCHI':'CAC','000001.SS':'Shangai',} # 'RTSI.ME':'RTSI',
+FOREIGN = {'^OMX':'OMX','XU100.IS':'BIST','IEUR':'EU','^GDAXI':'DAX','^N225':'NIKK','000001.SS':'Shangai',} # 'RTSI.ME':'RTSI', ,'^FCHI':'CAC'
 
 TICKERS = {**VOLS}
 TICKERS = {**VOLS, **STOCKS, **BONDS, **CMDTY, **CURR, **FOREIGN}
