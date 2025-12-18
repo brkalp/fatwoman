@@ -10,9 +10,14 @@ from fatwoman_dir_setup import db_trades_name, db_trades, db_strategy_daily_retu
 
 try:
     with sqlite3.connect(db_trades) as conn:
-        query = f"SELECT * FROM {db_trades_name}" 
+        query = f"SELECT * FROM {db_trades_name}"  #z:\\\\fatboy\\dbs\\db_trades.db' 'db_trades'
         df0 = pd.read_sql_query(query, conn)
-        df0['Date'] = pd.to_datetime(df0['Date']).dt.date
+        s = df0["Date"].astype(str).str.strip()
+        dt = pd.to_datetime(s, format="%Y-%m-%d %H:%M:%S.%f", errors="coerce")
+        dt = dt.fillna(pd.to_datetime(s, format="%Y-%m-%d %H:%M:%S", errors="coerce"))
+        dt = dt.fillna(pd.to_datetime(s, format="%Y-%m-%d", errors="coerce"))
+        df0["dt"] = dt
+        df0['Date'] = pd.to_datetime(df0['Date'],errors="coerce").dt.date
         print('Fetched', len(df0), 'rows from database. ticker len:', len(df0['Ticker'].unique()))
         # %% Get price data from yfinance
         dfempty = df0[df0['Open'].isnull() | df0['Close'].isnull()]
@@ -60,6 +65,7 @@ try:
         print('Updated database with prices, daily returns and intraday returns. rowsize:', len(df1),'colsize:', len(df1.columns))
 except Exception as e:
     logging.error(f"Error calculating daily returns: {e}")
+    print(f"Error calculating daily returns: {e}")
 # %% save second db with strategy returns
 try:
     print('Calculating strategy daily returns and saving to table %s...'%db_strategy_daily_returns_name)
@@ -74,6 +80,7 @@ try:
         df2.to_sql(db_strategy_daily_returns_name, conn, if_exists='replace', index=False)
 except Exception as e:
     logging.error(f"Error calculating str returns: {e}")
+    print(f"Error calculating str returns: {e}")
 
 script_end_log()
 #         # %% calculate intraday returns and append back to the df
