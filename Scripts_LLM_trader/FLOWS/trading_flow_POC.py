@@ -3,7 +3,7 @@
 from LLM import *
 import pandas as pd
 import logging
-from db.headline_db import get_entry_summaries
+from Scripts_LLM_trader.db.db_daily_news_headlines import get_entry_summaries
 
 # Based on fed data returns top 5 tickers to buy & hold
 def poc_flow(date:str="2025-10-16"):

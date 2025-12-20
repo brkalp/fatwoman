@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from db.flow_db import get_connection, get_table_name
+from Scripts_LLM_trader.db.trades_db import get_connection, get_table_name
 import sqlite3
 import pandas as pd
 
