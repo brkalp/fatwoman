@@ -103,7 +103,7 @@ def fetch_cached_row(prompt, context, model_used):
         """,
             (prompt, context, model_used),
         )
-
+        
         row = cursor.fetchone()
         print('returned row from db: ', len(row) if row else -1)
         return dict(row) if row else None
