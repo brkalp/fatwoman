@@ -16,6 +16,7 @@ from Scripts_LLM_trader.db.db_chats import (
 )  # TODO will probably explode
 
 
+# 03.01.26: this isn't even an actual ABC oh goddddddd
 # Abstract Parent Class
 class base_LLM:
     def __init__(self, model, name="unnamed_LLM", flow_id=None, loc_override="", ticker=""):
