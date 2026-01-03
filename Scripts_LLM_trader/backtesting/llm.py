@@ -3,6 +3,7 @@ from fatwoman_log_setup import script_end_log
 from fatwoman_dir_setup import LLM_data_path_finnhub_file, LLM_data_path
 import os
 from openai import OpenAI
+from cache_db import log_chat_interaction, fetch_cached_row
  
 
 class LLM:
@@ -10,7 +11,7 @@ class LLM:
         self.model="gpt-4o-mini"
 
     def work(self, prompt, context):
-        """cache = fetch_cached_row(prompt, self.context, self.model)
+        cache = fetch_cached_row(prompt, self.context, self.model)
         if cache:
             log_chat_interaction(
                 prompt=cache["prompt"],
@@ -27,7 +28,7 @@ class LLM:
                 file.write(cache["response"])
 
             return cache["response"]
-        """
+        
 
         # If not found in cache, get new response from LLM, save it and return it
         response, tokens_input, tokens_output = self.__getResponse(
