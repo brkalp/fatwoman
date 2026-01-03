@@ -5,3 +5,4 @@ clientportal
 *.db-wal
 *.db-shm
 main_test.py
+*.csv
