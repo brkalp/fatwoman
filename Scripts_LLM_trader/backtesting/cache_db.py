@@ -49,49 +49,29 @@ def log_chat_interaction(
     output_tokens,
     agent_name,
     model_used,
-    recycled=False,
-    flow_id=None,
+    recycled=False
 ):
     with mutex_lock:  # Threading safety
         with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
             conn.execute("BEGIN IMMEDIATE;")
-
-            if flow_id:
-                query = f"""
-                INSERT INTO {TABLE} 
-                (prompt, context, response, recycled, input_tokens, output_tokens , model_used )
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-                """
-                conn.execute(
-                    query,
-                    (
-                        prompt,
-                        context,
-                        response,
-                        recycled,
-                        input_tokens,
-                        output_tokens,
-                        model_used,
-                    ),
-                )
-            else:
-                query = f"""
-                INSERT INTO {TABLE} 
-                (prompt, context, response, recycled, input_tokens, output_tokens , model_used )
-                VALUES (?, ?, ?, ?, ?, ?,   ?)
-                """
-                conn.execute(
-                    query,
-                    (
-                        prompt,
-                        context,
-                        response,
-                        recycled,
-                        input_tokens,
-                        output_tokens, 
-                        model_used,
-                    ),
-                )
+ 
+            query = f"""
+            INSERT INTO {TABLE} 
+            (prompt, context, response, recycled, input_tokens, output_tokens , model_used )
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """
+            conn.execute(
+                query,
+                (
+                    prompt,
+                    context,
+                    response,
+                    recycled,
+                    input_tokens,
+                    output_tokens,
+                    model_used,
+                ),
+            ) 
 
             print("Logged chat interaction to DB.")
 

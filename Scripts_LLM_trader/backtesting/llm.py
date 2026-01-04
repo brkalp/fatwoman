@@ -21,8 +21,7 @@ class LLM:
                 output_tokens=cache["output_tokens"],
                 agent_name=cache["agent_name"],
                 model_used=cache["model_used"], 
-                recycled=True,
-                flow_id=self.flow_id,
+                recycled=True
             )
             with open(self.write_loc, "w", encoding="utf-8") as file:
                 file.write(cache["response"])
