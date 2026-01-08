@@ -2,7 +2,7 @@
 import requests
 
 from dotenv import load_dotenv
-from db.headline_db import add_entry
+from Scripts_LLM_trader.db.db_daily_news_headlines import add_entry
 
 from fatwoman_log_setup import script_end_log
 from fatwoman_api_setup import finnhub_api_key

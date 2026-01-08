@@ -3,7 +3,7 @@ import yfinance as yf
 import logging
 import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from db.flow_db import add_market_values, select_market_val_empty, add_profit
+from Scripts_LLM_trader.db.trades_db import add_market_values, select_market_val_empty, add_profit
 from datetime import datetime, timedelta
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log

@@ -10,12 +10,13 @@ from fatwoman_dir_setup import LLM_data_path_finnhub_file, LLM_data_path
 # load_dotenv()
 # OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") # Load your OpenAI API key from the local api setup file
 
-from db.chat_cache_db import (
+from Scripts_LLM_trader.db.db_chats import (
     log_chat_interaction,
     fetch_cached_row,
 )  # TODO will probably explode
 
 
+# 03.01.26: this isn't even an actual ABC oh goddddddd
 # Abstract Parent Class
 class base_LLM:
     def __init__(self, model, name="unnamed_LLM", flow_id=None, loc_override="", ticker=""):

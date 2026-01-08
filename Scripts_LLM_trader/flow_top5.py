@@ -3,7 +3,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 import fatwoman_log_setup
 from fatwoman_log_setup import script_end_log
-from db.headline_db import get_entry_summaries
+from Scripts_LLM_trader.db.db_daily_news_headlines import get_entry_summaries
 import pandas as pd
 import time
 # from flows.trading_flow_v2 import flow_v2
@@ -12,7 +12,7 @@ from LLM import bullish_LLM, bearish_LLM, judge_LLM, summarizer_LLM
 # from flows.trading_flow_POC import poc_flow
 from data_gathering.FinnHub import save_news
 from data_gathering.FinnHub import ticker_news
-import db.flow_db as flow_db
+import Scripts_LLM_trader.db.trades_db as trades_db
 # from data_gathering.db_price_fetcher import _get_market_values
 import datetime as dt
 import threading
@@ -40,9 +40,14 @@ def get_headlines(ticker: str, date: str, headline_factory: str) -> str:
     
 # Gets a ticker name as parameters, analyzes it, returns a summary text
 def flow_v1(date:str="2025-10-16", ticker="AAPL", notify_users=False, headline_factory="get_entry_summaries"):
+<<<<<<< HEAD
     # date = dt.datetime.today() 
     # ticker="AAPL"
     flow_id = flow_db.add_base(date=date, ticker=ticker, flow_name ='trade_flow_v1')  # creates base flow entry
+=======
+
+    flow_id = trades_db.add_base(date=date, ticker=ticker, flow_name ='trade_flow_v1')  # creates base flow entry
+>>>>>>> 52827e83696667c83c77c65d6b3be5f7710db71c
     # flow_id = flow_db.get_id(date=date, ticker=ticker) # TODO: this may return a wrong id, as date and ticker are not PK
     logging.info(f"{ticker}, {date}; flow_id: {flow_id}")
 
@@ -72,7 +77,7 @@ def flow_v1(date:str="2025-10-16", ticker="AAPL", notify_users=False, headline_f
     # logging.info(f"summarized_text: {resp_summarizer}")
 
     summarizer_json = json.loads(resp_summarizer)
-    flow_db.add_order(flow_id=flow_id, order=summarizer_json["tendency"], amount=1)
+    trades_db.add_order(flow_id=flow_id, order=summarizer_json["tendency"], amount=1)
     if notify_users:
         tg_bot.notify_listeners(
             f"---Analysis for {ticker}--- \n {resp_summarizer}"
