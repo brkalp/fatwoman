@@ -23,7 +23,7 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 # * * * * *   /bin/bash -c 'source '$WRAPPER' && runIB_clientportaltickle' > $LOG_DIR'ib_wrap_tickler.log' 2>&1
 
 # Hourly activities
-10 * * * *   /bin/bash -c 'source '$WRAPPER' && runBatchHourly' 
+#10 * * * *   /bin/bash -c 'source '$WRAPPER' && runBatchHourly' 
 
 # business day data scrape
 

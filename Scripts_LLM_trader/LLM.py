@@ -28,16 +28,9 @@ class base_LLM:
         filename = "LLM_" + self.name + ticker_name_to_filename + loc_override + "_latest_response.txt"
         self.write_loc = os.path.join(LLM_data_path, filename)
 
-    # """ What should be used to get response from LLMS.
-    # * check cache for matching prompt+context+model if found create new log with recycled=True and return cached response; if not add to new cache
-
-    # parameters -- prompt : str
-    # Returns -- LLM's response : str
-    # """
-
     def work(self, prompt):
         cache = fetch_cached_row(prompt, self.context, self.model)
-        if cache:
+        if cache: # if responses exist, log the interaction as recycled and return cached response
             log_chat_interaction(
                 prompt=cache["prompt"],
                 context=cache["context"],
@@ -51,28 +44,29 @@ class base_LLM:
             )
             with open(self.write_loc, "w", encoding="utf-8") as file:
                 file.write(cache["response"])
-
+            print('Returning cached response from DB. with flow id %s' % self.flow_id)
             return cache["response"]
+        else: # If not found in cache, get new response from LLM, save it and return it
+            print('Returning new response from LLM.')
+            response, tokens_input, tokens_output = self.__getResponse(
+                prompt=prompt, context=self.context
+            )
+            print('Printing LLM response to db.')
+            log_chat_interaction(
+                prompt,
+                self.context,
+                response,
+                tokens_input,
+                tokens_output,
+                self.name,
+                self.model,
+                recycled=False,
+                flow_id=self.flow_id
+            )  # log to db            
 
-        # If not found in cache, get new response from LLM, save it and return it
-        response, tokens_input, tokens_output = self.__getResponse(
-            prompt=prompt, context=self.context
-        )
-        log_chat_interaction(
-            prompt,
-            self.context,
-            response,
-            tokens_input,
-            tokens_output,
-            self.name,
-            self.model,
-            recycled=False,
-            flow_id=self.flow_id
-        )  # log to db            
-
-        with open(self.write_loc, "w", encoding="utf-8") as file:
-            file.write(response)
-        return response
+            with open(self.write_loc, "w", encoding="utf-8") as file:
+                file.write(response)
+            return response
 
     # """
     # SUMMARY: GETS RESPONSE FROM OPENAI API AND NOTHING ELSE

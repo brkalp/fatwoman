@@ -86,8 +86,6 @@ def log_chat_interaction(prompt, context, response, input_tokens, output_tokens,
                         model_used 
                     )
                 )
-            
-            print('Logged chat interaction to DB.')
 
 def fetch_cached_row(prompt, context, model_used):
     with sqlite3.connect(DB_FILE, timeout=10.0) as conn:
@@ -104,7 +102,7 @@ def fetch_cached_row(prompt, context, model_used):
             (prompt, context, model_used),
         )
         row = cursor.fetchone()
-        print('returned row from db: ', len(row) if row else 0)
+        print('Returned row from db len: ', len(row) if row else 0)
         return dict(row) if row else None
 
 def get_id(prompt, resp):  # TODO how to get value from row 

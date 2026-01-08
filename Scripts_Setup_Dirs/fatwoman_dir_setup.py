@@ -120,13 +120,42 @@ Optionchain_dtype_dict = {
 }
 
 Vol_chain_tickers = [
-    'GME',
-    'AAPL',
-    'NVDA',
-    'SPY',
-    'TSLA',
-    'TLT',
-    '^VIX',
+    # 'GME',
+    # 'AAPL',
+    # 'NVDA',
+    # 'SPY',
+    # 'TSLA',
+    # 'TLT',
+    # '^VIX',
+    # 'ABB.ST ', #ABB Ltd (Industrial automation)
+    # 'ADDT-B.ST ', #Addtech AB (Class B)
+    # 'ALFA.ST ', #Alfa Laval AB
+    # 'ASSA-B.ST ', #ASSA ABLOY AB (Class B)
+    # 'AZN.ST ', #AstraZeneca PLC
+    # 'ATCO-A.ST ', #Atlas Copco AB (Class A)
+    # 'BOL.ST ', #Boliden AB
+    # 'EPI-A.ST ', #Epiroc AB (Class A)
+    # 'EQT.ST ', #EQT AB
+    # 'ERIC-B.ST ', #Telefonaktiebolaget LM Ericsson (Class B)
+    # 'ESSITY-B.ST ', #Essity AB (Class B)
+    # 'EVO.ST ', #Evolution AB
+    # 'SHB-A.ST ', #Svenska Handelsbanken AB (Class A)
+    # 'HM-B.ST ', #Hennes & Mauritz AB (Class B)
+    # 'HEXA-B.ST ', #Hexagon AB (Class B)
+    # 'INDU-C.ST ', #Industrivärden AB (Class C)
+    # 'INVE-B.ST ', #Investor AB (Class B)
+    # 'LIFCO-B.ST ', #Lifco AB (Class B)
+    # 'NIBE-B.ST ', #NIBE Industrier AB (Class B)
+    # 'NDA-SE.ST ', #Nordea Bank Abp
+    # 'SAAB-B.ST ', #Saab AB (Class B)
+    # 'SAND.ST ', #Sandvik AB
+    # 'SEB-A.ST ', #Skandinaviska Enskilda Banken AB (Class A)
+    # 'SKA-B.ST ', #Skanska AB (Class B)
+    # 'SKF-B.ST ', #SKF AB (Class B)
+    # 'SWED-A.ST ', #Swedbank AB (Class A)
+    # 'TEL2-B.ST ', #Tele2 AB (Class B)
+    # 'TELIA.ST ', #Telia Company AB
+    # 'VOLV-B.ST ', #Volvo AB (Class B)
     # 'DBC', # Invesco DB Commodity Index Tracking Fund
     # 'GSG' # S&P GSCI
     ]  #'^GSPC' 'EUR=X','USDTRY=X', 'SEK=X'  and GSG

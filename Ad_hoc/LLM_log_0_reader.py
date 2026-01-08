@@ -11,10 +11,15 @@ folder = os.path.join(LLM_data_path, 'Archive')
 
 # read all the files that has "summarizer" in its name, recursively in folders, append into a dataframe with two columns: full file path, content
 data = []
-for root, dirs, files in os.walk(folder):
+root, dirs, _ = next(os.walk(folder))
+dirs.sort()
+paths = [os.path.join(root, d) for d in dirs]
+
+for path in paths:
+    files = os.listdir(path)
     for file in files:
         if "summarizer" in file:
-            full_path = os.path.join(root, file)
+            full_path = os.path.join(path, file)
             with open(full_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             data.append({'file_path': full_path, 'content': content})
@@ -28,7 +33,7 @@ import json
 dataframe['ticker'] = dataframe['content'].apply(lambda x: json.loads(x).get('ticker', ''))
 dataframe['tendency'] = dataframe['content'].apply(lambda x: json.loads(x).get('tendency', ''))
 dataframe['confidence'] = dataframe['content'].apply(lambda x: json.loads(x).get('confidence', ''))
-
+# dataframe = dataframe.sort_values(by='folder_name')
 df2 = dataframe[['folder_name', 'ticker', 'tendency', 'confidence']]
 df2.to_clipboard(index=False)
 

@@ -10,13 +10,16 @@ import seaborn as sns
 import yfinance as yf
 import argparse
 
-if __name__ == "__main__":
-    print('Starting %s'%Vol_chain_tickers)
-    logging.info('Starting %s'%Vol_chain_tickers)
-    for ticker_symbol in Vol_chain_tickers:
-        print('Starting %s' %ticker_symbol)
-        # logging.info('Starting %s' %ticker_symbol)
-        ticker_data = yf.Ticker(ticker_symbol)
+print('Starting %s'%Vol_chain_tickers)
+logging.info('Starting %s'%Vol_chain_tickers)
+for ticker_symbol in Vol_chain_tickers:
+    print('Starting %s' %ticker_symbol)
+    # logging.info('Starting %s' %ticker_symbol)
+    ticker_data = yf.Ticker(ticker_symbol)
+    if not ticker_data.options:
+        print('No options data for %s, skipping' %ticker_symbol)
+        # logging.info('No options data for %s, skipping' %ticker_symbol)
+    else:
         options_data = [ pd.concat([
                 yf.Ticker(ticker_symbol).option_chain(date).calls.assign(Option_Type='Call', Expiration_Date=date),
                 yf.Ticker(ticker_symbol).option_chain(date).puts.assign(Option_Type='Put', Expiration_Date=date)
@@ -63,7 +66,7 @@ if __name__ == "__main__":
             # logging.info('Saving %4i to %s' %(df_len, data_save_loc_total))
             print('Saving %4i to %s' %(df_len, data_save_loc_total))
             combined_options_df.to_csv(data_save_loc_total, mode='a', header=False, index=False)
-    script_end_log()
+script_end_log()
 
 # for column, dtype in dtype_dict.items(): tail_total[column] = tail_total[column].astype(dtype)
 

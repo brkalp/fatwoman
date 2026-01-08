@@ -40,7 +40,8 @@ def get_headlines(ticker: str, date: str, headline_factory: str) -> str:
     
 # Gets a ticker name as parameters, analyzes it, returns a summary text
 def flow_v1(date:str="2025-10-16", ticker="AAPL", notify_users=False, headline_factory="get_entry_summaries"):
-
+    # date = dt.datetime.today() 
+    # ticker="AAPL"
     flow_id = flow_db.add_base(date=date, ticker=ticker, flow_name ='trade_flow_v1')  # creates base flow entry
     # flow_id = flow_db.get_id(date=date, ticker=ticker) # TODO: this may return a wrong id, as date and ticker are not PK
     logging.info(f"{ticker}, {date}; flow_id: {flow_id}")
@@ -83,15 +84,6 @@ def _worker_thread_flow_v1(ticker, notify_users, date, analysis_list):
     resp = flow_v1(ticker=ticker, date=date, notify_users=notify_users) #logging.info(f"Analyzed response for {ticker}:\n {resp}")
     analysis_list.append(resp)
 
-def flow_top5(date:str="2025-10-16"):
-    #logging.info("Starting POC trading flow... %s" % date)
-    df_headlines = get_entry_summaries(date)
-    prompt = (""" Please provide me with top 5 trade ideas based on news of today. I will buy and hold these till end of day and close them next morning. here are the headlines: %s """ %df_headlines)
-    trader = consulter_LLM(name = 'v0_Adviser_for_top5')
-    response = trader.work(prompt)  
-    # logging.basicConfig(level=logging.INFO)
-    #logging.info("Response: %s" % response) 
-    return response.replace(' ','').split(",")  # should be list of tickers
 
 #%% Execution
 if __name__ == "__main__":
@@ -102,8 +94,16 @@ if __name__ == "__main__":
     threads = []
     notify_users=True
 
-    top5_tickers = flow_top5(date)
-    for suggested_ticker in top5_tickers: 
+    df_headlines = get_entry_summaries(date)
+    prompt = (""" Please provide me with top 5 trade ideas based on news of today. I will buy and hold these till end of day and close them next morning. here are the headlines: %s """ %df_headlines)
+    trader = consulter_LLM(name = 'v0_Adviser_for_top5')
+    response = trader.work(prompt)  
+    # logging.basicConfig(level=logging.INFO)
+    #logging.info("Response: %s" % response) 
+    top5_tickers = response.replace(' ','').split(",")  # should be list of tickers
+
+    # top5_tickers = flow_top5(date)
+    for suggested_ticker in top5_tickers[0:1]: 
         print(f"Starting thread for ticker: {suggested_ticker}")
         #logging.info(f"Starting thread for ticker: {suggested_ticker}")
         t = threading.Thread(target=_worker_thread_flow_v1, args=(suggested_ticker, False, date, analysis)) # thread
@@ -118,3 +118,14 @@ if __name__ == "__main__":
 
 
     script_end_log()
+
+# def flow_top5(date:str="2025-10-16"):
+#     #logging.info("Starting POC trading flow... %s" % date)
+#     df_headlines = get_entry_summaries(date)
+#     # len(df_headlines)
+#     prompt = (""" Please provide me with top 5 trade ideas based on news of today. I will buy and hold these till end of day and close them next morning. here are the headlines: %s """ %df_headlines)
+#     trader = consulter_LLM(name = 'v0_Adviser_for_top5')
+#     response = trader.work(prompt)  
+#     # logging.basicConfig(level=logging.INFO)
+#     #logging.info("Response: %s" % response) 
+#     return response.replace(' ','').split(",")  # should be list of tickers

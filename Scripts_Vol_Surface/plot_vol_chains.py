@@ -18,7 +18,7 @@ import matplotlib.image as mpimg
 sns.set()
 
 # Settings
-tickers_to_plot = Vol_chain_tickers#[0:5]
+tickers_to_plot = Vol_chain_tickers[0:7]
 L_x_mat = 3 # first x maturities
 L_x_days = 5 # Last x days data
 
