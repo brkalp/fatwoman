@@ -75,8 +75,8 @@ runLLM_newsapiorg()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_ga
 runLLM_Flow_POC()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/trading_flow_POC.py;} 
 # runLLM_db_price_fetcher() { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/db_price_fetcher.py; }
 runLLM_db_return_fetch(){ /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/db_price_fetch_calc_returns.py; }
-# runLLM_Main()           { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main.py;}
-runLLM_Main()           { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/flow_top5.py;}
+# runLLM_Main()         { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main.py;}
+runLLM_top5_and_v1()    { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/flow_top5.py;}
 runLLM_Archiver()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/archive_llm_results.py;} # RUNS AT EOD
 
 # IB
@@ -97,7 +97,7 @@ runBatchLLMBD()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/ma
     # runLLM_Flow_POC
     # runLLM_Flow_v1
     # runLLM_Flow_v2
-    runLLM_Main
+    runLLM_top5_and_v1
 }
 
 runBatchLLMBDEOD() {
