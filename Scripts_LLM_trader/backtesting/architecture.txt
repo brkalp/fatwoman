@@ -1,0 +1,9 @@
+02.01.26
+
+Classes/Files
+  LLM_Agent -> Represents LLM agents, calls openai api, has work()
+  flow -> Represents an Agentic flow, can use GraphLang, should take {data:{}, date, ticker} as input and return a DF output
+  data_prep -> Should prepeare data that will be fed to llms. Not prompt. Can have data like market analysis, headlines, sentimental analysis
+  backtest -> main, should have a for loop that runs
+  db -> This should only be connected after flow return a dataframe, agents nor flows shouldn't call this directly. This is here only to archive.
+  analyze_portfolio -> this should analyze every trade of an account and calculate pnl, sharpe etc
