@@ -14,6 +14,7 @@ Eur_Interest_rate,200,0,TRUE,https://tradingeconomics.com/euro-area/interest-rat
 logs,60,0,TRUE,Not used
 riskbanknews,200,0,TRUE,https://www.riksbank.se/en-gb/press-and-published/
 riskbanknews2,60,0,TRUE,https://www.riksbank.se/en-gb
+citrini,60,0,TRUE,https://www.citriniresearch.com/
 vol_plot_VIX,60,0,TRUE,Not used
 vol_plot_SPY,60,0,TRUE,Not used
 vol_plot_TLT,60,0,TRUE,Not used
