@@ -77,6 +77,8 @@ runLLM_Flow_POC()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/trading
 runLLM_db_return_fetch(){ /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/db_price_fetch_calc_returns.py; }
 # runLLM_Main()         { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main.py;}
 runLLM_top5_and_v1()    { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/flow_top5.py;}
+runAlpaca_buy()         { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_buy_order_using_top5.py;}
+runAlpaca_sell()        { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_sell_order_using_top5.py;}
 runLLM_Archiver()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/archive_llm_results.py;} # RUNS AT EOD
 
 # IB
@@ -92,15 +94,17 @@ runIB_clientportaltickle()  { /usr/bin/python3 ${BASE_DIR}/Scripts_LLM_trader/ib
 
 # LLM Batches
 runBatchLLMBD()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/main.py
-    # runLLM_Finnhub
     runLLM_newsapiorg
+    runLLM_top5_and_v1
+    runAlpaca_buy
+}
+    # runLLM_Finnhub
     # runLLM_Flow_POC
     # runLLM_Flow_v1
     # runLLM_Flow_v2
-    runLLM_top5_and_v1
-}
 
 runBatchLLMBDEOD() {
+    runAlpaca_sell
     runLLM_db_return_fetch
 }
 

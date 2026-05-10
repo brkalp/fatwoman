@@ -56,7 +56,6 @@ def flow_v1(date:str="2025-10-16", ticker="AAPL", notify_users=False, headline_f
     resp_bullish = bullish.work(prompt)
     #logging.info(f"bullish response recieved")
 
-    # TODO flow_chat.add(FLOW_ID, res_opt.chat_id)
     resp_bearish = bearish.work(prompt)
     #logging.info(f"pessimist response recieved")
 
