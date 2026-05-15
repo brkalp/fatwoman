@@ -1,7 +1,7 @@
 """ Created on 05-10-2026 15:29:41 @author: Denizyalimyilmaz """
 import logging
 import fatwoman_log_setup
-from fatwoman_api_setup import ALPACA_KEY_1 as API_KEY, ALPACA_SECRET_1 as API_SECRET
+from fatwoman_api_setup import ALPACA_KEY as API_KEY, ALPACA_SECRET as API_SECRET
 from fatwoman_dir_setup import LLM_data_path
 from fatwoman_log_setup import script_end_log
 import pandas as pd
@@ -17,27 +17,29 @@ trading_client = TradingClient(API_KEY, API_SECRET, paper=PAPER)
 TICKER_LOC = os.path.join(LLM_data_path, "LLM_v0_Adviser_for_top5_latest_response.txt")
 TICKERS = [ticker.split()[0] for ticker in pd.read_csv(TICKER_LOC, header=None).values[0]]
 
+TOTAL_AMOUNT_TO_INVEST = 10000  # Define the total amount you want to invest across all stocks
+AMOUNT_TO_INVEST_PER_STOCK = TOTAL_AMOUNT_TO_INVEST / len(TICKERS)  # Assuming TOTAL_AMOUNT_TO_INVEST is defined in api_init.py
 
-# trading_client.close_all_positions()
+# request = StockLatestTradeRequest( symbol_or_symbols="AAPL"
+# trade = client.get_stock_latest_trade(request)
+# price = trade["AAPL"].price
 
-for TICKER in TICKERS: 
+for TICKER in TICKERS:  
     print(f"Attempting {TICKER}")
     try:
-        trading_client.close_position(TICKER)
-        print(f"Sell order succesfully submitted for {TICKER}")
-        logging.info(f"Sell order succesfully submitted for {TICKER}")
-    #     position = trading_client.get_open_position(TICKER)
-    #     qty = position.qty
-    #     buy_order = MarketOrderRequest(
-    #         symbol=TICKER,
-    #         qty=qty,
-    #         side=OrderSide.SELL,
-    #         time_in_force=TimeInForce.DAY,
-    #     )
-    #     submitted_order = trading_client.submit_order(order_data=buy_order)
+        buy_order = MarketOrderRequest(
+            symbol=TICKER,
+            notional=AMOUNT_TO_INVEST_PER_STOCK,
+            side=OrderSide.BUY,
+            time_in_force=TimeInForce.DAY,
+        )
+        submitted_order = trading_client.submit_order(order_data=buy_order)
+        print(f"Buy order succesfully submitted for {TICKER}")
+        logging.info(f"Buy order succesfully submitted for {TICKER}")
+
     except Exception as e:
-        print(f"An error occurred while placing the sell order for {TICKER}: {e}")
-        logging.error(f"An error occurred while placing the sell order for {TICKER}: {e}")
+        print(f"An error occurred while placing the buy order for {TICKER}: {e}")
+        logging.error(f"An error occurred while placing the buy order for {TICKER}: {e}")
 
 script_end_log()
 

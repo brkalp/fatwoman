@@ -1,7 +1,7 @@
 """ Created on 05-10-2026 15:29:41 @author: Denizyalimyilmaz """
 import logging
 import fatwoman_log_setup
-from fatwoman_api_setup import ALPACA_KEY as API_KEY, ALPACA_SECRET as API_SECRET
+from fatwoman_api_setup import ALPACA_KEY_1 as API_KEY, ALPACA_SECRET_1 as API_SECRET
 from fatwoman_dir_setup import LLM_data_path
 from fatwoman_log_setup import script_end_log
 import pandas as pd
@@ -17,12 +17,19 @@ trading_client = TradingClient(API_KEY, API_SECRET, paper=PAPER)
 TICKER_LOC = os.path.join(LLM_data_path, "LLM_v0_Adviser_for_top5_latest_response.txt")
 TICKERS = [ticker.split()[0] for ticker in pd.read_csv(TICKER_LOC, header=None).values[0]]
 
+TOTAL_AMOUNT_TO_INVEST = 10000  # Define the total amount you want to invest across all stocks
+AMOUNT_TO_INVEST_PER_STOCK = TOTAL_AMOUNT_TO_INVEST / len(TICKERS)  # Assuming TOTAL_AMOUNT_TO_INVEST is defined in api_init.py
+
+# request = StockLatestTradeRequest( symbol_or_symbols="AAPL"
+# trade = client.get_stock_latest_trade(request)
+# price = trade["AAPL"].price
+
 for TICKER in TICKERS:  
     print(f"Attempting {TICKER}")
     try:
         buy_order = MarketOrderRequest(
             symbol=TICKER,
-            qty=1,
+            notional=AMOUNT_TO_INVEST_PER_STOCK,
             side=OrderSide.BUY,
             time_in_force=TimeInForce.DAY,
         )
