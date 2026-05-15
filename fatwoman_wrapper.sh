@@ -79,6 +79,8 @@ runLLM_db_return_fetch(){ /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_ga
 runLLM_top5_and_v1()    { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/flow_top5.py;}
 runAlpaca_buy()         { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_buy_order_using_top5.py;}
 runAlpaca_sell()        { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_sell_order_using_top5.py;}
+runAlpaca_Tend_buy()    { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_order_agentic_flow.py;}
+runAlpaca_Tend_sell()   { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_close_order_using_agentic.py;}
 runLLM_Archiver()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/archive_llm_results.py;} # RUNS AT EOD
 
 # IB
@@ -97,6 +99,7 @@ runBatchLLMBD()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/ma
     runLLM_newsapiorg
     runLLM_top5_and_v1
     runAlpaca_buy
+    runAlpaca_Tend_buy
 }
     # runLLM_Finnhub
     # runLLM_Flow_POC
@@ -105,6 +108,7 @@ runBatchLLMBD()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/ma
 
 runBatchLLMBDEOD() {
     runAlpaca_sell
+    runAlpaca_Tend_sell
     runLLM_db_return_fetch
 }
 
