@@ -16,7 +16,7 @@ from alpaca.trading.requests import MarketOrderRequest
 from alpaca.data.requests import StockLatestTradeRequest
 from alpaca.data.historical import StockHistoricalDataClient
 
-TOTAL_AMOUNT_TO_INVEST = 10000
+TOTAL_AMOUNT_TO_INVEST = 50000
 AMOUNT_TO_INVEST_PER_STOCK = TOTAL_AMOUNT_TO_INVEST / 5  # Assuming TOTAL_AMOUNT_TO_INVEST is defined in api_init.py
 
 PAPER = True
@@ -40,7 +40,9 @@ for item in df.itertuples():
     elif item.tendency == "bearish":
         side = OrderSide.SELL
         qty = round(AMOUNT_TO_INVEST_PER_STOCK / data_client.get_stock_latest_trade(StockLatestTradeRequest(symbol_or_symbols=ticker))[ticker].price)
-    else: raise ValueError(f"Invalid tendency: {item.tendency}")
+    else:
+        logging.error(f"Invalid tendency: {item.tendency}")
+        continue
     print(f"Attempting {ticker}, tendency={item.tendency}, confidence={item.confidence}, with qty = {qty}")
     try:
         buy_order = MarketOrderRequest(

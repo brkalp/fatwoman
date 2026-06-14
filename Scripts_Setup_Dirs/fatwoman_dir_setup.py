@@ -17,7 +17,7 @@ import sys
 # os.environ # pytonpath is here
 
 if socket.gethostname() == 'ripintheblue':
-    remoteIP = r'z:\\' # remoteIP = r'\\10.0.1.6\\'
+    remoteIP = r'y:\\' # remoteIP = r'\\10.0.1.6\\'
     fatwoman_base_path = remoteIP + '15GB'
     fatwoman_data_path = remoteIP + 'fatboy'
 if socket.gethostname() == 'fatwoman':

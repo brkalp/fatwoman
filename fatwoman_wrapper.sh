@@ -77,10 +77,14 @@ runLLM_Flow_POC()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/trading
 runLLM_db_return_fetch(){ /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/data_gathering/db_price_fetch_calc_returns.py; }
 # runLLM_Main()         { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/main.py;}
 runLLM_top5_and_v1()    { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/flow_top5.py;}
+runLLM_top5_short()     { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/flow_top5_short.py;}
 runAlpaca_buy()         { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_buy_order_using_top5.py;}
 runAlpaca_sell()        { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_sell_order_using_top5.py;}
+runAlpaca_buy_longshort(){ /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_buy_order_using_top5_longshort.py;}
+runAlpaca_sell_longshort(){ /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_close_order_using_top5_longshort.py;}
 runAlpaca_Tend_buy()    { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_order_agentic_flow.py;}
 runAlpaca_Tend_sell()   { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_close_order_using_agentic.py;}
+runAlpaca_pnl_report()  { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/get_alpaca_pnl.py;}
 runLLM_Archiver()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/archive_llm_results.py;} # RUNS AT EOD
 
 # IB
@@ -100,6 +104,7 @@ runBatchLLMBD()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/ma
     runLLM_top5_and_v1
     runAlpaca_buy
     runAlpaca_Tend_buy
+    runAlpaca_buy_longshort # for long/short
 }
     # runLLM_Finnhub
     # runLLM_Flow_POC
@@ -107,8 +112,10 @@ runBatchLLMBD()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/ma
     # runLLM_Flow_v2
 
 runBatchLLMBDEOD() {
+    runAlpaca_pnl_report
     runAlpaca_sell
     runAlpaca_Tend_sell
+    runAlpaca_sell_longshort # for long/short
     runLLM_db_return_fetch
 }
 
