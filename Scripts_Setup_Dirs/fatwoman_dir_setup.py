@@ -151,6 +151,10 @@ adhoc_fol = os.path.join(fatwoman_base_path, 'Ad_hoc')
 binance_Orderbook_Output_Folder = os.path.join(fatwoman_data_path, 'Scripts_Binance')
 binance_Orderbook_loc_prefix = os.path.join(binance_Orderbook_Output_Folder, 'binance_order_book_')
 
+# Polymarket Copy Trader
+polymarket_tracker_db = os.path.join(db_data_path, 'polymarket_tracker.db')
+Polymarket_log_path   = os.path.join(fatwoman_log_path, 'Polymarket_CopyTrader.txt')
+
 # Log files
 default_log_file_path = os.path.join(fatwoman_log_path, "Total.txt")
 Binance_save_log_path = os.path.join(fatwoman_log_path, "BinanceDownload_output.txt")
@@ -163,6 +167,7 @@ logging_override = {
     'VIX_Central_Scrape'     : Hourly_log_path,
     'avanzaDataScraping'     : Avanza_log_path,
     'ib_wrapper_tickler'     : ib_wrap_tickler,
+    'polymarket_copy_trader' : Polymarket_log_path,
     }
 logging_import_ignore = [ # ignore the "Total.txt" setup log if this is the importer
     'binance_orderbook_save',
