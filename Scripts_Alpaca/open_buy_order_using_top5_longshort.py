@@ -15,6 +15,7 @@ from alpaca.data.requests import StockLatestTradeRequest
 
 PAPER = True
 trading_client = TradingClient(API_KEY, API_SECRET, paper=PAPER)
+trading_client.close_all_positions()
 data_client = StockHistoricalDataClient(API_KEY, API_SECRET)
 
 TICKER_LOC = os.path.join(LLM_data_path, "LLM_v0_Adviser_for_top5_short_latest_response.txt")

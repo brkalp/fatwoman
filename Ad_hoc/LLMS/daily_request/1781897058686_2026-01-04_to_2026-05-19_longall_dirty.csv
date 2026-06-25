@@ -1,0 +1,1260 @@
+LONGALL;ChatGPT
+LONGALL;
+LONGALL;
+LONGALL;For a short term trade, to be opened in the morning and closed at end of day, search for the latest major global news. Recommend EXACTLY 5 LONG instruments for short-term trade based on whatever you think is relevant. The investment universe may include equities, equity indices, commodities, FX, rates, and their liquid derivatives (futures, options, or major ETFs). Add very short reasoning after each recommendation. Start with one line containing the local date and day of week in Stockholm time formatted exactly as: YYYY-MM-DD / HH:MM - Monday Recs: SYMBOL – Instrument name (short reasoning) SYMBOL – Instrument name (short reasoning) SYMBOL – Instrument name (short reasoning) SYMBOL – Instrument name (short reasoning) SYMBOL – Instrument name (short reasoning)
+LONGALL;
+LONGALL;2026-01-05 / 07:00 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;SPY – major US equity ETF likely to benefit from early-year recovery sentiment after Santa Claus rally and dip bounce 
+LONGALL;BTCUSD – Bitcoin showing breakout momentum above recent highs suggesting continuation into new week 
+LONGALL;FTSE – UK index breaking key level reflecting strong European risk appetite and rate cut expectations 
+LONGALL;CL1 – WTI crude futures likely supported by geopolitical risk and supply dynamics referenced in global markets news 
+LONGALL;DAX – German equity index poised to extend gains on eurozone growth and dovish central bank expectations 
+LONGALL;
+LONGALL;set this up as a daily task at 8:15
+LONGALL;Daily task scheduled. Runs every day at 08:15 Stockholm time.
+LONGALL;
+LONGALL;2026?01?05 / 08:16 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NIKKEI – Japan Nikkei 225 Index (Asia stocks rally on resilience despite geopolitical stress) 
+LONGALL;HSI – Hang Seng Index (Chinese market strength above key level on optimism) 
+LONGALL;XAUUSD – Gold Spot (safe haven demand rising amid geopolitical risk) 
+LONGALL;AUDUSD – AUD/USD FX (AUD holding near uptrend support as US dollar capped) 
+LONGALL;BTCUSD – Bitcoin (crypto showing strength with broader risk asset gains) 
+LONGALL;
+LONGALL;2026?01?06 / 08:15 - Tuesday
+LONGALL;
+LONGALL;Recs:
+LONGALL;DJI - Dow Jones Industrial Average futures (global equities rally led by energy and banks) 
+LONGALL;FTSE - FTSE 100 Index (defence and mining strength on geopolitical risk) 
+LONGALL;CL1 - WTI Crude Oil futures (energy stocks strong post?Venezuela news) 
+LONGALL;XAU - Gold Spot (safe?haven asset rising on uncertainty) 
+LONGALL;USDJPY - USD/JPY FX (dollar weakness narrative may fuel carry and risk flows) 
+LONGALL;
+LONGALL;2026-01-07 / 08:15 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;SPY - SPDR S&P 500 ETF (global equities up on strong inflows and optimism) 
+LONGALL;FTSE - FTSE 100 Index (miners and energy driving higher highs) 
+LONGALL;XAUUSD - Gold Spot (safe-haven rising after geopolitical shocks) 
+LONGALL;WTI - WTI Crude Oil futures (oil supported despite geopolitical risk) 
+LONGALL;EURUSD - EUR/USD FX (dollar steadies with euro supported ahead of data) 
+LONGALL;
+LONGALL;2026?01?08 / 08:15 - Thursday
+LONGALL;
+LONGALL;SPY – S&P 500 ETF (global stocks rally broadly including financials and materials) 
+LONGALL;DAX – Germany 40 Index (European equities hitting record highs) 
+LONGALL;WTI – Crude Oil futures (oil pricing influenced by geopolitical developments) 
+LONGALL;AUDUSD – AUD/USD FX (AUD supported by macro tailwinds and policy outlook) 
+LONGALL;GLD – Gold Spot (precious metals buoyed by risk and inflation considerations) 
+LONGALL;
+LONGALL;2026-01-09 / 08:16 - Friday
+LONGALL;
+LONGALL;"SPY - S&P 500 ETF (global equity funds saw strong inflows and risk appetite; broad markets up) "
+LONGALL;XLE - Energy Select Sector ETF (US energy stocks rallied on Venezuelan geopolitical shift) 
+LONGALL;WTI/CL1 - WTI Crude Oil futures (oil rebounded in recent trading on macro and supply news) 
+LONGALL;GLD - Gold Spot (precious metals supported by safe-haven demand and inflows) 
+LONGALL;USD/JPY - FX (yen weaker and risk assets supported by softer dollar backdrop) 
+LONGALL;
+LONGALL;2026-01-10 / 08:14 - Saturday
+LONGALL;
+LONGALL;"SPY - S&P 500 ETF (U.S. equities at records on broad rally; risk assets supported) "
+LONGALL;DAX - Germany 40 Index (European stocks at highs led by miners and tech) 
+LONGALL;WTI - Crude Oil futures (oil prices rising on supply/geopolitical risk) 
+LONGALL;GLD - Gold Spot (precious metals bid amid market uncertainty) 
+LONGALL;EURUSD - EUR/USD FX (euro holding firm as dollar pressure persists) 
+LONGALL;
+LONGALL;2026-01-11 / 08:15 - Sunday
+LONGALL;
+LONGALL;"SPY - S&P 500 futures (global equities at record levels; strong broad momentum) "
+LONGALL;XLF - Financials ETF (bank earnings and bond market activity supporting financials) 
+LONGALL;XME - Metals & Mining ETF (miner consolidation news and commodity strength) 
+LONGALL;XAUUSD - Gold (safe haven strength with price testing upside levels) 
+LONGALL;EURUSD - FX (euro stronger on macro flows versus dollar) 
+LONGALL;
+LONGALL;2026?01?12 / 08:16 - Monday
+LONGALL;
+LONGALL;XAUUSD – Gold (safe?haven surge to record highs on geopolitical risk and Fed uncertainty) 
+LONGALL;COPPER – Copper futures (industrial metals hitting multi?year highs on supply tightness and demand) 
+LONGALL;US500 – S&P 500 futures (momentum intact from record highs despite early weakness) 
+LONGALL;USDCHF – USD/CHF FX (dollar weakness against safe?haven CHF supports long CHF crosses lower vol) 
+LONGALL;CL1 – WTI crude oil futures (oil prices rising on Middle East tensions and supply concerns) 
+LONGALL;
+LONGALL;2026?01?13 / 08:15 - Tuesday
+LONGALL;
+LONGALL;GC=F – Gold futures (record highs on safe?haven demand and Fed political risk) 
+LONGALL;CL=F – Crude Oil futures (prices up on Iran supply concerns and geopolitical risk) 
+LONGALL;N225 – Nikkei 225 index (Asian equities rally led by Japan at record levels) 
+LONGALL;USD/JPY – FX pair (yen weakness driving dollar strength trend) 
+LONGALL;SPY – S&P 500 ETF (US indexes near records with broad participation) 
+LONGALL;
+LONGALL;2026?01?14 / 08:15 - Monday
+LONGALL;
+LONGALL;ES1! - S&P 500 futures (indices bounce on Asian gains amid global optimism) 
+LONGALL;N225 - Nikkei 225 index (Japan stocks up sharply supporting global risk sentiment) 
+LONGALL;GC1! - Gold futures (safe?haven demand driving prices higher) 
+LONGALL;COPPER1! - Copper futures (commodity supercycle narrative lifting industrial metals) 
+LONGALL;EURUSD - Euro vs US dollar (dollar weakening supports euro strength) 
+LONGALL;
+LONGALL;2026-01-15 / 08:16 - Thursday
+LONGALL;
+LONGALL;BTCUSD – Bitcoin (rally to multi?week highs on institutional inflows and regulatory clarity) 
+LONGALL;SPY – S&P 500 ETF (U.S. equities grind higher on broad earnings strength) 
+LONGALL;COPPER – Copper futures (industrial metals catching bids as commodities supercycle narrative builds) 
+LONGALL;"USDJPY – Dollar/yen (yen rebound losing steam; dollar strength resumes) "
+LONGALL;BHP – BHP Group (materials demand, merger chatter in mining complex lifting outlook) 
+LONGALL;
+LONGALL;2026-01-16 / 08:15 - Friday
+LONGALL;
+LONGALL;TSMC – Taiwan Semiconductor (chip earnings strength driving tech lift) 
+LONGALL;SPY – S&P 500 ETF (U.S. stocks rebound on broad gains) 
+LONGALL;NIFTY – Nifty 50 index (Indian equities rising, IT & metals leadership) 
+LONGALL;USD/MXN – Dollar/Mexican peso (carry inflows lifting MXN amid FX flows) 
+LONGALL;COPPER – Copper futures (industrial metals momentum amid record runs) 
+LONGALL;
+LONGALL;2026-01-19 / 08:14 - Monday
+LONGALL;
+LONGALL;GC?FUT – Gold futures (safe?haven flows and record highs on geopolitical stress) 
+LONGALL;CL?FUT – Crude Oil futures (supply concerns from Middle East tensions support oil) 
+LONGALL;SPY – S&P?500 ETF (equity bounce supported by broad markets and risk sentiment) 
+LONGALL;USD/JPY – FX pair (yen weakness amid intervention speculation boosts dollar) 
+LONGALL;NIKKEI – Nikkei?225 index (Asian equities rally with strong Japan performance) 
+LONGALL;
+LONGALL;2026-01-18 / 08:15 - Sunday
+LONGALL;
+LONGALL;XAU26 (Gold futures) - safe haven strength amid record gold rally and dollar weakness. 
+LONGALL;CL26 (Crude Oil futures) - geopolitical tensions lifting oil risk premium. 
+LONGALL;COPP26 (Copper futures) - commodity supercycle momentum and industrial demand signals. 
+LONGALL;SPY (S&P 500 ETF) - equities supported by broad markets and risk flows. 
+LONGALL;USD/JPY (FX pair) - dollar strength against yen amid monetary divergence. 
+LONGALL;
+LONGALL;2026-01-19 / 08:15 - Monday
+LONGALL;
+LONGALL;XAUUSD - Gold futures (safe haven bids and prices at record highs on geopolitical tariff shock). 
+LONGALL;NGAS - Natural Gas futures (prices up sharply on energy volatility and supply concerns). 
+LONGALL;EURUSD - Euro FX (euro recovering from lows as dollar weakens on policy risk). 
+LONGALL;FTSE100 - UK index (European equities outperforming despite tariff noise). 
+LONGALL;HANGSENG - Hong Kong index (Asian equities gaining amid tech leadership). 
+LONGALL;
+LONGALL;2026-01-20 / 08:15 - Tuesday
+LONGALL;
+LONGALL;XAUUSD - Gold futures (prices surged past records on risk aversion and safe-haven flows). 
+LONGALL;CL1! - Crude oil futures (oil gains on weaker dollar and demand outlook from China data). 
+LONGALL;CHFUSD - Swiss franc FX (safe-haven currency strength on rising geopolitical tensions). 
+LONGALL;NQ1! - Nasdaq 100 futures (tech and AI leadership showing resilience despite macro pullback). 
+LONGALL;COPPER - Copper futures (industrial metals supported by broader commodity buying). 
+LONGALL;
+LONGALL;2026?01?21 / 08:16 - Wednesday
+LONGALL;
+LONGALL;GC?F26 – Gold futures (record highs on geopolitical risk and safe?haven demand) 
+LONGALL;CHFJPY – FX (Swiss franc/yen safe?haven strength amid market stress) 
+LONGALL;EURUSD – FX (euro strengthening as dollar softens on tariff risk) 
+LONGALL;CL1! – Crude oil futures (energy volatility and supply focus) 
+LONGALL;SPY – S&P?500 futures/ETF (futures rebound after sell?off suggesting short?covering) 
+LONGALL;
+LONGALL;2026-01-22 / 08:15 - Thursday
+LONGALL;
+LONGALL;ES1! - S&P 500 futures (U.S. stocks rebounding sharply after tariff threat eases) 
+LONGALL;N225 - Nikkei 225 index (Asian equities rallied on risk?on sentiment) 
+LONGALL;EURUSD - Euro FX (euro strengthening as U.S. dollar slips on policy uncertainty) 
+LONGALL;WTI - Crude oil futures (energy demand optimism with supply signals stabilizing) 
+LONGALL;SOYB - Soybean futures (agricultural commodities showing positive price action) 
+LONGALL;
+LONGALL;2026?01?23 / 08:15 - Friday
+LONGALL;
+LONGALL;XAUUSD – Gold futures (bullish breakout and safe?haven buy flows amid geopolitical risk). 
+LONGALL;SPY – S&P?500 ETF (global equities rising on easing policy uncertainty and broad risk?on). 
+LONGALL;NQ1! – Nasdaq 100 futures (tech?led upside as U.S. futures climb). 
+LONGALL;AUDUSD – Aussie dollar FX (higher against USD with risk?on sentiment and cyclicals catching up). 
+LONGALL;WTI – Crude oil futures (oil edging higher with demand optimism and steadier markets). 
+LONGALL;
+LONGALL;2026-01-24 / 08:16 - Saturday
+LONGALL;
+LONGALL;XAUUSD - Gold futures (safe?haven demand rising with prices near record on geopolitical risk). 
+LONGALL;DBC - Invesco DB Commodity Index (broad commodities up with metals and energy momentum). 
+LONGALL;EURUSD - Euro FX (USD weakness and euro strength in recent FX flows). 
+LONGALL;N225 - Nikkei 225 (Japanese equities gaining as risk sentiment rebounds). 
+LONGALL;CL1! - WTI crude oil futures (oil up on demand optimism and commodity strength). 
+LONGALL;
+LONGALL;2026-01-25 / 08:15 - Sunday
+LONGALL;
+LONGALL;SPY - S&P 500 ETF (markets have steadied with relief on trade tensions and risk?on rotation). 
+LONGALL;NQ1! - Nasdaq 100 futures (tech leadership showing upside momentum ahead of earnings catalysts). 
+LONGALL;XAUUSD - Gold futures (safe?haven flows persist as geopolitical risk and macro uncertainty stay elevated). 
+LONGALL;USDJPY - FX pair (yen strength reversal trade following Fed rate check headlines). 
+LONGALL;WTI - Crude oil futures (energy bouncing with broader commodity support and risk appetite). 
+LONGALL;
+LONGALL;2026-01-26 / 08:16 - Monday
+LONGALL;
+LONGALL;XAUUSD - Gold futures (prices at record highs on safe?haven demand and geopolitical tensions). 
+LONGALL;EURUSD - Euro vs US Dollar (bullish momentum after tariff risk recedes and outlook positive). 
+LONGALL;N225 - Nikkei 225 index (Asia equities recovering with risk appetite returning). 
+LONGALL;CL1! - WTI crude oil futures (oil supported by demand optimism and macro momentum). 
+LONGALL;SPY - S&P 500 ETF (equity risk assets buoyed by earnings prospects and macro stability). 
+LONGALL;
+LONGALL;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;Daily 3:30 am·Generate daily long trade ideas
+LONGALL;Resume
+LONGALL;Resumed. The daily long trade task is active again and will run at 08:15 Stockholm time.
+LONGALL;
+LONGALL;2026?01?27 / 08:15 - Tuesday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F – Nasdaq 100 E?mini (momentum breakout amid tech earnings catalyst) 
+LONGALL;XAU/USD – Gold (record highs on safe?haven, weak USD environment) 
+LONGALL;AAPL – Apple (tech earnings optimism, market leadership) 
+LONGALL;AUD/USD – Australia/US (AUD strength early session, USD softness) 
+LONGALL;CL=F – Crude Oil (supply risk priced, oil supported) 
+LONGALL;
+LONGALL;2026?01?28 / 08:16 - Wednesday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (futures up ahead of big tech earnings?driven upside) 
+LONGALL;ES=F - S&P 500 E?mini (record highs and broad equity momentum) 
+LONGALL;XAUUSD - Gold spot (record gold prices on weak dollar and safe haven flows) 
+LONGALL;AUDUSD - Australian dollar (Aussie strengthened on data and weak USD) 
+LONGALL;CL=F - Crude oil futures (oil near multi?week highs on supply concerns) 
+LONGALL;
+LONGALL;2026?01?29 / 08:15 - Thursday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (tech and AI optimism lifting futures) 
+LONGALL;GC=F - Gold (record highs on safe haven flows and dollar weakness) 
+LONGALL;HG=F - Copper (prices at record on supply concerns and risk assets) 
+LONGALL;AUDUSD - Australian dollar (commodity proxy strengthening with metals) 
+LONGALL;CL=F - Crude oil (firmer energy complex amid geopolitical noise) 
+LONGALL;
+LONGALL;2026?01?30 / 08:15 - Friday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (tech rebound support after earnings surprises in select AI names) 
+LONGALL;CL=F - Crude Oil Futures (geopolitical Iran tension lifting oil price highs) 
+LONGALL;EMB - Emerging Markets Bond ETF (EM local assets outperform as dollar slides) 
+LONGALL;USD/JPY - FX Pair (risk sentiment shift supports USD and carry flows) 
+LONGALL;XAU/USD - Gold Spot (safe?haven demand persists after volatility despite recent pullback) 
+LONGALL;
+LONGALL;2026?01?31 / 08:15 - Saturday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (equities bias supported by weaker dollar and growth outlook) 
+LONGALL;CL=F - Brent Crude (geopolitical risk and supply focus sustaining energy prices) 
+LONGALL;USD/JPY - FX pair (dollar strength amid monetary policy uncertainty) 
+LONGALL;EEM - MSCI Emerging Markets ETF (EM equities outperform on macro and FX tailwinds) 
+LONGALL;IEF - 7?10Y Treasury ETF (yields stabilizing with divergence in global rates) 
+LONGALL;
+LONGALL;2026-02-02 / 08:15 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;SPY - broad US equities (global sentiment recovering and indices bid) 
+LONGALL;CL=F - crude oil futures (Brent oil elevated on geopolitical risk) 
+LONGALL;AUDUSD - FX pair (commodity currencies supported by weaker USD) 
+LONGALL;ASX200 - Australian index (commodity rally lifting miners) 
+LONGALL;NDAQ - Nasdaq composite (tech earnings drive resilience) 
+LONGALL;
+LONGALL;2026-02-02 / 08:16 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (bounce potential as tech stocks supported by resilient earnings and risk appetite) 
+LONGALL;EEM - MSCI Emerging Markets ETF (emerging markets continue rally as dollar weakens) 
+LONGALL;CL=F - Crude Oil Futures (supply rebalance signs despite recent commodity slump) 
+LONGALL;EURUSD - FX pair (euro strength on dollar downside narrative) 
+LONGALL;SPY - S&P 500 ETF (broad market support despite early weakness) 
+LONGALL;
+LONGALL;2026-02-03 / 08:16 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;SPY - US equities bounce on strong factory data and risk appetite improving 
+LONGALL;XAUUSD - gold and precious metals rebound sharply after prior selloff 
+LONGALL;AUDUSD - Australian dollar strength on RBA rate hike and commodity support 
+LONGALL;NIKKEI - Japanese index rebound on calmer trade tone and deal optimism 
+LONGALL;EURUSD - euro buoyed by German retail beat and macro catalysts 
+LONGALL;
+LONGALL;2026-02-04 / 08:16 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (risk appetite up as global markets stabilize) 
+LONGALL;BRN=F - Brent Crude Futures (oil rebounds on geopolitical tension probability) 
+LONGALL;MSCIEM - MSCI Emerging Markets Index ETF (emerging markets leading as dollar slides) 
+LONGALL;EURUSD - Euro vs US Dollar (euro strength persists on global macro shifts) 
+LONGALL;GDX - Gold Miners ETF (precious metals see volatility bounce) 
+LONGALL;
+LONGALL;2026-02-05 / 08:16 - Monday
+LONGALL;
+LONGALL;ES=F - EuroStoxx 50 futures (European equities up as value and quality sectors lead after tech sell?off) 
+LONGALL;EEM - MSCI Emerging Markets ETF (emerging markets rally as dollar slides and flows into EM assets) 
+LONGALL;NG=F - Natural Gas futures (prices rising on supply dynamics and energy volatility) 
+LONGALL;USDZAR - US dollar vs South African rand (EM currency strength amid dollar weakness and commodity support) 
+LONGALL;DJI=F - Dow Jones futures (US equities bounce supported by manufacturing data and broad market strength) 
+LONGALL;
+LONGALL;2026-02-06 / 08:16 - Monday
+LONGALL;
+LONGALL;NQ=F - Nasdaq 100 futures (tech bounce potential after severe sell?off sentiment eases) 
+LONGALL;CL=F - Crude oil futures (oil showing slight upside amid weaker risk assets) 
+LONGALL;USDJPY - FX pair (yen strengthening suggests short dollar moves could reverse) 
+LONGALL;RTY=F - Russell 2000 futures (small cap strength as rotation out of tech continues) 
+LONGALL;GOLD - Gold futures (flight?to?safety support despite recent slide) 
+LONGALL;
+LONGALL;2026-02-07 / 08:16 - Monday
+LONGALL;
+LONGALL;ES=F – EuroStoxx 50 futures (European equities supported by broad market resilience despite tech weakness) 
+LONGALL;DAX=F – DAX 30 futures (German factory order surge and PMI data showing expansion) 
+LONGALL;CL=F – Crude Oil futures (energy seen stabilizing off recent commodity swings) 
+LONGALL;EURUSD – Euro vs US Dollar (EUR supported by ECB stance and softer USD on data caution) 
+LONGALL;BTC-USD – Bitcoin (crypto showing rebound after sharp prior drop and oversold conditions) 
+LONGALL;
+LONGALL;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;Daily 3:30 am·Generate daily long trade ideas
+LONGALL;Generate daily long trade ideas
+LONGALL;
+LONGALL;2026-05-18 / 08:15 - Monday
+LONGALL;
+LONGALL;USO - United States Oil Fund (Hormuz disruption and oil spike supporting energy momentum) 
+LONGALL;SMH - VanEck Semiconductor ETF (AI capex and chip demand continue driving semis higher) 
+LONGALL;KWEB - KraneShares CSI China Internet ETF (Chinese AI and tech stimulus flows accelerating) 
+LONGALL;EWZ - iShares MSCI Brazil ETF (oil-export exposure benefiting Brazil equities) 
+LONGALL;TLT - iShares 20+ Year Treasury Bond ETF (risk-off pressure may trigger bond rebound after yield spike) 
+LONGALL;
+LONGALL;Generate daily long trade ideas
+LONGALL;
+LONGALL;2026-05-19 / 08:15 - Tuesday
+LONGALL;
+LONGALL;USO - United States Oil Fund (Middle East supply disruption keeps crude and energy equities bid) 
+LONGALL;SMH - VanEck Semiconductor ETF (AI infrastructure spending remains dominant despite tech pullback) 
+LONGALL;GLD - SPDR Gold Shares (inflation fears and geopolitical stress support safe-haven demand) 
+LONGALL;KWEB - KraneShares CSI China Internet ETF (AI-export momentum and stimulus expectations lifting Chinese tech) 
+LONGALL;URA - Global X Uranium ETF (AI-driven power demand accelerating nuclear and uranium outlook)
+LONGALL;
+LONGALL;This task has been paused because updates haven't been viewed in a while. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;Resume task
+LONGALL;Task resumed. Runs daily at 08:15 Stockholm time.
+LONGALL;Daily 3:30 am·Generate daily long trade ideas
+LONGALL;ChatGPT
+LONGALL;
+LONGALL;
+LONGALL;Resumed. The daily long trade task is active again and will run at 08:15 Stockholm time.
+LONGALL;
+LONGALL;2026?01?27 / 08:15 - Tuesday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F – Nasdaq 100 E?mini (momentum breakout amid tech earnings catalyst) 
+LONGALL;XAU/USD – Gold (record highs on safe?haven, weak USD environment) 
+LONGALL;AAPL – Apple (tech earnings optimism, market leadership) 
+LONGALL;AUD/USD – Australia/US (AUD strength early session, USD softness) 
+LONGALL;CL=F – Crude Oil (supply risk priced, oil supported) 
+LONGALL;
+LONGALL;2026?01?28 / 08:16 - Wednesday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (futures up ahead of big tech earnings?driven upside) 
+LONGALL;ES=F - S&P 500 E?mini (record highs and broad equity momentum) 
+LONGALL;XAUUSD - Gold spot (record gold prices on weak dollar and safe haven flows) 
+LONGALL;AUDUSD - Australian dollar (Aussie strengthened on data and weak USD) 
+LONGALL;CL=F - Crude oil futures (oil near multi?week highs on supply concerns) 
+LONGALL;
+LONGALL;2026?01?29 / 08:15 - Thursday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (tech and AI optimism lifting futures) 
+LONGALL;GC=F - Gold (record highs on safe haven flows and dollar weakness) 
+LONGALL;HG=F - Copper (prices at record on supply concerns and risk assets) 
+LONGALL;AUDUSD - Australian dollar (commodity proxy strengthening with metals) 
+LONGALL;CL=F - Crude oil (firmer energy complex amid geopolitical noise) 
+LONGALL;
+LONGALL;2026?01?30 / 08:15 - Friday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (tech rebound support after earnings surprises in select AI names) 
+LONGALL;CL=F - Crude Oil Futures (geopolitical Iran tension lifting oil price highs) 
+LONGALL;EMB - Emerging Markets Bond ETF (EM local assets outperform as dollar slides) 
+LONGALL;USD/JPY - FX Pair (risk sentiment shift supports USD and carry flows) 
+LONGALL;XAU/USD - Gold Spot (safe?haven demand persists after volatility despite recent pullback) 
+LONGALL;
+LONGALL;2026?01?31 / 08:15 - Saturday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (equities bias supported by weaker dollar and growth outlook) 
+LONGALL;CL=F - Brent Crude (geopolitical risk and supply focus sustaining energy prices) 
+LONGALL;USD/JPY - FX pair (dollar strength amid monetary policy uncertainty) 
+LONGALL;EEM - MSCI Emerging Markets ETF (EM equities outperform on macro and FX tailwinds) 
+LONGALL;IEF - 7?10Y Treasury ETF (yields stabilizing with divergence in global rates) 
+LONGALL;
+LONGALL;2026-02-02 / 08:15 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;SPY - broad US equities (global sentiment recovering and indices bid) 
+LONGALL;CL=F - crude oil futures (Brent oil elevated on geopolitical risk) 
+LONGALL;AUDUSD - FX pair (commodity currencies supported by weaker USD) 
+LONGALL;ASX200 - Australian index (commodity rally lifting miners) 
+LONGALL;NDAQ - Nasdaq composite (tech earnings drive resilience) 
+LONGALL;
+LONGALL;2026-02-02 / 08:16 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (bounce potential as tech stocks supported by resilient earnings and risk appetite) 
+LONGALL;EEM - MSCI Emerging Markets ETF (emerging markets continue rally as dollar weakens) 
+LONGALL;CL=F - Crude Oil Futures (supply rebalance signs despite recent commodity slump) 
+LONGALL;EURUSD - FX pair (euro strength on dollar downside narrative) 
+LONGALL;SPY - S&P 500 ETF (broad market support despite early weakness) 
+LONGALL;
+LONGALL;2026-02-03 / 08:16 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;SPY - US equities bounce on strong factory data and risk appetite improving 
+LONGALL;XAUUSD - gold and precious metals rebound sharply after prior selloff 
+LONGALL;AUDUSD - Australian dollar strength on RBA rate hike and commodity support 
+LONGALL;NIKKEI - Japanese index rebound on calmer trade tone and deal optimism 
+LONGALL;EURUSD - euro buoyed by German retail beat and macro catalysts 
+LONGALL;
+LONGALL;2026-02-04 / 08:16 - Monday
+LONGALL;
+LONGALL;Recs:
+LONGALL;NQ=F - Nasdaq 100 E?mini (risk appetite up as global markets stabilize) 
+LONGALL;BRN=F - Brent Crude Futures (oil rebounds on geopolitical tension probability) 
+LONGALL;MSCIEM - MSCI Emerging Markets Index ETF (emerging markets leading as dollar slides) 
+LONGALL;EURUSD - Euro vs US Dollar (euro strength persists on global macro shifts) 
+LONGALL;GDX - Gold Miners ETF (precious metals see volatility bounce) 
+LONGALL;
+LONGALL;2026-02-05 / 08:16 - Monday
+LONGALL;
+LONGALL;ES=F - EuroStoxx 50 futures (European equities up as value and quality sectors lead after tech sell?off) 
+LONGALL;EEM - MSCI Emerging Markets ETF (emerging markets rally as dollar slides and flows into EM assets) 
+LONGALL;NG=F - Natural Gas futures (prices rising on supply dynamics and energy volatility) 
+LONGALL;USDZAR - US dollar vs South African rand (EM currency strength amid dollar weakness and commodity support) 
+LONGALL;DJI=F - Dow Jones futures (US equities bounce supported by manufacturing data and broad market strength) 
+LONGALL;
+LONGALL;2026-02-06 / 08:16 - Monday
+LONGALL;
+LONGALL;NQ=F - Nasdaq 100 futures (tech bounce potential after severe sell?off sentiment eases) 
+LONGALL;CL=F - Crude oil futures (oil showing slight upside amid weaker risk assets) 
+LONGALL;USDJPY - FX pair (yen strengthening suggests short dollar moves could reverse) 
+LONGALL;RTY=F - Russell 2000 futures (small cap strength as rotation out of tech continues) 
+LONGALL;GOLD - Gold futures (flight?to?safety support despite recent slide) 
+LONGALL;
+LONGALL;2026-02-07 / 08:16 - Monday
+LONGALL;
+LONGALL;ES=F – EuroStoxx 50 futures (European equities supported by broad market resilience despite tech weakness) 
+LONGALL;DAX=F – DAX 30 futures (German factory order surge and PMI data showing expansion) 
+LONGALL;CL=F – Crude Oil futures (energy seen stabilizing off recent commodity swings) 
+LONGALL;EURUSD – Euro vs US Dollar (EUR supported by ECB stance and softer USD on data caution) 
+LONGALL;BTC-USD – Bitcoin (crypto showing rebound after sharp prior drop and oversold conditions) 
+LONGALL;
+LONGALL;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;Daily 3:30 am·Generate daily long trade ideas
+LONGALL;resume
+LONGALL;Resumed. The daily long trade automation is active again and will run at 08:15 Stockholm time.
+LONGALL;
+LONGALL;2026-02-09 / 08:15 - Monday
+LONGALL;
+LONGALL;ES=F - S&P 500 E-mini Futures (global risk assets bid with macro optimism) 
+LONGALL;FTSE - FTSE 100 Index (record highs on financial and defensive strength) 
+LONGALL;CL=F - Crude Oil WTI Futures (geopolitical supply support boosting oil) 
+LONGALL;EURUSD - Euro vs US Dollar (weaker USD and non?US equity inflows support euro) 
+LONGALL;NIKKEI - Nikkei 225 (Asian equities rallying on political stability and risk appetite) 
+LONGALL;
+LONGALL;2026-02-10 / 08:15 - Tuesday
+LONGALL;
+LONGALL;SPY - S&P 500 ETF (dip bounce after broad equity weakness) 
+LONGALL;CL=F - Crude Oil WTI (oil near multi?month highs with supply risk) 
+LONGALL;SOYB - Soybean Futures (prices at recent highs on Chinese demand) 
+LONGALL;AUDUSD - Aussie Dollar vs US Dollar (FX recovery theme highlighted) 
+LONGALL;NIKK - Nikkei 225 Index (Asian shares extending gains on regional sentiment) 
+LONGALL;
+LONGALL;2026-02-11 / 08:15 - Wednesday
+LONGALL;
+LONGALL;ES=F - S&P 500 E-mini Futures (futures rising ahead of payrolls and positive breadth signals) 
+LONGALL;CL=F - WTI Crude Oil Futures (Middle East risk premium supports upside bias) 
+LONGALL;HSI - Hang Seng Index (Asian equities advancing with regional inflows) 
+LONGALL;EURUSD - Euro vs US Dollar (weaker US consumer data pushes yields lower) 
+LONGALL;NKD=F - Nikkei 225 Futures (Asia AI investment flows attracting capital) 
+LONGALL;
+LONGALL;2026-02-12 / 08:16 - Thursday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Middle East tensions lifting supply risk and prices) 
+LONGALL;NKD=F - Nikkei 225 Futures (Asian equities at record highs on tech strength and policy optimism) 
+LONGALL;XAUUSD - Gold Spot (rising on lower yields and rate?cut expectations) 
+LONGALL;AS51 - ASX 200 Index (earnings support and continued regional equity momentum) 
+LONGALL;USDJPY - US Dollar vs Japanese Yen (yield surge and strong US jobs shifting FX flows) 
+LONGALL;
+LONGALL;2026-02-13 / 08:15 - Friday
+LONGALL;
+LONGALL;XAUUSD - Gold Spot (bond rally and rate?cut expectations support metals rebound) 
+LONGALL;AMAT - Applied Materials (AI hardware earnings strength amid tech selloff rotation) 
+LONGALL;MCD - McDonald's (defensive stocks showing relative strength during equity volatility) 
+LONGALL;ZN=F - US 10Y Treasury Note Futures (yields falling as investors move into bonds) 
+LONGALL;EURUSD - Euro vs US Dollar (rate?cut pricing pressures USD as macro caution rises) 
+LONGALL;
+LONGALL;2026-02-14 / 08:15 - Saturday
+LONGALL;
+LONGALL;"XAUUSD - Gold Spot (inflation cooling increases rate?cut expectations; safe?haven bid returning) "
+LONGALL;ES=F - S&P 500 E?mini Futures (global equities supported by easing CPI and trade?deal optimism) 
+LONGALL;CL=F - WTI Crude Oil Futures (geopolitical risk premium keeps upside skew despite oversupply talk) 
+LONGALL;NKD=F - Nikkei 225 Futures (major indices near highs as global risk appetite stabilizes) 
+LONGALL;EURUSD - Euro vs US Dollar (softer US inflation pressures USD via shifting Fed expectations) 
+LONGALL;
+LONGALL;2026-02-15 / 08:15 - Sunday
+LONGALL;
+LONGALL;XAUUSD - Gold Spot (risk?off flows after tech selloff and volatility support metals rebound) 
+LONGALL;CL=F - WTI Crude Oil Futures (commodities leadership and strong oil equity momentum bias intraday upside) 
+LONGALL;EURUSD - Euro vs US Dollar (ECB expanding euro liquidity backstop supports currency demand) 
+LONGALL;ES=F - S&P 500 E?mini Futures (dip?buying tendency after broad tech?led equity selloff) 
+LONGALL;NKD=F - Nikkei 225 Futures (AI?driven sector rotation keeps index bid on global capital flows) 
+LONGALL;
+LONGALL;2026-02-16 / 08:15 - Monday
+LONGALL;
+LONGALL;NKD=F - Nikkei 225 Futures (Asian equities bid on stimulus expectations and higher regional markets) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (AUD leading FX strength while yen weakens) 
+LONGALL;CL=F - WTI Crude Oil Futures (oil stable with supply risk and geopolitical talks supporting price floor) 
+LONGALL;XAUUSD - Gold Spot (profit?taking dip inside broader macro uptrend offers intraday rebound potential) 
+LONGALL;ES=F - S&P 500 E-mini Futures (equities supported by easing inflation and rate?cut expectations despite AI volatility) 
+LONGALL;
+LONGALL;2026-02-17 / 08:15 - Tuesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (geopolitical tension and Iran talks sustaining risk premium in oil) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (RBA rate hike expectations and resilient economy support AUD strength) 
+LONGALL;AS51 - ASX 200 Index (commodities-led gains and strong mining stocks driving regional equity momentum) 
+LONGALL;EURUSD - Euro vs US Dollar (policy divergence and USD stabilization creating intraday rebound potential) 
+LONGALL;ZN=F - US 10Y Treasury Note Futures (yields easing amid cautious global sentiment and weaker growth signals) 
+LONGALL;
+LONGALL;2026-02-18 / 08:15 - Wednesday
+LONGALL;
+LONGALL;NKD=F - Nikkei 225 Futures (Japan equities bid on investment pact optimism and rising Asian markets) 
+LONGALL;XAUUSD - Gold Spot (safe?haven flows stabilizing as geopolitics and rate?cut signals dominate) 
+LONGALL;ES=F - S&P 500 E-mini Futures (futures edging higher despite AI volatility and cautious sentiment) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (risk?on Asia session lifting commodity FX demand) 
+LONGALL;CL=F - WTI Crude Oil Futures (Asian demand backdrop and geopolitical negotiations keeping intraday upside skew) 
+LONGALL;
+LONGALL;2026-02-19 / 08:16 - Thursday
+LONGALL;
+LONGALL;NKD=F - Nikkei 225 Futures (Asian equities rising on AI-driven tech rally and strong regional momentum) 
+LONGALL;CL=F - WTI Crude Oil Futures (oil bid higher as US-Iran tensions keep geopolitical risk premium elevated) 
+LONGALL;XAUUSD - Gold Spot (safe-haven demand and dip buying support metals near record highs) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (strong Australian labor data lifting AUD in Asia FX trade) 
+LONGALL;NQ=F - Nasdaq 100 Futures (AI chip deal momentum sustaining tech-led upside bias intraday) 
+LONGALL;
+LONGALL;2026-02-20 / 08:15 - Friday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Iran tensions and falling inventories driving oil higher) 
+LONGALL;XAUUSD - Gold Spot (geopolitical risk lifting safe?haven demand and supporting metals) 
+LONGALL;DASH - DoorDash Inc (positive sentiment despite weak results supports short?term rebound bias) 
+LONGALL;NIFTY50 - Nifty 50 Index Futures (Indian equities advancing with strong sector momentum) 
+LONGALL;ES=F - S&P 500 E-mini Futures (European and US futures stabilizing after tech-led pullback) 
+LONGALL;
+LONGALL;2026-02-21 / 08:16 - Saturday
+LONGALL;
+LONGALL;STOXX600 - STOXX Europe 600 Index (record highs after tariff ruling lifted sentiment and earnings outlook) 
+LONGALL;XAUUSD - Gold Spot (safe?haven demand supported by geopolitical tension and macro uncertainty) 
+LONGALL;CL=F - WTI Crude Oil Futures (Iran tensions sustaining war?risk premium in energy markets) 
+LONGALL;NKD=F - Nikkei 225 Futures (Asian equities bid while global risk appetite stabilizes) 
+LONGALL;ES=F - S&P 500 E?mini Futures (equity risk supported by easing policy uncertainty and AI?driven earnings theme) 
+LONGALL;
+LONGALL;2026-02-22 / 08:15 - Sunday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Iran tensions and military buildup sustaining upside risk premium) 
+LONGALL;XAUUSD - Gold Spot (safe-haven flows supported by geopolitical stress and rising volatility) 
+LONGALL;ES=F - S&P 500 E-mini Futures (equities holding bid as global stocks advance despite macro uncertainty) 
+LONGALL;NKD=F - Nikkei 225 Futures (Asia policy focus and reopening liquidity supporting intraday upside) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (firm commodity backdrop and softer USD bias favor risk FX) 
+LONGALL;
+LONGALL;2026-02-23 / 08:16 - Monday
+LONGALL;
+LONGALL;XAUUSD - Gold Spot (tariff ruling and geopolitical risk driving safe-haven inflows and momentum) 
+LONGALL;CL=F - WTI Crude Oil Futures (US-Iran tensions sustaining elevated energy risk premium) 
+LONGALL;NIFTY50 - Nifty 50 Index Futures (Indian equities opening firm amid global policy shifts) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (weaker USD and resilient commodity backdrop supporting risk FX) 
+LONGALL;NKD=F - Nikkei 225 Futures (Asian equities bid as tariff uncertainty lifts regional volatility and flows) 
+LONGALL;
+LONGALL;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;Daily 3:30 am·Generate daily long trade ideas
+LONGALL;Resume
+LONGALL;Resumed. The daily long trade automation is active again and scheduled for 08:15 Stockholm time.
+LONGALL;
+LONGALL;2026-03-02 / 08:15 - Monday
+LONGALL;
+LONGALL;CL=F - Crude Oil Futures (geopolitical tensions in Middle East driving supply risk and price spikes) 
+LONGALL;XAUUSD - Gold Spot (safe-haven bid rising on conflict and risk aversion) 
+LONGALL;SI=F - Silver Futures (precious metals gaining as hedge against instability) 
+LONGALL;NIKKIE225=F - Nikkei 225 Futures (equities rebound potential on risk rotation after initial selloffs) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (commodity-linked FX supported by higher resource prices) 
+LONGALL;
+LONGALL;2026-03-03 / 08:16 - Tuesday
+LONGALL;
+LONGALL;CL=F - Crude Oil Futures (Middle East conflict pressures supply chokepoint at Strait of Hormuz lifting prices) 
+LONGALL;XAUUSD - Gold Spot (safe haven inflows on geopolitical risk and market volatility) 
+LONGALL;UNG - United States Natural Gas Fund (natural gas prices spiking after LNG output halts) 
+LONGALL;XOM - Exxon Mobil (energy equities up on supply disruption and higher crude forecasts) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (commodity FX supported by stronger energy and resource prices) 
+LONGALL;
+LONGALL;2026-03-04 / 08:16 - Wednesday
+LONGALL;
+LONGALL;CL=F – WTI Crude Oil Futures (oil surging on Middle East conflict and Strait of Hormuz supply risk) 
+LONGALL;XLE – Energy Select Sector SPDR Fund (energy equities bid as crude prices spike) 
+LONGALL;LMT – Lockheed Martin (defense stocks supported by escalating geopolitical conflict) 
+LONGALL;DXY – US Dollar Index (risk-off environment and inflation fears supporting USD demand) 
+LONGALL;NG=F – Natural Gas Futures (energy shock and supply disruption fears lifting gas prices) 
+LONGALL;
+LONGALL;2026-03-05 / 08:15 - Thursday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil rising on Strait of Hormuz disruption and Middle East conflict) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities bid as crude prices surge) 
+LONGALL;GC=F - Gold Futures (safe?haven demand increasing amid geopolitical escalation) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (commodity FX supported by higher resource prices and growth data) 
+LONGALL;^N225 - Nikkei 225 Index (Asian equities rebounding after prior oil?shock selloff) 
+LONGALL;
+LONGALL;2026-03-06 / 08:15 - Friday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil supply disruption risk from Strait of Hormuz conflict keeps upward pressure) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities benefiting from sustained crude rally) 
+LONGALL;GC=F - Gold Futures (safe?haven demand rising amid escalating Middle East tensions) 
+LONGALL;DXY - US Dollar Index (stronger dollar supported by inflation fears from energy shock) 
+LONGALL;^STOXX50E - EURO STOXX 50 Index (European equities rebounding with global risk assets stabilizing) 
+LONGALL;
+LONGALL;2026-03-07 / 08:16 - Saturday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and Gulf export constraints tightening global supply) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities benefiting from sustained oil price spike) 
+LONGALL;LMT - Lockheed Martin (defense sector bid amid expanding Middle East military conflict) 
+LONGALL;GC=F - Gold Futures (safe?haven demand rising as war and market volatility intensify) 
+LONGALL;UNG - United States Natural Gas Fund (gas prices rising after Qatar LNG shutdown and regional attacks) 
+LONGALL;
+LONGALL;2026-03-08 / 08:15 - Sunday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and Kuwait output cuts tightening supply) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (oil equities rally with crude near multiyear highs) 
+LONGALL;GC=F - Gold Futures (safe?haven flows after escalation of Iran conflict) 
+LONGALL;LMT - Lockheed Martin (defense demand bid during expanding Middle East war) 
+LONGALL;XOM - Exxon Mobil (major oil producers benefiting from war?driven crude spike) 
+LONGALL;
+LONGALL;2026-03-09 / 08:15 - Monday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil above $100 as Iran war disrupts Gulf supply and shipping) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities rising with sustained crude spike) 
+LONGALL;LMT - Lockheed Martin (defense stocks bid amid escalating US?Israel?Iran conflict) 
+LONGALL;UNG - United States Natural Gas Fund (global gas supply hit after Qatar halted LNG production) 
+LONGALL;DBA - Invesco DB Agriculture Fund (grains and vegetable oils rising as biofuel demand follows oil surge) 
+LONGALL;
+LONGALL;2026-03-10 / 08:16 - Tuesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Middle East war and Hormuz disruption keep energy supply risk elevated) 
+LONGALL;TTF=F - Dutch TTF Natural Gas Futures (Qatar gas production shutdown tightening global LNG supply) 
+LONGALL;LMT - Lockheed Martin (defense sector supported by escalating regional conflict and military demand) 
+LONGALL;GC=F - Gold Futures (safe?haven flows increasing amid geopolitical escalation and inflation fears) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities bid as oil shock drives sector earnings expectations) 
+LONGALL;
+LONGALL;2026-03-11 / 08:16 - Wednesday
+LONGALL;
+LONGALL;GC=F - Gold Futures (bullion rising as geopolitical risk and currency weakness support safe?haven demand) 
+LONGALL;SI=F - Silver Futures (silver surging nearly 7% amid strong precious?metal momentum and volatility) 
+LONGALL;^N225 - Nikkei 225 Index (Asian equities advancing as investors position for stabilization in Iran conflict) 
+LONGALL;BHP - BHP Group (mining sector leadership tied to rising commodity demand and higher price expectations) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities volatile but supported by ongoing supply disruptions around Hormuz) 
+LONGALL;
+LONGALL;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;
+LONGALL;2026-03-12 / 08:15 - Thursday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil above $100 after tanker attacks and Gulf supply disruption) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities supported by crude spike and supply shock) 
+LONGALL;LMT - Lockheed Martin (defense demand bid amid ongoing Middle East conflict) 
+LONGALL;GLD - SPDR Gold Shares (inflation risk and geopolitical stress supporting safe?haven allocation) 
+LONGALL;USO - United States Oil Fund (tracks crude rally driven by escalating attacks on shipping routes) 
+LONGALL;
+LONGALL;2026-03-13 / 08:16 - Friday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and war risk driving crude above $100) 
+LONGALL;NG=F - U.S. Natural Gas Futures (global LNG disruption and Qatar supply risk tightening gas markets) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities supported by sustained oil price shock) 
+LONGALL;UUP - Invesco DB U.S. Dollar Index Bullish Fund (war-driven risk flows strengthening USD vs majors) 
+LONGALL;GLD - SPDR Gold Shares (geopolitical uncertainty and lower yields supporting bullion bounce) 
+LONGALL;
+LONGALL;2026-03-14 / 08:15 - Saturday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and Gulf supply cuts pushing crude toward $100+) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (oil shock driving inflows into energy producers) 
+LONGALL;GLD - SPDR Gold Shares (safe?haven demand rising amid escalating Iran war volatility) 
+LONGALL;HAL - Halliburton (oilfield services bid when producers increase drilling during price spikes) 
+LONGALL;UUP - Invesco DB US Dollar Index Bullish Fund (war?driven risk flows supporting USD strength) 
+LONGALL;
+LONGALL;2026-03-15 / 08:15 - Sunday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and refinery attacks tightening global oil supply) 
+LONGALL;NG=F - U.S. Natural Gas Futures (Qatar production halt and Gulf conflict constraining LNG supply) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities bid as crude remains near $100+) 
+LONGALL;GLD - SPDR Gold Shares (safe?haven flows amid escalating Middle East conflict risk) 
+LONGALL;LMT - Lockheed Martin (defense sector strength during sustained geopolitical escalation) 
+LONGALL;
+LONGALL;2026-03-16 / 08:15 - Monday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil above $100 after U.S. strikes and Hormuz disruption tightening supply) 
+LONGALL;NG=F - U.S. Natural Gas Futures (Middle East conflict disrupting LNG flows and driving gas volatility) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities bid as crude shock boosts producer margins) 
+LONGALL;GLD - SPDR Gold Shares (safe?haven demand persists amid war risk and macro uncertainty) 
+LONGALL;UUP - Invesco DB U.S. Dollar Index Bullish Fund (conflict and Fed uncertainty supporting defensive USD flows) 
+LONGALL;
+LONGALL;2026-03-17 / 08:15 - Tuesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and Gulf attacks tightening global oil supply) 
+LONGALL;NG=F - U.S. Natural Gas Futures (Middle East conflict and halted regional gas production lifting prices) 
+LONGALL;GLD - SPDR Gold Shares (inflation and geopolitical risk sustaining safe?haven demand) 
+LONGALL;UUP - Invesco DB US Dollar Index Bullish Fund (war uncertainty pushing defensive USD flows higher) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (oil shock improving earnings outlook for energy producers) 
+LONGALL;
+LONGALL;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;
+LONGALL;2026-04-23 / 08:15 - Thursday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz tanker attacks and supply disruption driving oil >$100) 
+LONGALL;NG=F - U.S. Natural Gas Futures (European gas spike and supply risk from Strait closures) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities supported by sustained oil shock) 
+LONGALL;UUP - Invesco DB U.S. Dollar Index Bullish Fund (risk aversion and oil shock strengthening USD) 
+LONGALL;SPY - SPDR S&P 500 ETF Trust (record highs and earnings momentum despite geopolitical stress) 
+LONGALL;
+LONGALL;2026-04-24 / 08:15 - Friday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption escalating, supply shock driving prices higher) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities leveraged to sustained $100+ oil regime) 
+LONGALL;UUP - Invesco DB U.S. Dollar Index Bullish Fund (geopolitical risk and inflation supporting USD flows) 
+LONGALL;US10Y - U.S. 10Y Treasury Yield (inflation expectations and delayed rate cuts pushing yields higher) 
+LONGALL;GLD - SPDR Gold Shares (persistent macro uncertainty sustaining defensive allocation demand) 
+LONGALL;
+LONGALL;2026-04-25 / 08:15 - Saturday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (persistent Hormuz blockade removing ~13mb/d supply, upward pressure intact) 
+LONGALL;NG=F - U.S. Natural Gas Futures (global energy shock tightening gas alongside oil disruption) 
+LONGALL;GLD - SPDR Gold Shares (inflation shock and war risk sustaining safe?haven demand) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities leveraged to structural supply shock and elevated prices) 
+LONGALL;INTC - Intel Corp (AI-driven earnings surprise fueling short-term tech momentum) 
+LONGALL;
+LONGALL;2026-04-26 / 08:15 - Sunday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz closure removing major supply, oil >$100 with upside pressure) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities levered to sustained supply shock and high margins) 
+LONGALL;NG=F - U.S. Natural Gas Futures (global energy shortage risk spilling into gas markets) 
+LONGALL;SPY - SPDR S&P 500 ETF Trust (momentum persists with record highs and strong tech-led flows) 
+LONGALL;DXY - U.S. Dollar Index (safe-haven demand rising amid geopolitical escalation and stagflation risk) 
+LONGALL;
+LONGALL;2026-04-27 / 08:15 - Monday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil ~110 on stalled Iran talks and blocked Hormuz supply) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities levered to sustained oil supply shock) 
+LONGALL;UUP - Invesco DB U.S. Dollar Index Bullish Fund (geopolitical stress sustaining USD demand) 
+LONGALL;QQQ - Invesco QQQ Trust (AI-driven tech earnings momentum supporting Nasdaq futures) 
+LONGALL;BNO - United States Brent Oil Fund (Brent >$100 with continued supply constraints) 
+LONGALL;
+LONGALL;2026-04-28 / 08:15 - Tuesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (supply risk persists, momentum continuation above $100)
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy earnings leverage to elevated ????? prices)
+LONGALL;GLD - SPDR Gold Shares (inflation + geopolitical hedge bid holding intraday strength)
+LONGALL;DXY - U.S. Dollar Index (risk-off flows sustaining USD intraday demand)
+LONGALL;QQQ - Invesco QQQ Trust (AI/tech momentum and dip-buying behavior intact)
+LONGALL;
+LONGALL;2026-04-29 / 08:15 - Wednesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (tight supply narrative sustaining intraday upside momentum)
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities tracking elevated crude prices)
+LONGALL;GLD - SPDR Gold Shares (macro uncertainty maintaining safe-haven bid)
+LONGALL;DXY - U.S. Dollar Index (risk aversion supporting USD strength)
+LONGALL;NVDA - NVIDIA Corp (AI demand momentum driving continued intraday flows)
+LONGALL;
+LONGALL;2026-04-30 / 08:16 - Thursday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (ongoing supply disruption keeps intraday upward pressure)
+LONGALL;XLE - Energy Select Sector SPDR Fund (sector strength tracking elevated crude prices)
+LONGALL;GLD - SPDR Gold Shares (persistent geopolitical risk sustaining safe-haven flows)
+LONGALL;DXY - U.S. Dollar Index (risk-off tone supporting USD strength)
+LONGALL;MSFT - Microsoft Corp (AI and cloud momentum driving continued short-term inflows)
+LONGALL;
+LONGALL;2026-05-01 / 08:15 - Friday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (continued supply tightness maintaining upward intraday bias)
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy sector strength tracking crude resilience)
+LONGALL;GLD - SPDR Gold Shares (macro uncertainty sustaining safe-haven demand)
+LONGALL;DXY - U.S. Dollar Index (persistent risk-off flows supporting USD strength)
+LONGALL;AMZN - Amazon.com Inc (earnings-driven momentum and strong retail/cloud flows)
+LONGALL;
+LONGALL;2026-05-02 / 08:15 - Saturday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (supply disruption narrative sustaining intraday upside)
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities tracking elevated oil prices)
+LONGALL;GLD - SPDR Gold Shares (persistent geopolitical risk supporting safe-haven flows)
+LONGALL;DXY - U.S. Dollar Index (risk-off tone maintaining USD strength)
+LONGALL;AAPL - Apple Inc (large-cap tech momentum and defensive growth inflows)
+LONGALL;
+LONGALL;2026-05-03 / 08:15 - Sunday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption + $120-150 upside risk keeps intraday bid) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities supported by sustained oil shock) 
+LONGALL;QQQ - Invesco QQQ Trust (AI-led tech rally pushing Nasdaq to fresh highs) 
+LONGALL;EWY - iShares MSCI South Korea ETF (AI supply chain strength driving EM outperformance) 
+LONGALL;USDJPY - USD/JPY (yen structurally weak despite intervention, oil amplifies pressure) 
+LONGALL;
+LONGALL;2026-05-04 / 08:15 - Monday
+LONGALL;
+LONGALL;ES=F - S&P 500 Futures (momentum continuation from tech-led strength)
+LONGALL;CL=F - WTI Crude Oil Futures (elevated geopolitical risk sustaining bid)
+LONGALL;GLD - SPDR Gold Shares (inflation hedge demand holding intraday flows)
+LONGALL;USDJPY - USD/JPY (rate divergence maintaining USD strength)
+LONGALL;NVDA - NVIDIA Corp (AI demand and liquidity concentration driving upside)
+LONGALL;
+LONGALL;This task has been paused because updates haven't been viewed in a while. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;
+LONGALL;2026-05-05 / 08:14 - Tuesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption + supply shock sustaining intraday upside) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy sector only consistent outperformer in oil spike) 
+LONGALL;GLD - SPDR Gold Shares (geopolitical escalation maintaining safe-haven demand) 
+LONGALL;DXY - U.S. Dollar Index (risk-off flows and macro uncertainty supporting USD) 
+LONGALL;US10Y - U.S. 10Y Treasury Yield (rising yields on inflation shock and repricing expectations) 
+LONGALL;
+LONGALL;2026-05-06 / 08:14 - Wednesday
+LONGALL;
+LONGALL;QQQ - Invesco QQQ Trust (AI semiconductor momentum driving fresh Nasdaq highs) 
+LONGALL;EWY - iShares MSCI South Korea ETF (KOSPI breakout fueled by Samsung and AI chip demand) 
+LONGALL;AMD - Advanced Micro Devices Inc (strong AI hardware demand ahead of earnings continuation) 
+LONGALL;ES=F - S&P 500 Futures (record highs supported by easing oil and strong earnings) 
+LONGALL;USDJPY - USD/JPY (higher U.S. yield expectations supporting dollar strength) 
+LONGALL;
+LONGALL;2026-05-07 / 08:15 - Thursday
+LONGALL;
+LONGALL;AMD - Advanced Micro Devices (AI chip demand and earnings momentum driving follow-through) 
+LONGALL;QQQ - Invesco QQQ Trust (Nasdaq strength accelerating on AI-led risk appetite) 
+LONGALL;EWY - iShares MSCI South Korea ETF (KOSPI breakout powered by Samsung and semiconductor inflows) 
+LONGALL;ES=F - S&P 500 Futures (record highs supported by easing oil and strong earnings breadth) 
+LONGALL;USDJPY - USD/JPY (persistent US yield premium favoring dollar strength intraday) 
+LONGALL;
+LONGALL;Daily 3:30 am·Generate daily long trade ideas
+LONGALL;Generate daily long trade ideas
+LONGALL;
+LONGALL;2026-05-18 / 08:15 - Monday
+LONGALL;
+LONGALL;USO - United States Oil Fund (Hormuz disruption and oil spike supporting energy momentum) 
+LONGALL;SMH - VanEck Semiconductor ETF (AI capex and chip demand continue driving semis higher) 
+LONGALL;KWEB - KraneShares CSI China Internet ETF (Chinese AI and tech stimulus flows accelerating) 
+LONGALL;EWZ - iShares MSCI Brazil ETF (oil-export exposure benefiting Brazil equities) 
+LONGALL;TLT - iShares 20+ Year Treasury Bond ETF (risk-off pressure may trigger bond rebound after yield spike) 
+LONGALL;
+LONGALL;Generate daily long trade ideas
+LONGALL;
+LONGALL;2026-05-19 / 08:15 - Tuesday
+LONGALL;
+LONGALL;USO - United States Oil Fund (Middle East supply disruption keeps crude and energy equities bid) 
+LONGALL;SMH - VanEck Semiconductor ETF (AI infrastructure spending remains dominant despite tech pullback) 
+LONGALL;GLD - SPDR Gold Shares (inflation fears and geopolitical stress support safe-haven demand) 
+LONGALL;KWEB - KraneShares CSI China Internet ETF (AI-export momentum and stimulus expectations lifting Chinese tech) 
+LONGALL;URA - Global X Uranium ETF (AI-driven power demand accelerating nuclear and uranium outlook)
+LONGALL;
+LONGALL;This task has been paused because updates haven't been viewed in a while. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;Resume task
+LONGALL;Task resumed. Runs daily at 08:15 Stockholm time.
+LONGALL;Daily 3:30 am·Generate daily long trade ideas
+LONGALL;ChatGPT
+LONGALL;
+LONGALL;
+LONGALL;Resumed. The daily long trade automation is active again and will run at 08:15 Stockholm time.
+LONGALL;
+LONGALL;2026-02-09 / 08:15 - Monday
+LONGALL;
+LONGALL;ES=F - S&P 500 E-mini Futures (global risk assets bid with macro optimism) 
+LONGALL;FTSE - FTSE 100 Index (record highs on financial and defensive strength) 
+LONGALL;CL=F - Crude Oil WTI Futures (geopolitical supply support boosting oil) 
+LONGALL;EURUSD - Euro vs US Dollar (weaker USD and non?US equity inflows support euro) 
+LONGALL;NIKKEI - Nikkei 225 (Asian equities rallying on political stability and risk appetite) 
+LONGALL;
+LONGALL;2026-02-10 / 08:15 - Tuesday
+LONGALL;
+LONGALL;SPY - S&P 500 ETF (dip bounce after broad equity weakness) 
+LONGALL;CL=F - Crude Oil WTI (oil near multi?month highs with supply risk) 
+LONGALL;SOYB - Soybean Futures (prices at recent highs on Chinese demand) 
+LONGALL;AUDUSD - Aussie Dollar vs US Dollar (FX recovery theme highlighted) 
+LONGALL;NIKK - Nikkei 225 Index (Asian shares extending gains on regional sentiment) 
+LONGALL;
+LONGALL;2026-02-11 / 08:15 - Wednesday
+LONGALL;
+LONGALL;ES=F - S&P 500 E-mini Futures (futures rising ahead of payrolls and positive breadth signals) 
+LONGALL;CL=F - WTI Crude Oil Futures (Middle East risk premium supports upside bias) 
+LONGALL;HSI - Hang Seng Index (Asian equities advancing with regional inflows) 
+LONGALL;EURUSD - Euro vs US Dollar (weaker US consumer data pushes yields lower) 
+LONGALL;NKD=F - Nikkei 225 Futures (Asia AI investment flows attracting capital) 
+LONGALL;
+LONGALL;2026-02-12 / 08:16 - Thursday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Middle East tensions lifting supply risk and prices) 
+LONGALL;NKD=F - Nikkei 225 Futures (Asian equities at record highs on tech strength and policy optimism) 
+LONGALL;XAUUSD - Gold Spot (rising on lower yields and rate?cut expectations) 
+LONGALL;AS51 - ASX 200 Index (earnings support and continued regional equity momentum) 
+LONGALL;USDJPY - US Dollar vs Japanese Yen (yield surge and strong US jobs shifting FX flows) 
+LONGALL;
+LONGALL;2026-02-13 / 08:15 - Friday
+LONGALL;
+LONGALL;XAUUSD - Gold Spot (bond rally and rate?cut expectations support metals rebound) 
+LONGALL;AMAT - Applied Materials (AI hardware earnings strength amid tech selloff rotation) 
+LONGALL;MCD - McDonald's (defensive stocks showing relative strength during equity volatility) 
+LONGALL;ZN=F - US 10Y Treasury Note Futures (yields falling as investors move into bonds) 
+LONGALL;EURUSD - Euro vs US Dollar (rate?cut pricing pressures USD as macro caution rises) 
+LONGALL;
+LONGALL;2026-02-14 / 08:15 - Saturday
+LONGALL;
+LONGALL;"XAUUSD - Gold Spot (inflation cooling increases rate?cut expectations; safe?haven bid returning) "
+LONGALL;ES=F - S&P 500 E?mini Futures (global equities supported by easing CPI and trade?deal optimism) 
+LONGALL;CL=F - WTI Crude Oil Futures (geopolitical risk premium keeps upside skew despite oversupply talk) 
+LONGALL;NKD=F - Nikkei 225 Futures (major indices near highs as global risk appetite stabilizes) 
+LONGALL;EURUSD - Euro vs US Dollar (softer US inflation pressures USD via shifting Fed expectations) 
+LONGALL;
+LONGALL;2026-02-15 / 08:15 - Sunday
+LONGALL;
+LONGALL;XAUUSD - Gold Spot (risk?off flows after tech selloff and volatility support metals rebound) 
+LONGALL;CL=F - WTI Crude Oil Futures (commodities leadership and strong oil equity momentum bias intraday upside) 
+LONGALL;EURUSD - Euro vs US Dollar (ECB expanding euro liquidity backstop supports currency demand) 
+LONGALL;ES=F - S&P 500 E?mini Futures (dip?buying tendency after broad tech?led equity selloff) 
+LONGALL;NKD=F - Nikkei 225 Futures (AI?driven sector rotation keeps index bid on global capital flows) 
+LONGALL;
+LONGALL;2026-02-16 / 08:15 - Monday
+LONGALL;
+LONGALL;NKD=F - Nikkei 225 Futures (Asian equities bid on stimulus expectations and higher regional markets) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (AUD leading FX strength while yen weakens) 
+LONGALL;CL=F - WTI Crude Oil Futures (oil stable with supply risk and geopolitical talks supporting price floor) 
+LONGALL;XAUUSD - Gold Spot (profit?taking dip inside broader macro uptrend offers intraday rebound potential) 
+LONGALL;ES=F - S&P 500 E-mini Futures (equities supported by easing inflation and rate?cut expectations despite AI volatility) 
+LONGALL;
+LONGALL;2026-02-17 / 08:15 - Tuesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (geopolitical tension and Iran talks sustaining risk premium in oil) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (RBA rate hike expectations and resilient economy support AUD strength) 
+LONGALL;AS51 - ASX 200 Index (commodities-led gains and strong mining stocks driving regional equity momentum) 
+LONGALL;EURUSD - Euro vs US Dollar (policy divergence and USD stabilization creating intraday rebound potential) 
+LONGALL;ZN=F - US 10Y Treasury Note Futures (yields easing amid cautious global sentiment and weaker growth signals) 
+LONGALL;
+LONGALL;2026-02-18 / 08:15 - Wednesday
+LONGALL;
+LONGALL;NKD=F - Nikkei 225 Futures (Japan equities bid on investment pact optimism and rising Asian markets) 
+LONGALL;XAUUSD - Gold Spot (safe?haven flows stabilizing as geopolitics and rate?cut signals dominate) 
+LONGALL;ES=F - S&P 500 E-mini Futures (futures edging higher despite AI volatility and cautious sentiment) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (risk?on Asia session lifting commodity FX demand) 
+LONGALL;CL=F - WTI Crude Oil Futures (Asian demand backdrop and geopolitical negotiations keeping intraday upside skew) 
+LONGALL;
+LONGALL;2026-02-19 / 08:16 - Thursday
+LONGALL;
+LONGALL;NKD=F - Nikkei 225 Futures (Asian equities rising on AI-driven tech rally and strong regional momentum) 
+LONGALL;CL=F - WTI Crude Oil Futures (oil bid higher as US-Iran tensions keep geopolitical risk premium elevated) 
+LONGALL;XAUUSD - Gold Spot (safe-haven demand and dip buying support metals near record highs) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (strong Australian labor data lifting AUD in Asia FX trade) 
+LONGALL;NQ=F - Nasdaq 100 Futures (AI chip deal momentum sustaining tech-led upside bias intraday) 
+LONGALL;
+LONGALL;2026-02-20 / 08:15 - Friday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Iran tensions and falling inventories driving oil higher) 
+LONGALL;XAUUSD - Gold Spot (geopolitical risk lifting safe?haven demand and supporting metals) 
+LONGALL;DASH - DoorDash Inc (positive sentiment despite weak results supports short?term rebound bias) 
+LONGALL;NIFTY50 - Nifty 50 Index Futures (Indian equities advancing with strong sector momentum) 
+LONGALL;ES=F - S&P 500 E-mini Futures (European and US futures stabilizing after tech-led pullback) 
+LONGALL;
+LONGALL;2026-02-21 / 08:16 - Saturday
+LONGALL;
+LONGALL;STOXX600 - STOXX Europe 600 Index (record highs after tariff ruling lifted sentiment and earnings outlook) 
+LONGALL;XAUUSD - Gold Spot (safe?haven demand supported by geopolitical tension and macro uncertainty) 
+LONGALL;CL=F - WTI Crude Oil Futures (Iran tensions sustaining war?risk premium in energy markets) 
+LONGALL;NKD=F - Nikkei 225 Futures (Asian equities bid while global risk appetite stabilizes) 
+LONGALL;ES=F - S&P 500 E?mini Futures (equity risk supported by easing policy uncertainty and AI?driven earnings theme) 
+LONGALL;
+LONGALL;2026-02-22 / 08:15 - Sunday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Iran tensions and military buildup sustaining upside risk premium) 
+LONGALL;XAUUSD - Gold Spot (safe-haven flows supported by geopolitical stress and rising volatility) 
+LONGALL;ES=F - S&P 500 E-mini Futures (equities holding bid as global stocks advance despite macro uncertainty) 
+LONGALL;NKD=F - Nikkei 225 Futures (Asia policy focus and reopening liquidity supporting intraday upside) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (firm commodity backdrop and softer USD bias favor risk FX) 
+LONGALL;
+LONGALL;2026-02-23 / 08:16 - Monday
+LONGALL;
+LONGALL;XAUUSD - Gold Spot (tariff ruling and geopolitical risk driving safe-haven inflows and momentum) 
+LONGALL;CL=F - WTI Crude Oil Futures (US-Iran tensions sustaining elevated energy risk premium) 
+LONGALL;NIFTY50 - Nifty 50 Index Futures (Indian equities opening firm amid global policy shifts) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (weaker USD and resilient commodity backdrop supporting risk FX) 
+LONGALL;NKD=F - Nikkei 225 Futures (Asian equities bid as tariff uncertainty lifts regional volatility and flows) 
+LONGALL;
+LONGALL;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;Daily 3:30 am·Generate daily long trade ideas
+LONGALL;Resume
+LONGALL;Resumed. The daily long trade automation is active again and scheduled for 08:15 Stockholm time.
+LONGALL;
+LONGALL;2026-03-02 / 08:15 - Monday
+LONGALL;
+LONGALL;CL=F - Crude Oil Futures (geopolitical tensions in Middle East driving supply risk and price spikes) 
+LONGALL;XAUUSD - Gold Spot (safe-haven bid rising on conflict and risk aversion) 
+LONGALL;SI=F - Silver Futures (precious metals gaining as hedge against instability) 
+LONGALL;NIKKIE225=F - Nikkei 225 Futures (equities rebound potential on risk rotation after initial selloffs) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (commodity-linked FX supported by higher resource prices) 
+LONGALL;
+LONGALL;2026-03-03 / 08:16 - Tuesday
+LONGALL;
+LONGALL;CL=F - Crude Oil Futures (Middle East conflict pressures supply chokepoint at Strait of Hormuz lifting prices) 
+LONGALL;XAUUSD - Gold Spot (safe haven inflows on geopolitical risk and market volatility) 
+LONGALL;UNG - United States Natural Gas Fund (natural gas prices spiking after LNG output halts) 
+LONGALL;XOM - Exxon Mobil (energy equities up on supply disruption and higher crude forecasts) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (commodity FX supported by stronger energy and resource prices) 
+LONGALL;
+LONGALL;2026-03-04 / 08:16 - Wednesday
+LONGALL;
+LONGALL;CL=F – WTI Crude Oil Futures (oil surging on Middle East conflict and Strait of Hormuz supply risk) 
+LONGALL;XLE – Energy Select Sector SPDR Fund (energy equities bid as crude prices spike) 
+LONGALL;LMT – Lockheed Martin (defense stocks supported by escalating geopolitical conflict) 
+LONGALL;DXY – US Dollar Index (risk-off environment and inflation fears supporting USD demand) 
+LONGALL;NG=F – Natural Gas Futures (energy shock and supply disruption fears lifting gas prices) 
+LONGALL;
+LONGALL;2026-03-05 / 08:15 - Thursday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil rising on Strait of Hormuz disruption and Middle East conflict) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities bid as crude prices surge) 
+LONGALL;GC=F - Gold Futures (safe?haven demand increasing amid geopolitical escalation) 
+LONGALL;AUDUSD - Australian Dollar vs US Dollar (commodity FX supported by higher resource prices and growth data) 
+LONGALL;^N225 - Nikkei 225 Index (Asian equities rebounding after prior oil?shock selloff) 
+LONGALL;
+LONGALL;2026-03-06 / 08:15 - Friday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil supply disruption risk from Strait of Hormuz conflict keeps upward pressure) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities benefiting from sustained crude rally) 
+LONGALL;GC=F - Gold Futures (safe?haven demand rising amid escalating Middle East tensions) 
+LONGALL;DXY - US Dollar Index (stronger dollar supported by inflation fears from energy shock) 
+LONGALL;^STOXX50E - EURO STOXX 50 Index (European equities rebounding with global risk assets stabilizing) 
+LONGALL;
+LONGALL;2026-03-07 / 08:16 - Saturday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and Gulf export constraints tightening global supply) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities benefiting from sustained oil price spike) 
+LONGALL;LMT - Lockheed Martin (defense sector bid amid expanding Middle East military conflict) 
+LONGALL;GC=F - Gold Futures (safe?haven demand rising as war and market volatility intensify) 
+LONGALL;UNG - United States Natural Gas Fund (gas prices rising after Qatar LNG shutdown and regional attacks) 
+LONGALL;
+LONGALL;2026-03-08 / 08:15 - Sunday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and Kuwait output cuts tightening supply) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (oil equities rally with crude near multiyear highs) 
+LONGALL;GC=F - Gold Futures (safe?haven flows after escalation of Iran conflict) 
+LONGALL;LMT - Lockheed Martin (defense demand bid during expanding Middle East war) 
+LONGALL;XOM - Exxon Mobil (major oil producers benefiting from war?driven crude spike) 
+LONGALL;
+LONGALL;2026-03-09 / 08:15 - Monday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil above $100 as Iran war disrupts Gulf supply and shipping) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities rising with sustained crude spike) 
+LONGALL;LMT - Lockheed Martin (defense stocks bid amid escalating US?Israel?Iran conflict) 
+LONGALL;UNG - United States Natural Gas Fund (global gas supply hit after Qatar halted LNG production) 
+LONGALL;DBA - Invesco DB Agriculture Fund (grains and vegetable oils rising as biofuel demand follows oil surge) 
+LONGALL;
+LONGALL;2026-03-10 / 08:16 - Tuesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Middle East war and Hormuz disruption keep energy supply risk elevated) 
+LONGALL;TTF=F - Dutch TTF Natural Gas Futures (Qatar gas production shutdown tightening global LNG supply) 
+LONGALL;LMT - Lockheed Martin (defense sector supported by escalating regional conflict and military demand) 
+LONGALL;GC=F - Gold Futures (safe?haven flows increasing amid geopolitical escalation and inflation fears) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities bid as oil shock drives sector earnings expectations) 
+LONGALL;
+LONGALL;2026-03-11 / 08:16 - Wednesday
+LONGALL;
+LONGALL;GC=F - Gold Futures (bullion rising as geopolitical risk and currency weakness support safe?haven demand) 
+LONGALL;SI=F - Silver Futures (silver surging nearly 7% amid strong precious?metal momentum and volatility) 
+LONGALL;^N225 - Nikkei 225 Index (Asian equities advancing as investors position for stabilization in Iran conflict) 
+LONGALL;BHP - BHP Group (mining sector leadership tied to rising commodity demand and higher price expectations) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities volatile but supported by ongoing supply disruptions around Hormuz) 
+LONGALL;
+LONGALL;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;
+LONGALL;2026-03-12 / 08:15 - Thursday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil above $100 after tanker attacks and Gulf supply disruption) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities supported by crude spike and supply shock) 
+LONGALL;LMT - Lockheed Martin (defense demand bid amid ongoing Middle East conflict) 
+LONGALL;GLD - SPDR Gold Shares (inflation risk and geopolitical stress supporting safe?haven allocation) 
+LONGALL;USO - United States Oil Fund (tracks crude rally driven by escalating attacks on shipping routes) 
+LONGALL;
+LONGALL;2026-03-13 / 08:16 - Friday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and war risk driving crude above $100) 
+LONGALL;NG=F - U.S. Natural Gas Futures (global LNG disruption and Qatar supply risk tightening gas markets) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities supported by sustained oil price shock) 
+LONGALL;UUP - Invesco DB U.S. Dollar Index Bullish Fund (war-driven risk flows strengthening USD vs majors) 
+LONGALL;GLD - SPDR Gold Shares (geopolitical uncertainty and lower yields supporting bullion bounce) 
+LONGALL;
+LONGALL;2026-03-14 / 08:15 - Saturday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and Gulf supply cuts pushing crude toward $100+) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (oil shock driving inflows into energy producers) 
+LONGALL;GLD - SPDR Gold Shares (safe?haven demand rising amid escalating Iran war volatility) 
+LONGALL;HAL - Halliburton (oilfield services bid when producers increase drilling during price spikes) 
+LONGALL;UUP - Invesco DB US Dollar Index Bullish Fund (war?driven risk flows supporting USD strength) 
+LONGALL;
+LONGALL;2026-03-15 / 08:15 - Sunday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and refinery attacks tightening global oil supply) 
+LONGALL;NG=F - U.S. Natural Gas Futures (Qatar production halt and Gulf conflict constraining LNG supply) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities bid as crude remains near $100+) 
+LONGALL;GLD - SPDR Gold Shares (safe?haven flows amid escalating Middle East conflict risk) 
+LONGALL;LMT - Lockheed Martin (defense sector strength during sustained geopolitical escalation) 
+LONGALL;
+LONGALL;2026-03-16 / 08:15 - Monday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil above $100 after U.S. strikes and Hormuz disruption tightening supply) 
+LONGALL;NG=F - U.S. Natural Gas Futures (Middle East conflict disrupting LNG flows and driving gas volatility) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities bid as crude shock boosts producer margins) 
+LONGALL;GLD - SPDR Gold Shares (safe?haven demand persists amid war risk and macro uncertainty) 
+LONGALL;UUP - Invesco DB U.S. Dollar Index Bullish Fund (conflict and Fed uncertainty supporting defensive USD flows) 
+LONGALL;
+LONGALL;2026-03-17 / 08:15 - Tuesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption and Gulf attacks tightening global oil supply) 
+LONGALL;NG=F - U.S. Natural Gas Futures (Middle East conflict and halted regional gas production lifting prices) 
+LONGALL;GLD - SPDR Gold Shares (inflation and geopolitical risk sustaining safe?haven demand) 
+LONGALL;UUP - Invesco DB US Dollar Index Bullish Fund (war uncertainty pushing defensive USD flows higher) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (oil shock improving earnings outlook for energy producers) 
+LONGALL;
+LONGALL;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;
+LONGALL;2026-04-23 / 08:15 - Thursday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz tanker attacks and supply disruption driving oil >$100) 
+LONGALL;NG=F - U.S. Natural Gas Futures (European gas spike and supply risk from Strait closures) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities supported by sustained oil shock) 
+LONGALL;UUP - Invesco DB U.S. Dollar Index Bullish Fund (risk aversion and oil shock strengthening USD) 
+LONGALL;SPY - SPDR S&P 500 ETF Trust (record highs and earnings momentum despite geopolitical stress) 
+LONGALL;
+LONGALL;2026-04-24 / 08:15 - Friday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption escalating, supply shock driving prices higher) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities leveraged to sustained $100+ oil regime) 
+LONGALL;UUP - Invesco DB U.S. Dollar Index Bullish Fund (geopolitical risk and inflation supporting USD flows) 
+LONGALL;US10Y - U.S. 10Y Treasury Yield (inflation expectations and delayed rate cuts pushing yields higher) 
+LONGALL;GLD - SPDR Gold Shares (persistent macro uncertainty sustaining defensive allocation demand) 
+LONGALL;
+LONGALL;2026-04-25 / 08:15 - Saturday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (persistent Hormuz blockade removing ~13mb/d supply, upward pressure intact) 
+LONGALL;NG=F - U.S. Natural Gas Futures (global energy shock tightening gas alongside oil disruption) 
+LONGALL;GLD - SPDR Gold Shares (inflation shock and war risk sustaining safe?haven demand) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities leveraged to structural supply shock and elevated prices) 
+LONGALL;INTC - Intel Corp (AI-driven earnings surprise fueling short-term tech momentum) 
+LONGALL;
+LONGALL;2026-04-26 / 08:15 - Sunday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz closure removing major supply, oil >$100 with upside pressure) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities levered to sustained supply shock and high margins) 
+LONGALL;NG=F - U.S. Natural Gas Futures (global energy shortage risk spilling into gas markets) 
+LONGALL;SPY - SPDR S&P 500 ETF Trust (momentum persists with record highs and strong tech-led flows) 
+LONGALL;DXY - U.S. Dollar Index (safe-haven demand rising amid geopolitical escalation and stagflation risk) 
+LONGALL;
+LONGALL;2026-04-27 / 08:15 - Monday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (oil ~110 on stalled Iran talks and blocked Hormuz supply) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities levered to sustained oil supply shock) 
+LONGALL;UUP - Invesco DB U.S. Dollar Index Bullish Fund (geopolitical stress sustaining USD demand) 
+LONGALL;QQQ - Invesco QQQ Trust (AI-driven tech earnings momentum supporting Nasdaq futures) 
+LONGALL;BNO - United States Brent Oil Fund (Brent >$100 with continued supply constraints) 
+LONGALL;
+LONGALL;2026-04-28 / 08:15 - Tuesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (supply risk persists, momentum continuation above $100)
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy earnings leverage to elevated ????? prices)
+LONGALL;GLD - SPDR Gold Shares (inflation + geopolitical hedge bid holding intraday strength)
+LONGALL;DXY - U.S. Dollar Index (risk-off flows sustaining USD intraday demand)
+LONGALL;QQQ - Invesco QQQ Trust (AI/tech momentum and dip-buying behavior intact)
+LONGALL;
+LONGALL;2026-04-29 / 08:15 - Wednesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (tight supply narrative sustaining intraday upside momentum)
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities tracking elevated crude prices)
+LONGALL;GLD - SPDR Gold Shares (macro uncertainty maintaining safe-haven bid)
+LONGALL;DXY - U.S. Dollar Index (risk aversion supporting USD strength)
+LONGALL;NVDA - NVIDIA Corp (AI demand momentum driving continued intraday flows)
+LONGALL;
+LONGALL;2026-04-30 / 08:16 - Thursday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (ongoing supply disruption keeps intraday upward pressure)
+LONGALL;XLE - Energy Select Sector SPDR Fund (sector strength tracking elevated crude prices)
+LONGALL;GLD - SPDR Gold Shares (persistent geopolitical risk sustaining safe-haven flows)
+LONGALL;DXY - U.S. Dollar Index (risk-off tone supporting USD strength)
+LONGALL;MSFT - Microsoft Corp (AI and cloud momentum driving continued short-term inflows)
+LONGALL;
+LONGALL;2026-05-01 / 08:15 - Friday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (continued supply tightness maintaining upward intraday bias)
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy sector strength tracking crude resilience)
+LONGALL;GLD - SPDR Gold Shares (macro uncertainty sustaining safe-haven demand)
+LONGALL;DXY - U.S. Dollar Index (persistent risk-off flows supporting USD strength)
+LONGALL;AMZN - Amazon.com Inc (earnings-driven momentum and strong retail/cloud flows)
+LONGALL;
+LONGALL;2026-05-02 / 08:15 - Saturday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (supply disruption narrative sustaining intraday upside)
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities tracking elevated oil prices)
+LONGALL;GLD - SPDR Gold Shares (persistent geopolitical risk supporting safe-haven flows)
+LONGALL;DXY - U.S. Dollar Index (risk-off tone maintaining USD strength)
+LONGALL;AAPL - Apple Inc (large-cap tech momentum and defensive growth inflows)
+LONGALL;
+LONGALL;2026-05-03 / 08:15 - Sunday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption + $120-150 upside risk keeps intraday bid) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy equities supported by sustained oil shock) 
+LONGALL;QQQ - Invesco QQQ Trust (AI-led tech rally pushing Nasdaq to fresh highs) 
+LONGALL;EWY - iShares MSCI South Korea ETF (AI supply chain strength driving EM outperformance) 
+LONGALL;USDJPY - USD/JPY (yen structurally weak despite intervention, oil amplifies pressure) 
+LONGALL;
+LONGALL;2026-05-04 / 08:15 - Monday
+LONGALL;
+LONGALL;ES=F - S&P 500 Futures (momentum continuation from tech-led strength)
+LONGALL;CL=F - WTI Crude Oil Futures (elevated geopolitical risk sustaining bid)
+LONGALL;GLD - SPDR Gold Shares (inflation hedge demand holding intraday flows)
+LONGALL;USDJPY - USD/JPY (rate divergence maintaining USD strength)
+LONGALL;NVDA - NVIDIA Corp (AI demand and liquidity concentration driving upside)
+LONGALL;
+LONGALL;This task has been paused because updates haven't been viewed in a while. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;
+LONGALL;2026-05-05 / 08:14 - Tuesday
+LONGALL;
+LONGALL;CL=F - WTI Crude Oil Futures (Hormuz disruption + supply shock sustaining intraday upside) 
+LONGALL;XLE - Energy Select Sector SPDR Fund (energy sector only consistent outperformer in oil spike) 
+LONGALL;GLD - SPDR Gold Shares (geopolitical escalation maintaining safe-haven demand) 
+LONGALL;DXY - U.S. Dollar Index (risk-off flows and macro uncertainty supporting USD) 
+LONGALL;US10Y - U.S. 10Y Treasury Yield (rising yields on inflation shock and repricing expectations) 
+LONGALL;
+LONGALL;2026-05-06 / 08:14 - Wednesday
+LONGALL;
+LONGALL;QQQ - Invesco QQQ Trust (AI semiconductor momentum driving fresh Nasdaq highs) 
+LONGALL;EWY - iShares MSCI South Korea ETF (KOSPI breakout fueled by Samsung and AI chip demand) 
+LONGALL;AMD - Advanced Micro Devices Inc (strong AI hardware demand ahead of earnings continuation) 
+LONGALL;ES=F - S&P 500 Futures (record highs supported by easing oil and strong earnings) 
+LONGALL;USDJPY - USD/JPY (higher U.S. yield expectations supporting dollar strength) 
+LONGALL;
+LONGALL;2026-05-07 / 08:15 - Thursday
+LONGALL;
+LONGALL;AMD - Advanced Micro Devices (AI chip demand and earnings momentum driving follow-through) 
+LONGALL;QQQ - Invesco QQQ Trust (Nasdaq strength accelerating on AI-led risk appetite) 
+LONGALL;EWY - iShares MSCI South Korea ETF (KOSPI breakout powered by Samsung and semiconductor inflows) 
+LONGALL;ES=F - S&P 500 Futures (record highs supported by easing oil and strong earnings breadth) 
+LONGALL;USDJPY - USD/JPY (persistent US yield premium favoring dollar strength intraday) 
+LONGALL;
+LONGALL;Daily 3:30 am·Generate daily long trade ideas
+LONGALL;Generate daily long trade ideas
+LONGALL;
+LONGALL;2026-05-18 / 08:15 - Monday
+LONGALL;
+LONGALL;USO - United States Oil Fund (Hormuz disruption and oil spike supporting energy momentum) 
+LONGALL;SMH - VanEck Semiconductor ETF (AI capex and chip demand continue driving semis higher) 
+LONGALL;KWEB - KraneShares CSI China Internet ETF (Chinese AI and tech stimulus flows accelerating) 
+LONGALL;EWZ - iShares MSCI Brazil ETF (oil-export exposure benefiting Brazil equities) 
+LONGALL;TLT - iShares 20+ Year Treasury Bond ETF (risk-off pressure may trigger bond rebound after yield spike) 
+LONGALL;
+LONGALL;Generate daily long trade ideas
+LONGALL;
+LONGALL;2026-05-19 / 08:15 - Tuesday
+LONGALL;
+LONGALL;USO - United States Oil Fund (Middle East supply disruption keeps crude and energy equities bid) 
+LONGALL;SMH - VanEck Semiconductor ETF (AI infrastructure spending remains dominant despite tech pullback) 
+LONGALL;GLD - SPDR Gold Shares (inflation fears and geopolitical stress support safe-haven demand) 
+LONGALL;KWEB - KraneShares CSI China Internet ETF (AI-export momentum and stimulus expectations lifting Chinese tech) 
+LONGALL;URA - Global X Uranium ETF (AI-driven power demand accelerating nuclear and uranium outlook)
+LONGALL;
+LONGALL;This task has been paused because updates haven't been viewed in a while. You can resume it in automations settings or by asking ChatGPT.
+LONGALL;Resume task
+LONGALL;Task resumed. Runs daily at 08:15 Stockholm time.
+LONGALL;Daily 3:30 am·Generate daily long trade ideas

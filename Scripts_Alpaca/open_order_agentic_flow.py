@@ -22,6 +22,7 @@ AMOUNT_TO_INVEST_PER_STOCK = TOTAL_AMOUNT_TO_INVEST / 5  # Assuming TOTAL_AMOUNT
 PAPER = True
 TICKER_LOC = os.path.join(LLM_data_path, "LLM_v0_Adviser_for_top5_latest_response.txt")
 trading_client = TradingClient(API_KEY, API_SECRET, paper=PAPER)
+trading_client.close_all_positions()
 
 # files = glob.glob(os.path.join(LLM_data_path, "LLM_v1_summarizer*.txt"))
 files = [str(f) for f in Path(TICKER_LOC).parent.glob("*summarizer*.txt")]

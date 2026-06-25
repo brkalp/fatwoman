@@ -29,8 +29,14 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 
 # Daily activities
 0 3 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDaily'
-45 15 * * 1-5   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBD'
-45 21 * * 1-6   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBDEOD'
+#45 15 * * 1-5   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBD'
+#45 21 * * 1-6   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBDEOD'
+45 9  * * 1-5   TZ=America/New_York /bin/bash -c 'source '$WRAPPER' && runBatchLLMBD'
+30 15 * * 1-6   TZ=America/New_York /bin/bash -c 'source '$WRAPPER' && runBatchLLMBDEOD'
+# Seal
+45 9  * * 1-5   TZ=America/New_York /bin/bash -c 'source '$WRAPPER' && runLLMFullFlowEntry'
+30 15 * * 1-5   TZ=America/New_York /bin/bash -c 'source '$WRAPPER' && runLLMFullFlowExit'
+# other daily
 15 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning1' 
 43 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning2' 
 58 20 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEvening' 

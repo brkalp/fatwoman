@@ -87,6 +87,14 @@ runAlpaca_Tend_sell()   { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_close_
 runAlpaca_pnl_report()  { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/get_alpaca_pnl.py;}
 runLLM_Archiver()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/archive_llm_results.py;} # RUNS AT EOD
 
+# Seal # LLM Full Flow (alpaca-ai-trader)
+LLM_FULL_FLOW_DIR="${BASE_DIR}Scripts_LLM_taariq/alpaca-ai-trader"
+# runLLMFullFlowEntry()  { cd $LLM_FULL_FLOW_DIR && .venv/bin/python scripts/run_research_entry.py --execute >> $LOG_DIR"llm_full_flow_entry.log" 2>&1; }
+# runLLMFullFlowExit()   { cd $LLM_FULL_FLOW_DIR && .venv/bin/python scripts/run_exit.py --execute >> $LOG_DIR"llm_full_flow_exit.log" 2>&1; }
+# runLLMFullFlowSummary(){ cd $LLM_FULL_FLOW_DIR && .venv/bin/python scripts/run_day_summary.py >> $LOG_DIR"llm_full_flow_summary.log" 2>&1; }
+runLLMFullFlowEntry()  { cd $LLM_FULL_FLOW_DIR && UV_PROJECT_ENVIRONMENT=~/.venv-alpaca uv run scripts/run_research_entry.py --execute >> $LOG_DIR"llm_full_flow_entry.log" 2>&1; }
+runLLMFullFlowExit()   { cd $LLM_FULL_FLOW_DIR && UV_PROJECT_ENVIRONMENT=~/.venv-alpaca uv run scripts/run_exit.py --execute >> $LOG_DIR"llm_full_flow_exit.log" 2>&1; }
+runLLMFullFlowSummary(){ cd $LLM_FULL_FLOW_DIR && UV_PROJECT_ENVIRONMENT=~/.venv-alpaca uv run scripts/run_day_summary.py >> $LOG_DIR"llm_full_flow_summary.log" 2>&1; }
 # IB
 runIB_clientportal() {
     cd ${BASE_DIR}Scripts_LLM_trader/clientportal
@@ -104,6 +112,7 @@ runBatchLLMBD()  { # /usr/bin/python3 /media/fatwoman/15GB/Scripts_LLM_trader/ma
     runLLM_top5_and_v1
     runAlpaca_buy
     runAlpaca_Tend_buy
+    runLLM_top5_short # for long/short
     runAlpaca_buy_longshort # for long/short
 }
     # runLLM_Finnhub
@@ -158,7 +167,7 @@ runBatchMorning1() {
 }
 runBatchMorning2() {
     surferkill
-    surferprint
+    # surferprint
     screensdimon
     }
 runBatchEvening() {

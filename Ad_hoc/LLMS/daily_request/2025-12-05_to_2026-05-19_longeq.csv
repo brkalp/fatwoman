@@ -1,0 +1,1207 @@
+label;date;text
+LONGEQ;;ChatGPT
+LONGEQ;;
+LONGEQ;;Do this every day: For a short term trade, to be opened in the morning and closed at end of day, search for the latest major global news. Recommend EXACTLY 5 BUY tickers for short-term trade based on fresh catalysts and anticipated momentum. Then follow-up with daily SP500 return. Start with one line containing the local date and day of week in Stockholm time formatted exactly as: YYYY-MM-DD / HH:MM - Monday Recs: TICKER – Company TICKER – Company TICKER – Company TICKER – Company TICKER – Company Prev days return S&P500 +X.XX% ---
+LONGEQ;;Thought for 1m 8s
+LONGEQ;;
+LONGEQ;2025-12-04;2025-12-04 / 14:05 - Thursday
+LONGEQ;2025-12-04;
+LONGEQ;2025-12-04;Recs:
+LONGEQ;2025-12-04;MRVL – Marvell Technology, Inc.
+LONGEQ;2025-12-04;RIO – Rio Tinto plc
+LONGEQ;2025-12-04;STLA – Stellantis N.V.
+LONGEQ;2025-12-04;TD – The Toronto-Dominion Bank
+LONGEQ;2025-12-04;CRDO – Credo Technology Group Holding Ltd.
+LONGEQ;2025-12-04;
+LONGEQ;2025-12-04;Prev days return S&P500 +0.30%
+LONGEQ;2025-12-04;
+LONGEQ;2025-12-04;please set this up as a task.
+LONGEQ;2025-12-04;Set.
+LONGEQ;2025-12-04;Daily 3:30 pm·Produce daily short-term EQ trade recommendations
+LONGEQ;2025-12-04;thanks! Please re-run as a test
+LONGEQ;2025-12-04;
+LONGEQ;2025-12-05;2025-12-05 / 09:00 - Friday
+LONGEQ;2025-12-05;
+LONGEQ;2025-12-05;Recs:
+LONGEQ;2025-12-05;XOM – Exxon Mobil Corporation
+LONGEQ;2025-12-05;FCX – Freeport-McMoRan Inc.
+LONGEQ;2025-12-05;AIR – Airbus SE
+LONGEQ;2025-12-05;BTI – British American Tobacco plc
+LONGEQ;2025-12-05;BHP – BHP Group Ltd.
+LONGEQ;2025-12-05;
+LONGEQ;2025-12-05;Prev days return S&P500 +0.30% 
+LONGEQ;2025-12-05;
+LONGEQ;2025-12-05;I've changed the task. please run the task as if it would run tomorrow
+LONGEQ;2025-12-05;
+LONGEQ;2025-12-06;2025-12-06 / 08:15 - Saturday
+LONGEQ;2025-12-06;
+LONGEQ;2025-12-06;Recs:
+LONGEQ;2025-12-06;BHP – BHP Group Ltd.
+LONGEQ;2025-12-06;FCX – Freeport?McMoRan Inc.
+LONGEQ;2025-12-06;COP – ConocoPhillips
+LONGEQ;2025-12-06;EOG – EOG Resources
+LONGEQ;2025-12-06;NEM – Newmont Corporation
+LONGEQ;2025-12-06;
+LONGEQ;2025-12-06;Perf (prev recs):
+LONGEQ;2025-12-06;XOM +0.40%
+LONGEQ;2025-12-06;FCX +1.32%
+LONGEQ;2025-12-06;AIR (not in market today) 0.00%
+LONGEQ;2025-12-06;BTI (not in market today) 0.00%
+LONGEQ;2025-12-06;BHP +0.76% 
+LONGEQ;2025-12-06;Avg +0.50%
+LONGEQ;2025-12-06;Prev days return S&P500 +0.19%
+LONGEQ;2025-12-06;
+LONGEQ;2025-12-07;2025-12-07 / 08:15 - Sunday
+LONGEQ;2025-12-07;
+LONGEQ;2025-12-07;Recs:
+LONGEQ;2025-12-07;ALB – Albemarle Corp. 
+LONGEQ;2025-12-07;FNV – Franco?Nevada Corp. 
+LONGEQ;2025-12-07;B – Barrick Mining Corp. 
+LONGEQ;2025-12-07;GLEN – Glencore plc 
+LONGEQ;2025-12-07;BHP – BHP Group Ltd. 
+LONGEQ;2025-12-07;
+LONGEQ;2025-12-07;Perf (prev recs):
+LONGEQ;2025-12-07;XOM +0.40%
+LONGEQ;2025-12-07;FCX +1.32%
+LONGEQ;2025-12-07;AIR 0.00%
+LONGEQ;2025-12-07;BTI 0.00%
+LONGEQ;2025-12-07;BHP +0.76%
+LONGEQ;2025-12-07;
+LONGEQ;2025-12-07;Avg +0.30%
+LONGEQ;2025-12-07;Prev days return S&P500 +0.11% 
+LONGEQ;2025-12-07;
+LONGEQ;2025-12-08;2025-12-08 / 08:15 - Monday
+LONGEQ;2025-12-08;
+LONGEQ;2025-12-08;Recs:
+LONGEQ;2025-12-08;ONGC – Oil and Natural Gas Corporation Ltd
+LONGEQ;2025-12-08;AU?Small Finance Bank – AU Small Finance Bank Ltd
+LONGEQ;2025-12-08;MTAR – MTAR Technologies Ltd
+LONGEQ;2025-12-08;Biocon – Biocon Ltd
+LONGEQ;2025-12-08;Cochin – Cochin Shipyard Ltd
+LONGEQ;2025-12-08;
+LONGEQ;2025-12-08;Perf (prev recs):
+LONGEQ;2025-12-08;(no prior recs this run)
+LONGEQ;2025-12-08;
+LONGEQ;2025-12-08;Avg +0.00%
+LONGEQ;2025-12-08;Prev days return S&P500 +0.20% 
+LONGEQ;2025-12-08;
+LONGEQ;2025-12-09;2025-12-09 / 08:16 - Tuesday
+LONGEQ;2025-12-09;
+LONGEQ;2025-12-09;Recs:
+LONGEQ;2025-12-09;NVDA – Nvidia 
+LONGEQ;2025-12-09;WBD – Warner Bros. Discovery 
+LONGEQ;2025-12-09;ASTR – Astera Labs 
+LONGEQ;2025-12-09;IBM – IBM 
+LONGEQ;2025-12-09;BR – Broadcom 
+LONGEQ;2025-12-09;
+LONGEQ;2025-12-09;Perf (prev recs):
+LONGEQ;2025-12-09;XOM +0.00%
+LONGEQ;2025-12-09;FCX +0.00%
+LONGEQ;2025-12-09;COP +0.00%
+LONGEQ;2025-12-09;EOG +0.00%
+LONGEQ;2025-12-09;NEM +0.00%
+LONGEQ;2025-12-09;
+LONGEQ;2025-12-09;Avg +0.00%
+LONGEQ;2025-12-09;Prev days return S&P500 ?0.35% 
+LONGEQ;2025-12-09;
+LONGEQ;2025-12-09;Produce daily short-term EQ trade recommendations
+LONGEQ;2025-12-09;
+LONGEQ;2025-12-10;2025-12-10 / 08:16 - Wednesday
+LONGEQ;2025-12-10;
+LONGEQ;2025-12-10;Recs:
+LONGEQ;2025-12-10;NVDA – Nvidia
+LONGEQ;2025-12-10;ORCL – Oracle
+LONGEQ;2025-12-10;SHEL – Shell
+LONGEQ;2025-12-10;BHP – BHP Group
+LONGEQ;2025-12-10;RIO – Rio Tinto
+LONGEQ;2025-12-10;
+LONGEQ;2025-12-10;Prev days return S&P500 +0.00%
+LONGEQ;2025-12-10;
+LONGEQ;2025-12-11;2025?12?11 / 08:15 - Thursday
+LONGEQ;2025-12-11;
+LONGEQ;2025-12-11;Recs:
+LONGEQ;2025-12-11;GEV - GE Vernova Inc (breakout after strong catalyst and technical momentum)
+LONGEQ;2025-12-11;PLTR - Palantir Technologies (recent contract win and positive flow)
+LONGEQ;2025-12-11;SATS - EchoStar Corp (premarket strength and sector interest)
+LONGEQ;2025-12-11;AVTR - Avantor Inc (premarket gains signaling momentum)
+LONGEQ;2025-12-11;FSLR - First Solar (sector news on project supply momentum)
+LONGEQ;2025-12-11;
+LONGEQ;2025-12-11;Prev days return S&P500 +0.67%
+LONGEQ;2025-12-11;
+LONGEQ;2025-12-12;2025?12?12 / 08:15 - Friday
+LONGEQ;2025-12-12;
+LONGEQ;2025-12-12;Recs:
+LONGEQ;2025-12-12;NVDA - Nvidia (momentum from AI demand and trading strength)
+LONGEQ;2025-12-12;MSFT - Microsoft (strong cloud earnings sentiment driving flow)
+LONGEQ;2025-12-12;TSLA - Tesla (price breakout and volume spike)
+LONGEQ;2025-12-12;BAC - Bank of America (financials strength on rates outlook)
+LONGEQ;2025-12-12;XOM - Exxon Mobil (energy sector rebound)
+LONGEQ;2025-12-12;
+LONGEQ;2025-12-12;Prev days return S&P500 +0.30%
+LONGEQ;2025-12-12;
+LONGEQ;2025-12-13;2025?12?13 / 08:15 - Saturday
+LONGEQ;2025-12-13;
+LONGEQ;2025-12-13;Recs:
+LONGEQ;2025-12-13;COIN - Coinbase Global Inc (crypto?equity trading interest rising)
+LONGEQ;2025-12-13;CVX - Chevron Corp (analyst forecasts and capex catalyst)
+LONGEQ;2025-12-13;CRON - Cronos Group Inc (cannabis sector buzz on rescheduling)
+LONGEQ;2025-12-13;INTU - Intuit Inc (AI and targets ahead of earnings)
+LONGEQ;2025-12-13;ALNT - Allient Corp (bullish industrial tech signal)
+LONGEQ;2025-12-13;
+LONGEQ;2025-12-13;Prev days return S&P500 ?1.07%
+LONGEQ;2025-12-13;
+LONGEQ;2025-12-14;2025?12?14 / 08:15 - Sunday
+LONGEQ;2025-12-14;
+LONGEQ;2025-12-14;Recs:
+LONGEQ;2025-12-14;TSLA - Tesla Inc (momentum from positive technical and product catalysts)
+LONGEQ;2025-12-14;GE - GE Aerospace (industrial strength and near buy point on recent flow)
+LONGEQ;2025-12-14;LLY - Eli Lilly & Co (healthcare resilience and data?driven upside)
+LONGEQ;2025-12-14;JPM - JPMorgan Chase & Co (financials strength amid rotation)
+LONGEQ;2025-12-14;WBD - Warner Bros Discovery (takeover bid driving elevated activity)
+LONGEQ;2025-12-14;
+LONGEQ;2025-12-14;Prev days return S&P500 ?1.07%
+LONGEQ;2025-12-14;
+LONGEQ;2025-12-15;2025-12-15 / 08:15 - Monday
+LONGEQ;2025-12-15;
+LONGEQ;2025-12-15;Recs:
+LONGEQ;2025-12-15;BAC – Bank of America Corp (record highs and Fed rate cut narrative driving financial flows) 
+LONGEQ;2025-12-15;WBD – Warner Bros Discovery (takeover battle boosting share activity) 
+LONGEQ;2025-12-15;IBM – International Business Machines (acquisition news lifting tech sentiment) 
+LONGEQ;2025-12-15;COIN – Coinbase Global Inc (crypto-linked equities moving with Bitcoin strength) 
+LONGEQ;2025-12-15;CRH – CRH plc (S&P 500 inclusion announcement lifting name) 
+LONGEQ;2025-12-15;
+LONGEQ;2025-12-15;Prev days return S&P500 -1.07% 
+LONGEQ;2025-12-15;
+LONGEQ;2025-12-16;2025-12-16 / 08:15 - Tuesday
+LONGEQ;2025-12-16;
+LONGEQ;2025-12-16;Recs:
+LONGEQ;2025-12-16;SNDK - Sandisk (after?hours move suggests upside into open) 
+LONGEQ;2025-12-16;HD - Home Depot (retail strength catalysts ahead of open) 
+LONGEQ;2025-12-16;CVNA - Carvana (continued momentum and analyst interest) 
+LONGEQ;2025-12-16;LRCX - Lam Research (raised target and momentum into morning) 
+LONGEQ;2025-12-16;DIS - Walt Disney (insider buy and narrative update) 
+LONGEQ;2025-12-16;
+LONGEQ;2025-12-16;Prev day S&P500 return -0.16% (index slipped as markets awaited data) 
+LONGEQ;2025-12-16;
+LONGEQ;2025-12-17;2025-12-17 / 08:20 - Wednesday
+LONGEQ;2025-12-17;
+LONGEQ;2025-12-17;Recs:
+LONGEQ;2025-12-17;TSLA – Tesla Inc (closed at record high yesterday, momentum signal) 
+LONGEQ;2025-12-17;BAC – Bank of America Corp (analyst catalysts and financial flows) 
+LONGEQ;2025-12-17;KO – Coca-Cola Co (analyst target upgrades and defensive demand) 
+LONGEQ;2025-12-17;XOM – Exxon Mobil Corp (oil price strength from geopolitical tension) 
+LONGEQ;2025-12-17;META – Meta Platforms Inc (AI strategy outlook supportive) 
+LONGEQ;2025-12-17;
+LONGEQ;2025-12-17;Prev days return S&P500 -0.24% (index slid on mixed jobs data) 
+LONGEQ;2025-12-17;
+LONGEQ;2025-12-18;2025-12-18 / 08:15 - Thursday
+LONGEQ;2025-12-18;
+LONGEQ;2025-12-18;Recs:
+LONGEQ;2025-12-18;HD – Home Depot (after?hours strength ahead of CPI data) 
+LONGEQ;2025-12-18;UNH – UnitedHealth Group (analyst forecasts positive into open) 
+LONGEQ;2025-12-18;WFC – Wells Fargo (outperformed market on broader slide) 
+LONGEQ;2025-12-18;BSX – Boston Scientific (closed higher with bullish analyst tone) 
+LONGEQ;2025-12-18;MU – Micron Technology (earnings beat and strong guidance) 
+LONGEQ;2025-12-18;
+LONGEQ;2025-12-18;Prev days return S&P500 -1.2% (tech sell?off hurting broader indices) 
+LONGEQ;2025-12-18;
+LONGEQ;2025-12-19;2025?12?19 / 08:15 - Friday
+LONGEQ;2025-12-19;
+LONGEQ;2025-12-19;Recs:
+LONGEQ;2025-12-19;SOFI - SoFi Technologies (crypto/payments launch lifted after?hours flow) 
+LONGEQ;2025-12-19;RTX - RTX Corp (defense contract news supports upside) 
+LONGEQ;2025-12-19;MRK - Merck (analyst calls and after?hours strength) 
+LONGEQ;2025-12-19;TMUS - T?Mobile US (wireless sector momentum persists) 
+LONGEQ;2025-12-19;BAC - Bank of America (after?hours move ahead of session) 
+LONGEQ;2025-12-19;
+LONGEQ;2025-12-20;2025-12-20 / 08:15 - Saturday
+LONGEQ;2025-12-20;
+LONGEQ;2025-12-20;Recs:
+LONGEQ;2025-12-20;NVDA - Nvidia Corp (buyers react to possible China AI chip sales approval) 
+LONGEQ;2025-12-20;SNPS - Synopsys Inc (after?hours momentum ahead of session) 
+LONGEQ;2025-12-20;MU - Micron Technology (earnings strength lifting futures) 
+LONGEQ;2025-12-20;ORCL - Oracle Corp (rebound and tech sector support) 
+LONGEQ;2025-12-20;GS - Goldman Sachs (market breadth rebound and banking strength) 
+LONGEQ;2025-12-20;
+LONGEQ;2025-12-20;Objective data delivered.
+LONGEQ;2025-12-20;
+LONGEQ;2025-12-21;2025?12?21 / 08:16 - Sunday
+LONGEQ;2025-12-21;
+LONGEQ;2025-12-21;Recs:
+LONGEQ;2025-12-21;NVDA - Nvidia (tech/AI sector leading recent upside on Nasdaq strength) 
+LONGEQ;2025-12-21;AVGO - Broadcom (AI/semiconductor segment gaining momentum) 
+LONGEQ;2025-12-21;ORCL - Oracle (strong moves on partnership news) 
+LONGEQ;2025-12-21;DBSYY - DBS Group Holdings (record highs & bank sector strength Asia) 
+LONGEQ;2025-12-21;BN4 - Keppel Ltd (buyback/capital redeployment focus) 
+LONGEQ;2025-12-21;
+LONGEQ;2025-12-22;2025-12-22 / 08:16 - Monday
+LONGEQ;2025-12-22;
+LONGEQ;2025-12-22;Recs:
+LONGEQ;2025-12-22;AAPL - Apple Inc (pre?market strength after volume finish last week) 
+LONGEQ;2025-12-22;COST - Costco Wholesale (analyst focus and earnings context pre?open) 
+LONGEQ;2025-12-22;WMT - Walmart Inc (pre?market catalysts ahead of open) 
+LONGEQ;2025-12-22;MA - Mastercard Inc (positive pre?market outlook) 
+LONGEQ;2025-12-22;INFY - Infosys Ltd (Indian markets up with strong tech and foreign inflows) 
+LONGEQ;2025-12-22;
+LONGEQ;2025-12-23;2025-12-23 / 08:15 - Tuesday
+LONGEQ;2025-12-23;
+LONGEQ;2025-12-23;Recs:
+LONGEQ;2025-12-23;GS - Goldman Sachs (shares holding near highs after hours ahead of open) 
+LONGEQ;2025-12-23;CRM - Salesforce (steady after Evercore top-pick call) 
+LONGEQ;2025-12-23;HL - Hecla Mining (surge on S&P MidCap 400 inclusion + metals strength) 
+LONGEQ;2025-12-23;NVDA - Nvidia (tech strength supporting markets in holiday rally) 
+LONGEQ;2025-12-23;WBD - Warner Bros Discovery (deal activity and takeover bid drama) 
+LONGEQ;2025-12-23;
+LONGEQ;2025-12-24;2025?12?24 / 08:16 - Wednesday
+LONGEQ;2025-12-24;
+LONGEQ;2025-12-24;Recs:
+LONGEQ;2025-12-24;NVDA - Nvidia (tech strength leading record S&P 500 rally) 
+LONGEQ;2025-12-24;GOOGL - Alphabet (tech gains following broad market rally) 
+LONGEQ;2025-12-24;BRK.B - Berkshire Hathaway (broad market exposure in risk?on rally) 
+LONGEQ;2025-12-24;MCH - Masan Consumer (prospect of major index listing momentum) 
+LONGEQ;2025-12-24;KR - Kroger (expanded buyback supports near?term upside) 
+LONGEQ;2025-12-24;
+LONGEQ;2025-12-25;2025-12-25 / 08:15 - Thursday
+LONGEQ;2025-12-25;
+LONGEQ;2025-12-25;Recs:
+LONGEQ;2025-12-25;NVIDIA (NVDA) - AI sector strength fueling broad market rally and record highs, likely momentum carry?over today. 
+LONGEQ;2025-12-25;Marvell Technology (MRVL) - recent strong performance within tech led Nasdaq gains on holiday week. 
+LONGEQ;2025-12-25;Nike (NKE) - key contributor to recent Dow rally suggests continued strength. 
+LONGEQ;2025-12-25;Merck & Co (MRK) - defensive/health exposure gaining in recent positive session. 
+LONGEQ;2025-12-25;Howmet Aerospace (HWM) - acquisition news and technical break setup suggest near?term upside. 
+LONGEQ;2025-12-25;
+LONGEQ;2025-12-26;2025-12-26 / 08:15 - Friday
+LONGEQ;2025-12-26;
+LONGEQ;2025-12-26;Recs:
+LONGEQ;2025-12-26;NVDA - Nvidia (AI demand driving indices and record highs into open) 
+LONGEQ;2025-12-26;NKE - Nike (among top Dow gainers on current market action) 
+LONGEQ;2025-12-26;MRK - Merck (top Dow gainer with defensive pharma strength) 
+LONGEQ;2025-12-26;DIS - Walt Disney (Dow strength and recovery momentum) 
+LONGEQ;2025-12-26;GS - Goldman Sachs (financials strong in current market moves) 
+LONGEQ;2025-12-26;
+LONGEQ;2025-12-27;2025-12-27 / 08:15 - Saturday
+LONGEQ;2025-12-27;
+LONGEQ;2025-12-27;NVDA - Nvidia (AI sector leadership and buy?zone action into year?end market momentum) 
+LONGEQ;2025-12-27;GOOGL - Alphabet (tech strength contributing to record highs and Santa Claus rally backdrop) 
+LONGEQ;2025-12-27;LRCX - Lam Research (semiconductor demand and recent technical support) 
+LONGEQ;2025-12-27;FCX - Freeport?McMoRan (copper and metals up on record prices benefiting miners) 
+LONGEQ;2025-12-27;NKE - Nike (positive stock movement amid market strength and insider buying) 
+LONGEQ;2025-12-27;
+LONGEQ;2025-12-28;2025-12-28 / 08:16 - Sunday
+LONGEQ;2025-12-28;
+LONGEQ;2025-12-28;Recs:
+LONGEQ;2025-12-28;NVDA - Nvidia (AI leadership near buy zone supported by recent rally and market optimism) 
+LONGEQ;2025-12-28;TSLA - Tesla (in buy area with momentum from delivery data expectations) 
+LONGEQ;2025-12-28;TGT - Target (recent hedge fund stake and price strength) 
+LONGEQ;2025-12-28;FCX - Freeport?McMoRan (miner gains with metals up and record precious metals) 
+LONGEQ;2025-12-28;BAC - Bank of America (analyst upgrades and moderate buy sentiment) 
+LONGEQ;2025-12-28;
+LONGEQ;2025-12-29;2025-12-29 / 08:16 - Monday
+LONGEQ;2025-12-29;
+LONGEQ;2025-12-29;Recs:
+LONGEQ;2025-12-29;NVDA - Nvidia (futures in buy area on positive market sentiment and AI momentum) 
+LONGEQ;2025-12-29;TSLA - Tesla (technical support with catalyst from deliveries and robotaxi narrative) 
+LONGEQ;2025-12-29;PAAS - Pan American Silver (precious metals strength on rate cut expectations) 
+LONGEQ;2025-12-29;DEC - Diversified Energy (ongoing buybacks reduce float) 
+LONGEQ;2025-12-29;ROIV - Roivant Sciences (insider confidence and growth profile) 
+LONGEQ;2025-12-29;
+LONGEQ;2025-12-30;2025-12-30 / 08:15 - Tuesday
+LONGEQ;2025-12-30;
+LONGEQ;2025-12-30;Recs:
+LONGEQ;2025-12-30;RIL - Reliance Industries (news attention, expected volatility on local and energy plays) 
+LONGEQ;2025-12-30;FCX - Freeport?McMoRan (commodities strength amid metals and oil moves) 
+LONGEQ;2025-12-30;CNA - Ciena (networking names highlighted as AI?linked picks) 
+LONGEQ;2025-12-30;GLW - Corning (optical/communications demand noted in sector rotation) 
+LONGEQ;2025-12-30;FSLR - First Solar (energy theme with defensive bid in risk?off markets) 
+LONGEQ;2025-12-30;
+LONGEQ;2025-12-30;Sources reflect latest global market conditions and sector signals. 
+LONGEQ;2025-12-30;
+LONGEQ;2025-12-31;2025-12-31 / 08:16 - Wednesday
+LONGEQ;2025-12-31;
+LONGEQ;2025-12-31;"NVDA - Nvidia (seasonal rally persists despite tech softness; short-term rebound potential) "
+LONGEQ;2025-12-31;META - Meta Platforms (acquisition news lifting shares in thin holiday trade) 
+LONGEQ;2025-12-31;FCX - Freeport?McMoRan (industrial metals up on strong global demand) 
+LONGEQ;2025-12-31;GLD (ETF) - SPDR Gold Shares (gold up as safe?haven amid low liquidity and rate context) 
+LONGEQ;2025-12-31;SLV (ETF) - iShares Silver Trust (silver strength and record momentum) 
+LONGEQ;2025-12-31;
+LONGEQ;2025-12-31;Access denied for Google Calendar
+LONGEQ;2025-12-31;
+LONGEQ;2026-01-02;2026-01-02 / 08:15 - Friday
+LONGEQ;2026-01-02;
+LONGEQ;2026-01-02;Recs:
+LONGEQ;2026-01-02;NVDA - Nvidia (AI leadership benefiting from global tech rally) 
+LONGEQ;2026-01-02;BIDU - Baidu (strong gap and AI spin?off catalyst in Asia session) 
+LONGEQ;2026-01-02;FCX - Freeport?McMoRan (commodities supported amid broad risk?on sentiment) 
+LONGEQ;2026-01-02;CLF - Cleveland?Cliffs (industrial/rare?earth move showing strong breakout) 
+LONGEQ;2026-01-02;SLV - iShares Silver Trust (precious metals extended rally into trade) 
+LONGEQ;2026-01-02;
+LONGEQ;2026-01-02;Objective news suggests broad risk appetite and tech/commodity strength at market open. 
+LONGEQ;2026-01-02;
+LONGEQ;2026-01-03;2026-01-03 / 08:16 - Saturday
+LONGEQ;2026-01-03;
+LONGEQ;2026-01-03;NVDA - Nvidia (chip stocks leading global opening on AI?driven optimism) 
+LONGEQ;2026-01-03;MU - Micron Technology (semiconductor strength supporting market gains) 
+LONGEQ;2026-01-03;BA - Boeing (aerospace showing technical resilience amid sector interest) 
+LONGEQ;2026-01-03;FRES - Fresnillo (mining/precious metals outperforming with FTSE momentum) 
+LONGEQ;2026-01-03;COAL - Coal India (fresh foreign participation lifting shares to new highs) 
+LONGEQ;2026-01-03;
+LONGEQ;2026-01-04;2026?01?04 / 08:15 ? Sunday
+LONGEQ;2026-01-04;
+LONGEQ;2026-01-04;NVDA?– Nvidia (global equities rally on AI?led strength, bid support) 
+LONGEQ;2026-01-04;AMD?– Advanced Micro Devices (tech gains lift chip sector sentiment) 
+LONGEQ;2026-01-04;SILV?– ETF (silver demand and precious metals up sharply) 
+LONGEQ;2026-01-04;FCX?– Freeport?McMoRan (industrial metals strong on demand and pricing) 
+LONGEQ;2026-01-04;BABA?– Alibaba (China markets strong on tech rally and trade optimism) 
+LONGEQ;2026-01-04;
+LONGEQ;2026-01-05;2026?01?05 / 08:15 - Monday
+LONGEQ;2026-01-05;
+LONGEQ;2026-01-05;NVDA - Nvidia (global markets rally and AI demand lift chip equities) 
+LONGEQ;2026-01-05;005930 - Samsung Electronics (Asian indices jump on tech optimism) 
+LONGEQ;2026-01-05;ASML - ASML Holding (equipment demand tied to AI expansion) 
+LONGEQ;2026-01-05;RIO - Rio Tinto (miners buoyed by risk appetite and commodity flows) 
+LONGEQ;2026-01-05;LSEG - London Stock Exchange Group (FTSE strength supports UK financials) 
+LONGEQ;2026-01-05;
+LONGEQ;2026-01-06;2026?01?06 / 08:15 - Tuesday
+LONGEQ;2026-01-06;
+LONGEQ;2026-01-06;CHEVRON - Energy stocks up on geopolitical shift and Venezuelan oil upside 
+LONGEQ;2026-01-06;GOLDMAN - Goldman Sachs (financials leading Dow gains after record rally) 
+LONGEQ;2026-01-06;TESLA - Tesla (auto/tech sector rebound in U.S. futures) 
+LONGEQ;2026-01-06;APPLIED - Applied Materials (semiconductor demand rising in Asia markets) 
+LONGEQ;2026-01-06;HALLIBURTON - Halliburton (oilfield services surging with energy rally) 
+LONGEQ;2026-01-06;
+LONGEQ;2026-01-07;2026?01?07 / 08:16 - Wednesday
+LONGEQ;2026-01-07;
+LONGEQ;2026-01-07;AMZN - Amazon (US stocks at record highs led by broad market gains) 
+LONGEQ;2026-01-07;SNDK - Sandisk (data storage stocks leading rally with outsized gains) 
+LONGEQ;2026-01-07;STX - Seagate Technology (tech sector strength driving above?average performance) 
+LONGEQ;2026-01-07;MCHP - Microchip Technology (chip stocks up on upgrades and momentum) 
+LONGEQ;2026-01-07;JPM - JPMorgan Chase (financials strong on yield environment and earnings focus) 
+LONGEQ;2026-01-07;
+LONGEQ;2026-01-08;2026-01-08 / 08:15 - Thursday
+LONGEQ;2026-01-08;
+LONGEQ;2026-01-08;LLY - Eli Lilly (breakout strength after sector leadership in healthcare) 
+LONGEQ;2026-01-08;GOOGL - Alphabet (outperformed amid mixed market sentiment) 
+LONGEQ;2026-01-08;WTI - US Oil Fund (oil prices stabilizing after volatility) 
+LONGEQ;2026-01-08;KS11 - KOSPI Index ETF (South Korea shares hit fresh record highs) 
+LONGEQ;2026-01-08;AUS - ASX 200 ETF (Australian tech and healthcare led gains) 
+LONGEQ;2026-01-08;
+LONGEQ;2026-01-09;2026-01-09 / 08:15 - Friday
+LONGEQ;2026-01-09;
+LONGEQ;2026-01-09;NOC – Northrop Grumman (defense stocks rally on proposed $1.5T budget and new Navy contract) 
+LONGEQ;2026-01-09;LMT – Lockheed Martin (defense outperformance as military spending expectations rise) 
+LONGEQ;2026-01-09;RTX – RTX Corp (defense sector strength lifts major contractor shares) 
+LONGEQ;2026-01-09;GBUS – Globus Medical (beats sales/outlook, shares showing strong early momentum) 
+LONGEQ;2026-01-09;COST – Costco (analyst reiteration and stock climbing in early market) 
+LONGEQ;2026-01-09;
+LONGEQ;2026-01-10;2026?01?10 / 08:15 - Saturday
+LONGEQ;2026-01-10;
+LONGEQ;2026-01-10;JPM?–?JPMorgan?Chase (financials strong as U.S. indices hit new highs) 
+LONGEQ;2026-01-10;INTC?–?Intel (shares up after government support and meeting with leaders) 
+LONGEQ;2026-01-10;VST?–?Vistra?Energy (pre?market top gainer on energy optimism) 
+LONGEQ;2026-01-10;LEN?–?Lennar (homebuilders rallied after mortgage bond plan) 
+LONGEQ;2026-01-10;RSG?–?Republic?Services (pre?market volume leader among gainers) 
+LONGEQ;2026-01-10;
+LONGEQ;2026-01-11;2026-01-11 / 08:15 - Sunday
+LONGEQ;2026-01-11;
+LONGEQ;2026-01-11;JPM - JPMorgan Chase (banks expected to report higher profits, financials strong) 
+LONGEQ;2026-01-11;GS - Goldman Sachs (banks in buy zones as markets hit records) 
+LONGEQ;2026-01-11;STX - Seagate Technology (AI/data storage breakout momentum) 
+LONGEQ;2026-01-11;BAE - BAE Systems (defense stocks at record highs on military spending) 
+LONGEQ;2026-01-11;LEN - Lennar (pre?market gainer with strong early trend) 
+LONGEQ;2026-01-11;
+LONGEQ;2026-01-12;2026?01?12 / 08:15 - Monday
+LONGEQ;2026-01-12;
+LONGEQ;2026-01-12;JPM - JPMorgan (futures fall but earnings catalyst this week) 
+LONGEQ;2026-01-12;GS - Goldman Sachs (earnings watch supports upside) 
+LONGEQ;2026-01-12;TSMC - Taiwan Semiconductor (earnings focus, buy zone cited) 
+LONGEQ;2026-01-12;VST - Vistra Energy (energy strength noted in premarket) 
+LONGEQ;2026-01-12;HD - Home Depot (recent top gainer, consumer resilience) 
+LONGEQ;2026-01-12;
+LONGEQ;2026-01-12;Produce daily short-term EQ trade recommendations
+LONGEQ;2026-01-12;
+LONGEQ;2026-01-13;2026?01?13 / 08:15 - Tuesday
+LONGEQ;2026-01-13;
+LONGEQ;2026-01-13;NVDA - Nvidia (futures recovery and breakout signals in pre?market movers) 
+LONGEQ;2026-01-13;TSLA - Tesla (technical regain of key levels noted alongside major futures news) 
+LONGEQ;2026-01-13;WMT - Walmart (breakout past consolidation buy point in pre?market action) 
+LONGEQ;2026-01-13;ADV - Advantest (Japan record highs supporting tech sector strength) 
+LONGEQ;2026-01-13;AKAM - Akamai Technologies (gained recently in top mover lists) 
+LONGEQ;2026-01-13;
+LONGEQ;2026-01-14;2026?01?14 / 08:16 - Wednesday
+LONGEQ;2026-01-14;
+LONGEQ;2026-01-14;AHMA - Ambitions Enterprise Management (strong premarket gains) 
+LONGEQ;2026-01-14;ATON - AlphaTON Capital (high volatility premarket breakout) 
+LONGEQ;2026-01-14;XAIR - Beyond Air (major premarket upside move) 
+LONGEQ;2026-01-14;DCOY - Decoy Therapeutics (notable pre?market momentum) 
+LONGEQ;2026-01-14;BCTX - BriaCell Therapeutics (significant pre?market percentage gain) 
+LONGEQ;2026-01-14;
+LONGEQ;2026-01-15;2026?01?15 / 08:15 - Thursday
+LONGEQ;2026-01-15;
+LONGEQ;2026-01-15;WDC - Western Digital (memory stock inflows from AI demand) 
+LONGEQ;2026-01-15;SNDK - Sandisk (analyst calls for follow?through gains after surge) 
+LONGEQ;2026-01-15;GOOGL - Alphabet (AI execution beating expectations) 
+LONGEQ;2026-01-15;LHX - L3Harris Technologies (defense spending support) 
+LONGEQ;2026-01-15;MOD - Moderna (strong healthcare earnings momentum) 
+LONGEQ;2026-01-15;
+LONGEQ;2026-01-16;2026?01?16 / 08:15 - Friday
+LONGEQ;2026-01-16;
+LONGEQ;2026-01-16;NVDA - Nvidia (AI demand and strong chip earnings support short?term upside) 
+LONGEQ;2026-01-16;TSM - Taiwan Semiconductor (robust profits driving sector momentum) 
+LONGEQ;2026-01-16;GS - Goldman Sachs (recent earnings beat and M&A optimism) 
+LONGEQ;2026-01-16;INFY - Infosys (in focus with mixed global cues and local market strength) 
+LONGEQ;2026-01-16;WIPRO - Wipro (IT sector leadership amid Nifty gains) 
+LONGEQ;2026-01-16;
+LONGEQ;2026-01-17;2026-01-17 / 08:16 - Saturday
+LONGEQ;2026-01-17;
+LONGEQ;2026-01-17;"NVDA - Nvidia (analyst bullishness and global equity inflows into tech; AI demand sustaining chips) "
+LONGEQ;2026-01-17;MU - Micron Technology (strong recent insider buying and memory sector momentum) 
+LONGEQ;2026-01-17;HOVS.NS - HandsOn Global (oversold bounce setup in pre-market) 
+LONGEQ;2026-01-17;GEV - GE Vernova (recent uplift on special electricity auction and stock mover status) 
+LONGEQ;2026-01-17;RUT - Russell 2000 ETF (small cap strength and record run indicating broad momentum) 
+LONGEQ;2026-01-17;
+LONGEQ;2026-01-18;2026-01-18 / 08:15 - Sunday
+LONGEQ;2026-01-18;
+LONGEQ;2026-01-18;NVDA - Nvidia (chip stocks rebound as AI demand and earnings strength lift sector) 
+LONGEQ;2026-01-18;TSMC - Taiwan Semiconductor (earnings beat and AI capex driving semiconductor momentum) 
+LONGEQ;2026-01-18;BLK - BlackRock (strong earnings and inflows suggesting short-term continuation) 
+LONGEQ;2026-01-18;BAESY - BAE Systems (European defence stocks up on geopolitical tension) 
+LONGEQ;2026-01-18;ALB - Albemarle (lithium demand driving price breakout and investor interest) 
+LONGEQ;2026-01-18;
+LONGEQ;2026-01-19;2026-01-19 / 08:15 - Monday
+LONGEQ;2026-01-19;
+LONGEQ;2026-01-19;PMI.SW - Philip Morris International (pre?market breakout momentum) 
+LONGEQ;2026-01-19;RHM.DE - Rheinmetall (Bernstein defense sector support amid geo risk) 
+LONGEQ;2026-01-19;SPNT - SiriusPoint (sector expansion and strong ratings) 
+LONGEQ;2026-01-19;LLY - Eli Lilly (continued GLP?1 market leadership) 
+LONGEQ;2026-01-19;IBEX - Ibex Ltd (record results and guidance lift) 
+LONGEQ;2026-01-19;
+LONGEQ;2026-01-20;2026-01-20 / 08:15 - Tuesday
+LONGEQ;2026-01-20;
+LONGEQ;2026-01-20;NVDA - Nvidia (AI demand and strong sector positioning amid mixed market sentiment) 
+LONGEQ;2026-01-20;XLI - Industrial Select Sector SPDR (hedge fund inflows into industrials suggest short-term strength) 
+LONGEQ;2026-01-20;GM - General Motors (auto demand and defensive buy zones noted after risk rotation) 
+LONGEQ;2026-01-20;GOLD - Barrick Gold (safe-haven demand surging with geopolitical/tariff risk) 
+LONGEQ;2026-01-20;ADANIPOWER.NS - Adani Power (legal clarity may boost sentiment in India energy) 
+LONGEQ;2026-01-20;
+LONGEQ;2026-01-21;2026-01-21 / 08:15 - Wednesday
+LONGEQ;2026-01-21;
+LONGEQ;2026-01-21;GOLD - Newmont Corp (safe haven demand rising on global selloff) 
+LONGEQ;2026-01-21;XAUUSD - Barrick Gold (gold prices hitting records amid volatility) 
+LONGEQ;2026-01-21;UAL - United Airlines (after?hours solid results lifting airline stocks) 
+LONGEQ;2026-01-21;WDC - Western Digital (memory chip inflows amid AI demand) 
+LONGEQ;2026-01-21;EMAR.DU - Emaar Properties (UAE stocks up tracking oil and real estate gains) 
+LONGEQ;2026-01-21;
+LONGEQ;2026-01-22;2026-01-22 / 08:16 - Thursday
+LONGEQ;2026-01-22;
+LONGEQ;2026-01-22;NVDA - Nvidia (tech sector strength as markets rebound on tariff de?escalation) 
+LONGEQ;2026-01-22;GOOGL - Alphabet (market leadership and buy signals amid broad equity rally) 
+LONGEQ;2026-01-22;HAL - Halliburton (oil services up after earnings and risk rally) 
+LONGEQ;2026-01-22;UAL - United Airlines (earnings beat and travel demand supporting stock) 
+LONGEQ;2026-01-22;ASML - ASML Holding (European tech up with global futures gains) 
+LONGEQ;2026-01-22;
+LONGEQ;2026-01-23;2026-01-23 / 08:16 - Friday
+LONGEQ;2026-01-23;
+LONGEQ;2026-01-23;NVDA - Nvidia (tech rally as easing trade tensions boost markets) 
+LONGEQ;2026-01-23;SPY - S&P 500 ETF (broad market rally after tariff de?escalation) 
+LONGEQ;2026-01-23;RUT - Russell 2000 ETF (small?cap strength on relief rally) 
+LONGEQ;2026-01-23;TSLA - Tesla (futures rally on robotaxi progress) 
+LONGEQ;2026-01-23;GLD - SPDR Gold Trust (safe?haven inflows as gold hits record) 
+LONGEQ;2026-01-23;
+LONGEQ;2026-01-24;2026-01-24 / 08:15 - Saturday
+LONGEQ;2026-01-24;
+LONGEQ;2026-01-24;NVDA - Nvidia (tech leadership rebounds as Trump backs off tariff threats and global stocks rally) 
+LONGEQ;2026-01-24;MSFT - Microsoft (strong earnings week focus supports tech demand) 
+LONGEQ;2026-01-24;AAPL - Apple (big earnings week alongside megacap momentum) 
+LONGEQ;2026-01-24;BA - Boeing (flight demand and defense exposure amid geopolitical spending) 
+LONGEQ;2026-01-24;SLV - iShares Silver Trust (silver above $100/oz on momentum and safe-haven flows) 
+LONGEQ;2026-01-24;
+LONGEQ;2026-01-25;2026?01?25 / 08:15 - Sunday
+LONGEQ;2026-01-25;
+LONGEQ;2026-01-25;NVDA - Nvidia (big tech rebounds as geopolitical tensions ease and earnings wave looms) 
+LONGEQ;2026-01-25;MSFT - Microsoft (tech cycle support with earnings focus and AI demand) 
+LONGEQ;2026-01-25;META - Meta Platforms (momentum from earnings catalysts and market breadth) 
+LONGEQ;2026-01-25;GLD - SPDR Gold Shares (gold near record on safe?haven flows) 
+LONGEQ;2026-01-25;XME - SPDR Metals & Mining ETF (materials strength amid inflation/inflation signal) 
+LONGEQ;2026-01-25;
+LONGEQ;2026-01-26;2026?01?26 / 08:16 - Monday
+LONGEQ;2026-01-26;
+LONGEQ;2026-01-26;NVDA – Nvidia (tech momentum from AI and memory demand persists)
+LONGEQ;2026-01-26;XOM – Exxon Mobil (oil prices up on supply risk and hard?asset flows) 
+LONGEQ;2026-01-26;GLD – SPDR Gold Shares (gold at record highs on safe?haven rotation) 
+LONGEQ;2026-01-26;FTSE – FTSE 100 ETF (European stocks rally on eased trade tensions) 
+LONGEQ;2026-01-26;RUT – Russell 2000 ETF (small caps surge amid risk asset advance) 
+LONGEQ;2026-01-26;
+LONGEQ;2026-01-27;2026-01-27 / 08:15 - Tuesday
+LONGEQ;2026-01-27;
+LONGEQ;2026-01-27;NVDA - Nvidia (Asia indexes record highs driven by expected big tech earnings) 
+LONGEQ;2026-01-27;AAPL - Apple (listed among top gainers as markets price in earnings week) 
+LONGEQ;2026-01-27;CSCO - Cisco (premarket top mover on earnings anticipation) 
+LONGEQ;2026-01-27;XLB - Materials Select Sector SPDR (commodity and base metals strength on safe haven and cyclical bounce) 
+LONGEQ;2026-01-27;GLD - SPDR Gold Shares (gold rally continues with dollar weakness) 
+LONGEQ;2026-01-27;
+LONGEQ;2026-01-28;2026-01-28 / 08:15 - Wednesday
+LONGEQ;2026-01-28;
+LONGEQ;2026-01-28;ASML - ASML Holding (pre-market earnings beat expected, capital equipment demand strength) 
+LONGEQ;2026-01-28;SBUX - Starbucks (pre-market report, strong retail demand signal) 
+LONGEQ;2026-01-28;T - AT&T (pre-market earnings catalyst, stable telecom cash flows) 
+LONGEQ;2026-01-28;MSFT - Microsoft (tech earnings optimism supporting market highs) 
+LONGEQ;2026-01-28;GLD - SPDR Gold Shares (precious metals continuing strong upward move) 
+LONGEQ;2026-01-28;
+LONGEQ;2026-01-29;2026-01-29 / 08:15 - Thursday
+LONGEQ;2026-01-29;
+LONGEQ;2026-01-29;META - Meta Platforms (stock up on Q4 beat and strong guidance) 
+LONGEQ;2026-01-29;NVDA - Nvidia (AI chip approval and tech rally extend) 
+LONGEQ;2026-01-29;SEAG - Seagate Technology (big earnings beat fueling momentum) 
+LONGEQ;2026-01-29;TXN - Texas Instruments (strong outlook and recovery signs) 
+LONGEQ;2026-01-29;FEED - ENvue Medical (pre?market large percentage gainer) 
+LONGEQ;2026-01-29;
+LONGEQ;2026-01-30;2026-01-30 / 08:15 - Friday
+LONGEQ;2026-01-30;
+LONGEQ;2026-01-30;META – Meta Platforms (earnings beat supports momentum) 
+LONGEQ;2026-01-30;TSLA – Tesla (better?than?expected earnings upside) 
+LONGEQ;2026-01-30;AAPL – Apple (strong revenue report lifts sentiment) 
+LONGEQ;2026-01-30;CAT – Caterpillar (earnings strength and industrial demand) 
+LONGEQ;2026-01-30;XOM – Exxon Mobil (oil price rally on geopolitical risk) 
+LONGEQ;2026-01-30;
+LONGEQ;2026-01-31;2026?01?31 / 08:15 ? Saturday
+LONGEQ;2026-01-31;
+LONGEQ;2026-01-31;AAPL – Apple (recent gains amid broad equity resilience and earnings optimism) 
+LONGEQ;2026-01-31;AMZN – Amazon (earnings catalysts in heavy reporting week and strong sector positioning) 
+LONGEQ;2026-01-31;VZ – Verizon (defensive telecom outperforming amid market volatility) 
+LONGEQ;2026-01-31;XOM – Exxon Mobil (energy demand and crude support in risk?on flows) 
+LONGEQ;2026-01-31;TSM – Taiwan Semiconductor (Asia equities support and AI demand drivers) 
+LONGEQ;2026-01-31;
+LONGEQ;2026-02-02;2026?02?02 / 08:15 - Monday
+LONGEQ;2026-02-02;
+LONGEQ;2026-02-02;PHOEB – Phoenix Asia Holdings (recent breakout strong momentum) 
+LONGEQ;2026-02-02;FATBB – FAT Brands (extreme gainer on high volume) 
+LONGEQ;2026-02-02;ORKT – Orangekloud Technology (high percentage move today) 
+LONGEQ;2026-02-02;ELPW – Elong Power Holding (massive intraday rally) 
+LONGEQ;2026-02-02;INLIF – INLIF (sustained heavy gain momentum) 
+LONGEQ;2026-02-02;
+LONGEQ;2026-02-03;2026?02?03 / 08:15 - Tuesday
+LONGEQ;2026-02-03;
+LONGEQ;2026-02-03;META – Meta Platforms (strong earnings surprise lifting shares) 
+LONGEQ;2026-02-03;NKE – Nike (consumer strength theme in resilient markets) 
+LONGEQ;2026-02-03;HSBC – HSBC Holdings (European financials leading STOXX gains) 
+LONGEQ;2026-02-03;EMR – Emerson Electric (industrial demand in mixed global backdrop) 
+LONGEQ;2026-02-03;TSM – Taiwan Semiconductor (Asia tech focus amid hedge fund reallocation) 
+LONGEQ;2026-02-03;
+LONGEQ;2026-02-04;2026?02?04 / 08:15 - Tuesday
+LONGEQ;2026-02-04;
+LONGEQ;2026-02-04;STX - Seagate Technology (earnings beat sparked strong recent momentum) 
+LONGEQ;2026-02-04;SMCI - Super Micro Computer (late session gains on tech demand rebound) 
+LONGEQ;2026-02-04;XOM - Exxon Mobil (oil up on geopolitical tension supporting energy) 
+LONGEQ;2026-02-04;GLD - SPDR Gold Trust (gold rebound amid risk sentiment) 
+LONGEQ;2026-02-04;AAPL - Apple (ongoing earnings strength in mega?caps) 
+LONGEQ;2026-02-04;
+LONGEQ;2026-02-05;2026?02?05 / 08:15 - Thursday
+LONGEQ;2026-02-05;
+LONGEQ;2026-02-05;"AMGN - Amgen (unexpected strength lifted Dow; healthcare resilience) "
+LONGEQ;2026-02-05;LLY - Eli Lilly (robust earnings drove shares up sharply) 
+LONGEQ;2026-02-05;WMT - Walmart (AI adoption narrative supported relative strength) 
+LONGEQ;2026-02-05;CVX - Chevron (energy gained on crude strength and rotation) 
+LONGEQ;2026-02-05;UBS - UBS Group (buybacks and cost savings underpin stock) 
+LONGEQ;2026-02-05;
+LONGEQ;2026-02-06;2026?02?06 / 08:15 - Friday
+LONGEQ;2026-02-06;
+LONGEQ;2026-02-06;SGEN - Societe Generale (raised profit target and strong earnings beat) 
+LONGEQ;2026-02-06;N225 - Nikkei Index?ETF (Japan stocks up despite global selloff, short squeeze potential) 
+LONGEQ;2026-02-06;TLT - Long?Term Treasuries ETF (risk off flows could lift bonds and yields adjust) 
+LONGEQ;2026-02-06;PHIB - Phibro Animal Health (reported strong results and big share gains) 
+LONGEQ;2026-02-06;CARD - Cardinal Health (surged on earnings strength) 
+LONGEQ;2026-02-06;
+LONGEQ;2026-02-07;2026?02?07 / 08:15 - Saturday
+LONGEQ;2026-02-07;
+LONGEQ;2026-02-07;SMCI – Super Micro Computer (tech bounce after recent selloff) 
+LONGEQ;2026-02-07;NVDA – Nvidia (chipmakers lead rebound in equities) 
+LONGEQ;2026-02-07;CAT – Caterpillar (industrial strength with broader market gains) 
+LONGEQ;2026-02-07;LUMN – Lumentum Holdings (record high momentum) 
+LONGEQ;2026-02-07;RH – Robinhood Markets (crypto and equities rally lift shares) 
+LONGEQ;2026-02-07;
+LONGEQ;2026-02-07;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGEQ;2026-02-07;Produce daily short-term EQ trade recommendations
+LONGEQ;2026-02-07;
+LONGEQ;2026-02-09;2026?02?09 / 08:16 - Monday
+LONGEQ;2026-02-09;
+LONGEQ;2026-02-09;NVDA – Nvidia (tech sector rebound on global markets rally) 
+LONGEQ;2026-02-09;AMD – Advanced Micro Devices (chip stocks gained with Asian/US sentiment) 
+LONGEQ;2026-02-09;AAPL – Apple (mega?caps up supporting broad indices) 
+LONGEQ;2026-02-09;JPM – JPMorgan Chase (financials outperform with stocks up) 
+LONGEQ;2026-02-09;SBI.NS – State Bank of India (record profits lifted shares) 
+LONGEQ;2026-02-09;
+LONGEQ;2026-02-10;2026?02?10 / 08:16 - Tuesday
+LONGEQ;2026-02-10;
+LONGEQ;2026-02-10;NVDA - Nvidia (tech rebound globally as Asian stocks hit record and chip stocks rally) 
+LONGEQ;2026-02-10;AMD - Advanced Micro Devices (semiconductor momentum continues with strong gains in chip sector) 
+LONGEQ;2026-02-10;ORCL - Oracle (analyst upgrade driving price action and software rebound) 
+LONGEQ;2026-02-10;KR - Kroger (gained on CEO change and consumer discretionary strength) 
+LONGEQ;2026-02-10;CME - CME Group (new 1?year high on positive analyst activity and strong flows) 
+LONGEQ;2026-02-10;
+LONGEQ;2026-02-11;2026-02-11 / 08:16 - Wednesday
+LONGEQ;2026-02-11;
+LONGEQ;2026-02-11;UBNT - Ubiquiti (strong earnings beat driving momentum) 
+LONGEQ;2026-02-11;CIFR - Cipher Mining (AI data-center narrative lifting shares) 
+LONGEQ;2026-02-11;QS - QuantumScape (earnings catalyst and guidance focus) 
+LONGEQ;2026-02-11;SF - Stifel Financial (revenue growth and corporate action catalyst) 
+LONGEQ;2026-02-11;RACE - Ferrari (analyst upgrade after earnings repricing) 
+LONGEQ;2026-02-11;
+LONGEQ;2026-02-12;2026-02-12 / 08:16 - Thursday
+LONGEQ;2026-02-12;
+LONGEQ;2026-02-12;"ON - ON Semiconductor (analyst target raised; semis showing relative strength) "
+LONGEQ;2026-02-12;TDC - Teradata (strong earnings guidance driving momentum) 
+LONGEQ;2026-02-12;BWA - BorgWarner (post-earnings surge and sector rotation into cyclicals) 
+LONGEQ;2026-02-12;DIOD - Diodes Inc (bullish forward guidance lifting semiconductor names) 
+LONGEQ;2026-02-12;7203.T - Toyota Motor (Japan equities rally on policy optimism) 
+LONGEQ;2026-02-12;
+LONGEQ;2026-02-13;2026-02-13 / 08:16 - Friday
+LONGEQ;2026-02-13;
+LONGEQ;2026-02-13;AMAT - Applied Materials (strong earnings and bullish AI chip outlook driving post?earnings momentum) 
+LONGEQ;2026-02-13;ANET - Arista Networks (AI hardware strength while broader tech sells off, relative leadership) 
+LONGEQ;2026-02-13;MCD - McDonald's (defensive rotation as volatility rises and growth weakens) 
+LONGEQ;2026-02-13;TJX - TJX Companies (consumer defensive strength during risk?off market tone) 
+LONGEQ;2026-02-13;SIEMENSENERGY.DE - Siemens Energy (AI?driven power demand tailwind supporting energy infrastructure stocks) 
+LONGEQ;2026-02-13;
+LONGEQ;2026-02-14;2026-02-14 / 08:15 - Saturday
+LONGEQ;2026-02-14;
+LONGEQ;2026-02-14;AMAT - Applied Materials (strong earnings reaction while broader tech weak) 
+LONGEQ;2026-02-14;ANET - Arista Networks (AI infrastructure demand driving post-earnings momentum) 
+LONGEQ;2026-02-14;SAF.PA - Safran (defense sector strength amid European rotation) 
+LONGEQ;2026-02-14;FORM - FormFactor (semiconductor test equipment momentum and recent rally) 
+LONGEQ;2026-02-14;MCD - McDonald's (defensive flows as volatility and AI fears pressure growth stocks) 
+LONGEQ;2026-02-14;
+LONGEQ;2026-02-15;2026-02-15 / 08:16 - Sunday
+LONGEQ;2026-02-15;
+LONGEQ;2026-02-15;PANW - Palo Alto Networks (earnings catalyst and AI cybersecurity demand in focus) 
+LONGEQ;2026-02-15;ADBE - Adobe (software weakness rotation favors short-term rebounds after sector selloff) 
+LONGEQ;2026-02-15;NEM - Newmont (gold strength highlighted amid volatility and macro uncertainty) 
+LONGEQ;2026-02-15;TOL - Toll Brothers (homebuilder momentum noted ahead of earnings-driven interest) 
+LONGEQ;2026-02-15;ZTS - Zoetis (forecast-driven upside after guidance beat sparked buying) 
+LONGEQ;2026-02-15;
+LONGEQ;2026-02-16;2026-02-16 / 08:16 - Monday
+LONGEQ;2026-02-16;
+LONGEQ;2026-02-16;DHI - D.R. Horton (homebuilders showing relative strength while megacap tech weakens) 
+LONGEQ;2026-02-16;AMAT - Applied Materials (semiconductor capex tailwind and strong chip momentum) 
+LONGEQ;2026-02-16;WMT - Walmart (earnings focus and defensive consumer positioning this week) 
+LONGEQ;2026-02-16;NXT.AX - NextDC (AI data?center theme holding up despite tech selloff) 
+LONGEQ;2026-02-16;WTC.AX - WiseTech Global (recent sharp rally signaling tech rotation strength) 
+LONGEQ;2026-02-16;
+LONGEQ;2026-02-17;2026-02-17 / 08:16 - Tuesday
+LONGEQ;2026-02-17;
+LONGEQ;2026-02-17;Recs:
+LONGEQ;2026-02-17;TSM - Taiwan Semiconductor (capital rotation toward chip manufacturers during big?tech valuation reset) 
+LONGEQ;2026-02-17;WMT - Walmart (capital inflows into defensive retail as AI spending fears hit tech) 
+LONGEQ;2026-02-17;NVDA - NVIDIA (earnings anticipation and AI infrastructure demand volatility create intraday momentum) 
+LONGEQ;2026-02-17;LVMUY - LVMH (luxury volatility and hedge?fund positioning driving short?term price swings) 
+LONGEQ;2026-02-17;V - Visa (payment networks supported by event?driven economic activity headlines) 
+LONGEQ;2026-02-17;
+LONGEQ;2026-02-18;2026-02-18 / 08:16 - Wednesday
+LONGEQ;2026-02-18;
+LONGEQ;2026-02-18;Recs:
+LONGEQ;2026-02-18;RYAAY - Ryanair (airlines bid as oil drops on US-Iran progress reducing fuel pressure) 
+LONGEQ;2026-02-18;SAN - Banco Santander (European financials leading regional equity gains) 
+LONGEQ;2026-02-18;RIO - Rio Tinto (metals strength and structural demand theme supporting miners) 
+LONGEQ;2026-02-18;NAB.AX - National Australia Bank (bank earnings momentum and profit growth newsflow) 
+LONGEQ;2026-02-18;XOM - Exxon Mobil (record Asian crude demand supporting energy flows despite geopolitics) 
+LONGEQ;2026-02-18;
+LONGEQ;2026-02-19;2026-02-19 / 08:15 - Thursday
+LONGEQ;2026-02-19;
+LONGEQ;2026-02-19;Recs:
+LONGEQ;2026-02-19;NVDA - NVIDIA (AI chip deal momentum driving global tech rally and intraday volatility) 
+LONGEQ;2026-02-19;ASML - ASML Holding (semiconductor equipment strength with fresh buy signals in AI-led rebound) 
+LONGEQ;2026-02-19;BAESY - BAE Systems (defence sector outperforming on geopolitical tension and strong orders) 
+LONGEQ;2026-02-19;XOM - Exxon Mobil (oil surge tied to Iran risk supporting energy equities) 
+LONGEQ;2026-02-19;BHP - BHP Group (miners bid as global markets rotate into banks, energy, and resources) 
+LONGEQ;2026-02-19;
+LONGEQ;2026-02-20;2026-02-20 / 08:16 - Friday
+LONGEQ;2026-02-20;
+LONGEQ;2026-02-20;Recs:
+LONGEQ;2026-02-20;SMCI - Super Micro Computer (AI server demand and high news-driven volatility favor intraday continuation)
+LONGEQ;2026-02-20;RHM.DE - Rheinmetall (persistent Europe defense strength on geopolitical risk headlines)
+LONGEQ;2026-02-20;XOM - Exxon Mobil (oil-sensitive momentum as energy reacts to supply risk newsflow)
+LONGEQ;2026-02-20;TSM - Taiwan Semiconductor (semiconductor sentiment tied to AI capex and sector rotation)
+LONGEQ;2026-02-20;BABA - Alibaba (China tech rebounds on stimulus expectations and macro headlines)
+LONGEQ;2026-02-20;
+LONGEQ;2026-02-21;2026-02-21 / 08:16 - Saturday
+LONGEQ;2026-02-21;
+LONGEQ;2026-02-21;Recs:
+LONGEQ;2026-02-21;NVDA - NVIDIA (AI earnings focus and supply deal momentum driving semiconductor flows) 
+LONGEQ;2026-02-21;TSM - Taiwan Semiconductor (benefits from AI chip demand and production positioning) 
+LONGEQ;2026-02-21;XOM - Exxon Mobil (oil supported by geopolitical tension and higher crude prices) 
+LONGEQ;2026-02-21;LMT - Lockheed Martin (defense bid tied to rising geopolitical risk sentiment) 
+LONGEQ;2026-02-21;WMT - Walmart (defensive retail strength during tech rotation and volatility) 
+LONGEQ;2026-02-21;
+LONGEQ;2026-02-22;2026-02-22 / 08:16 - Sunday
+LONGEQ;2026-02-22;
+LONGEQ;2026-02-22;Recs:
+LONGEQ;2026-02-22;NVDA - NVIDIA (earnings focus and AI capex momentum driving short-term volatility) 
+LONGEQ;2026-02-22;LMT - Lockheed Martin (defense stocks bid on Iran tensions and military mobilization headlines) 
+LONGEQ;2026-02-22;XOM - Exxon Mobil (oil rising on geopolitical risk and tariff escalation expectations) 
+LONGEQ;2026-02-22;ASML - ASML Holding (semiconductor infrastructure favored amid AI spending rotation) 
+LONGEQ;2026-02-22;MC.PA - LVMH (European luxury strength as STOXX 600 hits records on earnings outlook) 
+LONGEQ;2026-02-22;
+LONGEQ;2026-02-23;2026-02-23 / 08:16 - Monday
+LONGEQ;2026-02-23;
+LONGEQ;2026-02-23;Recs:
+LONGEQ;2026-02-23;XOM - Exxon Mobil (oil spike risk from US-Iran escalation and supply fears) 
+LONGEQ;2026-02-23;NVDA - NVIDIA (earnings catalyst and AI-sector volatility focus) 
+LONGEQ;2026-02-23;TSM - Taiwan Semiconductor (AI supply chain momentum and chip demand trend) 
+LONGEQ;2026-02-23;LMT - Lockheed Martin (defense bid on rising geopolitical and strike risk headlines) 
+LONGEQ;2026-02-23;RDS.A - Shell (energy strength tied to crude breakout and tariff-driven macro uncertainty) 
+LONGEQ;2026-02-23;
+LONGEQ;2026-02-24;2026-02-24 / 08:15 - Tuesday
+LONGEQ;2026-02-24;
+LONGEQ;2026-02-24;Recs:
+LONGEQ;2026-02-24;NVDA - NVIDIA (earnings catalyst and AI volatility focus driving pre?event positioning) 
+LONGEQ;2026-02-24;XOM - Exxon Mobil (oil supported by geopolitical risk and rising crude prices) 
+LONGEQ;2026-02-24;BHP - BHP Group (resources bid as markets rotate into commodities and miners) 
+LONGEQ;2026-02-24;LLY - Eli Lilly (healthcare strength after positive drug trial momentum) 
+LONGEQ;2026-02-24;AAPL - Apple (large?cap rebound attempt amid tariff?driven volatility) 
+LONGEQ;2026-02-24;
+LONGEQ;2026-02-25;2026-02-25 / 08:16 - Wednesday
+LONGEQ;2026-02-25;
+LONGEQ;2026-02-25;Recs:
+LONGEQ;2026-02-25;NVDA - NVIDIA (earnings catalyst and AI-driven global tech rally increasing intraday momentum) 
+LONGEQ;2026-02-25;TSM - Taiwan Semiconductor (chipmakers bid as AI hardware demand pushes Asian markets higher) 
+LONGEQ;2026-02-25;XOM - Exxon Mobil (oil rising on US-Iran tension and supply risk premium) 
+LONGEQ;2026-02-25;ASML - ASML Holding (semiconductor equipment leveraged to renewed AI investment flows) 
+LONGEQ;2026-02-25;SK Hynix - SK Hynix (memory chip surge tied to AI boom and shortage narrative) 
+LONGEQ;2026-02-25;
+LONGEQ;2026-02-26;2026-02-26 / 08:16 - Thursday
+LONGEQ;2026-02-26;
+LONGEQ;2026-02-26;Recs:
+LONGEQ;2026-02-26;NVDA - NVIDIA (AI revenue forecast lifting global tech sentiment and intraday volatility) 
+LONGEQ;2026-02-26;AMD - Advanced Micro Devices (AI infrastructure spending headlines supporting chip momentum) 
+LONGEQ;2026-02-26;XOM - Exxon Mobil (oil elevated on US-Iran geopolitical tension and supply risk) 
+LONGEQ;2026-02-26;DELL - Dell Technologies (earnings-day catalyst with AI server demand narrative) 
+LONGEQ;2026-02-26;LMT - Lockheed Martin (rare-earth shortages and geopolitical risk favor defense names) 
+LONGEQ;2026-02-26;
+LONGEQ;2026-02-27;2026-02-27 / 08:16 - Friday
+LONGEQ;2026-02-27;
+LONGEQ;2026-02-27;Recs:
+LONGEQ;2026-02-27;DELL - Dell Technologies (AI server demand driving strong guidance and share momentum) 
+LONGEQ;2026-02-27;NFLX - Netflix (Paramount bid dynamics lifting content stock after deal shift) 
+LONGEQ;2026-02-27;BP - BP (energy names supported by geopolitical risk and higher crude prices) 
+LONGEQ;2026-02-27;CSCO - Cisco Systems (tech rotation into networking hardware as AI fears weigh on software) 
+LONGEQ;2026-02-27;SHEL - Shell (oil and commodity strength amid market caution and rotation) 
+LONGEQ;2026-02-27;
+LONGEQ;2026-02-28;2026-02-28 / 08:17 - Saturday
+LONGEQ;2026-02-28;Recs:
+LONGEQ;2026-02-28;NTES – NetEase (emerging Asia tech strength as regional markets rebound) 
+LONGEQ;2026-02-28;XOM – Exxon Mobil (oil prices elevated on geopolitical strains) 
+LONGEQ;2026-02-28;BP – BP (energy sector bid amid oil gains and risk?off rotation) 
+LONGEQ;2026-02-28;PARA – Paramount Global (merger success momentum vs streaming peers) 
+LONGEQ;2026-02-28;CVX – Chevron (value energy stocks outperforming defensives) 
+LONGEQ;2026-02-28;
+LONGEQ;2026-03-02;2026-03-02 / 08:15 - Monday
+LONGEQ;2026-03-02;Recs:
+LONGEQ;2026-03-02;XOM - Exxon Mobil (oil prices rising on Iran conflict risk lifting energy names) 
+LONGEQ;2026-03-02;CVX - Chevron (energy sector strength on crude price upside) 
+LONGEQ;2026-03-02;AXON - Axon Enterprise (reported strong earnings driving stock gains) 
+LONGEQ;2026-03-02;WDC - Western Digital (AI?infrastructure stocks climbing with market) 
+LONGEQ;2026-03-02;COIN - Coinbase Global (crypto stocks higher on Bitcoin rally) 
+LONGEQ;2026-03-02;
+LONGEQ;2026-03-03;2026-03-03 / 08:16 - Tuesday
+LONGEQ;2026-03-03;Recs:
+LONGEQ;2026-03-03;XOM - Exxon Mobil (oil prices surge on Middle East conflict)
+LONGEQ;2026-03-03;CVX - Chevron (energy stocks rally amid supply concerns)
+LONGEQ;2026-03-03;BA - Boeing (defense demand rising on geopolitical tension)
+LONGEQ;2026-03-03;NOC - Northrop Grumman (defense sector strength on conflict news)
+LONGEQ;2026-03-03;GLD - SPDR Gold Trust (safe?haven gold up on risk aversion) 
+LONGEQ;2026-03-03;
+LONGEQ;2026-03-04;2026-03-04 / 08:15 - Wednesday
+LONGEQ;2026-03-04;
+LONGEQ;2026-03-04;Recs:
+LONGEQ;2026-03-04;XOM - Exxon Mobil (oil surge from Iran conflict and supply disruption risk) 
+LONGEQ;2026-03-04;CVX - Chevron (energy equities bid as crude spikes on Hormuz threat) 
+LONGEQ;2026-03-04;LMT - Lockheed Martin (defense demand rising after U.S.–Israel strikes on Iran) 
+LONGEQ;2026-03-04;RTX - RTX Corp (military contracts and conflict-driven defense spending momentum) 
+LONGEQ;2026-03-04;AVAV - AeroVironment (drone warfare demand and strong defense contract growth) 
+LONGEQ;2026-03-04;
+LONGEQ;2026-03-05;2026-03-05 / 08:15 - Thursday
+LONGEQ;2026-03-05;
+LONGEQ;2026-03-05;Recs:
+LONGEQ;2026-03-05;XOM - Exxon Mobil (oil prices jump as Iran conflict disrupts supply routes) 
+LONGEQ;2026-03-05;CVX - Chevron (energy majors bid with crude volatility and shipping disruption) 
+LONGEQ;2026-03-05;LMT - Lockheed Martin (defense spending expectations rising with Middle East escalation) 
+LONGEQ;2026-03-05;MRVL - Marvell Technology (AI data?center demand expected to lift earnings momentum) 
+LONGEQ;2026-03-05;RTX - RTX Corp (missile defense and aerospace demand supported by geopolitical risk) 
+LONGEQ;2026-03-05;
+LONGEQ;2026-03-06;2026-03-06 / 08:16 - Friday
+LONGEQ;2026-03-06;
+LONGEQ;2026-03-06;Recs:
+LONGEQ;2026-03-06;XOM - Exxon Mobil (oil disruption risk from Strait of Hormuz crisis pushing crude higher) 
+LONGEQ;2026-03-06;CVX - Chevron (energy majors bid as Middle East conflict drives supply fears) 
+LONGEQ;2026-03-06;LMT - Lockheed Martin (defense stocks supported by escalating Iran conflict) 
+LONGEQ;2026-03-06;AVGO - Broadcom (AI chip demand forecast lifting semiconductor momentum) 
+LONGEQ;2026-03-06;AMZN - Amazon (stock rising on AI infrastructure investment announcements) 
+LONGEQ;2026-03-06;
+LONGEQ;2026-03-07;2026-03-07 / 08:16 - Saturday
+LONGEQ;2026-03-07;
+LONGEQ;2026-03-07;Recs:
+LONGEQ;2026-03-07;XOM - Exxon Mobil (oil above $90 after Hormuz disruption and global supply shock) 
+LONGEQ;2026-03-07;CVX - Chevron (energy sector momentum from escalating Iran conflict and crude spike) 
+LONGEQ;2026-03-07;LMT - Lockheed Martin (defense demand rising amid expanding Middle East war risk) 
+LONGEQ;2026-03-07;NOC - Northrop Grumman (military spending and geopolitical escalation supporting defense stocks) 
+LONGEQ;2026-03-07;MRVL - Marvell Technology (AI chip outlook driving strong semiconductor momentum) 
+LONGEQ;2026-03-07;
+LONGEQ;2026-03-08;2026-03-08 / 08:16 - Sunday
+LONGEQ;2026-03-08;
+LONGEQ;2026-03-08;Recs:
+LONGEQ;2026-03-08;XOM - Exxon Mobil (oil spike from Hormuz disruption and supply cuts) 
+LONGEQ;2026-03-08;CVX - Chevron (energy producers bid as Middle East conflict constrains exports) 
+LONGEQ;2026-03-08;SLB - Schlumberger (oilfield services gain from surge in upstream activity expectations) 
+LONGEQ;2026-03-08;LMT - Lockheed Martin (defense demand rising amid expanding Iran war) 
+LONGEQ;2026-03-08;TSM - Taiwan Semiconductor (AI chip demand and sector momentum) 
+LONGEQ;2026-03-08;
+LONGEQ;2026-03-09;2026-03-09 / 08:15 - Monday
+LONGEQ;2026-03-09;
+LONGEQ;2026-03-09;Recs:
+LONGEQ;2026-03-09;XOM - Exxon Mobil (oil above $110 after Iran war disrupts supply routes) 
+LONGEQ;2026-03-09;CVX - Chevron (energy majors bid on crude spike and export disruptions) 
+LONGEQ;2026-03-09;LMT - Lockheed Martin (defense spending expectations rising with escalating conflict) 
+LONGEQ;2026-03-09;RTX - RTX Corp (missile and air?defense demand tied to Middle East war) 
+LONGEQ;2026-03-09;BA - Boeing (defense and military aircraft demand increasing with geopolitical escalation) 
+LONGEQ;2026-03-09;
+LONGEQ;2026-03-10;2026-03-10 / 08:16 - Tuesday
+LONGEQ;2026-03-10;
+LONGEQ;2026-03-10;Recs:
+LONGEQ;2026-03-10;NVDA - NVIDIA (semiconductor rally lifting Nasdaq amid AI demand rotation) 
+LONGEQ;2026-03-10;AMD - Advanced Micro Devices (chip stocks leading tech rebound in volatile market) 
+LONGEQ;2026-03-10;AVGO - Broadcom (AI and semiconductor momentum driving tech sector strength) 
+LONGEQ;2026-03-10;ON - ON Semiconductor (earnings beat and $6B buyback creating strong short-term momentum) 
+LONGEQ;2026-03-10;LMT - Lockheed Martin (defense demand tied to escalation in Iran conflict) 
+LONGEQ;2026-03-10;
+LONGEQ;2026-03-11;2026-03-11 / 08:16 - Wednesday
+LONGEQ;2026-03-11;
+LONGEQ;2026-03-11;Recs:
+LONGEQ;2026-03-11;XOM - Exxon Mobil (oil market disruption from Strait of Hormuz crisis driving energy volatility) 
+LONGEQ;2026-03-11;CVX - Chevron (geopolitical supply risk supporting oil majors despite price swings) 
+LONGEQ;2026-03-11;NVDA - NVIDIA (AI chip demand and high trading volume sustaining semiconductor momentum) 
+LONGEQ;2026-03-11;MU - Micron Technology (AI-driven memory demand and capacity expansion tightening supply) 
+LONGEQ;2026-03-11;AVGO - Broadcom (analysts highlighting AI infrastructure spending tailwind for chips) 
+LONGEQ;2026-03-11;
+LONGEQ;2026-03-11;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGEQ;2026-03-11;
+LONGEQ;2026-03-12;2026-03-12 / 08:16 - Thursday
+LONGEQ;2026-03-12;
+LONGEQ;2026-03-12;Recs:
+LONGEQ;2026-03-12;XOM - Exxon Mobil (oil above $100 after tanker attacks and Hormuz disruption tightening supply) 
+LONGEQ;2026-03-12;CVX - Chevron (energy majors bid as Middle East conflict threatens ~20% of global oil flows) 
+LONGEQ;2026-03-12;MOS - Mosaic (fertilizer demand rises with energy price spike and commodity inflation expectations) 
+LONGEQ;2026-03-12;ORCL - Oracle (strong premarket momentum and AI infrastructure spending tailwind) 
+LONGEQ;2026-03-12;CF - CF Industries (fertilizer producers benefit from natural gas and agricultural input price surge) 
+LONGEQ;2026-03-12;
+LONGEQ;2026-03-13;2026-03-13 / 08:15 - Friday
+LONGEQ;2026-03-13;
+LONGEQ;2026-03-13;Recs:
+LONGEQ;2026-03-13;XOM - Exxon Mobil (oil near $100 amid largest global supply disruption tied to Hormuz conflict) 
+LONGEQ;2026-03-13;CVX - Chevron (energy majors supported by sustained crude spike and constrained exports) 
+LONGEQ;2026-03-13;CF - CF Industries (fertilizer equities rising with commodity inflation and energy price surge) 
+LONGEQ;2026-03-13;LMT - Lockheed Martin (defense spending momentum from escalating Middle East war) 
+LONGEQ;2026-03-13;PLTR - Palantir (AI-defense partnership expansion with Nvidia and government demand) 
+LONGEQ;2026-03-13;
+LONGEQ;2026-03-14;2026-03-14 / 08:15 - Saturday
+LONGEQ;2026-03-14;
+LONGEQ;2026-03-14;Recs:
+LONGEQ;2026-03-14;XOM - Exxon Mobil (oil above $100 amid Hormuz supply disruption and tanker halt) 
+LONGEQ;2026-03-14;CVX - Chevron (major integrated producer benefiting from tightening global crude supply) 
+LONGEQ;2026-03-14;SLB - Schlumberger (oilfield services demand rises as producers react to supply shock) 
+LONGEQ;2026-03-14;GLW - Corning (analyst target increases and strong momentum in optical infrastructure demand) 
+LONGEQ;2026-03-14;RWE - RWE AG (analyst upgrade and strong earnings momentum in European energy sector) 
+LONGEQ;2026-03-14;
+LONGEQ;2026-03-15;2026-03-15 / 08:15 - Sunday
+LONGEQ;2026-03-15;
+LONGEQ;2026-03-15;Recs:
+LONGEQ;2026-03-15;XOM - Exxon Mobil (oil above $100 as Hormuz disruption removes ~20% of global supply) 
+LONGEQ;2026-03-15;CVX - Chevron (major integrated producer leveraged to ongoing Middle East supply shock) 
+LONGEQ;2026-03-15;SLB - Schlumberger (oilfield services demand rising as producers react to supply shortages) 
+LONGEQ;2026-03-15;LMT - Lockheed Martin (defense stocks bid amid escalating US?Iran military conflict) 
+LONGEQ;2026-03-15;MOS - Mosaic (fertilizer prices spiking as Gulf supply disruption drives input shortages) 
+LONGEQ;2026-03-15;
+LONGEQ;2026-03-16;2026-03-16 / 08:15 - Monday
+LONGEQ;2026-03-16;
+LONGEQ;2026-03-16;Recs:
+LONGEQ;2026-03-16;XOM - Exxon Mobil (oil above $100 as Hormuz disruption removes large share of global supply) 
+LONGEQ;2026-03-16;CVX - Chevron (oil majors surging with war-driven crude spike and supply shock) 
+LONGEQ;2026-03-16;SLB - Schlumberger (oilfield services gain when producers accelerate drilling during price spikes) 
+LONGEQ;2026-03-16;NVDA - NVIDIA (AI conference catalysts and strong premarket momentum in semis) 
+LONGEQ;2026-03-16;MU - Micron Technology (memory stocks rising into earnings amid AI-driven demand tightness) 
+LONGEQ;2026-03-16;
+LONGEQ;2026-03-17;2026-03-17 / 08:15 - Tuesday
+LONGEQ;2026-03-17;
+LONGEQ;2026-03-17;Recs:
+LONGEQ;2026-03-17;XOM - Exxon Mobil (oil above $100 as Iran war disrupts ~20% of global supply through Hormuz) 
+LONGEQ;2026-03-17;CVX - Chevron (major integrated producer leveraged to continued crude price spike) 
+LONGEQ;2026-03-17;SLB - Schlumberger (oilfield services demand rises when producers respond to supply shock) 
+LONGEQ;2026-03-17;NVDA - NVIDIA (AI rally continues around GTC event and global tech momentum) 
+LONGEQ;2026-03-17;META - Meta Platforms (AI-driven tech bid pushing megacap momentum in recent sessions) 
+LONGEQ;2026-03-17;
+LONGEQ;2026-03-17;This automation has been paused due to too many unread executions. You can resume it in automations settings or by asking ChatGPT.
+LONGEQ;2026-03-17;
+LONGEQ;2026-04-23;2026-04-23 / 08:16 - Thursday
+LONGEQ;2026-04-23;
+LONGEQ;2026-04-23;Recs:
+LONGEQ;2026-04-23;XOM - Exxon Mobil (oil >$100 on Hormuz disruption tightening supply) 
+LONGEQ;2026-04-23;CVX - Chevron (integrated major leveraged to sustained crude spike) 
+LONGEQ;2026-04-23;LMT - Lockheed Martin (escalating Iran conflict drives defense demand) 
+LONGEQ;2026-04-23;NVDA - NVIDIA (AI-led Nasdaq highs and persistent tech momentum) 
+LONGEQ;2026-04-23;BA - Boeing (strong earnings momentum and recent stock surge) 
+LONGEQ;2026-04-23;
+LONGEQ;2026-04-24;2026-04-24 / 08:15 - Friday
+LONGEQ;2026-04-24;
+LONGEQ;2026-04-24;Recs:
+LONGEQ;2026-04-24;XOM - Exxon Mobil (oil near $110 on Hormuz disruption and supply shock) 
+LONGEQ;2026-04-24;CVX - Chevron (integrated major directly leveraged to sustained crude spike) 
+LONGEQ;2026-04-24;SLB - Schlumberger (upstream capex increases as producers react to supply shock) 
+LONGEQ;2026-04-24;LMT - Lockheed Martin (escalating Iran conflict increases defense demand) 
+LONGEQ;2026-04-24;BA - Boeing (defense and aerospace bid amid geopolitical escalation and earnings momentum) 
+LONGEQ;2026-04-24;
+LONGEQ;2026-04-25;2026-04-25 / 08:15 - Saturday
+LONGEQ;2026-04-25;
+LONGEQ;2026-04-25;Recs:
+LONGEQ;2026-04-25;XOM - Exxon Mobil (oil spike persists on Middle East supply risk)
+LONGEQ;2026-04-25;CVX - Chevron (leveraged to elevated crude and tight supply)
+LONGEQ;2026-04-25;RTX - RTX Corp (defense demand bid on ongoing geopolitical tension)
+LONGEQ;2026-04-25;NVDA - NVIDIA (AI momentum and continued semiconductor inflows)
+LONGEQ;2026-04-25;TSLA - Tesla (EV sector rebound with risk-on tech sentiment)
+LONGEQ;2026-04-25;
+LONGEQ;2026-04-26;2026-04-26 / 08:15 - Sunday
+LONGEQ;2026-04-26;
+LONGEQ;2026-04-26;Recs:
+LONGEQ;2026-04-26;XOM - Exxon Mobil (crude strength persists on supply risk)
+LONGEQ;2026-04-26;CVX - Chevron (high oil prices support intraday momentum)
+LONGEQ;2026-04-26;RTX - RTX Corp (geopolitical tension sustaining defense inflows)
+LONGEQ;2026-04-26;NVDA - NVIDIA (AI-driven momentum and strong sector flows)
+LONGEQ;2026-04-26;AMD - Advanced Micro Devices (semiconductor sympathy bid with AI leaders)
+LONGEQ;2026-04-26;
+LONGEQ;2026-04-27;2026-04-27 / 08:16 - Monday
+LONGEQ;2026-04-27;
+LONGEQ;2026-04-27;Recs:
+LONGEQ;2026-04-27;XOM - Exxon Mobil (oil bid holds on persistent Middle East supply risk)
+LONGEQ;2026-04-27;CVX - Chevron (follows crude strength with high intraday beta)
+LONGEQ;2026-04-27;LMT - Lockheed Martin (defense flows continue on geopolitical escalation)
+LONGEQ;2026-04-27;NVDA - NVIDIA (AI momentum and strong Nasdaq leadership)
+LONGEQ;2026-04-27;TSM - Taiwan Semiconductor Manufacturing Company (chip sector strength tracking AI demand)
+LONGEQ;2026-04-27;
+LONGEQ;2026-04-28;2026-04-28 / 08:15 - Tuesday
+LONGEQ;2026-04-28;
+LONGEQ;2026-04-28;Recs:
+LONGEQ;2026-04-28;BP - BP plc (energy bid persists on supply uncertainty)
+LONGEQ;2026-04-28;SHEL - Shell plc (oil majors tracking elevated crude)
+LONGEQ;2026-04-28;GD - General Dynamics (defense inflows on sustained geopolitical risk)
+LONGEQ;2026-04-28;NVDA - NVIDIA (continued AI-led momentum in semis)
+LONGEQ;2026-04-28;AMZN - Amazon (mega-cap tech strength and market leadership)
+LONGEQ;2026-04-28;
+LONGEQ;2026-04-29;2026-04-29 / 08:15 - Wednesday
+LONGEQ;2026-04-29;
+LONGEQ;2026-04-29;Recs:
+LONGEQ;2026-04-29;TOT - TotalEnergies (oil strength sustained with ongoing supply constraints)
+LONGEQ;2026-04-29;EOG - EOG Resources (high beta shale exposure to elevated crude)
+LONGEQ;2026-04-29;NOC - Northrop Grumman (defense bid persists amid geopolitical tension)
+LONGEQ;2026-04-29;AVGO - Broadcom (AI and semiconductor momentum continuation)
+LONGEQ;2026-04-29;MSFT - Microsoft (mega-cap tech inflows and AI leadership support)
+LONGEQ;2026-04-29;
+LONGEQ;2026-04-30;2026-04-30 / 08:15 - Thursday
+LONGEQ;2026-04-30;
+LONGEQ;2026-04-30;Recs:
+LONGEQ;2026-04-30;RDS.A - Shell plc (oil volatility and supply risk sustaining intraday upside)
+LONGEQ;2026-04-30;HAL - Halliburton (oilfield services bid with rising upstream activity)
+LONGEQ;2026-04-30;LHX - L3Harris Technologies (defense demand tied to geopolitical escalation)
+LONGEQ;2026-04-30;NVDA - NVIDIA (continued AI-driven momentum and liquidity inflows)
+LONGEQ;2026-04-30;META - Meta Platforms (strong mega-cap tech flows and ad recovery sentiment)
+LONGEQ;2026-04-30;
+LONGEQ;2026-05-01;2026-05-01 / 08:15 - Friday
+LONGEQ;2026-05-01;
+LONGEQ;2026-05-01;Recs:
+LONGEQ;2026-05-01;COP - ConocoPhillips (crude strength on persistent supply disruption narrative)
+LONGEQ;2026-05-01;SLB - Schlumberger (oil services momentum with elevated drilling outlook)
+LONGEQ;2026-05-01;RTX - RTX Corp (defense continuation on geopolitical risk premium)
+LONGEQ;2026-05-01;AVGO - Broadcom (AI semiconductor bid remains strong)
+LONGEQ;2026-05-01;AAPL - Apple (mega-cap inflows and earnings-driven momentum)
+LONGEQ;2026-05-01;
+LONGEQ;2026-05-02;2026-05-02 / 08:15 - Saturday
+LONGEQ;2026-05-02;
+LONGEQ;2026-05-02;Recs:
+LONGEQ;2026-05-02;XOM - Exxon Mobil (oil bid sustained by ongoing supply-side uncertainty)
+LONGEQ;2026-05-02;OXY - Occidental Petroleum (levered crude exposure amplifies intraday moves)
+LONGEQ;2026-05-02;LMT - Lockheed Martin (defense demand persists on elevated geopolitical risk)
+LONGEQ;2026-05-02;NVDA - NVIDIA (AI momentum and liquidity concentration remain dominant)
+LONGEQ;2026-05-02;AMAT - Applied Materials (semiconductor equipment strength tracking AI capex cycle)
+LONGEQ;2026-05-02;
+LONGEQ;2026-05-03;2026-05-03 / 08:15 - Sunday
+LONGEQ;2026-05-03;
+LONGEQ;2026-05-03;Recs:
+LONGEQ;2026-05-03;CVX - Chevron (crude supported by persistent geopolitical supply risk)
+LONGEQ;2026-05-03;BP - BP plc (energy sector momentum with elevated oil prices)
+LONGEQ;2026-05-03;NOC - Northrop Grumman (defense inflows on sustained global tensions)
+LONGEQ;2026-05-03;AMD - Advanced Micro Devices (continued semiconductor strength tied to AI demand)
+LONGEQ;2026-05-03;GOOGL - Alphabet (mega-cap tech bid and AI-driven sentiment)
+LONGEQ;2026-05-03;
+LONGEQ;2026-05-04;2026-05-04 / 08:15 - Monday
+LONGEQ;2026-05-04;
+LONGEQ;2026-05-04;Recs:
+LONGEQ;2026-05-04;XOM - Exxon Mobil (oil holding highs on supply risk narrative)
+LONGEQ;2026-05-04;SLB - Schlumberger (services leverage to elevated upstream activity)
+LONGEQ;2026-05-04;LMT - Lockheed Martin (defense bid persists with geopolitical overhang)
+LONGEQ;2026-05-04;NVDA - NVIDIA (AI momentum and liquidity concentration intact)
+LONGEQ;2026-05-04;MSFT - Microsoft (continued mega-cap inflows tied to AI exposure)
+LONGEQ;2026-05-04;
+LONGEQ;2026-05-04;This task has been paused because updates haven't been viewed in a while. You can resume it in automations settings or by asking ChatGPT.
+LONGEQ;2026-05-04;
+LONGEQ;2026-05-05;2026-05-05 / 08:15 - Tuesday
+LONGEQ;2026-05-05;
+LONGEQ;2026-05-05;Recs:
+LONGEQ;2026-05-05;CVX - Chevron (crude strength persists on supply-side tension)
+LONGEQ;2026-05-05;HAL - Halliburton (oilfield services bid with upstream momentum)
+LONGEQ;2026-05-05;RTX - RTX Corp (defense flows on sustained geopolitical risk)
+LONGEQ;2026-05-05;NVDA - NVIDIA (AI-driven liquidity concentration remains dominant)
+LONGEQ;2026-05-05;AMZN - Amazon (mega-cap rotation with strong cloud/AI sentiment)
+LONGEQ;2026-05-05;
+LONGEQ;2026-05-06;2026-05-06 / 08:12 - Wednesday
+LONGEQ;2026-05-06;
+LONGEQ;2026-05-06;Recs:
+LONGEQ;2026-05-06;PXD - Pioneer Natural Resources (energy names bid on renewed crude supply concerns)
+LONGEQ;2026-05-06;GD - General Dynamics (defense sector strength tied to geopolitical escalation)
+LONGEQ;2026-05-06;MU - Micron Technology (memory and AI infrastructure momentum continues)
+LONGEQ;2026-05-06;META - Meta Platforms (AI spending narrative sustaining mega-cap inflows)
+LONGEQ;2026-05-06;TSM - Taiwan Semiconductor Manufacturing (chip demand outlook remains strong on AI cycle)
+LONGEQ;2026-05-06;
+LONGEQ;2026-05-07;2026-05-07 / 08:12 - Thursday
+LONGEQ;2026-05-07;
+LONGEQ;2026-05-07;Recs:
+LONGEQ;2026-05-07;AVGO - Broadcom (AI networking demand and semiconductor momentum remain strong)
+LONGEQ;2026-05-07;COP - ConocoPhillips (oil sector supported by tightening supply expectations)
+LONGEQ;2026-05-07;LHX - L3Harris Technologies (defense names attracting flows on geopolitical instability)
+LONGEQ;2026-05-07;CRM - Salesforce (enterprise AI spending narrative supporting software)
+LONGEQ;2026-05-07;UBER - Uber Technologies (mobility and delivery strength with improving profitability)
+LONGEQ;2026-05-07;
+LONGEQ;2026-05-07;Daily 3:30 pm·Produce daily short-term EQ trade recommendations
+LONGEQ;2026-05-07;Produce daily short-term EQ trade recommendations
+LONGEQ;2026-05-07;
+LONGEQ;2026-05-08;2026-05-08 / 08:13 - Friday
+LONGEQ;2026-05-08;
+LONGEQ;2026-05-08;Recs:
+LONGEQ;2026-05-08;PLTR - Palantir Technologies (AI and defense spending momentum remains elevated)
+LONGEQ;2026-05-08;SMCI - Super Micro Computer (continued demand for AI server infrastructure)
+LONGEQ;2026-05-08;OXY - Occidental Petroleum (oil strength supported by geopolitical supply concerns)
+LONGEQ;2026-05-08;BA - Boeing (renewed aerospace and defense order optimism)
+LONGEQ;2026-05-08;SNOW - Snowflake (enterprise AI and data platform rotation continues)
+LONGEQ;2026-05-08;
+LONGEQ;2026-05-09;2026-05-09 / 08:13 - Saturday
+LONGEQ;2026-05-09;
+LONGEQ;2026-05-09;Recs:
+LONGEQ;2026-05-09;PANW - Palo Alto Networks (cybersecurity demand elevated after global cyber incident headlines)
+LONGEQ;2026-05-09;ARM - Arm Holdings (AI semiconductor momentum and licensing strength continue)
+LONGEQ;2026-05-09;NOC - Northrop Grumman (defense sector bid remains strong on geopolitical tension)
+LONGEQ;2026-05-09;FSLR - First Solar (renewable energy support tied to new policy initiatives)
+LONGEQ;2026-05-09;AMD - Advanced Micro Devices (AI accelerator demand and chip sector strength persist)
+LONGEQ;2026-05-09;
+LONGEQ;2026-05-10;2026-05-10 / 08:13 - Sunday
+LONGEQ;2026-05-10;
+LONGEQ;2026-05-10;Recs:
+LONGEQ;2026-05-10;CRWD - CrowdStrike Holdings (cybersecurity demand rising after new global breach reports)
+LONGEQ;2026-05-10;LMT - Lockheed Martin (defense flows continue on escalating geopolitical risk)
+LONGEQ;2026-05-10;MRVL - Marvell Technology (AI networking and data-center demand remain strong)
+LONGEQ;2026-05-10;XOM - Exxon Mobil (energy sector supported by higher crude volatility)
+LONGEQ;2026-05-10;SHOP - Shopify (e-commerce momentum and strong growth sentiment)
+LONGEQ;2026-05-10;
+LONGEQ;2026-05-11;2026-05-11 / 08:13 - Monday
+LONGEQ;2026-05-11;
+LONGEQ;2026-05-11;Recs:
+LONGEQ;2026-05-11;ANET - Arista Networks (AI data-center networking demand remains strong)
+LONGEQ;2026-05-11;RTX - RTX Corp (defense stocks supported by ongoing geopolitical tensions)
+LONGEQ;2026-05-11;DVN - Devon Energy (oil producers bid on renewed crude supply concerns)
+LONGEQ;2026-05-11;NOW - ServiceNow (enterprise AI workflow spending continues accelerating)
+LONGEQ;2026-05-11;TSLA - Tesla (EV momentum and autonomous driving optimism returning)
+LONGEQ;2026-05-11;
+LONGEQ;2026-05-12;2026-05-12 / 08:13 - Tuesday
+LONGEQ;2026-05-12;
+LONGEQ;2026-05-12;Recs:
+LONGEQ;2026-05-12;NVDA - NVIDIA (AI infrastructure demand and semiconductor momentum remain dominant)
+LONGEQ;2026-05-12;PWR - Quanta Services (power-grid and data-center buildout spending accelerating)
+LONGEQ;2026-05-12;HII - Huntington Ingalls Industries (defense sector strength tied to naval spending focus)
+LONGEQ;2026-05-12;MSTR - MicroStrategy (bitcoin strength driving high-beta crypto equity flows)
+LONGEQ;2026-05-12;DDOG - Datadog (cloud and AI observability demand supporting software momentum)
+LONGEQ;2026-05-12;
+LONGEQ;2026-05-13;2026-05-13 / 08:13 - Wednesday
+LONGEQ;2026-05-13;
+LONGEQ;2026-05-13;Recs:
+LONGEQ;2026-05-13;TTWO - Take-Two Interactive Software (gaming sector momentum tied to major release expectations)
+LONGEQ;2026-05-13;GEV - GE Vernova (power infrastructure demand rising from AI data-center expansion)
+LONGEQ;2026-05-13;MU - Micron Technology (memory-chip pricing and AI server demand strengthening)
+LONGEQ;2026-05-13;GD - General Dynamics (defense spending outlook remains supportive globally)
+LONGEQ;2026-05-13;NET - Cloudflare (cybersecurity and AI traffic growth driving momentum)
+LONGEQ;2026-05-13;
+LONGEQ;2026-05-14;2026-05-14 / 08:13 - Thursday
+LONGEQ;2026-05-14;
+LONGEQ;2026-05-14;Recs:
+LONGEQ;2026-05-14;AVGO - Broadcom (AI networking and custom chip demand remain elevated)
+LONGEQ;2026-05-14;PLTR - Palantir Technologies (government and defense AI spending momentum continuing)
+LONGEQ;2026-05-14;HAL - Halliburton (energy services supported by rising crude supply concerns)
+LONGEQ;2026-05-14;ZS - Zscaler (cybersecurity strength after renewed enterprise threat warnings)
+LONGEQ;2026-05-14;RKLB - Rocket Lab (space and defense launch sector attracting speculative flows)
+LONGEQ;2026-05-14;
+LONGEQ;2026-05-14;Produce daily short-term EQ trade recommendations
+LONGEQ;2026-05-14;
+LONGEQ;2026-05-15;2026-05-15 / 08:13 - Friday
+LONGEQ;2026-05-15;
+LONGEQ;2026-05-15;Recs:
+LONGEQ;2026-05-15;SMCI - Super Micro Computer (AI server demand and infrastructure spending remain aggressive)
+LONGEQ;2026-05-15;BA - Boeing (commercial aerospace rebound and defense order flow improving)
+LONGEQ;2026-05-15;CRDO - Credo Technology Group (high-speed connectivity demand tied to AI clusters accelerating)
+LONGEQ;2026-05-15;NEE - NextEra Energy (utilities and power-generation names gaining on AI electricity demand)
+LONGEQ;2026-05-15;APP - AppLovin (ad-tech momentum and strong growth sentiment continuing)
+LONGEQ;2026-05-15;
+LONGEQ;2026-05-15;Produce daily short-term EQ trade recommendations
+LONGEQ;2026-05-15;
+LONGEQ;2026-05-16;2026-05-16 / 08:15 - Saturday
+LONGEQ;2026-05-16;
+LONGEQ;2026-05-16;Recs:
+LONGEQ;2026-05-16;AMD - Advanced Micro Devices (AI chip demand and semiconductor momentum remain strong)
+LONGEQ;2026-05-16;KTOS - Kratos Defense & Security Solutions (drone and defense-tech spending trends accelerating)
+LONGEQ;2026-05-16;CEG - Constellation Energy (nuclear and power demand tied to AI infrastructure growth)
+LONGEQ;2026-05-16;SNOW - Snowflake (enterprise AI data-platform spending continuing higher)
+LONGEQ;2026-05-16;FSLR - First Solar (clean-energy manufacturing support and energy-security focus)
+LONGEQ;2026-05-16;
+LONGEQ;2026-05-16;Produce daily short-term EQ trade recommendations
+LONGEQ;2026-05-16;
+LONGEQ;2026-05-17;2026-05-17 / 08:16 - Sunday
+LONGEQ;2026-05-17;
+LONGEQ;2026-05-17;Recs:
+LONGEQ;2026-05-17;ARM - Arm Holdings (AI smartphone and datacenter chip demand strengthening)
+LONGEQ;2026-05-17;LMT - Lockheed Martin (global defense spending and missile demand remain elevated)
+LONGEQ;2026-05-17;VRT - Vertiv Holdings (AI datacenter cooling and power infrastructure momentum continuing)
+LONGEQ;2026-05-17;PANW - Palo Alto Networks (cybersecurity spending supported by rising state-linked threats)
+LONGEQ;2026-05-17;NRG - NRG Energy (power-demand surge tied to AI compute expansion)
+LONGEQ;2026-05-17;
+LONGEQ;2026-05-17;Produce daily short-term EQ trade recommendations
+LONGEQ;2026-05-17;
+LONGEQ;2026-05-18;2026-05-18 / 08:15 - Monday
+LONGEQ;2026-05-18;
+LONGEQ;2026-05-18;Recs:
+LONGEQ;2026-05-18;ANET - Arista Networks (AI datacenter networking demand continuing to accelerate)
+LONGEQ;2026-05-18;RTX - RTX Corporation (global missile-defense and aerospace spending remain elevated)
+LONGEQ;2026-05-18;MRVL - Marvell Technology (custom AI silicon and cloud connectivity momentum strong)
+LONGEQ;2026-05-18;ETN - Eaton (electrical infrastructure demand rising from power-grid expansion)
+LONGEQ;2026-05-18;CYBR - CyberArk (identity-security demand increasing after new cyber threat escalation)
+LONGEQ;2026-05-18;
+LONGEQ;2026-05-18;Produce daily short-term EQ trade recommendations
+LONGEQ;2026-05-18;
+LONGEQ;2026-05-19;2026-05-19 / 08:15 - Tuesday
+LONGEQ;2026-05-19;
+LONGEQ;2026-05-19;Recs:
+LONGEQ;2026-05-19;NBIS - Nebius Group (AI infrastructure and GPU-cloud demand momentum strengthening)
+LONGEQ;2026-05-19;HWM - Howmet Aerospace (commercial aerospace production and defense demand remain strong)
+LONGEQ;2026-05-19;ALAB - Astera Labs (AI datacenter connectivity and scaling demand accelerating)
+LONGEQ;2026-05-19;OKLO - Oklo (nuclear-energy interest rising on AI power consumption themes)
+LONGEQ;2026-05-19;FTNT - Fortinet (cybersecurity spending supported by increased global threat activity)
+LONGEQ;2026-05-19;
+LONGEQ;2026-05-19;This task has been paused because updates haven't been viewed in a while. You can resume it in automations settings or by asking ChatGPT.
+LONGEQ;2026-05-19;Resume task
+LONGEQ;2026-05-19;Resumed.
+LONGEQ;2026-05-19;Daily 3:30 pm·Produce daily short-term EQ trade recommendations
+LONGEQ;2026-05-19;ChatGPT
+LONGEQ;2026-05-19;
+LONGEQ;2026-05-19;Done.
+LONGEQ;2026-05-19;
