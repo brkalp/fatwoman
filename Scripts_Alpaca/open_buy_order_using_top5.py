@@ -12,6 +12,7 @@ from alpaca.trading.client import TradingClient
 from alpaca.trading.enums import OrderSide, TimeInForce
 from alpaca.trading.requests import MarketOrderRequest
 
+# %% SHORTS
 PAPER = True
 trading_client = TradingClient(API_KEY, API_SECRET, paper=PAPER)
 trading_client.close_all_positions()
@@ -42,6 +43,7 @@ for TICKER in TICKERS:
         print(f"An error occurred while placing the buy order for {TICKER}: {e}")
         logging.error(f"An error occurred while placing the buy order for {TICKER}: {e}")
 
+# %% LONGS
 script_end_log()
 
 # def place_sell_order():

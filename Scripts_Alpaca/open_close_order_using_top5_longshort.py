@@ -18,6 +18,32 @@ TICKER_LOC = os.path.join(LLM_data_path, "LLM_v0_Adviser_for_top5_short_latest_r
 TICKERS = [ticker.split()[0] for ticker in pd.read_csv(TICKER_LOC, header=None).values[0]]
 
 
+#%% SHORTS
+for TICKER in TICKERS: 
+    print(f"Attempting {TICKER}")
+    try:
+        trading_client.close_position(TICKER)
+        print(f"Close order succesfully submitted for {TICKER}")
+        logging.info(f"Close order succesfully submitted for {TICKER}")
+    #     position = trading_client.get_open_position(TICKER)
+    #     qty = position.qty
+    #     buy_order = MarketOrderRequest(
+    #         symbol=TICKER,
+    #         qty=qty,
+    #         side=OrderSide.SELL,
+    #         time_in_force=TimeInForce.DAY,
+    #     )
+    #     submitted_order = trading_client.submit_order(order_data=buy_order)
+    except Exception as e:
+        print(f"An error occurred while placing the close order for {TICKER}: {e}")
+        logging.error(f"An error occurred while placing the close order for {TICKER}: {e}")
+#%% LONGS
+PAPER = True
+trading_client = TradingClient(API_KEY, API_SECRET, paper=PAPER)
+TICKER_LOC = os.path.join(LLM_data_path, "LLM_v0_Adviser_for_top5_latest_response.txt")
+TICKERS = [ticker.split()[0] for ticker in pd.read_csv(TICKER_LOC, header=None).values[0]]
+
+
 # trading_client.close_all_positions()
 
 for TICKER in TICKERS: 
@@ -39,6 +65,7 @@ for TICKER in TICKERS:
         print(f"An error occurred while placing the sell order for {TICKER}: {e}")
         logging.error(f"An error occurred while placing the sell order for {TICKER}: {e}")
 
+trading_client.close_all_positions()
 script_end_log()
 
 # def place_sell_order():

@@ -32,7 +32,7 @@ sys.excepthook = _tracehook
 def flow_top5_short(date:str="2025-10-16"):
     #logging.info("Starting POC trading flow... %s" % date)
     df_headlines = get_entry_summaries(date)
-    prompt = (""" Please provide me with 5 best stocks to sell based on news of today. I will sell these if they are in my portfolio, buy them back at the end of day. here are the headlines: %s """ %df_headlines)
+    prompt = (""" Please provide me with 5 stocks that are most likely to decrease in value today, use todays news. I will sell these if they are in my portfolio, buy them back at the end of day. here are the headlines: %s """ %df_headlines)
     trader = consulter_LLM(name = 'v0_Adviser_for_top5_short')
     response = trader.work(prompt)  
     # logging.basicConfig(level=logging.INFO)
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     #     t.join()
 
     if notify_users:   
-        tg_bot.notify_listeners(f"--{date}'s short report--" + '\n'.join(analysis)) # send messages to telegram chat
+        tg_bot.notify_listeners(f"--{date}'s short list:" + '\n'.join(top5_tickers)) # send messages to telegram chat
 
 
     script_end_log()

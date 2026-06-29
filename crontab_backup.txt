@@ -29,19 +29,29 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 
 # Daily activities
 0 3 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDaily'
-#45 15 * * 1-5   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBD'
-#45 21 * * 1-6   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBDEOD'
-45 9  * * 1-5   TZ=America/New_York /bin/bash -c 'source '$WRAPPER' && runBatchLLMBD'
-30 15 * * 1-6   TZ=America/New_York /bin/bash -c 'source '$WRAPPER' && runBatchLLMBDEOD'
-# Seal
-45 9  * * 1-5   TZ=America/New_York /bin/bash -c 'source '$WRAPPER' && runLLMFullFlowEntry'
-30 15 * * 1-5   TZ=America/New_York /bin/bash -c 'source '$WRAPPER' && runLLMFullFlowExit'
 # other daily
 15 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning1' 
 43 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning2' 
 58 20 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEvening' 
 25 23 * * * /bin/bash -c 'source '$WRAPPER' && runBatchEOD' >> $LOG_DIR'Batch_EOD.log' 2>&1
 30 23 * * 1-5 /bin/bash -c 'source '$WRAPPER' && runBatchBusinessDays'
+
+# LLM
+45 15 * * 1-5   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBD'
+30 21 * * 1-6   /bin/bash -c 'source '$WRAPPER' && runBatchLLMBDEOD'
+# Seal
+45 15 * * 1-5   /bin/bash -c 'source '$WRAPPER' && runLLMFullFlowEntry'
+30 21 * * 1-5   /bin/bash -c 'source '$WRAPPER' && runLLMFullFlowExit'
+
+
+#Period	Difference	09:45 New York runs at Stockholm
+#Jan 1 - Mar 7	 +6 h	15:45
+#Mar 8 - Mar 28	 +5 h	14:45
+#Mar 29 - Oct 24 +6 h   15:45
+#Oct 25 - Nov 1	 +5 h	14:45
+#Nov 2 - Dec 31	 +6 h	15:45
+
+
 
 # >> $LOG_DIR'Batch_Hourly.log' 2>&1
 # >> $LOG_DIR'Batch_Morning.log' 2>&1

@@ -16,6 +16,7 @@ from alpaca.trading.requests import MarketOrderRequest
 
 PAPER = True
 trading_client = TradingClient(API_KEY, API_SECRET, paper=PAPER)
+
 TICKER_LOC = os.path.join(LLM_data_path, "LLM_v0_Adviser_for_top5_latest_response.txt")
 # TICKERS = [ticker.split()[0] for ticker in pd.read_csv(TICKER_LOC, header=None).values[0]]
 files = [str(f) for f in Path(TICKER_LOC).parent.glob("*summarizer*.txt")]
