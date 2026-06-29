@@ -57,7 +57,7 @@ for TICKER in TICKERS:
 #%% LONGS
 PAPER = True
 trading_client = TradingClient(API_KEY, API_SECRET, paper=PAPER)
-trading_client.close_all_positions()
+# trading_client.close_all_positions()
 TICKER_LOC = os.path.join(LLM_data_path, "LLM_v0_Adviser_for_top5_latest_response.txt")
 TICKERS = [ticker.split()[0] for ticker in pd.read_csv(TICKER_LOC, header=None).values[0]]
 
