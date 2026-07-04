@@ -33,6 +33,9 @@ if socket.gethostname() == 'LAPTOP-0B0HOMKE':
 if 'fatwoman_base_path' not in locals(): print('Data paths not defined for this machine!')
 fatwoman_log_path = os.path.join(fatwoman_data_path, 'logs')
 
+# Polymarket users
+Polymarket_users_data_path = os.path.join(fatwoman_data_path, 'Scripts_Polymarket_Users')
+
 # LLM
 LLM_data_path               = os.path.join(fatwoman_data_path, 'Scripts_LLM_trader')
 LLM_data_path_finnhub_file  = os.path.join(LLM_data_path, 'news_FinnHub.csv')

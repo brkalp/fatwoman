@@ -29,6 +29,7 @@ WRAPPER="/media/fatwoman/15GB/fatwoman_wrapper.sh"
 
 # Daily activities
 0 3 * * *   /bin/bash -c 'source '$WRAPPER' && runBatchDaily'
+0 4 * * *   /bin/bash -c 'source '$WRAPPER' && runPolymarketDiscover'
 # other daily
 15 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning1' 
 43 8 * * *  /bin/bash -c 'source '$WRAPPER' && runBatchMorning2' 

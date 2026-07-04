@@ -87,6 +87,9 @@ runAlpaca_Tend_sell()   { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/open_close_
 runAlpaca_pnl_report()  { /usr/bin/python3 ${BASE_DIR}Scripts_Alpaca/get_alpaca_pnl.py;}
 runLLM_Archiver()       { /usr/bin/python3 ${BASE_DIR}Scripts_LLM_trader/archive_llm_results.py;} # RUNS AT EOD
 
+# Polymarket
+runPolymarketDiscover()   { /usr/bin/python3 ${BASE_DIR}Scripts_Polymarket_Users/discover_daily_top_traders.py; }
+
 # Seal # LLM Full Flow (alpaca-ai-trader)
 LLM_FULL_FLOW_DIR="${BASE_DIR}Scripts_LLM_taariq/alpaca-ai-trader"
 # runLLMFullFlowEntry()  { cd $LLM_FULL_FLOW_DIR && .venv/bin/python scripts/run_research_entry.py --execute >> $LOG_DIR"llm_full_flow_entry.log" 2>&1; }
