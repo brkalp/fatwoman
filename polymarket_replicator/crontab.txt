@@ -1,0 +1,17 @@
+# Polymarket replicator - cron entries (UTC).
+# Merge into your crontab (crontab -e) and fix PROJ to the checkout path,
+# or wire the run_*.sh calls into fatwoman_wrapper.sh like the other jobs.
+PROJ=/media/fatwoman/15GB/polymarket_replicator
+
+# steps 1-3: daily refresh of user universe + portfolio list (single entry)
+20 5 * * *  /bin/bash "$PROJ/run_daily.sh"  >> "$PROJ/logs/cron_daily.log" 2>&1
+
+# steps 4-5(+6): hourly signal generation + trade execution + pnl report
+7 * * * *   /bin/bash "$PROJ/run_hourly.sh" >> "$PROJ/logs/cron_hourly.log" 2>&1
+
+# backtester: weekly, monday morning, on current selection logic
+40 6 * * 1  /bin/bash "$PROJ/run_weekly_backtest.sh" >> "$PROJ/logs/cron_backtest.log" 2>&1
+
+# claude maintenance: nightly - reads logs + /tasks, fixes bugs, tests in
+# paper mode, maintains CHANGELOG.md / strategy files, leaves notes
+45 22 * * * /bin/bash "$PROJ/run_claude.sh" >> "$PROJ/logs/cron_claude.log" 2>&1

@@ -1,0 +1,42 @@
+{
+  "mode": "paper",
+  "mock_api": false,
+  "universe": {
+    "top_markets_per_category": 10,
+    "top_events": 100,
+    "holders_per_market": 100,
+    "max_users_per_category": 150
+  },
+  "selection": {
+    "users_per_category": 3,
+    "min_account_size": 10000,
+    "min_trades_30d": 10,
+    "min_accuracy": 0.55,
+    "max_drawdown": 0.35,
+    "min_total_pnl_30d": 0
+  },
+  "portfolio": {
+    "account_equity": 10000,
+    "category_allocation": {
+      "Politics": 0.20, "Finance": 0.15, "Crypto": 0.15, "Sports": 0.15,
+      "Tech": 0.10, "Culture": 0.10, "Geopolitics": 0.15
+    },
+    "max_position_per_market": 500,
+    "min_ticket_usdc": 10
+  },
+  "signal": {
+    "lookback_minutes": 75
+  },
+  "execution": {
+    "order_type": "limit",
+    "time_in_force": "DAY",
+    "limit_slippage_bps": 80,
+    "max_orders_per_hour": 20,
+    "max_total_notional": 8000,
+    "max_category_notional": 2500,
+    "dry_run": false
+  },
+  "backtest": {
+    "weeks": 8
+  }
+}
