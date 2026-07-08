@@ -7,19 +7,23 @@ selected cohort's forward one-week returns.
 
 Produces:
 - the "Top Polymarket Index": cumulative performance of the strategy's
-  selected cohort, plus bucketed performance of all universe traders
-  (accuracy quartiles, account-size buckets),
-- bt_index_YYYYMMDD_xx.csv with the weekly index series,
-- bt_report_YYYYMMDD_xx.html: strategy overview, index chart, constituents
-  and key metrics (drawdown, pnl per category, best/worst week).
+  selected cohort, benchmarked against the equal-weight universe (the
+  difference is the selection edge - if it isn't positive, the selection
+  logic adds nothing over just copying everyone),
+- constituent turnover per rebalance,
+- bucketed performance of all universe traders (accuracy quartiles,
+  account-size buckets),
+- bt_index_YYYYMMDD_xx.csv   weekly series (index, benchmark, edge, turnover)
+- bt_metrics_YYYYMMDD_xx.csv one-row summary for tracking across versions
+- bt_report_YYYYMMDD_xx.html strategy overview, chart, constituents, config
 
 Bias notes: selection metrics only use data stamped <= as_of (no lookahead);
 the holder snapshot is current-day, so a survivorship caveat remains and is
 printed in the report.
 """
 import _bootstrap  # noqa: F401
-import argparse
 import html
+import json
 import logging
 from datetime import datetime, timedelta, timezone
 
@@ -29,6 +33,7 @@ import s01_user_fetch
 import s02_user_data_fetch
 import s03_select_users
 import s04_signal_generation
+from core.cli import make_parser
 from core.config import load_config
 from core.io_utils import build_path, day_stamp, read_csv, write_csv
 from core.paths import CHANGELOG_PATH
@@ -37,9 +42,8 @@ from core.versioning import get_version, strategy_file
 
 
 def parse_args(argv=None):
-    p = argparse.ArgumentParser(description=__doc__)
+    p = make_parser(__doc__)
     p.add_argument("--weeks", type=int, help="number of weekly rebalances")
-    p.add_argument("--mock", action="store_true")
     return p.parse_args(argv)
 
 
@@ -78,15 +82,18 @@ def run(args):
     weeks = args.weeks or cfg["backtest"]["weeks"]
     mock_flag = bool(cfg.get("mock_api"))
 
-    now = datetime.now(timezone.utc).replace(hour=12, minute=0, second=0, microsecond=0)
+    now = datetime.now(timezone.utc).replace(hour=12, minute=0, second=0,
+                                             microsecond=0)
     rebalances = [now - timedelta(days=7 * (weeks - i)) for i in range(weeks)]
-    logging.info("backtesting %d weekly rebalances: %s .. %s (mock=%s)",
-                 weeks, rebalances[0].date(), rebalances[-1].date(), mock_flag)
+    logging.info("backtesting %d weekly rebalances: %s .. %s (mock=%s, v%s)",
+                 weeks, rebalances[0].date(), rebalances[-1].date(), mock_flag,
+                 get_version())
 
     index_rows, bucket_frames = [], []
     last_selected, last_universe = pd.DataFrame(), pd.DataFrame()
+    prev_wallets: set = set()
     cat_cum = {}
-    level = 100.0
+    level, bench_level = 100.0, 100.0
 
     for reb in rebalances:
         day = reb.strftime("%Y%m%d")
@@ -110,23 +117,41 @@ def run(args):
             except Exception as exc:  # noqa: BLE001
                 logging.error("weekly return failed for %s: %s", w, exc)
 
+        # strategy return: category-allocation and user-weight weighted
         port_ret = 0.0
         alloc = cfg["portfolio"]["category_allocation"]
-        alloc_total = sum(alloc.get(c, 0.1) for c in selected["category"].unique()) or 1
+        alloc_total = sum(alloc.get(c, 0.1)
+                          for c in selected["category"].unique()) or 1
         for r in selected.itertuples():
             port_ret += (alloc.get(r.category, 0.1) / alloc_total) * r.weight \
                         * returns.get(r.proxy_wallet, 0.0)
             cat_cum[r.category] = (cat_cum.get(r.category, 0.0)
                                    + r.weight * returns.get(r.proxy_wallet, 0.0))
+
+        # benchmark: equal-weight average of the whole available universe
+        bench_ret = (sum(returns.values()) / len(returns)) if returns else 0.0
         level *= (1 + port_ret)
+        bench_level *= (1 + bench_ret)
+
+        wallets = set(selected["proxy_wallet"])
+        turnover = (1 - len(wallets & prev_wallets) / len(wallets)
+                    if wallets and prev_wallets else 0.0)
+        prev_wallets = wallets
+
         index_rows.append({"week_start": reb.date().isoformat(),
                            "n_universe": universe["proxy_wallet"].nunique(),
                            "n_selected": len(selected),
                            "n_signals_at_rebalance": n_signals,
                            "weekly_return": round(port_ret, 5),
-                           "index_level": round(level, 3)})
-        logging.info("week %s: %d selected, ret %+.2f%%, index %.2f",
-                     day, len(selected), port_ret * 100, level)
+                           "universe_return": round(bench_ret, 5),
+                           "selection_edge": round(port_ret - bench_ret, 5),
+                           "turnover": round(turnover, 3),
+                           "index_level": round(level, 3),
+                           "universe_level": round(bench_level, 3)})
+        logging.info("week %s: %d selected, strat %+.2f%% vs universe %+.2f%% "
+                     "(edge %+.2f%%), turnover %.0f%%, index %.2f",
+                     day, len(selected), port_ret * 100, bench_ret * 100,
+                     (port_ret - bench_ret) * 100, turnover * 100, level)
 
         bucket_frames.append(_bucket_table(universe, returns))
         last_selected, last_universe = selected, universe
@@ -136,52 +161,91 @@ def run(args):
                                                 observed=True)
                .mean().round(5).reset_index()) if bucket_frames else pd.DataFrame()
 
+    metrics = _metrics(index_df)
+    for k, v in metrics.items():
+        logging.info("metric %-22s: %s", k, v)
+
     stamp = day_stamp()
     write_csv(index_df, build_path("bt_index", stamp, backtest=True))
+    write_csv(pd.DataFrame([{"run_date": stamp, "version": get_version(),
+                             "weeks": weeks, **metrics}]),
+              build_path("bt_metrics", stamp, backtest=True))
     report_path = build_path("bt_report", stamp, backtest=True, ext="html")
     report_path.write_text(_render_html(cfg, index_df, buckets, last_selected,
-                                        last_universe, cat_cum))
+                                        last_universe, cat_cum, metrics))
     logging.info("backtest report written: %s", report_path)
-    logging.info("index: total return %+.2f%%, max drawdown %.2f%%",
-                 level - 100, _index_drawdown(index_df) * 100)
     return report_path
 
 
-def _index_drawdown(index_df) -> float:
+def _metrics(index_df: pd.DataFrame) -> dict:
+    if index_df.empty:
+        return {}
+    rets = index_df["weekly_return"]
+    vol = float(rets.std(ddof=0))
+    return {
+        "total_return_pct": round(float(index_df["index_level"].iloc[-1]) - 100, 2),
+        "universe_return_pct": round(float(index_df["universe_level"].iloc[-1]) - 100, 2),
+        "cum_selection_edge_pct": round(float(index_df["selection_edge"].sum()) * 100, 2),
+        "max_drawdown_pct": round(_drawdown(index_df["index_level"]) * 100, 2),
+        "weekly_vol_pct": round(vol * 100, 2),
+        "sharpe_annualized": round(float(rets.mean()) / vol * (52 ** 0.5), 2) if vol else None,
+        "hit_rate": round(float((rets > 0).mean()), 2),
+        "avg_turnover": round(float(index_df["turnover"].mean()), 3),
+        "best_week_pct": round(float(rets.max()) * 100, 2),
+        "worst_week_pct": round(float(rets.min()) * 100, 2),
+    }
+
+
+def _drawdown(levels) -> float:
     peak, worst = -1e9, 0.0
-    for lvl in index_df["index_level"]:
+    for lvl in levels:
         peak = max(peak, lvl)
         worst = max(worst, (peak - lvl) / peak)
     return round(worst, 4)
 
 
-def _svg_chart(index_df, width=720, height=220) -> str:
-    levels = list(index_df["index_level"])
-    if len(levels) < 2:
+def _svg_chart(index_df, width=720, height=240) -> str:
+    strat = list(index_df["index_level"])
+    bench = list(index_df["universe_level"])
+    if len(strat) < 2:
         return "<p>not enough data for a chart</p>"
-    lo, hi = min(levels), max(levels)
+    lo = min(strat + bench)
+    hi = max(strat + bench)
     span = (hi - lo) or 1
-    pts = " ".join(
-        f"{20 + i * (width - 40) / (len(levels) - 1):.1f},"
-        f"{height - 20 - (v - lo) / span * (height - 40):.1f}"
-        for i, v in enumerate(levels))
+
+    def line(vals):
+        return " ".join(
+            f"{20 + i * (width - 40) / (len(vals) - 1):.1f},"
+            f"{height - 20 - (v - lo) / span * (height - 40):.1f}"
+            for i, v in enumerate(vals))
+
     return (f'<svg width="{width}" height="{height}" '
             f'style="background:#fafafa;border:1px solid #ddd">'
-            f'<polyline points="{pts}" fill="none" stroke="#2c7be5" stroke-width="2"/>'
-            f'<text x="20" y="16" font-size="12">Top Polymarket Index '
-            f'({levels[0]:.1f} → {levels[-1]:.1f})</text></svg>')
+            f'<polyline points="{line(bench)}" fill="none" stroke="#999" '
+            f'stroke-width="1.5" stroke-dasharray="5,4"/>'
+            f'<polyline points="{line(strat)}" fill="none" stroke="#2c7be5" '
+            f'stroke-width="2"/>'
+            f'<text x="20" y="16" font-size="12" fill="#2c7be5">Top Polymarket '
+            f'Index {strat[0]:.1f} → {strat[-1]:.1f}</text>'
+            f'<text x="320" y="16" font-size="12" fill="#777">universe '
+            f'equal-weight {bench[0]:.1f} → {bench[-1]:.1f}</text></svg>')
 
 
-def _render_html(cfg, index_df, buckets, selected, universe, cat_cum) -> str:
+def _render_html(cfg, index_df, buckets, selected, universe, cat_cum,
+                 metrics) -> str:
     def table(df):
         return df.to_html(index=False, border=0) if len(df) else "<p>empty</p>"
 
     strat = strategy_file()
     strat_txt = strat.read_text() if strat.exists() else "(no strategy file)"
-    changelog_head = "\n".join(CHANGELOG_PATH.read_text().splitlines()[:20])
-    total_ret = index_df["index_level"].iloc[-1] - 100 if len(index_df) else 0
+    changelog_head = "\n".join(CHANGELOG_PATH.read_text().splitlines()[:25])
+    metric_rows = "".join(f"<tr><th>{html.escape(str(k))}</th><td>{v}</td></tr>"
+                          for k, v in metrics.items())
     cat_rows = "".join(f"<tr><td>{html.escape(c)}</td><td>{v * 100:+.2f}%</td></tr>"
                        for c, v in sorted(cat_cum.items()))
+    cfg_snapshot = json.dumps({k: cfg[k] for k in
+                               ("selection", "portfolio", "execution", "universe")},
+                              indent=1)
     return f"""<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>Backtest report v{get_version()}</title>
 <style>body{{font-family:sans-serif;margin:2em;max-width:960px}}
@@ -191,18 +255,13 @@ th{{background:#eee}} pre{{background:#f6f6f6;padding:1em;overflow-x:auto}}</sty
 </head><body>
 <h1>Top Polymarket traders - backtest report (strategy v{get_version()})</h1>
 <p>Generated {datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC.
-Weekly backtest of steps 1-4 on the current selection logic.</p>
+Weekly backtest of steps 1-4 on the current selection logic, benchmarked
+against the equal-weight universe.</p>
 
 <h2>Key metrics</h2>
-<table>
-<tr><th>total return</th><td>{total_ret:+.2f}%</td></tr>
-<tr><th>max drawdown</th><td>{_index_drawdown(index_df) * 100:.2f}%</td></tr>
-<tr><th>best week</th><td>{index_df['weekly_return'].max() * 100:+.2f}%</td></tr>
-<tr><th>worst week</th><td>{index_df['weekly_return'].min() * 100:+.2f}%</td></tr>
-<tr><th>weeks</th><td>{len(index_df)}</td></tr>
-</table>
+<table>{metric_rows}</table>
 
-<h2>Top Polymarket Index</h2>
+<h2>Top Polymarket Index vs universe</h2>
 {_svg_chart(index_df)}
 {table(index_df)}
 
@@ -216,6 +275,9 @@ Weekly backtest of steps 1-4 on the current selection logic.</p>
 {table(selected[['category', 'user_name', 'proxy_wallet', 'account_size',
                  'accuracy', 'max_drawdown', 'total_pnl_30d', 'score', 'weight']]
        if len(selected) else selected)}
+
+<h2>Config snapshot</h2>
+<pre>{html.escape(cfg_snapshot)}</pre>
 
 <h2>Strategy</h2>
 <pre>{html.escape(strat_txt)}</pre>

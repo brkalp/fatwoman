@@ -13,12 +13,11 @@ caveat - logged on every backtest run.
 Output: 01_polymarket_top_users_by_category_YYYYMMDD_xx.csv
 """
 import _bootstrap  # noqa: F401
-import argparse
 import logging
-from datetime import datetime, timezone
 
 import pandas as pd
 
+from core.cli import make_parser, parse_as_of
 from core.config import load_config
 from core.io_utils import build_path, day_stamp, write_csv
 from core.polymarket_api import CATEGORIES, get_api
@@ -27,19 +26,14 @@ PREFIX = "01_polymarket_top_users_by_category"
 
 
 def parse_args(argv=None):
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--backtest", action="store_true")
-    p.add_argument("--as-of", help="YYYYMMDD historical date for backtesting")
-    p.add_argument("--mock", action="store_true", help="force offline mock api")
-    return p.parse_args(argv)
+    return make_parser(__doc__).parse_args(argv)
 
 
 def run(args):
     cfg = load_config()
     if args.mock:
         cfg["mock_api"] = True
-    as_of = (datetime.strptime(args.as_of, "%Y%m%d").replace(tzinfo=timezone.utc)
-             if args.as_of else None)
+    as_of = parse_as_of(args.as_of)
     api = get_api(cfg, as_of=as_of)
     uni = cfg["universe"]
 
@@ -84,7 +78,12 @@ def run(args):
 
     out = build_path(PREFIX, day_stamp(as_of), backtest=args.backtest)
     write_csv(df, out)
-    logging.info("universe users: %d unique wallets", df["proxy_wallet"].nunique())
+    for cat, g in df.groupby("category"):
+        logging.info("universe %-12s: %3d markets, %4d wallets, "
+                     "top holding %10.0f usdc", cat, g["condition_id"].nunique(),
+                     g["proxy_wallet"].nunique(), g["holding_usdc"].max())
+    logging.info("universe total: %d unique wallets across %d markets",
+                 df["proxy_wallet"].nunique(), df["condition_id"].nunique())
     return out
 
 

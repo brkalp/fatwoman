@@ -9,12 +9,11 @@ keep API load sane.
 Output: 02_user_data_YYYYMMDD_xx.csv
 """
 import _bootstrap  # noqa: F401
-import argparse
 import logging
-from datetime import datetime, timezone
 
 import pandas as pd
 
+from core.cli import make_parser, parse_as_of
 from core.config import load_config
 from core.io_utils import build_path, day_stamp, latest_file, read_csv, write_csv
 from core.metrics import max_drawdown, total
@@ -24,20 +23,14 @@ PREFIX = "02_user_data"
 
 
 def parse_args(argv=None):
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--backtest", action="store_true")
-    p.add_argument("--as-of", help="YYYYMMDD historical date for backtesting")
-    p.add_argument("--mock", action="store_true")
-    p.add_argument("--input", help="explicit step-1 csv (default: latest)")
-    return p.parse_args(argv)
+    return make_parser(__doc__).parse_args(argv)
 
 
 def run(args):
     cfg = load_config()
     if args.mock:
         cfg["mock_api"] = True
-    as_of = (datetime.strptime(args.as_of, "%Y%m%d").replace(tzinfo=timezone.utc)
-             if args.as_of else None)
+    as_of = parse_as_of(args.as_of)
     api = get_api(cfg, as_of=as_of)
 
     src = args.input or latest_file("01_polymarket_top_users_by_category",
@@ -52,6 +45,8 @@ def run(args):
                    .drop_duplicates("proxy_wallet"))
     cap = cfg["universe"]["max_users_per_category"]
     per_user = per_user.groupby("category").head(cap)
+    logging.info("%d universe rows -> %d unique users -> %d after top-%d/category cap",
+                 len(uni), uni["proxy_wallet"].nunique(), len(per_user), cap)
 
     rows = []
     for _, u in per_user.iterrows():
@@ -76,8 +71,18 @@ def run(args):
     df = pd.DataFrame(rows)
     out = build_path(PREFIX, day_stamp(as_of), backtest=args.backtest)
     write_csv(df, out)
-    logging.info("user data fetched for %d users in %d categories",
-                 len(df), df["category"].nunique() if len(df) else 0)
+    if len(df):
+        logging.info("user data: %d users, %d categories | median account %.0f, "
+                     "mean accuracy %.2f, median 30d pnl %.0f, median trades %d",
+                     len(df), df["category"].nunique(),
+                     df["account_size"].median(), df["accuracy"].mean(),
+                     df["total_pnl_30d"].median(), df["n_trades_30d"].median())
+        failed = len(per_user) - len(df)
+        if failed:
+            logging.warning("account fetch failed for %d/%d users", failed,
+                            len(per_user))
+    else:
+        logging.error("user data fetch produced 0 rows")
     return out
 
 

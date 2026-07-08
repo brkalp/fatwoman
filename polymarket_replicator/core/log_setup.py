@@ -36,7 +36,8 @@ def configure_logging():
     root._polyflow_configured = True
     root.setLevel(logging.INFO)
 
-    fname = LOG_DIR / f"{PROJECT_TAG}_{datetime.datetime.utcnow():%Y%m%d}.txt"
+    fname = LOG_DIR / (f"{PROJECT_TAG}_"
+                       f"{datetime.datetime.now(datetime.timezone.utc):%Y%m%d}.txt")
     formatter = logging.Formatter(
         "%(asctime)s - %(script)22s - %(levelname)7s - %(message)s",
         datefmt="%y%m%d %H:%M:%S",
@@ -50,7 +51,9 @@ def configure_logging():
 
     script = os.path.basename(sys.argv[0] or "interactive").replace(".py", "")
     t0 = time.time()
-    if script.startswith(("s0", "backtester", "claude")):
+    # claude_note is excluded: its single note line should not be drowned in
+    # RUN START/END banners
+    if script.startswith(("s0", "backtester")):
         from .versioning import get_version
 
         logging.info("=== RUN START %s (strategy v%s) ===", script, get_version())

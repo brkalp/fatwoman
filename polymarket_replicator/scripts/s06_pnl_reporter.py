@@ -12,11 +12,11 @@ Sends the summary to the *pnl* telegram channel (separate from trades) and
 writes 06_report_YYYYMMDDHHMM_xx.csv in long (section,key,value) format.
 """
 import _bootstrap  # noqa: F401
-import argparse
 import logging
 
 import pandas as pd
 
+from core.cli import make_parser
 from core.config import load_config
 from core.io_utils import (build_path, data_dir, load_state, minute_stamp,
                            read_csv, write_csv)
@@ -27,9 +27,7 @@ PREFIX = "06_report"
 
 
 def parse_args(argv=None):
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--mock", action="store_true")
-    return p.parse_args(argv)
+    return make_parser(__doc__).parse_args(argv)
 
 
 def _todays_files(prefix, stamp):
@@ -61,13 +59,37 @@ def run(args):
     logging.info("--- positions (actual vs expected from today's plans) ---")
     for cond in sorted(set(account["positions"]) | set(expected)):
         pos = account["positions"].get(cond)
-        actual = round(pos["shares"] * prices.get(cond, pos["avg_price"]), 2) if pos else 0.0
+        px = prices.get(cond, (pos or {}).get("avg_price", 0.0))
+        actual = round(pos["shares"] * px, 2) if pos else 0.0
+        upnl = round(pos["shares"] * (px - pos["avg_price"]), 2) if pos else 0.0
         exp = round(max(expected.get(cond, 0.0), 0.0), 2)
+        if actual == 0.0 and exp == 0.0:
+            continue  # e.g. sell signals that never had a position - noise
         name = (pos or {}).get("question", cond[:16])
-        logging.info("pos %-45s actual %8.2f expected %8.2f diff %8.2f",
-                     str(name)[:45], actual, exp, actual - exp)
+        logging.info("pos %-45s actual %8.2f expected %8.2f diff %8.2f upnl %+8.2f",
+                     str(name)[:45], actual, exp, actual - exp, upnl)
         rows.append({"section": "positions", "key": str(name)[:60],
                      "value": actual, "expected": exp})
+
+    # --- consistency: per-user copy ledger must aggregate to the account ---
+    copied = load_state("copied_positions", {})
+    ledger = {}
+    for _, positions in copied.items():
+        for cond, cp in positions.items():
+            ledger[cond] = ledger.get(cond, 0.0) + cp.get("shares", 0.0)
+    drift = 0
+    for cond in sorted(set(ledger) | set(account["positions"])):
+        a = account["positions"].get(cond, {}).get("shares", 0.0)
+        c = ledger.get(cond, 0.0)
+        if abs(a - c) > 0.01:
+            drift += 1
+            logging.warning("consistency drift %s: account %.2f sh vs copy "
+                            "ledger %.2f sh", cond[:16], a, c)
+            rows.append({"section": "consistency", "key": cond[:16],
+                         "value": round(a, 2), "expected": round(c, 2)})
+    if not drift:
+        logging.info("consistency ok: copy ledger matches account positions "
+                     "(%d markets)", len(account["positions"]))
 
     # --- open orders -------------------------------------------------------
     for o in account["open_orders"]:

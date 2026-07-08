@@ -12,12 +12,11 @@ weight within a category is proportional to score.
 Output: 03_selected_user_list_YYYYMMDD_xx.csv
 """
 import _bootstrap  # noqa: F401
-import argparse
 import logging
-from datetime import datetime, timezone
 
 import pandas as pd
 
+from core.cli import make_parser, parse_as_of
 from core.config import load_config
 from core.io_utils import build_path, day_stamp, latest_file, read_csv, write_csv
 
@@ -25,12 +24,7 @@ PREFIX = "03_selected_user_list"
 
 
 def parse_args(argv=None):
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--backtest", action="store_true")
-    p.add_argument("--as-of", help="YYYYMMDD stamp used for the output file")
-    p.add_argument("--mock", action="store_true")  # accepted for symmetry
-    p.add_argument("--input", help="explicit step-2 csv (default: latest)")
-    return p.parse_args(argv)
+    return make_parser(__doc__).parse_args(argv)
 
 
 def _norm(series: pd.Series) -> pd.Series:
@@ -41,14 +35,26 @@ def _norm(series: pd.Series) -> pd.Series:
 
 
 def select(df: pd.DataFrame, sel_cfg: dict) -> pd.DataFrame:
-    """Pure selection logic - also reused by the backtester."""
-    mask = (
-        (df["account_size"] >= sel_cfg["min_account_size"])
-        & (df["n_trades_30d"] >= sel_cfg["min_trades_30d"])
-        & (df["accuracy"] >= sel_cfg["min_accuracy"])
-        & (df["max_drawdown"] <= sel_cfg["max_drawdown"])
-        & (df["total_pnl_30d"] >= sel_cfg["min_total_pnl_30d"])
-    )
+    """Pure selection logic - also reused by the backtester. Logs per-filter
+    attrition so 'why did nobody get selected' is answerable from the log."""
+    checks = {
+        f"account_size>={sel_cfg['min_account_size']}":
+            df["account_size"] >= sel_cfg["min_account_size"],
+        f"n_trades_30d>={sel_cfg['min_trades_30d']}":
+            df["n_trades_30d"] >= sel_cfg["min_trades_30d"],
+        f"accuracy>={sel_cfg['min_accuracy']}":
+            df["accuracy"] >= sel_cfg["min_accuracy"],
+        f"max_drawdown<={sel_cfg['max_drawdown']}":
+            df["max_drawdown"] <= sel_cfg["max_drawdown"],
+        f"total_pnl_30d>={sel_cfg['min_total_pnl_30d']}":
+            df["total_pnl_30d"] >= sel_cfg["min_total_pnl_30d"],
+    }
+    mask = pd.Series(True, index=df.index)
+    for name, ok in checks.items():
+        logging.info("filter %-24s: %4d/%4d pass", name, int(ok.sum()), len(df))
+        mask &= ok
+    logging.info("all filters combined      : %4d/%4d candidates remain",
+                 int(mask.sum()), len(df))
     passed = df[mask].copy()
     if passed.empty:
         return passed.assign(score=[], weight=[])
@@ -69,8 +75,7 @@ def select(df: pd.DataFrame, sel_cfg: dict) -> pd.DataFrame:
 
 def run(args):
     cfg = load_config()
-    as_of = (datetime.strptime(args.as_of, "%Y%m%d").replace(tzinfo=timezone.utc)
-             if args.as_of else None)
+    as_of = parse_as_of(args.as_of)
     src = args.input or latest_file("02_user_data", backtest=args.backtest)
     if src is None:
         raise SystemExit("no step-2 user data file found - run s02_user_data_fetch first")

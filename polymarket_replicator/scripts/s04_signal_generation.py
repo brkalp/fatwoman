@@ -16,13 +16,13 @@ Writes two files:
   04_trade_plan_YYYYMMDDHHMM_xx.csv        (our sized, deduped plan)
 """
 import _bootstrap  # noqa: F401
-import argparse
 import hashlib
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
 
 import pandas as pd
 
+from core.cli import make_parser, parse_as_of
 from core.config import load_config
 from core.io_utils import (build_path, latest_file, load_state, minute_stamp,
                            read_csv, write_csv)
@@ -37,11 +37,7 @@ PLAN_COLUMNS = ["signal_id", "ts", "reason", "proxy_wallet", "user_name",
 
 
 def parse_args(argv=None):
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--backtest", action="store_true")
-    p.add_argument("--as-of", help="YYYYMMDDHHMM historical stamp for backtesting")
-    p.add_argument("--mock", action="store_true")
-    return p.parse_args(argv)
+    return make_parser(__doc__).parse_args(argv)
 
 
 def _signal_id(*parts) -> str:
@@ -53,7 +49,7 @@ def _size_signal(trade, user, cfg) -> float:
     alloc = port["category_allocation"].get(user["category"], 0.1)
     copy_fraction = trade["usdc_size"] / max(user["account_size"], 1.0)
     notional = (port["account_equity"] * alloc * user["weight"]
-                * copy_fraction * 100)
+                * copy_fraction * port.get("copy_scale", 100))
     return round(min(notional, port["max_position_per_market"]), 2)
 
 
@@ -61,8 +57,7 @@ def run(args):
     cfg = load_config()
     if args.mock:
         cfg["mock_api"] = True
-    as_of = (datetime.strptime(args.as_of, "%Y%m%d%H%M").replace(tzinfo=timezone.utc)
-             if args.as_of else None)
+    as_of = parse_as_of(args.as_of)
     api = get_api(cfg, as_of=as_of)
     stamp = minute_stamp(as_of)
 
@@ -80,8 +75,11 @@ def run(args):
         logging.info("dedupe against %s (%d signals)", prev_plan_file.name, len(prev_ids))
 
     since = api.now() - timedelta(minutes=cfg["signal"]["lookback_minutes"])
+    logging.info("replication window: %s -> %s (%d min lookback)",
+                 since.strftime("%m-%d %H:%M"), api.now().strftime("%m-%d %H:%M"),
+                 cfg["signal"]["lookback_minutes"])
     raw_trades, plan = [], []
-    skipped_dupes = 0
+    skipped_dupes = skipped_small = 0
 
     for _, user in index_users.iterrows():
         try:
@@ -100,6 +98,7 @@ def run(args):
                 continue
             notional = _size_signal(t, user, cfg)
             if notional < cfg["portfolio"]["min_ticket_usdc"]:
+                skipped_small += 1
                 continue
             plan.append({
                 "signal_id": sid,
@@ -157,8 +156,12 @@ def run(args):
         plan_df = (pd.concat([read_csv(plan_path), plan_df], ignore_index=True)
                      .drop_duplicates("signal_id")[PLAN_COLUMNS])
     write_csv(plan_df, plan_path)
-    logging.info("signals: %d new (%d user trades seen, %d dupes skipped)",
-                 len(plan_df), len(trades_df), skipped_dupes)
+    logging.info("signals: %d in plan (%d user trades seen, %d dupes skipped, "
+                 "%d below min ticket)", len(plan_df), len(trades_df),
+                 skipped_dupes, skipped_small)
+    for reason, grp in plan_df.groupby("reason"):
+        logging.info("plan %-18s: %3d signals, %9.2f usdc notional",
+                     reason, len(grp), grp["my_notional_usdc"].sum())
     return plan_path
 
 

@@ -33,9 +33,9 @@ strategy version read from `CHANGELOG.md` (strategy text in
 | `scripts/s02_user_data_fetch.py` | daily | account size, past trades, daily pnl, drawdown, accuracy per user |
 | `scripts/s03_select_users.py` | daily | **key logic**: filter + score, top N users per category with weights |
 | `scripts/s04_signal_generation.py` | hourly | replicate trades, size positions, dedupe vs latest plan, close users out of the index; labels reasons |
-| `scripts/s05_trade_execution.py` | hourly | limit/day orders, risk caps, HALT file, max orders/hour, dry run, telegram, fills log |
-| `scripts/s06_pnl_reporter.py` | hourly | positions vs expected, open orders, pnl by category → pnl telegram channel; slippage from fills |
-| `scripts/backtester.py` | weekly | backtests 1-4, Top Polymarket Index, bucketed trader performance, html report |
+| `scripts/s05_trade_execution.py` | hourly | limit/day orders (open orders retried hourly), risk caps + cash check, HALT file, max orders/hour, signal expiry, dry run, telegram, fills log |
+| `scripts/s06_pnl_reporter.py` | hourly | positions vs expected, open orders, pnl by category → pnl telegram channel; slippage from fills; copy-ledger consistency check |
+| `scripts/backtester.py` | weekly | backtests 1-4, Top Polymarket Index vs equal-weight universe benchmark (selection edge), turnover, Sharpe/vol/hit-rate, bucketed trader performance, html report + bt_metrics csv |
 | `scripts/claude_note.py` | - | append a claude note into the daily log .txt |
 
 ## Running
@@ -67,8 +67,16 @@ notes in the backtest report).
 - **HALT file**: `touch HALT` in the project root → step 5 refuses to trade
   and pings telegram. Remove the file to resume.
 - **Dry run**: `./run_hourly.sh --dry-run` or `execution.dry_run` in config.
-- **Risk caps**: `execution.max_total_notional`, `max_category_notional`,
-  `max_orders_per_hour`; sizing caps in `portfolio.*`.
+  Dry runs never consume signals - everything stays pending for the next
+  real run. (All scripts accept the same flags, so passing `--dry-run`
+  through the wrapper is safe.)
+- **Risk caps**: `execution.max_total_notional`, `max_category_notional`
+  (open orders reserve budget), `max_orders_per_hour`, cash-constrained
+  buys; sizing caps in `portfolio.*` (`copy_scale` sets replication scale).
+- **Signal lifecycle**: FILLED / OPEN / SKIPPED_NO_POSITION / EXPIRED are
+  final. Rate-capped, risk-capped and no-cash signals stay pending and
+  retry each hour until `execution.signal_max_age_hours`, then expire.
+  Open day orders are retried against the market hourly and die next day.
 - **Logging** is automatic (core package import side effect + sitecustomize;
   scripts only call `logging.info`). One overview .txt per day:
   `logs/project_one_YYYYMMDD.txt` with run start/end times, key info,

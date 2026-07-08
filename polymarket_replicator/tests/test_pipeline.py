@@ -160,9 +160,75 @@ def test_backtester(runtime):
     _run("backtester.py", env, "--weeks", "3")
     idx_files = sorted((home / "data/backtest").glob("bt_index_*.csv"))
     html_files = sorted((home / "data/backtest").glob("bt_report_*.html"))
-    assert idx_files and html_files
+    metric_files = sorted((home / "data/backtest").glob("bt_metrics_*.csv"))
+    assert idx_files and html_files and metric_files
     idx = pd.read_csv(idx_files[-1])
     assert len(idx) == 3
+    assert {"index_level", "universe_level", "selection_edge",
+            "turnover", "universe_return"} <= set(idx.columns)
     assert (idx["index_level"] > 0).all()
+    metrics = pd.read_csv(metric_files[-1])
+    assert {"total_return_pct", "max_drawdown_pct", "sharpe_annualized",
+            "hit_rate", "avg_turnover"} <= set(metrics.columns)
     report = html_files[-1].read_text()
     assert "Top Polymarket Index" in report and "Bias notes" in report
+    assert "universe equal-weight" in report and "Config snapshot" in report
+
+
+# --- execution lifecycle details ---------------------------------------------
+
+def test_open_order_retry_fills_later():
+    sys.path.insert(0, str(PROJ))
+    sys.path.insert(0, str(SCRIPTS))
+    import s05_trade_execution as s05
+    from core.polymarket_api import MockPolymarketAPI
+
+    api = MockPolymarketAPI({"mock_api": True})
+    cond = "0xtestcond"
+    sig = {"signal_id": "sid1", "reason": "user_open_trade",
+           "category": "Politics", "condition_id": cond, "question": "q?",
+           "side": "BUY", "outcome": "Yes", "signal_price": 0.5,
+           "proxy_wallet": "0xw", "user_name": "u"}
+    account = {"cash": 1000.0, "equity_start": 1000.0, "positions": {},
+               "realized_pnl": 0.0, "realized_by_category": {},
+               "open_orders": [{"signal_id": "sid1", "ts": "202601010000",
+                                "side": "BUY", "condition_id": cond,
+                                "limit_price": 0.99, "shares": 100.0,
+                                "category": "Politics", "sig": sig}]}
+    copied, results = {}, []
+    ex = {"order_type": "limit", "time_in_force": "DAY"}
+    s05._retry_open_orders(account, copied, api, ex, "202601010100", results)
+
+    # mock prices never exceed 0.97, so a 0.99 buy limit must fill
+    assert account["open_orders"] == []
+    assert account["positions"][cond]["shares"] == 100.0
+    assert copied["0xw"][cond]["shares"] == 100.0
+    assert results and results[0]["status"] == "FILLED"
+    assert account["cash"] < 1000.0
+
+
+def test_rate_capped_signals_stay_pending(tmp_path):
+    """max_orders_per_hour exhausted -> signals are NOT consumed; the next
+    run (with room again) must execute them."""
+    home = tmp_path / "runtime"
+    strict_cfg = json.loads((PROJ / "config/settings.json").read_text())
+    strict_cfg["execution"]["max_orders_per_hour"] = 0
+    cfg_path = tmp_path / "strict.json"
+    cfg_path.write_text(json.dumps(strict_cfg))
+
+    env = dict(os.environ, POLYFLOW_MOCK="1", POLYFLOW_RUNTIME=str(home),
+               PYTHONPATH=str(PROJ))
+    for script in ("s01_user_fetch.py", "s02_user_data_fetch.py",
+                   "s03_select_users.py", "s04_signal_generation.py"):
+        _run(script, env)
+
+    _run("s05_trade_execution.py", dict(env, POLYFLOW_CONFIG=str(cfg_path)))
+    ex1 = _latest(home, "05_execution")
+    assert (ex1["status"] == "SKIPPED_MAX_ORDERS").all()
+    executed = json.loads((home / "data/state/executed_signals.json").read_text())
+    assert executed == [], "rate-capped signals must stay pending"
+
+    _run("s05_trade_execution.py", env)  # normal limits again
+    ex2 = _latest(home, "05_execution")
+    assert (ex2["status"] == "FILLED").any(), \
+        "pending signals were not retried once the rate cap had room"
