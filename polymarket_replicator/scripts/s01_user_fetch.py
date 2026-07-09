@@ -2,7 +2,10 @@
 
 Fetches a big universe of traders from Polymarket: per category the biggest
 10 markets plus markets of the 100 biggest events, then harvests the top 100
-holders of each market.
+holders of each market. Each row also stores the market's last price and
+volume, so the daily files double as holder + price snapshots for honest
+backtesting later (the backtester prefers these archives over re-deriving
+history from the current-day API).
 
 Backtest mode (--backtest --as-of YYYYMMDD) back-calculates the available
 user set: holders are filtered to wallets that already had activity on or
@@ -59,6 +62,8 @@ def run(args):
                 "category": m["category"],
                 "condition_id": m["condition_id"],
                 "question": m["question"],
+                "last_price": m["last_price"],
+                "volume": m["volume"],
                 "proxy_wallet": h["proxy_wallet"],
                 "user_name": h["user_name"],
                 "holding_usdc": h["holding_usdc"],

@@ -5,17 +5,26 @@ Backtests steps 1-4: for each weekly rebalance date it re-runs user fetch
 selection as-of that date, generates a signal snapshot, then measures the
 selected cohort's forward one-week returns.
 
-Produces:
-- the "Top Polymarket Index": cumulative performance of the strategy's
-  selected cohort, benchmarked against the equal-weight universe (the
-  difference is the selection edge - if it isn't positive, the selection
-  logic adds nothing over just copying everyone),
-- constituent turnover per rebalance,
-- bucketed performance of all universe traders (accuracy quartiles,
-  account-size buckets),
-- bt_index_YYYYMMDD_xx.csv   weekly series (index, benchmark, edge, turnover)
-- bt_metrics_YYYYMMDD_xx.csv one-row summary for tracking across versions
-- bt_report_YYYYMMDD_xx.html strategy overview, chart, constituents, config
+For each rebalance date it first checks whether an archived step-1 daily
+snapshot exists for that date (the live daily runs keep accumulating them,
+holders + prices); if so, the universe comes from the archive - zero
+survivorship bias and no API refetch - and only older dates fall back to
+back-calculation from the current-day API.
+
+Produces three return series:
+- total return of the strategy (category-allocation x user-weight, after
+  steps 3-4): the "Top Polymarket Index",
+- total return of the selected users, equal weight (isolates picking skill
+  from portfolio construction),
+- total return of the whole universe, equal weight (the no-skill baseline;
+  index minus this is the selection edge),
+plus constituent turnover and bucketed performance of all universe traders
+(accuracy quartiles, account-size buckets).
+
+Outputs (stored aside, never executed):
+- 10_backtest_YYYYMMDDHHMM_xx.csv          weekly series
+- 10_backtest_metrics_YYYYMMDDHHMM_xx.csv  one-row summary per run
+- 10_backtest_report_YYYYMMDDHHMM_xx.html  chart, constituents, config
 
 Isolation: a backtest never executes anything - not even paper. Steps 1-4
 only; every output is stored aside in data/backtest/, and the live paper
@@ -48,7 +57,7 @@ import s03_select_users
 import s04_signal_generation
 from core.cli import make_parser
 from core.config import load_config
-from core.io_utils import build_path, day_stamp, read_csv, write_csv
+from core.io_utils import build_path, data_dir, minute_stamp, read_csv, write_csv
 from core.paths import CHANGELOG_PATH
 from core.polymarket_api import get_api
 from core.versioning import get_version, strategy_file
@@ -122,12 +131,21 @@ def run(args):
     last_selected, last_universe = pd.DataFrame(), pd.DataFrame()
     prev_wallets: set = set()
     cat_cum = {}
-    level, bench_level = 100.0, 100.0
+    level, sel_ew_level, bench_level = 100.0, 100.0, 100.0
 
     for reb in rebalances:
         day = reb.strftime("%Y%m%d")
-        f1 = s01_user_fetch.run(_step_args(s01_user_fetch, backtest=True,
-                                           as_of=day, mock=mock_flag))
+        # prefer the archived daily snapshot from the live step-1 runs: real
+        # holders + prices as they were, no survivorship, no API refetch
+        archived = sorted(data_dir(False).glob(
+            f"01_polymarket_top_users_by_category_{day}_*.csv"))
+        if archived:
+            f1 = archived[-1]
+            logging.info("week %s: using archived universe snapshot %s",
+                         day, f1.name)
+        else:
+            f1 = s01_user_fetch.run(_step_args(s01_user_fetch, backtest=True,
+                                               as_of=day, mock=mock_flag))
         f2 = s02_user_data_fetch.run(_step_args(s02_user_data_fetch, backtest=True,
                                                 as_of=day, mock=mock_flag, input=f1))
         f3 = s03_select_users.run(_step_args(s03_select_users, backtest=True,
@@ -157,9 +175,13 @@ def run(args):
             cat_cum[r.category] = (cat_cum.get(r.category, 0.0)
                                    + r.weight * returns.get(r.proxy_wallet, 0.0))
 
-        # benchmark: equal-weight average of the whole available universe
+        # selected users equal weight (picking skill without construction)
+        # and whole-universe equal weight (the no-skill baseline)
+        sel_rets = [returns.get(w, 0.0) for w in selected["proxy_wallet"]]
+        sel_ew_ret = (sum(sel_rets) / len(sel_rets)) if sel_rets else 0.0
         bench_ret = (sum(returns.values()) / len(returns)) if returns else 0.0
         level *= (1 + port_ret)
+        sel_ew_level *= (1 + sel_ew_ret)
         bench_level *= (1 + bench_ret)
 
         wallets = set(selected["proxy_wallet"])
@@ -172,15 +194,18 @@ def run(args):
                            "n_selected": len(selected),
                            "n_signals_at_rebalance": n_signals,
                            "weekly_return": round(port_ret, 5),
+                           "selected_ew_return": round(sel_ew_ret, 5),
                            "universe_return": round(bench_ret, 5),
                            "selection_edge": round(port_ret - bench_ret, 5),
                            "turnover": round(turnover, 3),
                            "index_level": round(level, 3),
+                           "selected_ew_level": round(sel_ew_level, 3),
                            "universe_level": round(bench_level, 3)})
-        logging.info("week %s: %d selected, strat %+.2f%% vs universe %+.2f%% "
-                     "(edge %+.2f%%), turnover %.0f%%, index %.2f",
-                     day, len(selected), port_ret * 100, bench_ret * 100,
-                     (port_ret - bench_ret) * 100, turnover * 100, level)
+        logging.info("week %s: %d selected, strat %+.2f%% | picks ew %+.2f%% | "
+                     "universe %+.2f%% (edge %+.2f%%), turnover %.0f%%, index %.2f",
+                     day, len(selected), port_ret * 100, sel_ew_ret * 100,
+                     bench_ret * 100, (port_ret - bench_ret) * 100,
+                     turnover * 100, level)
 
         bucket_frames.append(_bucket_table(universe, returns))
         last_selected, last_universe = selected, universe
@@ -192,14 +217,15 @@ def run(args):
 
     metrics = _metrics(index_df)
     for k, v in metrics.items():
-        logging.info("metric %-22s: %s", k, v)
+        logging.info("metric %-24s: %s", k, v)
 
-    stamp = day_stamp()
-    write_csv(index_df, build_path("bt_index", stamp, backtest=True))
+    stamp = minute_stamp()
+    write_csv(index_df, build_path("10_backtest", stamp, backtest=True))
     write_csv(pd.DataFrame([{"run_date": stamp, "version": get_version(),
                              "weeks": weeks, **metrics}]),
-              build_path("bt_metrics", stamp, backtest=True))
-    report_path = build_path("bt_report", stamp, backtest=True, ext="html")
+              build_path("10_backtest_metrics", stamp, backtest=True))
+    report_path = build_path("10_backtest_report", stamp, backtest=True,
+                             ext="html")
     report_path.write_text(_render_html(cfg, index_df, buckets, last_selected,
                                         last_universe, cat_cum, metrics))
     logging.info("backtest report written: %s", report_path)
@@ -213,6 +239,7 @@ def _metrics(index_df: pd.DataFrame) -> dict:
     vol = float(rets.std(ddof=0))
     return {
         "total_return_pct": round(float(index_df["index_level"].iloc[-1]) - 100, 2),
+        "selected_ew_return_pct": round(float(index_df["selected_ew_level"].iloc[-1]) - 100, 2),
         "universe_return_pct": round(float(index_df["universe_level"].iloc[-1]) - 100, 2),
         "cum_selection_edge_pct": round(float(index_df["selection_edge"].sum()) * 100, 2),
         "max_drawdown_pct": round(_drawdown(index_df["index_level"]) * 100, 2),
@@ -235,11 +262,12 @@ def _drawdown(levels) -> float:
 
 def _svg_chart(index_df, width=720, height=240) -> str:
     strat = list(index_df["index_level"])
+    sel_ew = list(index_df["selected_ew_level"])
     bench = list(index_df["universe_level"])
     if len(strat) < 2:
         return "<p>not enough data for a chart</p>"
-    lo = min(strat + bench)
-    hi = max(strat + bench)
+    lo = min(strat + sel_ew + bench)
+    hi = max(strat + sel_ew + bench)
     span = (hi - lo) or 1
 
     def line(vals):
@@ -252,12 +280,16 @@ def _svg_chart(index_df, width=720, height=240) -> str:
             f'style="background:#fafafa;border:1px solid #ddd">'
             f'<polyline points="{line(bench)}" fill="none" stroke="#999" '
             f'stroke-width="1.5" stroke-dasharray="5,4"/>'
+            f'<polyline points="{line(sel_ew)}" fill="none" stroke="#27ae60" '
+            f'stroke-width="1.5" stroke-dasharray="2,3"/>'
             f'<polyline points="{line(strat)}" fill="none" stroke="#2c7be5" '
             f'stroke-width="2"/>'
-            f'<text x="20" y="16" font-size="12" fill="#2c7be5">Top Polymarket '
-            f'Index {strat[0]:.1f} → {strat[-1]:.1f}</text>'
-            f'<text x="320" y="16" font-size="12" fill="#777">universe '
-            f'equal-weight {bench[0]:.1f} → {bench[-1]:.1f}</text></svg>')
+            f'<text x="20" y="16" font-size="12" fill="#2c7be5">strategy '
+            f'{strat[0]:.1f} → {strat[-1]:.1f}</text>'
+            f'<text x="240" y="16" font-size="12" fill="#27ae60">picks '
+            f'equal-weight → {sel_ew[-1]:.1f}</text>'
+            f'<text x="470" y="16" font-size="12" fill="#777">universe '
+            f'equal-weight → {bench[-1]:.1f}</text></svg>')
 
 
 def _render_html(cfg, index_df, buckets, selected, universe, cat_cum,

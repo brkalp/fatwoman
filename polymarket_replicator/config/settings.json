@@ -29,7 +29,7 @@
     "lookback_minutes": 75
   },
   "execution": {
-    "order_type": "limit",
+    "order_type": "market",
     "time_in_force": "DAY",
     "limit_slippage_bps": 80,
     "max_orders_per_hour": 20,

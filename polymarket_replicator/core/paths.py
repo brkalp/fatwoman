@@ -19,7 +19,13 @@ CONFIG_PATH = Path(os.environ.get("POLYFLOW_CONFIG", PROJECT_ROOT / "config" / "
 CHANGELOG_PATH = PROJECT_ROOT / "CHANGELOG.md"
 STRATEGY_DIR = PROJECT_ROOT / "strategy"
 TASKS_DIR = PROJECT_ROOT / "tasks"
+# kill switches - marker files in the runtime root, checked by execution:
+# HALT stops all trading, KILL liquidates every position then stays halted,
+# DRY forces dry run (no orders booked/sent), PAPER forces paper mode.
 HALT_FILE = RUNTIME_ROOT / "HALT"
+KILL_FILE = RUNTIME_ROOT / "KILL"
+DRY_FILE = RUNTIME_ROOT / "DRY"
+PAPER_FILE = RUNTIME_ROOT / "PAPER"
 
 for _d in (DATA_DIR, BACKTEST_DATA_DIR, STATE_DIR, LOG_DIR):
     _d.mkdir(parents=True, exist_ok=True)

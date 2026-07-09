@@ -1,22 +1,29 @@
 """Step 5 - Hourly trade execution.
 
-Executes pending signals from the recent step-4 trade plans:
-- HALT file check (touch HALT in the project root to stop all trading),
-- retries still-open limit orders from earlier runs against the current
-  market before placing anything new,
-- max orders per hour limit, dry-run option (config or --dry-run; dry runs
-  never consume signals or touch state),
+Executes pending signals from the recent step-4 trade plans. By default
+everything is a MARKET order (fills at the current market price; slippage
+vs the signal price is recorded); set execution.order_type to "limit" for
+limit orders with a slippage buffer and DAY time-in-force (open limit
+orders are retried against the market each hour and expire next day).
+
+Kill switches (marker files in the runtime root):
+- HALT  : stop - no orders at all,
+- KILL  : liquidate every position at market, then stay halted while present,
+- DRY   : force dry run - nothing is booked or sent,
+- PAPER : force paper mode regardless of config.
+
+Also:
+- max orders per hour limit, dry-run option (config / --dry-run / DRY file;
+  dry runs never consume signals or touch state),
 - risk management: max total notional and max allocation per category
   (open orders reserve budget too) plus a cash constraint,
-- limit orders with a slippage buffer, DAY time-in-force; paper mode
-  simulates fills against the current market price,
-- signal lifecycle: FILLED / OPEN (day order, retried hourly, expires next
-  day) are final; SKIPPED_MAX_ORDERS, SKIPPED_RISK_CAP and SKIPPED_NO_CASH
-  stay pending and retry next hour until the signal is older than
-  execution.signal_max_age_hours, at which point it EXPIREs,
+- signal lifecycle: FILLED / OPEN / SKIPPED_NO_POSITION / EXPIRED are
+  final; SKIPPED_MAX_ORDERS, SKIPPED_RISK_CAP and SKIPPED_NO_CASH stay
+  pending and retry next hour until execution.signal_max_age_hours,
+- fill booking errors are caught and logged (status ERROR), never silent,
 - logs trades and position sizes via logging.info, sends the order summary
   to the trades telegram channel,
-- records fills in 05_execution_YYYYMMDDHHMM_xx.csv for the pnl reporter and
+- records fills in 05_execution_YYYYMMDDHHMM_xx.csv for the reporter and
   updates the paper account + copied-positions state.
 
 Live CLOB execution is intentionally not wired: mode=live logs an error and
@@ -32,7 +39,7 @@ from core.cli import make_parser
 from core.config import load_config
 from core.io_utils import (build_path, data_dir, load_state, minute_stamp,
                            read_csv, save_state, write_csv)
-from core.paths import HALT_FILE
+from core.paths import DRY_FILE, HALT_FILE, KILL_FILE, PAPER_FILE
 from core.polymarket_api import get_api
 from core.telegram_client import send
 
@@ -44,8 +51,9 @@ EXEC_COLUMNS = ["signal_id", "ts", "reason", "category", "condition_id",
                 "notional_usdc", "status", "slippage_bps", "proxy_wallet"]
 
 # statuses that consume the signal; the SKIPPED_* rate/risk/cash statuses
-# stay pending and are retried on the next hourly run
-FINAL_STATUSES = {"FILLED", "OPEN", "SKIPPED_NO_POSITION", "EXPIRED"}
+# stay pending and are retried on the next hourly run. ERROR is final so a
+# broken signal can't wedge the loop - the log line is the alarm.
+FINAL_STATUSES = {"FILLED", "OPEN", "SKIPPED_NO_POSITION", "EXPIRED", "ERROR"}
 
 SIG_KEYS = ["signal_id", "reason", "category", "condition_id", "question",
             "side", "outcome", "signal_price", "proxy_wallet", "user_name"]
@@ -130,6 +138,57 @@ def _exec_row(sig, stamp, ex, limit_price, fill_price, shares, status):
     }
 
 
+def _kill_switch(cfg, ex, dry_run):
+    """KILL file: liquidate every position at market, cancel open orders,
+    execute nothing new. Stays in effect (halted) while the file exists."""
+    api = get_api(cfg)
+    stamp = minute_stamp()
+    account = load_state("paper_account", None)
+    if account is None or (not account["positions"] and not account["open_orders"]):
+        logging.error("KILL switch active - nothing left to liquidate, "
+                      "no orders will be sent while KILL exists")
+        return None
+
+    logging.error("KILL switch active - liquidating %d positions, cancelling "
+                  "%d open orders (dry_run=%s)", len(account["positions"]),
+                  len(account["open_orders"]), dry_run)
+    results = []
+    for cond, pos in sorted(account["positions"].items()):
+        px = api.market_price(cond)
+        sig = {"signal_id": f"kill_{cond[:12]}_{stamp}", "reason": "kill_switch",
+               "category": pos["category"], "condition_id": cond,
+               "question": pos.get("question", ""), "side": "SELL",
+               "outcome": pos.get("outcome", ""), "signal_price": px,
+               "proxy_wallet": pos.get("source_wallet", ""),
+               "user_name": pos.get("user_name", "")}
+        status = "DRY_RUN" if dry_run else "FILLED"
+        logging.info("kill: SELL %s %.2fsh @ %.3f (avg %.3f, pnl %+.2f) -> %s",
+                     cond[:12], pos["shares"], px, pos["avg_price"],
+                     pos["shares"] * (px - pos["avg_price"]), status)
+        results.append(_exec_row(sig, stamp, ex, None, px if not dry_run else None,
+                                 pos["shares"], status))
+        if not dry_run:
+            realized = pos["shares"] * (px - pos["avg_price"])
+            account["cash"] += pos["shares"] * px
+            account["realized_pnl"] += realized
+            account["realized_by_category"][pos["category"]] = (
+                account["realized_by_category"].get(pos["category"], 0.0) + realized)
+
+    if not dry_run:
+        account["positions"] = {}
+        account["open_orders"] = []
+        save_state("paper_account", account)
+        save_state("copied_positions", {})
+
+    df = pd.DataFrame(results, columns=EXEC_COLUMNS)
+    out = build_path(PREFIX, stamp)
+    write_csv(df, out)
+    send(f"KILL SWITCH {stamp}: liquidated {len(results)} positions "
+         f"(dry={dry_run}), cash {account['cash']:.2f} - trading halted "
+         f"while KILL file exists", "trades")
+    return out
+
+
 def _retry_open_orders(account, copied, api, ex, stamp, results):
     """Re-check earlier OPEN day orders against the market; fill or keep."""
     still_open = []
@@ -162,7 +221,14 @@ def run(args):
     if args.mock:
         cfg["mock_api"] = True
     ex = cfg["execution"]
+    if PAPER_FILE.exists() and cfg["mode"] != "paper":
+        logging.warning("PAPER kill switch present - forcing paper mode "
+                        "(config said mode=%s)", cfg["mode"])
+        cfg["mode"] = "paper"
     dry_run = args.dry_run or ex["dry_run"]
+    if DRY_FILE.exists():
+        logging.warning("DRY kill switch present - forcing dry run, api not used")
+        dry_run = True
     if cfg["mode"] not in ("paper",) and not dry_run:
         logging.error("mode=%s live execution not implemented - forcing dry run "
                       "(add py-clob-client + keys to go live)", cfg["mode"])
@@ -172,6 +238,9 @@ def run(args):
         logging.error("HALT file present at %s - no orders will be sent", HALT_FILE)
         send("EXECUTION HALTED - HALT file present, no orders sent", "trades")
         return None
+
+    if KILL_FILE.exists():
+        return _kill_switch(cfg, ex, dry_run)
 
     # catch up over the recent plans (not just the newest) so an hour where
     # execution was skipped or died doesn't orphan its signals
@@ -226,6 +295,7 @@ def run(args):
     total_notional, by_cat = _exposure(account, prices)
     buffer = ex["limit_slippage_bps"] / 10_000.0
     max_age = timedelta(hours=ex.get("signal_max_age_hours", 3))
+    market_order = ex["order_type"] == "market"
 
     for _, row in plan.iterrows():
         # native python types: sig is embedded in json state for open orders
@@ -263,6 +333,10 @@ def run(args):
                 status = "SKIPPED_NO_CASH"  # pending - sells may free cash
                 logging.info("no cash: need %.2f, have %.2f (%s)",
                              allowed, account["cash"], sig["condition_id"][:12])
+            elif market_order:
+                notional = round(allowed, 2)
+                shares = round(notional / market, 2)
+                status, fill_price, limit_price = "FILLED", market, None
             else:
                 notional = round(allowed, 2)
                 shares = round(notional / limit_price, 2)
@@ -282,7 +356,9 @@ def run(args):
                 else:
                     shares = round(min(held, copied_here,
                                        notional / max(sig["signal_price"], 0.01)), 2)
-                if market >= limit_price:
+                if market_order:
+                    status, fill_price, limit_price = "FILLED", market, None
+                elif market >= limit_price:
                     status, fill_price = "FILLED", market
                 else:
                     status = "OPEN"
@@ -291,9 +367,16 @@ def run(args):
             status = "DRY_RUN"
 
         if status == "FILLED":
-            _apply_fill(account, copied, sig, shares, fill_price)
-            total_notional, by_cat = _exposure(account, prices)
-            hour_state["count"] += 1
+            try:
+                _apply_fill(account, copied, sig, shares, fill_price)
+                total_notional, by_cat = _exposure(account, prices)
+                hour_state["count"] += 1
+            except Exception:  # noqa: BLE001 - a bad fill must be loud, not fatal
+                logging.error("fill booking FAILED: %s %s %.2fsh @ %s - account "
+                              "state may need review", sig["side"],
+                              sig["condition_id"][:12], shares, fill_price,
+                              exc_info=True)
+                status, fill_price = "ERROR", None
         elif status == "OPEN":
             account["open_orders"].append({
                 "signal_id": sig["signal_id"], "ts": stamp, "side": sig["side"],
@@ -303,8 +386,9 @@ def run(args):
             total_notional, by_cat = _exposure(account, prices)
             hour_state["count"] += 1
 
-        logging.info("order %s %s %.2f sh @ lim %.4f (sig %.3f, %s) -> %s%s",
-                     sig["side"], sig["condition_id"][:12], shares, limit_price,
+        logging.info("order %s %s %.2f sh @ %s (sig %.3f, %s) -> %s%s",
+                     sig["side"], sig["condition_id"][:12], shares,
+                     f"lim {limit_price:.4f}" if limit_price else "mkt",
                      sig["signal_price"], sig["reason"], status,
                      f" fill {fill_price:.3f}" if fill_price else "")
         results.append(_exec_row(sig, stamp, ex, limit_price, fill_price,
@@ -334,7 +418,8 @@ def run(args):
                  or "-", account["cash"])
     if len(df):
         lines = [f"Orders {stamp} (v{out.stem.split('_')[-1]}, dry={dry_run}):"]
-        lines += [f"{r.side} {str(r.question)[:40]} {r.shares}sh @ {r.limit_price} "
+        lines += [f"{r.side} {str(r.question)[:40]} {r.shares}sh @ "
+                  f"{r.fill_price if r.fill_price is not None else r.limit_price} "
                   f"[{r.status}] ({r.reason})" for r in df.itertuples()]
         send("\n".join(lines), "trades")
     return out

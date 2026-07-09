@@ -5,6 +5,21 @@ file carries it as the `_xx` suffix, and `strategy/STRATEGY_xx.md` describes
 the logic of that version. Claude bumps the version here (and adds a matching
 strategy file) whenever it changes strategy logic.
 
+## 03 - 2026-07-09
+- Whiteboard v3 alignment. Execution defaults to MARKET orders (fills at
+  current market price, slippage vs signal recorded; limit mode kept via
+  execution.order_type). Kill-switch files: HALT (stop), KILL (liquidate
+  everything at market, stay halted), DRY (force dry run), PAPER (force
+  paper mode). Fill-booking errors are caught and logged (status ERROR).
+- Step 1 also stores each market's last_price and volume, so daily files
+  double as price snapshots for backtesting.
+- Backtester prefers archived step-1 daily snapshots per rebalance date
+  (no survivorship, no refetch) and falls back to back-calculation only
+  for dates before collection started. Outputs renamed to
+  10_backtest[_metrics/_report]_YYYYMMDDHHMM_xx. Third return series
+  added: selected users equal-weight (picking skill vs construction),
+  alongside strategy and universe equal-weight.
+
 ## 02 - 2026-07-08
 - Audit pass. Execution lifecycle reworked: still-open limit orders are
   retried each hour before new orders; rate-capped / risk-capped / no-cash

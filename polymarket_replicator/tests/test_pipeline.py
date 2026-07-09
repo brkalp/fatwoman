@@ -87,7 +87,8 @@ def test_e2e_daily_steps(runtime):
     home, env = runtime
     _run("s01_user_fetch.py", env)
     uni = _latest(home, "01_polymarket_top_users_by_category")
-    assert {"category", "proxy_wallet", "holding_usdc"} <= set(uni.columns)
+    assert {"category", "proxy_wallet", "holding_usdc",
+            "last_price", "volume"} <= set(uni.columns)  # price snapshot too
     assert uni["category"].nunique() >= 5 and len(uni) > 500
 
     _run("s02_user_data_fetch.py", env)
@@ -158,20 +159,20 @@ def test_halt_file_blocks_execution(runtime):
 def test_backtester(runtime):
     home, env = runtime
     _run("backtester.py", env, "--weeks", "3")
-    idx_files = sorted((home / "data/backtest").glob("bt_index_*.csv"))
-    html_files = sorted((home / "data/backtest").glob("bt_report_*.html"))
-    metric_files = sorted((home / "data/backtest").glob("bt_metrics_*.csv"))
+    idx_files = sorted((home / "data/backtest").glob("10_backtest_2*.csv"))
+    html_files = sorted((home / "data/backtest").glob("10_backtest_report_*.html"))
+    metric_files = sorted((home / "data/backtest").glob("10_backtest_metrics_*.csv"))
     assert idx_files and html_files and metric_files
     idx = pd.read_csv(idx_files[-1])
     assert len(idx) == 3
-    assert {"index_level", "universe_level", "selection_edge",
-            "turnover", "universe_return"} <= set(idx.columns)
+    assert {"index_level", "selected_ew_level", "universe_level",
+            "selection_edge", "turnover", "universe_return"} <= set(idx.columns)
     assert (idx["index_level"] > 0).all()
     metrics = pd.read_csv(metric_files[-1])
-    assert {"total_return_pct", "max_drawdown_pct", "sharpe_annualized",
-            "hit_rate", "avg_turnover"} <= set(metrics.columns)
+    assert {"total_return_pct", "selected_ew_return_pct", "max_drawdown_pct",
+            "sharpe_annualized", "hit_rate", "avg_turnover"} <= set(metrics.columns)
     report = html_files[-1].read_text()
-    assert "Top Polymarket Index" in report and "Bias notes" in report
+    assert "Top Polymarket" in report and "Bias notes" in report
     assert "universe equal-weight" in report and "Config snapshot" in report
 
 
@@ -189,10 +190,11 @@ def test_backtest_isolated_and_reproducible(runtime):
 
     before = live_snapshot()
     _run("backtester.py", env, "--weeks", "2", "--end", "20260615")
-    idx_file = sorted((home / "data/backtest").glob("bt_index_*.csv"))[-1]
+    idx_file = sorted((home / "data/backtest").glob("10_backtest_2*.csv"))[-1]
     idx1 = pd.read_csv(idx_file)
 
     _run("backtester.py", env, "--weeks", "2", "--end", "20260615")
+    idx_file = sorted((home / "data/backtest").glob("10_backtest_2*.csv"))[-1]
     idx2 = pd.read_csv(idx_file)
 
     pd.testing.assert_frame_equal(idx1, idx2)
@@ -265,3 +267,32 @@ def test_rate_capped_signals_stay_pending(tmp_path):
     ex2 = _latest(home, "05_execution")
     assert (ex2["status"] == "FILLED").any(), \
         "pending signals were not retried once the rate cap had room"
+
+
+def test_kill_switch_liquidates_everything(runtime):
+    """KILL file -> all positions sold at market, open orders cancelled,
+    nothing new executed while the file exists. Runs last: it wipes the
+    shared runtime's paper account."""
+    home, env = runtime
+    account = json.loads((home / "data/state/paper_account.json").read_text())
+    assert account["positions"], "precondition: need open positions to kill"
+
+    (home / "KILL").touch()
+    try:
+        _run("s05_trade_execution.py", env)
+        ex = _latest(home, "05_execution")
+        assert (ex["reason"] == "kill_switch").all()
+        assert (ex["status"] == "FILLED").all()
+
+        after = json.loads((home / "data/state/paper_account.json").read_text())
+        assert after["positions"] == {} and after["open_orders"] == []
+        assert after["cash"] > account["cash"], "liquidation proceeds missing"
+        copied = json.loads((home / "data/state/copied_positions.json").read_text())
+        assert copied == {}
+
+        # still halted while KILL exists: no new execution file appears
+        n_files = len(list((home / "data").glob("05_execution_*.csv")))
+        _run("s05_trade_execution.py", env)
+        assert len(list((home / "data").glob("05_execution_*.csv"))) == n_files
+    finally:
+        (home / "KILL").unlink()

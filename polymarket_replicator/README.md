@@ -68,8 +68,16 @@ notes in the backtest report).
 Backtest guarantees:
 
 - **Never trades, not even paper.** Steps 1-4 only; all outputs are stored
-  aside in `data/backtest/`, the live paper account / execution state /
-  telegram are untouched, and step 5 refuses `--backtest` outright.
+  aside in `data/backtest/` as `10_backtest[_metrics/_report]_*`, the live
+  paper account / execution state / telegram are untouched, and step 5
+  refuses `--backtest` outright.
+- **Uses your archives when it can.** Each rebalance date first checks for
+  that day's step-1 snapshot (holders + prices, accumulated by the daily
+  cron); archived weeks have zero survivorship bias and cost zero API
+  calls. Only older dates fall back to back-calculation.
+- **Three return series**: strategy (weighted, after steps 3-4), selected
+  users equal-weight (picking skill without construction), universe
+  equal-weight (no-skill baseline; strategy minus this = selection edge).
 - **Reproducible when the strategy is unchanged.** Rebalance dates align to
   Monday 12:00 UTC (most recent complete week), so re-runs in the same
   calendar week hit the same windows; pin exactly with
@@ -81,12 +89,19 @@ Backtest guarantees:
 
 - **Paper by default** (`config/settings.json: mode`). Live CLOB execution
   is deliberately not wired - step 5 forces dry-run outside paper mode.
-- **HALT file**: `touch HALT` in the project root → step 5 refuses to trade
-  and pings telegram. Remove the file to resume.
-- **Dry run**: `./run_hourly.sh --dry-run` or `execution.dry_run` in config.
-  Dry runs never consume signals - everything stays pending for the next
-  real run. (All scripts accept the same flags, so passing `--dry-run`
-  through the wrapper is safe.)
+- **Kill switches** - marker files in the project root, checked hourly:
+  | file | effect |
+  |---|---|
+  | `HALT` | stop - no orders at all, telegram alert |
+  | `KILL` | sell every position at market, cancel open orders, stay halted while present |
+  | `DRY` | force dry run - api not used, nothing booked |
+  | `PAPER` | force paper mode regardless of config |
+- **Market orders by default** (`execution.order_type`): fills at the
+  current market price, slippage vs the signal price is recorded; `"limit"`
+  switches to limit orders with the bps buffer + hourly retry + DAY expiry.
+- **Dry run**: `./run_hourly.sh --dry-run`, `execution.dry_run`, or the
+  `DRY` file. Dry runs never consume signals - everything stays pending
+  for the next real run. Fill-booking errors log loudly (status ERROR).
 - **Risk caps**: `execution.max_total_notional`, `max_category_notional`
   (open orders reserve budget), `max_orders_per_hour`, cash-constrained
   buys; sizing caps in `portfolio.*` (`copy_scale` sets replication scale).
