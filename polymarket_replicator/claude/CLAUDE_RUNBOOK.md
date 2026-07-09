@@ -14,10 +14,14 @@ from the project root. Do the following, in order:
 3. **Fix bugs you found.** Keep changes minimal and in the style of the
    existing code.
 
-4. **Test in paper mode before trusting any fix.** Re-run the flow offline:
-   `POLYFLOW_MOCK=1 POLYFLOW_RUNTIME=/tmp/polyflow_test ./run_daily.sh --mock`
-   then `POLYFLOW_MOCK=1 POLYFLOW_RUNTIME=/tmp/polyflow_test ./run_hourly.sh --mock`
-   and `python -m pytest tests/ -q`. All must pass.
+4. **Test against the paper account before trusting any fix.** Run
+   `./run_paper_test.sh` - it re-runs the whole flow (mock api) against the
+   dedicated test paper account in `paper_test/` and then runs pytest.
+   Fills must book, account state must advance, and the pnl reporter must
+   run. Never test with --dry-run: a dry run books nothing and hides
+   exactly the execution/state bugs you are trying to catch. Use
+   `./run_paper_test.sh --reset` only when a strategy change makes the
+   accumulated test account meaningless - say so in your notes.
 
 5. **Version bumps**: if you changed *strategy logic* (selection filters,
    sizing, risk, exits - not plain bugfixes), add a new `## xx` entry at the

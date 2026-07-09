@@ -51,10 +51,15 @@ cp .env.example .env          # telegram tokens etc (optional)
 Offline / paper test without touching APIs or live data:
 
 ```bash
-POLYFLOW_MOCK=1 POLYFLOW_RUNTIME=/tmp/polyflow_test ./run_daily.sh --mock
-POLYFLOW_MOCK=1 POLYFLOW_RUNTIME=/tmp/polyflow_test ./run_hourly.sh --mock
-python -m pytest tests/ -q
+./run_paper_test.sh            # steps 1-6 + pytest against the persistent
+                               # test paper account in paper_test/ (mock api,
+                               # real paper fills - NOT a dry run)
+./run_paper_test.sh --reset    # restart the test paper account from scratch
 ```
+
+This is also what the nightly claude run uses to validate its fixes: fills
+are booked into the test paper account and the pnl reporter runs, so the
+full execution/state path is exercised.
 
 Backtesting a single step: `python scripts/s01_user_fetch.py --backtest --as-of 20260601`
 (step 1 back-calculates which users were available at that date; see bias
@@ -84,7 +89,8 @@ notes in the backtest report).
 - **Crontab**: see `crontab.txt` - one daily entry (1-3), one hourly (4-6),
   weekly backtest, nightly claude maintenance.
 - **Claude loop**: `run_claude.sh` + `claude/CLAUDE_RUNBOOK.md`; drop change
-  requests into `tasks/`.
+  requests into `tasks/`. Claude validates every fix with
+  `./run_paper_test.sh` (paper fills into `paper_test/`, never dry run).
 
 ## State (data/state/)
 
