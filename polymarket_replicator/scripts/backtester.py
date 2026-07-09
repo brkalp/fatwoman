@@ -17,6 +17,19 @@ Produces:
 - bt_metrics_YYYYMMDD_xx.csv one-row summary for tracking across versions
 - bt_report_YYYYMMDD_xx.html strategy overview, chart, constituents, config
 
+Isolation: a backtest never executes anything - not even paper. Steps 1-4
+only; every output is stored aside in data/backtest/, and the live paper
+account, execution state and telegram are never touched (step 5 refuses
+--backtest outright).
+
+Reproducibility: rebalance dates are aligned to Monday 12:00 UTC (most
+recent complete week), so with an unchanged strategy a re-run inside the
+same calendar week reproduces the same windows - in mock mode the outcome
+is bit-identical. Pin the window exactly with --end YYYYMMDD to reproduce
+a run any time later. In live mode the data-api itself drifts (current-day
+holder snapshots - see survivorship note), so only pinned mock runs are
+fully deterministic.
+
 Bias notes: selection metrics only use data stamped <= as_of (no lookahead);
 the holder snapshot is current-day, so a survivorship caveat remains and is
 printed in the report.
@@ -44,6 +57,10 @@ from core.versioning import get_version, strategy_file
 def parse_args(argv=None):
     p = make_parser(__doc__)
     p.add_argument("--weeks", type=int, help="number of weekly rebalances")
+    p.add_argument("--end", help="last rebalance date YYYYMMDD - pins the "
+                                 "window so a run can be reproduced exactly "
+                                 "(default: most recent Monday with a "
+                                 "complete forward week)")
     return p.parse_args(argv)
 
 
@@ -82,12 +99,24 @@ def run(args):
     weeks = args.weeks or cfg["backtest"]["weeks"]
     mock_flag = bool(cfg.get("mock_api"))
 
-    now = datetime.now(timezone.utc).replace(hour=12, minute=0, second=0,
-                                             microsecond=0)
-    rebalances = [now - timedelta(days=7 * (weeks - i)) for i in range(weeks)]
-    logging.info("backtesting %d weekly rebalances: %s .. %s (mock=%s, v%s)",
-                 weeks, rebalances[0].date(), rebalances[-1].date(), mock_flag,
-                 get_version())
+    if args.end:
+        from core.cli import parse_as_of
+        last_reb = parse_as_of(args.end).replace(hour=12)
+        anchor_note = f"pinned by --end {args.end}"
+    else:
+        # most recent Monday 12:00 UTC whose forward week is complete:
+        # deterministic within a calendar week, so an unchanged strategy
+        # reproduces the same windows on re-run
+        anchor = (datetime.now(timezone.utc).replace(hour=12, minute=0,
+                                                     second=0, microsecond=0)
+                  - timedelta(days=7))
+        last_reb = anchor - timedelta(days=anchor.weekday())
+        anchor_note = "week-aligned default (pin with --end to reproduce later)"
+    rebalances = [last_reb - timedelta(days=7 * (weeks - 1 - i))
+                  for i in range(weeks)]
+    logging.info("backtesting %d weekly rebalances: %s .. %s (%s, mock=%s, v%s)",
+                 weeks, rebalances[0].date(), rebalances[-1].date(),
+                 anchor_note, mock_flag, get_version())
 
     index_rows, bucket_frames = [], []
     last_selected, last_universe = pd.DataFrame(), pd.DataFrame()

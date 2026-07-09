@@ -153,6 +153,11 @@ def _retry_open_orders(account, copied, api, ex, stamp, results):
 
 
 def run(args):
+    if getattr(args, "backtest", False):
+        logging.error("execution has no backtest mode: backtests never send "
+                      "orders, not even paper - backtest plans stay stored "
+                      "aside in data/backtest/")
+        return None
     cfg = load_config()
     if args.mock:
         cfg["mock_api"] = True

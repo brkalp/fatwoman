@@ -65,6 +65,18 @@ Backtesting a single step: `python scripts/s01_user_fetch.py --backtest --as-of 
 (step 1 back-calculates which users were available at that date; see bias
 notes in the backtest report).
 
+Backtest guarantees:
+
+- **Never trades, not even paper.** Steps 1-4 only; all outputs are stored
+  aside in `data/backtest/`, the live paper account / execution state /
+  telegram are untouched, and step 5 refuses `--backtest` outright.
+- **Reproducible when the strategy is unchanged.** Rebalance dates align to
+  Monday 12:00 UTC (most recent complete week), so re-runs in the same
+  calendar week hit the same windows; pin exactly with
+  `python scripts/backtester.py --end 20260622` to reproduce a run later.
+  Pinned mock runs are bit-identical; live runs additionally drift with the
+  data-api (current-day holder snapshots - see survivorship note).
+
 ## Safety & ops
 
 - **Paper by default** (`config/settings.json: mode`). Live CLOB execution

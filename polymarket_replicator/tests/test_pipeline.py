@@ -175,6 +175,39 @@ def test_backtester(runtime):
     assert "universe equal-weight" in report and "Config snapshot" in report
 
 
+def test_backtest_isolated_and_reproducible(runtime):
+    """Backtests must (a) leave live data + paper account byte-identical -
+    they never trade, not even paper - and (b) produce the same outcome on
+    re-run when the strategy is unchanged and the window is pinned."""
+    home, env = runtime
+
+    def live_snapshot():
+        files = sorted(p.name for p in (home / "data").glob("*.csv"))
+        state = {p.name: p.read_text()
+                 for p in sorted((home / "data/state").glob("*.json"))}
+        return files, state
+
+    before = live_snapshot()
+    _run("backtester.py", env, "--weeks", "2", "--end", "20260615")
+    idx_file = sorted((home / "data/backtest").glob("bt_index_*.csv"))[-1]
+    idx1 = pd.read_csv(idx_file)
+
+    _run("backtester.py", env, "--weeks", "2", "--end", "20260615")
+    idx2 = pd.read_csv(idx_file)
+
+    pd.testing.assert_frame_equal(idx1, idx2)
+    assert live_snapshot() == before, \
+        "backtest touched live data or state - it must store results aside"
+
+
+def test_execution_refuses_backtest_flag(runtime):
+    home, env = runtime
+    before = len(list((home / "data").glob("05_execution_*.csv")))
+    _run("s05_trade_execution.py", env, "--backtest")
+    assert len(list((home / "data").glob("05_execution_*.csv"))) == before, \
+        "step 5 must refuse to execute anything in backtest mode"
+
+
 # --- execution lifecycle details ---------------------------------------------
 
 def test_open_order_retry_fills_later():
