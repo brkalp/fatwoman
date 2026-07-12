@@ -10,6 +10,8 @@ WRAPPER() { nano ${BASE_DIR}fatwoman_wrapper.sh; }
 echo "$(date): Wrapper script started" > $LOG_DIR"0_wrapper_echo.log"
 export PYTHONPATH="$PYTHONPATH:${BASE_DIR}Scripts_Setup_Logger/:${BASE_DIR}/Scripts_Setup_Dirs/"
 export PYTHONPATH="/media/fatwoman/fatboy/python_libraries:$PYTHONPATH"
+# cron runs with a minimal PATH; uv lives in ~/.local/bin (or ~/.cargo/bin)
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 RETURNIP() { curl ifconfig.me; }
 IPGET() { curl ifconfig.me; }
 SETKEYBOARDSWE() { setxkbmap se; }
