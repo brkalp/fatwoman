@@ -34,6 +34,10 @@ for filename in os.listdir(LLM_data_path):
             with open(dest_file, "a") as df, open(file_full_path, "r") as sf:
                 shutil.copyfileobj(sf, df)
 
+            # Carry the original file's timestamps over to the archived copy
+            src_stat = os.stat(file_full_path)
+            os.utime(dest_file, (src_stat.st_atime, src_stat.st_mtime))
+
             # Remove original file
             os.remove(file_full_path)
             print(f"Appended and removed {file_full_path} -> {dest_file}")
